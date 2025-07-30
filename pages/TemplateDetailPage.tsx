@@ -1,0 +1,168 @@
+
+import React, { useState, useEffect } from 'react';
+import { useParams, Link } from 'react-router-dom';
+import { TEMPLATES } from '../constants';
+import NotFoundPage from './NotFoundPage';
+import TemplateCard from '../components/TemplateCard';
+
+const TemplateDetailPage: React.FC = () => {
+  const { id } = useParams<{ id: string }>();
+  const template = TEMPLATES.find(t => t.id === id);
+  
+  const [mainImage, setMainImage] = useState(template?.imageUrl);
+  const [activeColorTheme, setActiveColorTheme] = useState(template?.colorThemes[0]);
+  const [activeLayoutStyle, setActiveLayoutStyle] = useState(template?.layoutVariations[0]);
+  const [activeFontSet, setActiveFontSet] = useState(template?.fontOptions[0]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    const newTemplate = TEMPLATES.find(t => t.id === id);
+    if (newTemplate) {
+        setMainImage(newTemplate.imageUrl);
+        setActiveColorTheme(newTemplate.colorThemes[0]);
+        setActiveLayoutStyle(newTemplate.layoutVariations[0]);
+        setActiveFontSet(newTemplate.fontOptions[0]);
+    }
+  }, [id]);
+
+  if (!template) {
+    return <NotFoundPage />;
+  }
+
+  const relatedTemplates = TEMPLATES.filter(t => t.category === template.category && t.id !== template.id).slice(0, 3);
+
+  return (
+    <div className="py-12 md:py-20">
+      <div className="container mx-auto px-6">
+        {/* Header */}
+        <div className="text-center mb-12">
+          <h1 className="text-4xl md:text-5xl font-bold text-primary font-poppins">{template.name}</h1>
+          <p className="text-xl text-gray-600 mt-2">{template.tagline}</p>
+        </div>
+
+        {/* Gallery */}
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 mb-12">
+          <div className="lg:col-span-4">
+            <img src={mainImage} alt={template.name} className="w-full h-auto object-cover rounded-lg shadow-2xl aspect-[3/2]" />
+          </div>
+          <div className="lg:col-span-1 flex lg:flex-col gap-4 overflow-x-auto lg:overflow-x-visible pb-2 lg:pb-0">
+            {template.gallery.map((img, index) => (
+              <img
+                key={index}
+                src={img}
+                alt={`Thumbnail ${index + 1}`}
+                className={`w-28 h-20 lg:w-full lg:h-auto object-cover rounded-md cursor-pointer aspect-[3/2] transition-all duration-300 ${mainImage === img ? 'ring-4 ring-primary' : 'hover:ring-2 ring-primary/50'}`}
+                onClick={() => setMainImage(img)}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* Details & Pricing */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+          <div className="md:col-span-2 space-y-8">
+             <div>
+              <h2 className="text-3xl font-bold font-poppins mb-4">Description</h2>
+              <p className="text-gray-700 leading-relaxed">{template.description}</p>
+            </div>
+             <div>
+              <h3 className="text-2xl font-bold font-poppins mb-4">Style</h3>
+              <p className="text-gray-700 italic bg-gray-50 p-4 rounded-md border-l-4 border-secondary">{template.styleDescription}</p>
+            </div>
+
+            <div>
+              <h3 className="text-2xl font-bold font-poppins mb-4">Key Details</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6 bg-white p-6 rounded-lg shadow-md">
+                <div>
+                    <h4 className="font-semibold text-lg mb-2 text-primary">Features</h4>
+                    <ul className="list-disc list-inside space-y-1">
+                        {template.features.map(feature => <li key={feature} className="text-gray-700">{feature}</li>)}
+                        <li className="text-gray-700">{template.isDynamic ? 'Dynamic Content & Parallax' : 'Static Build'}</li>
+                        <li className="text-gray-700">{template.hasShopPage ? 'E-commerce Ready' : 'Standard Pages'}</li>
+                        <li className="text-gray-700">Fully Responsive</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 className="font-semibold text-lg mb-2 text-primary">Site Menu Includes</h4>
+                    <ul className="list-disc list-inside space-y-1">
+                        {template.necessaryMenu.map(item => <li key={item} className="text-gray-700">{item}</li>)}
+                    </ul>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-white p-6 rounded-lg shadow-md space-y-6">
+              <h3 className="text-2xl font-bold font-poppins border-b pb-2">Customization Options</h3>
+              
+              {/* Color Themes */}
+              <div>
+                <h4 className="text-xl font-semibold font-poppins mb-3">Color Themes</h4>
+                <div className="flex flex-wrap gap-4">
+                  {template.colorThemes.map(theme => (
+                    <button key={theme.name} onClick={() => setActiveColorTheme(theme)} className={`px-3 py-2 rounded-lg transition-all duration-200 ${activeColorTheme?.name === theme.name ? 'ring-2 ring-primary shadow-lg' : 'ring-1 ring-gray-200 hover:ring-primary/70'}`}>
+                      <div className="flex items-center gap-2">
+                        <div className="flex">
+                          {theme.palette.slice(0, 4).map(color => <div key={color} style={{backgroundColor: color}} className="w-5 h-5 rounded-full border-2 border-white -ml-1"></div>)}
+                        </div>
+                        <span className="text-sm font-medium">{theme.name}</span>
+                      </div>
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Layout Variations */}
+               <div>
+                <h4 className="text-xl font-semibold font-poppins mb-3">Layout Variations</h4>
+                <div className="flex flex-wrap gap-3">
+                    {template.layoutVariations.map(style => (
+                        <button key={style} onClick={() => setActiveLayoutStyle(style)} className={`px-4 py-2 text-sm font-semibold rounded-full transition-colors ${activeLayoutStyle === style ? 'bg-primary text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}>
+                            {style}
+                        </button>
+                    ))}
+                </div>
+              </div>
+
+               {/* Font Options */}
+               <div>
+                <h4 className="text-xl font-semibold font-poppins mb-3">Font Pairings</h4>
+                 <div className="flex flex-wrap gap-3">
+                    {template.fontOptions.map(option => (
+                        <button key={option.name} onClick={() => setActiveFontSet(option)} className={`px-4 py-2 text-sm rounded-full transition-colors ${activeFontSet?.name === option.name ? 'bg-primary text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}`}>
+                            <span className="font-semibold">{option.fonts[0]}</span> + <span className="italic">{option.fonts[1]}</span>
+                        </button>
+                    ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="md:col-span-1">
+            <div className="bg-white p-8 rounded-lg shadow-lg sticky top-24">
+              <p className="text-4xl font-bold text-center font-poppins text-primary mb-2">${template.priceRange[0]} - ${template.priceRange[1]}</p>
+              <p className="text-center text-gray-500 mb-6">Based on feature package</p>
+              <button className="w-full bg-secondary text-white py-3 px-6 rounded-lg uppercase text-sm font-semibold tracking-wide-sm hover:bg-opacity-90 transition-colors duration-300">
+                Buy Template
+              </button>
+              <p className="text-xs text-center text-gray-400 mt-4">Includes lifetime updates and support.</p>
+              <hr className="my-6" />
+               <Link to="/contact" className="text-center block text-primary hover:underline">Contact for support</Link>
+            </div>
+          </div>
+        </div>
+
+        {/* Related Templates */}
+        {relatedTemplates.length > 0 && (
+          <div className="mt-24">
+            <h2 className="text-3xl font-bold text-center mb-12 font-poppins">Related Templates</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+              {relatedTemplates.map(t => <TemplateCard key={t.id} template={t} />)}
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default TemplateDetailPage;
