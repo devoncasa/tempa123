@@ -25,6 +25,11 @@
         --brand-200: #a6f5ef; /* Light-Accent: For subtle highlights, hover backgrounds */
         --brand-100: #dffcf9; /* Light-Background: For content sections, cards */
 
+        /* --- Accent & Navigation Colors --- */
+        --accent-color: #e0644c;
+        --text-nav: #03403b;
+        --text-nav-active: #8dcfca;
+
         /* --- Neutral & Functional Palette --- */
         --grey-900: #2d3748; /* Darkest Grey: For primary body text */
         --grey-600: #718096; /* Medium Grey: For secondary text, descriptions */
@@ -78,6 +83,37 @@
         }
       }
     </style>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "name": "Tempa Web.123",
+          "url": "https://[YourWebsiteURL.com]",
+          "logo": "https://raw.githubusercontent.com/devoncasa/Tempa123-Asset/refs/heads/main/Tempa%20logo%20small%20fit.webp",
+          "sameAs": [
+            "https://[YourFacebookURL.com]",
+            "https://[YourInstagramURL.com]",
+            "https://[YourLINEProfileURL.com]"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "name": "Tempa Web.123",
+          "url": "https://[YourWebsiteURL.com]",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": {
+              "@type": "EntryPoint",
+              "urlTemplate": "https://[YourWebsiteURL.com]/search?q={search_term_string}"
+            },
+            "query-input": "required name=search_term_string"
+          }
+        }
+      ]
+    }
+    </script>
     <script>
       tailwind.config = {
         theme: {

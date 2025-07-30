@@ -1,7 +1,7 @@
-
 import React, { useState, FormEvent } from 'react';
 import { Link } from 'react-router-dom';
 import FaqItem from '../components/FaqItem';
+import Seo from '../components/Seo';
 
 const PRICING_FAQ_ITEMS = [
     {
@@ -104,158 +104,178 @@ const DomainChecker: React.FC = () => {
 
 
 const PricingPage: React.FC = () => {
+    const faqSchema = {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": PRICING_FAQ_ITEMS.map(item => ({
+            "@type": "Question",
+            "name": item.question,
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": item.answer
+            }
+        }))
+    };
+    
     return (
-        <div className="bg-bg-primary">
-            {/* Section A: Domain Name Services */}
-            <section className="py-16 md:py-24">
-                <div className="container mx-auto px-6 lg:px-[8vw]">
-                    <div className="text-center max-w-3xl mx-auto">
-                        <h1 className="text-4xl md:text-5xl font-bold text-brand-900 font-poppins">Find the Perfect Domain Name</h1>
-                        <p className="text-lg text-grey-600 mt-4 mb-8">
-                            Your website's address is the first thing your visitors see. Make it a great one.
-                        </p>
-                    </div>
-                    <DomainChecker />
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center mt-12 max-w-4xl mx-auto">
-                        <div className="bg-white p-4 rounded-lg border border-grey-200">
-                            <p className="font-bold text-lg">.com</p><p className="text-grey-600">$15.99/yr</p>
+        <>
+            <Seo
+                title="Pricing & Licenses | Tempa Web.123"
+                description="Transparent, one-time pricing for website templates. Choose between a Regular or Extended license to fit your project needs."
+                schema={faqSchema}
+            />
+            <div className="bg-bg-primary">
+                {/* Section A: Domain Name Services */}
+                <section className="py-16 md:py-24">
+                    <div className="container mx-auto px-6 lg:px-[8vw]">
+                        <div className="text-center max-w-3xl mx-auto">
+                            <h1 className="text-4xl md:text-5xl font-bold text-brand-900 font-poppins">Find the Perfect Domain Name</h1>
+                            <p className="text-lg text-grey-600 mt-4 mb-8">
+                                Your website's address is the first thing your visitors see. Make it a great one.
+                            </p>
                         </div>
-                        <div className="bg-white p-4 rounded-lg border border-grey-200">
-                            <p className="font-bold text-lg">.net</p><p className="text-grey-600">$17.99/yr</p>
+                        <DomainChecker />
+                        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center mt-12 max-w-4xl mx-auto">
+                            <div className="bg-white p-4 rounded-lg border border-grey-200">
+                                <p className="font-bold text-lg">.com</p><p className="text-grey-600">$15.99/yr</p>
+                            </div>
+                            <div className="bg-white p-4 rounded-lg border border-grey-200">
+                                <p className="font-bold text-lg">.net</p><p className="text-grey-600">$17.99/yr</p>
+                            </div>
+                             <div className="bg-white p-4 rounded-lg border border-grey-200">
+                                <p className="font-bold text-lg">.org</p><p className="text-grey-600">$18.99/yr</p>
+                            </div>
+                            <div className="bg-white p-4 rounded-lg border border-grey-200">
+                                <p className="font-bold text-lg">.io</p><p className="text-grey-600">$49.99/yr</p>
+                            </div>
                         </div>
-                         <div className="bg-white p-4 rounded-lg border border-grey-200">
-                            <p className="font-bold text-lg">.org</p><p className="text-grey-600">$18.99/yr</p>
-                        </div>
-                        <div className="bg-white p-4 rounded-lg border border-grey-200">
-                            <p className="font-bold text-lg">.io</p><p className="text-grey-600">$49.99/yr</p>
+                         <div className="text-center mt-8 text-grey-600 max-w-2xl mx-auto">
+                            <h4 className="font-bold text-grey-900 mb-2">Premium Domains</h4>
+                            <p>Looking for a specific, high-value domain? We facilitate the acquisition of aftermarket domains. These are typically short, memorable, and highly brandable names that have been previously registered. Contact us for inquiries.</p>
                         </div>
                     </div>
-                     <div className="text-center mt-8 text-grey-600 max-w-2xl mx-auto">
-                        <h4 className="font-bold text-grey-900 mb-2">Premium Domains</h4>
-                        <p>Looking for a specific, high-value domain? We facilitate the acquisition of aftermarket domains. These are typically short, memorable, and highly brandable names that have been previously registered. Contact us for inquiries.</p>
-                    </div>
-                </div>
-            </section>
-            
-            {/* Section B: Web Template Pricing */}
-            <section className="py-16 md:py-24 bg-bg-secondary">
-                 <div className="container mx-auto px-6 lg:px-[8vw]">
-                     <div className="text-center max-w-3xl mx-auto">
-                        <h2 className="text-3xl md:text-4xl font-bold font-poppins">Transparent, One-Time Pricing</h2>
-                        <p className="text-lg text-grey-600 mt-4 mb-12">
-                           No subscriptions. No hidden fees. Pay once, own it forever.
-                        </p>
-                    </div>
+                </section>
+                
+                {/* Section B: Web Template Pricing */}
+                <section className="py-16 md:py-24 bg-bg-secondary">
+                     <div className="container mx-auto px-6 lg:px-[8vw]">
+                         <div className="text-center max-w-3xl mx-auto">
+                            <h2 className="text-3xl md:text-4xl font-bold font-poppins">Transparent, One-Time Pricing</h2>
+                            <p className="text-lg text-grey-600 mt-4 mb-12">
+                               No subscriptions. No hidden fees. Pay once, own it forever.
+                            </p>
+                        </div>
 
-                    <div className="max-w-5xl mx-auto">
-                        {/* Desktop Table */}
-                        <div className="hidden md:block bg-white rounded-lg shadow-xl overflow-hidden border border-grey-200">
-                            <table className="w-full">
-                                <thead className="bg-gray-50">
-                                    <tr>
-                                        <th className="p-6 font-bold text-grey-900 text-lg w-2/5">Feature &amp; Details</th>
-                                        <th className="p-6 font-bold text-grey-900 text-lg text-center">Regular License</th>
-                                        <th className="p-6 font-bold text-grey-900 text-lg text-center bg-brand-100">Extended License</th>
-                                    </tr>
-                                </thead>
-                                <tbody className="text-center">
-                                    {pricingData.map((item, index) => {
-                                        if (item.type === 'header') {
+                        <div className="max-w-5xl mx-auto">
+                            {/* Desktop Table */}
+                            <div className="hidden md:block bg-white rounded-lg shadow-xl overflow-hidden border border-grey-200">
+                                <table className="w-full">
+                                    <thead className="bg-gray-50">
+                                        <tr>
+                                            <th className="p-6 font-bold text-grey-900 text-lg w-2/5">Feature &amp; Details</th>
+                                            <th className="p-6 font-bold text-grey-900 text-lg text-center">Regular License</th>
+                                            <th className="p-6 font-bold text-grey-900 text-lg text-center bg-brand-100">Extended License</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody className="text-center">
+                                        {pricingData.map((item, index) => {
+                                            if (item.type === 'header') {
+                                                return (
+                                                    <tr key={index} className="bg-gray-100 border-t border-b border-grey-200">
+                                                        <td colSpan={3} className="px-6 py-3 font-semibold text-grey-600 tracking-wider uppercase text-sm text-left">{item.title}</td>
+                                                    </tr>
+                                                )
+                                            }
                                             return (
-                                                <tr key={index} className="bg-gray-100 border-t border-b border-grey-200">
-                                                    <td colSpan={3} className="px-6 py-3 font-semibold text-grey-600 tracking-wider uppercase text-sm text-left">{item.title}</td>
+                                                <tr key={index} className="border-t border-grey-200">
+                                                    <td className={`p-6 text-grey-900 text-left ${item.bold ? 'font-semibold' : ''}`}>{item.feature}</td>
+                                                    <td className="p-6"><div className="flex justify-center"><FeatureCell value={item.regular} bold={item.bold} /></div></td>
+                                                    <td className="p-6 bg-brand-100"><div className="flex justify-center"><FeatureCell value={item.extended} bold={item.bold} isExtended /></div></td>
                                                 </tr>
                                             )
-                                        }
-                                        return (
-                                            <tr key={index} className="border-t border-grey-200">
-                                                <td className={`p-6 text-grey-900 text-left ${item.bold ? 'font-semibold' : ''}`}>{item.feature}</td>
-                                                <td className="p-6"><div className="flex justify-center"><FeatureCell value={item.regular} bold={item.bold} /></div></td>
-                                                <td className="p-6 bg-brand-100"><div className="flex justify-center"><FeatureCell value={item.extended} bold={item.bold} isExtended /></div></td>
-                                            </tr>
-                                        )
-                                    })}
-                                    <tr className="border-t border-grey-200 bg-gray-50">
-                                        <td className="p-6"></td>
-                                        <td className="p-6 text-center">
-                                            <Link to="/catalog" className="inline-block bg-white border-2 border-primary text-primary py-3 px-8 rounded-lg font-semibold hover:bg-brand-100 transition-colors duration-300">Browse Catalog</Link>
-                                        </td>
-                                        <td className="p-6 text-center bg-brand-100">
-                                            <Link to="/contact" className="inline-block bg-primary text-button-primary-text py-3 px-8 rounded-lg font-semibold hover:bg-primary-hover transition-colors duration-300">Contact Sales</Link>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                                        })}
+                                        <tr className="border-t border-grey-200 bg-gray-50">
+                                            <td className="p-6"></td>
+                                            <td className="p-6 text-center">
+                                                <Link to="/catalog" className="inline-block bg-white border-2 border-primary text-primary py-3 px-8 rounded-lg font-semibold hover:bg-brand-100 transition-colors duration-300">Browse Catalog</Link>
+                                            </td>
+                                            <td className="p-6 text-center bg-brand-100">
+                                                <Link to="/contact" className="inline-block bg-primary text-button-primary-text py-3 px-8 rounded-lg font-semibold hover:bg-primary-hover transition-colors duration-300">Contact Sales</Link>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
 
-                        {/* Mobile Cards */}
-                        <div className="block md:hidden space-y-8">
-                            {/* Regular License Card */}
-                            <div className="bg-white rounded-lg shadow-xl border border-grey-200 overflow-hidden">
-                                <div className="p-6 bg-gray-50">
-                                    <h3 className="font-bold text-xl text-center text-grey-900">Regular License</h3>
+                            {/* Mobile Cards */}
+                            <div className="block md:hidden space-y-8">
+                                {/* Regular License Card */}
+                                <div className="bg-white rounded-lg shadow-xl border border-grey-200 overflow-hidden">
+                                    <div className="p-6 bg-gray-50">
+                                        <h3 className="font-bold text-xl text-center text-grey-900">Regular License</h3>
+                                    </div>
+                                    <div className="p-6 divide-y divide-grey-200">
+                                        {pricingData.map((item, index) => {
+                                            if (item.type === 'header') {
+                                                return <div key={index} className="pt-5 pb-2 font-semibold text-grey-600 tracking-wider uppercase text-sm text-center">{item.title}</div>
+                                            }
+                                            return (
+                                                <div key={index} className="flex justify-between items-center py-4">
+                                                    <span className={`text-grey-900 ${item.bold ? 'font-semibold' : ''}`}>{item.feature}</span>
+                                                    <FeatureCell value={item.regular} bold={item.bold} />
+                                                </div>
+                                            )
+                                        })}
+                                    </div>
+                                    <div className="p-6 bg-gray-50 text-center">
+                                        <Link to="/catalog" className="w-full block bg-white border-2 border-primary text-primary py-3 px-6 rounded-lg font-semibold hover:bg-brand-100 transition-colors">Browse Catalog</Link>
+                                    </div>
                                 </div>
-                                <div className="p-6 divide-y divide-grey-200">
+
+                                {/* Extended License Card */}
+                                 <div className="bg-white rounded-lg shadow-2xl border-2 border-brand-700 overflow-hidden">
+                                    <div className="p-6 bg-brand-100">
+                                        <h3 className="font-bold text-xl text-center text-brand-900">Extended License</h3>
+                                    </div>
+                                    <div className="p-6 divide-y divide-grey-200">
                                     {pricingData.map((item, index) => {
-                                        if (item.type === 'header') {
-                                            return <div key={index} className="pt-5 pb-2 font-semibold text-grey-600 tracking-wider uppercase text-sm text-center">{item.title}</div>
-                                        }
-                                        return (
-                                            <div key={index} className="flex justify-between items-center py-4">
-                                                <span className={`text-grey-900 ${item.bold ? 'font-semibold' : ''}`}>{item.feature}</span>
-                                                <FeatureCell value={item.regular} bold={item.bold} />
-                                            </div>
-                                        )
-                                    })}
-                                </div>
-                                <div className="p-6 bg-gray-50 text-center">
-                                    <Link to="/catalog" className="w-full block bg-white border-2 border-primary text-primary py-3 px-6 rounded-lg font-semibold hover:bg-brand-100 transition-colors">Browse Catalog</Link>
-                                </div>
-                            </div>
-
-                            {/* Extended License Card */}
-                             <div className="bg-white rounded-lg shadow-2xl border-2 border-brand-700 overflow-hidden">
-                                <div className="p-6 bg-brand-100">
-                                    <h3 className="font-bold text-xl text-center text-brand-900">Extended License</h3>
-                                </div>
-                                <div className="p-6 divide-y divide-grey-200">
-                                {pricingData.map((item, index) => {
-                                        if (item.type === 'header') {
-                                            return <div key={index} className="pt-5 pb-2 font-semibold text-grey-600 tracking-wider uppercase text-sm text-center">{item.title}</div>
-                                        }
-                                        return (
-                                            <div key={index} className="flex justify-between items-center py-4">
-                                                <span className={`text-grey-900 ${item.bold ? 'font-semibold' : ''}`}>{item.feature}</span>
-                                                <FeatureCell value={item.extended} bold={item.bold} isExtended />
-                                            </div>
-                                        )
-                                    })}
-                                </div>
-                                <div className="p-6 bg-brand-100 text-center">
-                                    <Link to="/contact" className="w-full block bg-primary text-button-primary-text py-3 px-6 rounded-lg font-semibold hover:bg-primary-hover transition-colors">Contact Sales</Link>
+                                            if (item.type === 'header') {
+                                                return <div key={index} className="pt-5 pb-2 font-semibold text-grey-600 tracking-wider uppercase text-sm text-center">{item.title}</div>
+                                            }
+                                            return (
+                                                <div key={index} className="flex justify-between items-center py-4">
+                                                    <span className={`text-grey-900 ${item.bold ? 'font-semibold' : ''}`}>{item.feature}</span>
+                                                    <FeatureCell value={item.extended} bold={item.bold} isExtended />
+                                                </div>
+                                            )
+                                        })}
+                                    </div>
+                                    <div className="p-6 bg-brand-100 text-center">
+                                        <Link to="/contact" className="w-full block bg-primary text-button-primary-text py-3 px-6 rounded-lg font-semibold hover:bg-primary-hover transition-colors">Contact Sales</Link>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <p className="text-center text-sm text-grey-600 mt-8 max-w-4xl mx-auto">
-                       *An "End Product for Sale" can be a SaaS application, a website builder, or any other product where end-users pay a fee to use it.
-                    </p>
-                </div>
-            </section>
-            
-            {/* Section C: FAQ */}
-            <section className="py-16 md:py-24">
-                <div className="container mx-auto px-6 lg:px-[8vw]">
-                    <h3 className="text-3xl font-bold text-center mb-12 font-poppins">Your Questions, Answered</h3>
-                    <div className="max-w-3xl mx-auto bg-white p-8 rounded-lg shadow-lg border border-grey-200">
-                        {PRICING_FAQ_ITEMS.map((item) => (
-                            <FaqItem key={item.question} item={item} />
-                        ))}
+                        <p className="text-center text-sm text-grey-600 mt-8 max-w-4xl mx-auto">
+                           *An "End Product for Sale" can be a SaaS application, a website builder, or any other product where end-users pay a fee to use it.
+                        </p>
                     </div>
-                </div>
-            </section>
-        </div>
+                </section>
+                
+                {/* Section C: FAQ */}
+                <section className="py-16 md:py-24">
+                    <div className="container mx-auto px-6 lg:px-[8vw]">
+                        <h3 className="text-3xl font-bold text-center mb-12 font-poppins">Your Questions, Answered</h3>
+                        <div className="max-w-3xl mx-auto bg-white p-8 rounded-lg shadow-lg border border-grey-200">
+                            {PRICING_FAQ_ITEMS.map((item) => (
+                                <FaqItem key={item.question} item={item} />
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </>
     );
 };
 

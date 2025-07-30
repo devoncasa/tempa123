@@ -8,12 +8,14 @@ import CatalogPage from './pages/CatalogPage';
 import TemplateDetailPage from './pages/TemplateDetailPage';
 import SubmitPage from './pages/SubmitPage';
 import PricingPage from './pages/PricingPage';
+import CustomizationServicesPage from './pages/CustomizationServicesPage';
 import BlogPage from './pages/BlogPage';
 import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
 import NotFoundPage from './pages/NotFoundPage';
 import { useAuth } from './contexts/AuthContext';
 import AdminPortal from './components/AdminPortal';
+import MultilingualServicePage from './pages/MultilingualServicePage';
 
 const App: React.FC = () => {
   const { isAuthenticated } = useAuth();
@@ -29,6 +31,8 @@ const App: React.FC = () => {
             <Route path="/catalog" element={<CatalogPage />} />
             <Route path="/catalog/:category" element={<CatalogPage />} />
             <Route path="/pricing" element={<PricingPage />} />
+            <Route path="/pricing/customization-services" element={<CustomizationServicesPage />} />
+            <Route path="/services/multilingual-websites" element={<MultilingualServicePage />} />
             <Route path="/blog" element={<BlogPage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/submit-template" element={<SubmitPage />} />

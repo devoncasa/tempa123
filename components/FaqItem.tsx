@@ -14,6 +14,7 @@ const FaqItem: React.FC<FaqItemProps> = ({ item }) => {
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="w-full flex justify-between items-center text-left"
+        aria-expanded={isOpen}
       >
         <h4 className="text-lg font-semibold font-poppins text-grey-900">{item.question}</h4>
         <svg
@@ -27,7 +28,7 @@ const FaqItem: React.FC<FaqItemProps> = ({ item }) => {
         </svg>
       </button>
       <div className={`overflow-hidden transition-all duration-500 ease-in-out ${isOpen ? 'max-h-96 mt-4' : 'max-h-0'}`}>
-        <p className="text-grey-600">{item.answer}</p>
+        <div className="text-grey-600 leading-relaxed pr-6">{item.answer}</div>
       </div>
     </div>
   );

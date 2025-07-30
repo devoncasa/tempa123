@@ -1,4 +1,6 @@
+
 import React from 'react';
+import { Link } from 'react-router-dom';
 import type { Template, FaqItem, PricingTier, CategoryInfo, ColorTheme, FontSet } from './types';
 import { TemplateCategory } from './types';
 
@@ -1364,7 +1366,16 @@ const artisanTemplates: Template[] = [
 export const TEMPLATES: Template[] = [...wellnessTemplates, ...artisanTemplates];
 
 export const FAQ_ITEMS: FaqItem[] = [
-  { question: 'How do I edit my template?', answer: 'All templates come with detailed documentation and an intuitive built-in editor. You can easily upload your content, change colors, and adjust layouts to match your brand. Static templates can also be edited with any code editor for more advanced customization.' },
+  { 
+    question: 'How do I edit my template?', 
+    answer: (
+      <>
+        All templates come with detailed documentation and an intuitive built-in editor. You can easily upload your content, change colors, and adjust layouts to match your brand. Static templates can also be edited with any code editor for more advanced customization.
+        <br/><br/>
+        For a completely hands-off experience, check out our <Link to="/pricing/customization-services" className="text-brand-700 font-semibold hover:underline">Professional Customization Services</Link> where our team builds the site for you.
+      </>
+    )
+  },
   { question: 'What payment methods are supported?', answer: 'Our "Full Ecommerce Pack" supports major gateways like Stripe and PayPal. The base templates can be integrated with services like Gumroad or standard PayPal buttons.' },
   { question: 'Are the templates responsive?', answer: 'Yes, all our templates are fully responsive and designed to look great on desktops, tablets, and mobile phones.' },
   { question: 'Can I use my own domain name?', answer: 'Absolutely. Once you purchase a template, you can host it on any server and connect it to your own domain name.' },
