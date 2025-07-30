@@ -32,11 +32,11 @@ const CatalogPage: React.FC = () => {
   };
 
   const getButtonClasses = (buttonType: typeof typeFilter) => {
-    const baseClasses = 'px-6 py-2 text-sm font-semibold rounded-full transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50';
+    const baseClasses = 'px-6 py-2 text-sm font-semibold rounded-full transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-brand-700 focus:ring-opacity-50';
     if (typeFilter === buttonType) {
       return `${baseClasses} bg-primary text-white shadow`;
     }
-    return `${baseClasses} bg-white text-gray-700 hover:bg-gray-100`;
+    return `${baseClasses} bg-white text-grey-900 hover:bg-gray-100`;
   };
 
   const filteredTemplates = TEMPLATES
@@ -49,15 +49,15 @@ const CatalogPage: React.FC = () => {
     });
 
   return (
-    <div className="container mx-auto px-6 py-12">
+    <div className="container mx-auto px-6 lg:px-[8vw] py-12">
       <h1 className="text-4xl font-bold text-center font-poppins mb-4">Template Catalog</h1>
-      <p className="text-center text-lg text-gray-600 mb-8">Find the perfect design for your next project.</p>
+      <p className="text-center text-lg text-grey-600 mb-8">Find the perfect design for your next project.</p>
 
       <div className="flex flex-col md:flex-row justify-center items-center gap-4 md:gap-8 mb-12">
         <select
           value={selectedCategory}
           onChange={handleCategoryChange}
-          className="w-full md:w-auto md:max-w-xs p-3 border border-gray-300 rounded-lg shadow-sm text-base bg-white focus:ring-primary focus:border-primary"
+          className="w-full md:w-auto md:max-w-xs p-3 border border-grey-200 rounded-lg shadow-sm text-base bg-white focus:ring-brand-700 focus:border-brand-700"
           aria-label="Filter templates by category"
         >
           <option value="all">All Categories</option>
@@ -79,8 +79,8 @@ const CatalogPage: React.FC = () => {
       </div>
       {filteredTemplates.length === 0 && (
         <div className="col-span-full text-center py-20">
-          <h2 className="text-2xl font-semibold text-gray-700">No templates found</h2>
-          <p className="text-gray-500 mt-2">Try adjusting your filters.</p>
+          <h2 className="text-2xl font-semibold text-grey-900">No templates found</h2>
+          <p className="text-grey-600 mt-2">Try adjusting your filters.</p>
         </div>
       )}
     </div>

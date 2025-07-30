@@ -10,14 +10,14 @@ const FaqItem: React.FC<FaqItemProps> = ({ item }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="border-b border-gray-200 py-4">
+    <div className="border-b border-grey-200 py-4">
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="w-full flex justify-between items-center text-left"
       >
-        <h4 className="text-lg font-semibold font-poppins text-base-text">{item.question}</h4>
+        <h4 className="text-lg font-semibold font-poppins text-grey-900">{item.question}</h4>
         <svg
-          className={`w-6 h-6 text-primary transform transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
+          className={`w-6 h-6 text-brand-700 transform transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -27,7 +27,7 @@ const FaqItem: React.FC<FaqItemProps> = ({ item }) => {
         </svg>
       </button>
       <div className={`overflow-hidden transition-all duration-500 ease-in-out ${isOpen ? 'max-h-96 mt-4' : 'max-h-0'}`}>
-        <p className="text-gray-600">{item.answer}</p>
+        <p className="text-grey-600">{item.answer}</p>
       </div>
     </div>
   );

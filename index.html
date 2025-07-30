@@ -1,25 +1,108 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tempa123 - Dynamic & Static Website Templates</title>
+    <title>Tempa Web.123 - Dynamic & Static Website Templates</title>
+    
+    <!-- Modern Favicon Set -->
+    <link rel="icon" href="https://raw.githubusercontent.com/devoncasa/Tempa123-Asset/refs/heads/main/Tempa%20logo%20small%20fit.webp" type="image/webp">
+    <link rel="apple-touch-icon" href="https://raw.githubusercontent.com/devoncasa/Tempa123-Asset/refs/heads/main/Tempa%20logo%20small%20fit.webp">
+    <link rel="shortcut icon" href="https://raw.githubusercontent.com/devoncasa/Tempa123-Asset/refs/heads/main/Tempa%20logo%20small%20fit.webp">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#10c1b2">
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        /* --- Base Brand Palette (Generated from #0ba396) --- */
+        --brand-900: #0ba396; /* Darkest: For strong headlines, button hover states */
+        --brand-700: #10c1b2; /* Dark-Accent: For primary buttons, active links */
+        --brand-500: #19e6d4; /* Core-Brand: For key highlights, icons, accents */
+        --brand-200: #a6f5ef; /* Light-Accent: For subtle highlights, hover backgrounds */
+        --brand-100: #dffcf9; /* Light-Background: For content sections, cards */
+
+        /* --- Neutral & Functional Palette --- */
+        --grey-900: #2d3748; /* Darkest Grey: For primary body text */
+        --grey-600: #718096; /* Medium Grey: For secondary text, descriptions */
+        --grey-200: #e2e8f0; /* Light Grey: For borders, dividers */
+        --white:     #ffffff; /* Pure White: For primary page backgrounds */
+        --success:   #48bb78; /* For success messages */
+        --error:     #f56565; /* For error messages */
+        
+        /* --- Semantic Mapping --- */
+        /* Backgrounds */
+        --bg-primary: var(--white);
+        --bg-secondary: var(--brand-100);
+        
+        /* Text */
+        --text-primary: var(--grey-900);
+        --text-secondary: var(--grey-600);
+        --text-brand: var(--brand-900);
+        --text-on-brand-bg: var(--white); /* For text on dark brand backgrounds */
+
+        /* Borders & Dividers */
+        --border-primary: var(--grey-200);
+
+        /* Buttons & Interactive Elements */
+        --button-primary-bg: var(--brand-700);
+        --button-primary-text: var(--white);
+        --button-primary-hover-bg: var(--brand-900);
+
+        --link-primary: var(--brand-700);
+        --link-hover: var(--brand-900);
+      }
+
+      body {
+        background-color: var(--bg-primary);
+        color: var(--text-primary);
+        font-family: 'Inter', sans-serif;
+      }
+      h1, h2, h3, h4, h5, h6 {
+        font-family: 'Poppins', 'sans-serif';
+        color: var(--text-primary);
+      }
+      .parallax-bg {
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+      /* Mobile fallback to prevent jank on mobile browsers */
+      @media (max-width: 1024px) {
+        .parallax-bg {
+          background-attachment: scroll;
+        }
+      }
+    </style>
     <script>
       tailwind.config = {
         theme: {
           extend: {
             colors: {
-              primary: '#009CA7',
-              secondary: '#F37C5A',
-              'base-text': '#333333',
-              'off-white': '#F9F9F9',
-              'card-bg': '#FFFFFF',
+              brand: {
+                100: 'var(--brand-100)',
+                200: 'var(--brand-200)',
+                500: 'var(--brand-500)',
+                700: 'var(--brand-700)',
+                900: 'var(--brand-900)',
+              },
+              grey: {
+                200: 'var(--border-primary)',
+                600: 'var(--text-secondary)',
+                900: 'var(--text-primary)',
+              },
+              'base-text': 'var(--text-primary)',
+              primary: 'var(--button-primary-bg)',
+              'primary-hover': 'var(--button-primary-hover-bg)',
+              success: 'var(--success)',
+              error: 'var(--error)',
+              'bg-primary': 'var(--bg-primary)',
+              'bg-secondary': 'var(--bg-secondary)',
+              'card-bg': 'var(--white)',
             },
             fontFamily: {
               'poppins': ['Poppins', 'sans-serif'],
@@ -35,28 +118,6 @@
         }
       }
     </script>
-    <style>
-      body {
-        background-color: #F9F9F9;
-        color: #333333;
-        font-family: 'Inter', sans-serif;
-      }
-      h1, h2, h3, h4, h5, h6 {
-        font-family: 'Poppins', sans-serif;
-      }
-      .parallax-bg {
-        background-attachment: fixed;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-      }
-      /* Mobile fallback to prevent jank on mobile browsers */
-      @media (max-width: 1024px) {
-        .parallax-bg {
-          background-attachment: scroll;
-        }
-      }
-    </style>
   <script type="importmap">
 {
   "imports": {
