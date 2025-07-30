@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import BrandName from './BrandName';
 
@@ -22,8 +22,10 @@ const BrandIdentity: React.FC = () => (
 
 
 const Header: React.FC = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const location = useLocation();
+  const navRef = useRef<HTMLElement>(null);
     
   const navItems: NavItem[] = [
     { to: '/', label: 'Home' },
@@ -41,6 +43,44 @@ const Header: React.FC = () => {
     { to: '/submit-template', label: 'Submit Template' },
     { to: '/contact', label: 'Contact Us' },
   ];
+
+  // Close menus on route change
+  useEffect(() => {
+      setOpenDropdown(null);
+      setIsMobileMenuOpen(false);
+  }, [location]);
+
+  // Handle click outside and Escape key for desktop dropdown
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+        if (navRef.current && !navRef.current.contains(event.target as Node)) {
+            setOpenDropdown(null);
+        }
+    };
+
+    const handleEscapeKey = (event: KeyboardEvent) => {
+        if (event.key === 'Escape') {
+            setOpenDropdown(null);
+        }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('keydown', handleEscapeKey);
+
+    return () => {
+        document.removeEventListener('mousedown', handleClickOutside);
+        document.removeEventListener('keydown', handleEscapeKey);
+    };
+  }, []);
+
+  const handleMouseEnter = (label: string) => {
+      setOpenDropdown(label);
+  };
+
+  const handleDropdownToggle = (label: string) => {
+      setOpenDropdown(prev => (prev === label ? null : label));
+  };
+
 
   const isPricingActive = location.pathname.startsWith('/pricing');
 
@@ -69,8 +109,8 @@ const Header: React.FC = () => {
           font-weight: 600;
         }
         
-        .group:hover .group-hover\\:block {
-            display: block;
+        .dropdown-menu {
+            transition: opacity 200ms ease-in-out, transform 200ms ease-in-out;
         }
       `}</style>
       <header className="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm border-b border-grey-200">
@@ -81,19 +121,33 @@ const Header: React.FC = () => {
               <BrandIdentity />
             </div>
 
-            <nav className="flex-shrink-0" aria-label="Main navigation">
+            <nav ref={navRef} className="flex-shrink-0" aria-label="Main navigation">
               <ul className="flex items-center space-x-4 lg:space-x-6">
                 {navItems.map(item => (
-                  <li key={item.label} className="relative group">
+                  <li 
+                    key={item.label}
+                    className="relative"
+                    onMouseEnter={() => item.dropdown && handleMouseEnter(item.label)}
+                  >
                     {item.dropdown ? (
                        <>
-                        <button className={`main-nav-link flex items-center gap-1 ${isPricingActive ? 'active' : ''}`}>
+                        <button
+                          onClick={() => handleDropdownToggle(item.label)}
+                          className={`main-nav-link flex items-center gap-1 ${isPricingActive ? 'active' : ''}`}
+                          aria-haspopup="true"
+                          aria-expanded={openDropdown === item.label}
+                        >
                           {item.label}
-                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+                          <svg className={`w-4 h-4 transition-transform duration-200 ${openDropdown === item.label ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
                         </button>
-                        <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-56 bg-white rounded-md shadow-lg py-1 ring-1 ring-black ring-opacity-5 hidden group-hover:block z-10">
+                        <div className={`dropdown-menu absolute top-full left-1/2 -translate-x-1/2 mt-2 w-56 bg-white rounded-md shadow-lg py-1 ring-1 ring-black ring-opacity-5 z-10 ${openDropdown === item.label ? 'visible opacity-100 translate-y-0' : 'invisible opacity-0 -translate-y-2'}`}>
                           {item.dropdown.map(subItem => (
-                            <NavLink key={subItem.to} to={subItem.to!} className={({isActive}) => `block px-4 py-2 text-sm ${isActive ? 'bg-brand-100 text-brand-900' : 'text-grey-900'} hover:bg-brand-100`}>
+                            <NavLink 
+                              key={subItem.to}
+                              to={subItem.to!}
+                              onClick={() => setOpenDropdown(null)}
+                              className={({isActive}) => `block px-4 py-2 text-sm ${isActive ? 'bg-brand-100 text-brand-900' : 'text-grey-900'} hover:bg-brand-100`}
+                            >
                               {subItem.label}
                             </NavLink>
                           ))}
@@ -115,16 +169,16 @@ const Header: React.FC = () => {
           {/* --- Mobile View --- */}
           <div className="md:hidden flex justify-between items-center">
             <BrandIdentity />
-            <button onClick={() => setIsOpen(!isOpen)} className="text-base-text focus:outline-none" aria-label="Toggle menu">
+            <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="text-base-text focus:outline-none" aria-label="Toggle menu">
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={isOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"}></path>
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={isMobileMenuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"}></path>
               </svg>
             </button>
           </div>
         </div>
         
         {/* Mobile Menu Panel */}
-        {isOpen && (
+        {isMobileMenuOpen && (
           <div className="md:hidden bg-white shadow-lg">
             <nav className="flex flex-col items-center space-y-2 py-4">
               {navItems.map(item => (
@@ -134,12 +188,12 @@ const Header: React.FC = () => {
                         <span className={`main-nav-link text-lg ${isPricingActive ? 'active' : ''}`}>{item.label}</span>
                         <div className="flex flex-col items-center mt-2 space-y-2">
                            {item.dropdown.map(subItem => (
-                            <NavLink key={subItem.to} to={subItem.to!} onClick={() => setIsOpen(false)} className="main-nav-link text-base text-grey-600">{subItem.label}</NavLink>
+                            <NavLink key={subItem.to} to={subItem.to!} onClick={() => setIsMobileMenuOpen(false)} className="main-nav-link text-base text-grey-600">{subItem.label}</NavLink>
                            ))}
                         </div>
                       </div>
                     ) : (
-                      <NavLink to={item.to!} onClick={() => setIsOpen(false)} className="main-nav-link text-lg">{item.label}</NavLink>
+                      <NavLink to={item.to!} onClick={() => setIsMobileMenuOpen(false)} className="main-nav-link text-lg">{item.label}</NavLink>
                     )}
                   </React.Fragment>
                 ))}

@@ -244,6 +244,7 @@ const PricingDetailModal: React.FC<{ pkg: ServicePackage; onClose: () => void }>
                             </div>
                         </>
                     )}
+                    <p className="text-xs text-grey-600 mt-6">All prices exclude 7% VAT.</p>
                 </div>
 
                 <div className="mt-8 text-right">
@@ -265,7 +266,7 @@ const ServicePackageCard: React.FC<{ pkg: ServicePackage; onDetailsClick: (pkg: 
             <div className="p-6 flex-grow">
                 <h3 className="text-2xl font-bold font-poppins text-brand-900">{pkg.name}</h3>
                 <div className="my-4">
-                    <p className="text-grey-600 text-sm">Starts at</p>
+                    <p className="text-grey-600 text-sm">{isCustom ? 'Starts at' : 'One-Time Fee'}</p>
                     <p className="text-4xl font-bold font-poppins text-brand-700">{new Intl.NumberFormat().format(pkg.price_thb)} THB</p>
                     <p className="text-grey-600">~${new Intl.NumberFormat().format(pkg.price_usd_approx)} USD</p>
                 </div>
@@ -339,6 +340,7 @@ const CustomizationServicesPage: React.FC = () => {
                                 <ServicePackageCard key={pkg.id} pkg={pkg} onDetailsClick={setActiveModalPackage} />
                             ))}
                         </div>
+                        <p className="text-center text-xs text-grey-600 mt-8">All prices exclude 7% VAT.</p>
                     </div>
                 </section>
 

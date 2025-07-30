@@ -124,6 +124,8 @@ const MultilingualServicePage: React.FC = () => {
                             </div>
                         </div>
 
+                        <p className="text-center text-xs text-grey-600 mt-6">All prices exclude 7% VAT.</p>
+
                         <div className="mt-12 bg-white p-6 rounded-lg shadow-md max-w-5xl mx-auto border border-grey-200">
                             <h4 className="font-bold font-poppins text-center text-lg mb-2">Why are the prices different?</h4>
                             <p className="text-grey-600 text-center leading-relaxed">

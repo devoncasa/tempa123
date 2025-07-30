@@ -224,6 +224,7 @@ const TemplateDetailPage: React.FC = () => {
                   </div>
                 </div>
 
+                <p className="text-center text-xs text-grey-600 mt-4">All prices exclude 7% VAT.</p>
                 <button className="mt-6 w-full bg-primary text-white py-3 px-6 rounded-lg uppercase text-sm font-semibold tracking-wide-sm hover:bg-primary-hover transition-all duration-300 transform hover:scale-105">
                   Add to Cart
                 </button>

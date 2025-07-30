@@ -149,6 +149,7 @@ const PricingPage: React.FC = () => {
                                 <p className="font-bold text-lg">.io</p><p className="text-grey-600">$49.99/yr</p>
                             </div>
                         </div>
+                        <p className="text-center text-xs text-grey-600 mt-4 max-w-4xl mx-auto">All prices exclude 7% VAT.</p>
                          <div className="text-center mt-8 text-grey-600 max-w-2xl mx-auto">
                             <h4 className="font-bold text-grey-900 mb-2">Premium Domains</h4>
                             <p>Looking for a specific, high-value domain? We facilitate the acquisition of aftermarket domains. These are typically short, memorable, and highly brandable names that have been previously registered. Contact us for inquiries.</p>
@@ -260,6 +261,7 @@ const PricingPage: React.FC = () => {
                         <p className="text-center text-sm text-grey-600 mt-8 max-w-4xl mx-auto">
                            *An "End Product for Sale" can be a SaaS application, a website builder, or any other product where end-users pay a fee to use it.
                         </p>
+                        <p className="text-center text-xs text-grey-600 mt-4 max-w-4xl mx-auto">All prices exclude 7% VAT.</p>
                     </div>
                 </section>
                 
