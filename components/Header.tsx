@@ -30,6 +30,7 @@ const Header: React.FC = () => {
   const navItems: NavItem[] = [
     { to: '/', label: 'Home' },
     { to: '/about', label: 'About Us' },
+    { to: '/why-us', label: 'Why Us' },
     { to: '/catalog', label: 'Catalog' },
     { 
       label: 'Pricing',
@@ -40,7 +41,6 @@ const Header: React.FC = () => {
       ]
     },
     { to: '/blog', label: 'Blog' },
-    { to: '/submit-template', label: 'Submit Template' },
     { to: '/contact', label: 'Contact Us' },
   ];
 
@@ -112,6 +112,41 @@ const Header: React.FC = () => {
         .dropdown-menu {
             transition: opacity 200ms ease-in-out, transform 200ms ease-in-out;
         }
+
+        /* --- Elegant & Trendy Header CTA Button --- */
+        .button-cta-header {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px; /* Space between icon and text */
+          padding: 10px 20px;
+          border: 2px solid var(--brand-700); /* Uses your primary brand color */
+          border-radius: 50px; /* Fully rounded for a modern look */
+          background-color: transparent;
+          color: var(--brand-700);
+          font-weight: bold;
+          text-decoration: none;
+          transition: all 0.3s ease; /* Smooth transition for hover effects */
+        }
+
+        /* The elegant fill effect on hover */
+        .button-cta-header:hover,
+        .button-cta-header:focus {
+          background-color: var(--brand-700);
+          color: var(--white);
+          transform: translateY(-2px); /* Subtle lift effect */
+          box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* Soft shadow for depth */
+        }
+
+        /* Style for the SVG icon inside the button */
+        .button-cta-header svg {
+          transition: fill 0.3s ease;
+          fill: var(--brand-700);
+        }
+
+        .button-cta-header:hover svg,
+        .button-cta-header:focus svg {
+          fill: var(--white);
+        }
       `}</style>
       <header className="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm border-b border-grey-200">
         <div className="container mx-auto px-6 py-4">
@@ -161,8 +196,11 @@ const Header: React.FC = () => {
               </ul>
             </nav>
 
-            <div className="flex-1" aria-hidden="true">
-              {/* This div balances the header for centering the nav */}
+            <div className="flex-1 flex justify-end">
+              <Link to="/submit-template" className="button-cta-header">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M11 15V6H13V15H11ZM11 19V17H13V19H11Z"></path></svg>
+                <span>Submit Template</span>
+              </Link>
             </div>
           </div>
           
@@ -180,7 +218,7 @@ const Header: React.FC = () => {
         {/* Mobile Menu Panel */}
         {isMobileMenuOpen && (
           <div className="md:hidden bg-white shadow-lg">
-            <nav className="flex flex-col items-center space-y-2 py-4">
+            <nav className="flex flex-col items-center space-y-3 py-4">
               {navItems.map(item => (
                   <React.Fragment key={item.label}>
                     {item.dropdown ? (
@@ -197,6 +235,7 @@ const Header: React.FC = () => {
                     )}
                   </React.Fragment>
                 ))}
+                <NavLink to="/submit-template" onClick={() => setIsMobileMenuOpen(false)} className="main-nav-link text-lg">Submit Template</NavLink>
             </nav>
           </div>
         )}

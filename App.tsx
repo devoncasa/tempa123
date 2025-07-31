@@ -16,12 +16,15 @@ import NotFoundPage from './pages/NotFoundPage';
 import { useAuth } from './contexts/AuthContext';
 import AdminPortal from './components/AdminPortal';
 import MultilingualServicePage from './pages/MultilingualServicePage';
+import WhyUsPage from './pages/WhyUsPage';
+import UnderDevelopmentPopup from './components/UnderDevelopmentPopup';
 
 const App: React.FC = () => {
   const { isAuthenticated } = useAuth();
 
   return (
     <>
+      <UnderDevelopmentPopup />
       {isAuthenticated && <AdminPortal />}
       <div className={`flex flex-col min-h-screen bg-bg-primary font-inter text-base-text ${isAuthenticated ? 'blur-sm brightness-50' : ''}`}>
         <Header />
@@ -30,6 +33,7 @@ const App: React.FC = () => {
             <Route path="/" element={<HomePage />} />
             <Route path="/catalog" element={<CatalogPage />} />
             <Route path="/catalog/:category" element={<CatalogPage />} />
+            <Route path="/why-us" element={<WhyUsPage />} />
             <Route path="/pricing" element={<PricingPage />} />
             <Route path="/pricing/customization-services" element={<CustomizationServicesPage />} />
             <Route path="/services/multilingual-websites" element={<MultilingualServicePage />} />

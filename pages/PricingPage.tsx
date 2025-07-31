@@ -1,4 +1,5 @@
-import React, { useState, FormEvent } from 'react';
+
+import React, { useState, FormEvent, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import FaqItem from '../components/FaqItem';
 import Seo from '../components/Seo';
@@ -22,20 +23,48 @@ const PRICING_FAQ_ITEMS = [
     },
 ];
 
+const featureExplanations: Record<string, React.ReactNode> = {
+    'Number of End Products': (
+        <p><b>Explanation:</b> An "End Product" is the final, customized website you create using the template. This license permits you to build one distinct website (one End Product) for yourself or for a single client.</p>
+    ),
+    'Pre-built Page Layouts': (
+        <p><b>Explanation:</b> Each template comes with a set of pre-designed, ready-to-use page layouts (like Home, About, Contact, Services). This feature specifies the number of unique page designs included, giving you a comprehensive starting point for your website.</p>
+    ),
+    'Use for a Client Project': (
+        <p><b>Explanation:</b> You are permitted to use the template to build a website for one of your clients. You can bill your client for your service. However, the license is non-transferable; you cannot give or sell the template files to your client directly.</p>
+    ),
+    'Use in an End Product for Sale': (
+        <p><b>Explanation: Why this requires an Extended License.</b> This is the key difference between the licenses. If you are creating a product where your customers pay a fee to use the end result (such as a SaaS application, a subscription-based website, or a theme for a CMS), the Extended License is required. It grants you the right to integrate our design into your commercial product.</p>
+    ),
+    'Resell/Redistribute Template': (
+        <p><b>Explanation:</b> To protect our intellectual property, you are strictly prohibited from reselling, redistributing, or giving away the template files under any circumstances, with either license.</p>
+    ),
+    'Template Updates': (
+        <p><b>Explanation: Why updates are valuable.</b> The digital world evolves quickly. Your included updates ensure your website template remains compatible with new browser versions, receives performance enhancements, and is patched for any potential security vulnerabilities. This keeps your investment secure and modern.</p>
+    ),
+    'Technical Support': (
+        <p><b>Explanation: Why support is essential.</b> Our support team is here to help you solve any issues related to the template's original features and to guide you on its setup. The Premium Support included with the Extended License guarantees you a faster response time and priority handling from our most senior support staff.</p>
+    ),
+    'Design Source Files (Figma)': (
+        <p><b>Explanation: Why this is a pro feature.</b> The Extended License includes the original Figma design file. This is an invaluable tool for professional designers and agencies, allowing you to easily plan customizations, create client mockups, and integrate the design into a professional workflow before writing a single line of code.</p>
+    ),
+};
+
+
 const pricingData = [
-    { type: 'data' as const, feature: 'Price Range', regular: '$29 - $79', extended: 'From $299', bold: true },
+    { type: 'data' as const, feature: 'Price Range', regular: '$29 - $79', extended: 'From $299', bold: true, noInfo: true },
     { type: 'header' as const, title: 'Core Usage Rights' },
     { type: 'data' as const, feature: 'Number of End Products', regular: '1 Final Product', extended: '1 Final Product' },
-    { type: 'data' as const, feature: 'Use on a Single Domain', regular: '✅', extended: '✅' },
+    { type: 'data' as const, feature: 'Pre-built Page Layouts', regular: 'Up to 10 Pages', extended: 'Up to 10 Pages' },
     { type: 'data' as const, feature: 'Use for a Client Project', regular: '✅', extended: '✅' },
     { type: 'header' as const, title: 'Commercial & Resale Rights' },
-    { type: 'data' as const, feature: 'Use in an End Product for Sale*', regular: '❌', extended: '✅' },
+    { type: 'data' as const, feature: 'Use in an End Product for Sale', regular: '❌', extended: '✅' },
     { type: 'data' as const, feature: 'Resell/Redistribute Template', regular: '❌', extended: '❌' },
     { type: 'header' as const, title: 'Features & Support' },
-    { type: 'data' as const, feature: 'Template Updates', regular: '6 Months Included', extended: '12 Months Included' },
-    { type: 'data' as const, feature: 'Technical Support', regular: '6 Months Included', extended: '12 Months Premium Support' },
+    { type: 'data' as const, feature: 'Template Updates', regular: '6 Months', extended: '12 Months' },
+    { type: 'data' as const, feature: 'Technical Support', regular: '6 Months Standard', extended: '12 Months Premium' },
     { type: 'data' as const, feature: 'Design Source Files (Figma)', regular: '❌', extended: '✅' },
-    { type: 'data' as const, feature: 'Perfect For', regular: 'Freelancers & Individuals', extended: 'SaaS, Agencies & Startups', bold: true },
+    { type: 'data' as const, feature: 'Perfect For', regular: 'Freelancers & Individuals', extended: 'SaaS, Agencies & Startups', bold: true, noInfo: true },
 ];
 
 const CheckIcon = () => (
@@ -102,8 +131,50 @@ const DomainChecker: React.FC = () => {
     );
 };
 
+const PricingExplainerModal: React.FC<{ title: string; content: React.ReactNode; onClose: () => void }> = ({ title, content, onClose }) => {
+    useEffect(() => {
+        const handleEsc = (event: KeyboardEvent) => {
+            if (event.key === 'Escape') onClose();
+        };
+        window.addEventListener('keydown', handleEsc);
+        return () => window.removeEventListener('keydown', handleEsc);
+    }, [onClose]);
+
+    return (
+        <div 
+            className="fixed inset-0 bg-black/60 flex items-center justify-center z-[1000] p-4 animate-fade-in"
+            onClick={onClose}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="modal-title"
+        >
+            <div
+                className="bg-white p-8 rounded-lg shadow-xl w-full max-w-lg"
+                onClick={e => e.stopPropagation()}
+            >
+                <div className="flex justify-between items-start mb-4">
+                    <h2 id="modal-title" className="text-xl font-bold font-poppins text-brand-900">{title}</h2>
+                    <button onClick={onClose} className="text-grey-600 hover:text-grey-900" aria-label="Close feature details">
+                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    </button>
+                </div>
+                <div className="text-grey-600 leading-relaxed">
+                    {content}
+                </div>
+                <button
+                    onClick={onClose}
+                    className="w-full mt-6 bg-primary text-white py-2 px-6 rounded-lg font-semibold hover:bg-primary-hover transition-colors"
+                >
+                    Close
+                </button>
+            </div>
+        </div>
+    );
+};
 
 const PricingPage: React.FC = () => {
+    const [activeModal, setActiveModal] = useState<{ title: string, content: React.ReactNode } | null>(null);
+
     const faqSchema = {
         "@context": "https://schema.org",
         "@type": "FAQPage",
@@ -112,7 +183,7 @@ const PricingPage: React.FC = () => {
             "name": item.question,
             "acceptedAnswer": {
                 "@type": "Answer",
-                "text": item.answer
+                "text": typeof item.answer === 'string' ? item.answer : 'Details available on the page.'
             }
         }))
     };
@@ -124,6 +195,15 @@ const PricingPage: React.FC = () => {
                 description="Transparent, one-time pricing for website templates. Choose between a Regular or Extended license to fit your project needs."
                 schema={faqSchema}
             />
+             <style>{`
+                @keyframes fade-in {
+                    from { opacity: 0; }
+                    to { opacity: 1; }
+                }
+                .animate-fade-in {
+                    animation: fade-in 0.2s ease-out forwards;
+                }
+            `}</style>
             <div className="bg-bg-primary">
                 {/* Section A: Domain Name Services */}
                 <section className="py-16 md:py-24">
@@ -173,7 +253,7 @@ const PricingPage: React.FC = () => {
                                 <table className="w-full">
                                     <thead className="bg-gray-50">
                                         <tr>
-                                            <th className="p-6 font-bold text-grey-900 text-lg w-2/5">Feature &amp; Details</th>
+                                            <th className="p-6 font-bold text-grey-900 text-lg w-2/5">Features &amp; Details <span className="font-normal text-grey-600 text-sm">(Click any feature for more info)</span></th>
                                             <th className="p-6 font-bold text-grey-900 text-lg text-center">Regular License</th>
                                             <th className="p-6 font-bold text-grey-900 text-lg text-center bg-brand-100">Extended License</th>
                                         </tr>
@@ -189,14 +269,28 @@ const PricingPage: React.FC = () => {
                                             }
                                             return (
                                                 <tr key={index} className="border-t border-grey-200">
-                                                    <td className={`p-6 text-grey-900 text-left ${item.bold ? 'font-semibold' : ''}`}>{item.feature}</td>
+                                                    <td className={`p-6 text-grey-900 text-left ${item.bold ? 'font-semibold' : ''}`}>
+                                                        {item.noInfo ? (
+                                                            <span>{item.feature}</span>
+                                                        ) : (
+                                                            <button 
+                                                                onClick={() => setActiveModal({ title: item.feature, content: featureExplanations[item.feature]! })}
+                                                                className="flex items-center gap-2 text-left text-brand-700 hover:underline hover:text-brand-900 transition-colors"
+                                                            >
+                                                                <span className="text-brand-500">ⓘ</span>
+                                                                <span className="text-grey-900">{item.feature}</span>
+                                                            </button>
+                                                        )}
+                                                    </td>
                                                     <td className="p-6"><div className="flex justify-center"><FeatureCell value={item.regular} bold={item.bold} /></div></td>
                                                     <td className="p-6 bg-brand-100"><div className="flex justify-center"><FeatureCell value={item.extended} bold={item.bold} isExtended /></div></td>
                                                 </tr>
                                             )
                                         })}
                                         <tr className="border-t border-grey-200 bg-gray-50">
-                                            <td className="p-6"></td>
+                                            <td className="p-6">
+                                                <button className="text-sm text-grey-600 hover:text-brand-700 hover:underline">Export to Sheets</button>
+                                            </td>
                                             <td className="p-6 text-center">
                                                 <Link to="/catalog" className="inline-block bg-white border-2 border-primary text-primary py-3 px-8 rounded-lg font-semibold hover:bg-brand-100 transition-colors duration-300">Browse Catalog</Link>
                                             </td>
@@ -220,9 +314,18 @@ const PricingPage: React.FC = () => {
                                             if (item.type === 'header') {
                                                 return <div key={index} className="pt-5 pb-2 font-semibold text-grey-600 tracking-wider uppercase text-sm text-center">{item.title}</div>
                                             }
+                                            const featureName = (
+                                                <span className={`${item.bold ? 'font-semibold' : ''} text-grey-900`}>{item.feature}</span>
+                                            );
+
                                             return (
                                                 <div key={index} className="flex justify-between items-center py-4">
-                                                    <span className={`text-grey-900 ${item.bold ? 'font-semibold' : ''}`}>{item.feature}</span>
+                                                    {item.noInfo ? featureName : (
+                                                        <button onClick={() => setActiveModal({ title: item.feature, content: featureExplanations[item.feature]! })} className="flex items-center gap-2 text-left hover:underline">
+                                                            <span className="text-brand-500">ⓘ</span>
+                                                            {featureName}
+                                                        </button>
+                                                    )}
                                                     <FeatureCell value={item.regular} bold={item.bold} />
                                                 </div>
                                             )
@@ -243,9 +346,17 @@ const PricingPage: React.FC = () => {
                                             if (item.type === 'header') {
                                                 return <div key={index} className="pt-5 pb-2 font-semibold text-grey-600 tracking-wider uppercase text-sm text-center">{item.title}</div>
                                             }
+                                             const featureName = (
+                                                <span className={`${item.bold ? 'font-semibold' : ''} text-grey-900`}>{item.feature}</span>
+                                            );
                                             return (
                                                 <div key={index} className="flex justify-between items-center py-4">
-                                                    <span className={`text-grey-900 ${item.bold ? 'font-semibold' : ''}`}>{item.feature}</span>
+                                                    {item.noInfo ? featureName : (
+                                                        <button onClick={() => setActiveModal({ title: item.feature, content: featureExplanations[item.feature]! })} className="flex items-center gap-2 text-left hover:underline">
+                                                            <span className="text-brand-500">ⓘ</span>
+                                                            {featureName}
+                                                        </button>
+                                                    )}
                                                     <FeatureCell value={item.extended} bold={item.bold} isExtended />
                                                 </div>
                                             )
@@ -259,7 +370,7 @@ const PricingPage: React.FC = () => {
                         </div>
 
                         <p className="text-center text-sm text-grey-600 mt-8 max-w-4xl mx-auto">
-                           *An "End Product for Sale" can be a SaaS application, a website builder, or any other product where end-users pay a fee to use it.
+                           An "End Product for Sale" can be a SaaS application, a website builder, or any other product where end-users pay a fee to use it.
                         </p>
                         <p className="text-center text-xs text-grey-600 mt-4 max-w-4xl mx-auto">All prices exclude 7% VAT.</p>
                     </div>
@@ -277,6 +388,7 @@ const PricingPage: React.FC = () => {
                     </div>
                 </section>
             </div>
+            {activeModal && <PricingExplainerModal title={activeModal.title} content={activeModal.content} onClose={() => setActiveModal(null)} />}
         </>
     );
 };

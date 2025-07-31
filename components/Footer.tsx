@@ -52,6 +52,7 @@ const Footer: React.FC = () => {
                             <h3 className="font-poppins font-bold text-lg mb-4">Links</h3>
                             <ul className="space-y-2">
                                 <li><Link to="/about" className="text-grey-600 hover:text-brand-500">About Us</Link></li>
+                                <li><Link to="/why-us" className="text-grey-600 hover:text-brand-500">Why Us</Link></li>
                                 <li><Link to="/blog" className="text-grey-600 hover:text-brand-500">Blog</Link></li>
                                 <li><Link to="/pricing" className="text-grey-600 hover:text-brand-500">Pricing</Link></li>
                                 <li><Link to="/submit-template" className="text-grey-600 hover:text-brand-500">Submit Template</Link></li>
