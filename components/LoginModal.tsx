@@ -42,7 +42,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ onClose }) => {
             }
         `}</style>
       <div className="bg-white p-8 rounded-lg shadow-xl text-center w-full max-w-sm" onClick={e => e.stopPropagation()}>
-        <img src="https://raw.githubusercontent.com/devoncasa/Tempa123-Asset/refs/heads/main/Tempa%20logo%20small%20fit%20(1).webp" alt="Tempa Web.123 Logo" className="h-12 w-auto mx-auto mb-4" />
+        <img src="https://raw.githubusercontent.com/devoncasa/Tempa123-Asset/main/Tempa-logo-small-fit.webp" alt="Tempa Web.123 Logo" className="h-12 w-auto mx-auto mb-4" />
         <h2 className="text-xl font-poppins font-bold mb-4 text-gray-800">Admin Portal Access</h2>
         <form onSubmit={handleSubmit}>
           <input

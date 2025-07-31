@@ -39,7 +39,7 @@ const Footer: React.FC = () => {
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
                         <div>
                             <div onClick={handleLogoClick} className="inline-block cursor-pointer mb-4" title="Admin Access">
-                               <img src="https://raw.githubusercontent.com/devoncasa/Tempa123-Asset/main/images/logos/Tempa-logo-white-footer-small.webp" alt="Tempa123 Footer Logo" className="h-8 w-auto" />
+                               <img src="https://raw.githubusercontent.com/devoncasa/Tempa123-Asset/main/Tempa-logo-small-fit.webp" alt="Tempa Web.123 Logo" className="h-8 w-auto brightness-0 invert" />
                             </div>
                             <p className="text-grey-600">919/1 JTC Building, Silom Road, Silom, Bangrak, Bangkok 10500, Thailand</p>
                         </div>

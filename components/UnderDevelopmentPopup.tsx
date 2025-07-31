@@ -14,7 +14,7 @@ const UnderDevelopmentPopup: React.FC = () => {
         },
         th: {
             title: 'ยินดีต้อนรับสู่ Tempa Web.123 - www.tempa123.com',
-            body: 'ขณะนี้เว็บไซต์ของเรากำลังอยู่ระหว่างการพัฒนาครั้งใหญ่เพื่อสร้างประสบการณ์ที่ดียิ่งขึ้นสำหรับคุณ อย่างไรก็ตาม บางส่วนของเว็บไซต์ เช่น หน้า "Why Us" และ "Pricing" พร้อมให้คุณเข้าชมแล้ว เราขอเชิญคุณเข้ามาเยี่ยมชมเพื่อทำความเข้าใจในสิ่งที่เราทำและความแตกต่างของเรา',
+            body: 'ขณะนี้เว็บไซต์ของเรากำลังอยู่ในระหว่างการปรับปรุงและพัฒนาครอบคลุมในทุกส่วน รวมถึงงานด้าน graphic และ template ต่างๆในระบบของเรา เพื่อมอบประสบการณ์การใช้งานที่เหนือกว่า ทั้งนี้ ท่านสามารถเข้าชมหน้าสำคัญต่าง ๆ ได้แล้ว ได้แก่ หน้า "Why Us" และ "Pricing" เพื่อทำความเข้าใจเกี่ยวกับเนื้อหา การให้บริการ และจุดเด่นที่ทำให้บริการของเราแตกต่างจากที่อื่น',
             btn1: 'เข้าสู่เว็บไซต์',
             btn2: 'ออกจากเว็บไซต์'
         }
@@ -75,7 +75,9 @@ const UnderDevelopmentPopup: React.FC = () => {
                 .popup-container {
                     font-family: 'Poppins', sans-serif;
                     background-color: var(--brand-100); 
-                    padding: 40px;
+                    /* Increased top padding to make space for the absolutely positioned logo */
+                    padding: 60px 40px 40px 40px;
+                    margin-top: 40px; /* Add margin to prevent logo from being cut off at the top */
                     border-radius: 12px;
                     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
                     width: 90%;
@@ -84,10 +86,27 @@ const UnderDevelopmentPopup: React.FC = () => {
                     border: 2px solid var(--brand-700);
                     transform: scale(0.95);
                     transition: transform 0.3s ease;
+                    text-align: center;
                 }
                 
                 .popup-overlay.active .popup-container {
                     transform: scale(1);
+                }
+
+                /* --- Popup Logo --- */
+                .popup-logo {
+                    position: absolute;
+                    top: 0;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    height: 60px; /* Adjusted size for better proportions */
+                    width: auto;
+                    background-color: var(--brand-100);
+                    border-radius: 12px; /* Make it a rounded rectangle */
+                    padding: 10px 20px; /* Adjust padding for the logo's aspect ratio */
+                    border: 2px solid var(--brand-700);
+                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+                    z-index: 1; /* Ensure logo is above container's pseudo elements */
                 }
 
                 /* --- Elegant Frame Decoration --- */
@@ -137,8 +156,8 @@ const UnderDevelopmentPopup: React.FC = () => {
                 .popup-content h2 {
                     color: var(--brand-700);
                     margin-top: 0;
-                    margin-right: 40px; /* Space for lang switcher */
-                    font-size: 24px;
+                    margin-bottom: 10px;
+                    font-size: 22px;
                     font-weight: 700;
                 }
                 .popup-content p {
@@ -150,9 +169,8 @@ const UnderDevelopmentPopup: React.FC = () => {
                 /* --- Button Container & Styling --- */
                 .popup-buttons {
                     display: flex;
-                    flex-wrap: wrap;
                     gap: 15px;
-                    justify-content: flex-end;
+                    justify-content: center;
                 }
                 .popup-btn {
                     padding: 12px 25px;
@@ -181,6 +199,7 @@ const UnderDevelopmentPopup: React.FC = () => {
             `}</style>
             <div className={`popup-overlay ${isOpen ? 'active' : ''}`} id="devPopupOverlay">
                 <div className="popup-container">
+                    <img src="https://raw.githubusercontent.com/devoncasa/Tempa123-Asset/main/Tempa-logo-small-fit.webp" alt="Tempa Web.123 Logo" className="popup-logo" />
                     <div className="lang-switcher">
                         <button onClick={() => setLanguage('en')} className={language === 'en' ? 'active' : ''}>EN</button> |
                         <button onClick={() => setLanguage('th')} className={language === 'th' ? 'active' : ''}>TH</button>

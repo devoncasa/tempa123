@@ -12,7 +12,7 @@ interface NavItem {
 const BrandIdentity: React.FC = () => (
   <Link to="/" className="flex items-center gap-3" aria-label="Tempa Web.123 - Homepage">
     <img 
-      src="https://raw.githubusercontent.com/devoncasa/Tempa123-Asset/refs/heads/main/Tempa%20logo%20small%20fit.webp" 
+      src="https://raw.githubusercontent.com/devoncasa/Tempa123-Asset/main/Tempa-logo-small-fit.webp" 
       alt="Tempa Web.123 Logo" 
       className="h-10 w-auto" 
     />
