@@ -15,59 +15,70 @@
     <title>Tempa Web.123 - Dynamic & Static Website Templates</title>
     
     <!-- Modern Favicon Set -->
-    <link rel="icon" href="https://raw.githubusercontent.com/devoncasa/Tempa123-Asset/main/Tempa-logo-small-fit.webp" type="image/webp">
-    <link rel="apple-touch-icon" href="https://raw.githubusercontent.com/devoncasa/Tempa123-Asset/main/Tempa-logo-small-fit.webp">
-    <link rel="shortcut icon" href="https://raw.githubusercontent.com/devoncasa/Tempa123-Asset/main/Tempa-logo-small-fit.webp">
+    <link rel="icon" href="https://raw.githubusercontent.com/devoncasa/Tempa123-Asset/main/Tempa-logo-dark-small.webp" type="image/webp">
+    <link rel="apple-touch-icon" href="https://raw.githubusercontent.com/devoncasa/Tempa123-Asset/main/Tempa-logo-dark-small.webp">
+    <link rel="shortcut icon" href="https://raw.githubusercontent.com/devoncasa/Tempa123-Asset/main/Tempa-logo-dark-small.webp">
     <link rel="manifest" href="/site.webmanifest">
-    <meta name="theme-color" content="#10c1b2">
+    <meta name="theme-color" content="#1dc3b6">
     
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Lora:wght@400;700&display=swap" rel="stylesheet">
     <style>
       :root {
-        /* --- Base Brand Palette (Generated from #0ba396) --- */
-        --brand-900: #0ba396; /* Darkest: For strong headlines, button hover states */
-        --brand-700: #10c1b2; /* Dark-Accent: For primary buttons, active links */
-        --brand-500: #19e6d4; /* Core-Brand: For key highlights, icons, accents */
-        --brand-200: #a6f5ef; /* Light-Accent: For subtle highlights, hover backgrounds */
-        --brand-100: #dffcf9; /* Light-Background: For content sections, cards */
+        /* --- Primary Brand Hues (Monochromatic Scale) --- */
+        --brand-900: #086F66; /* Darkest - For deep accents, text links on hover */
+        --brand-700: #0a887d; /* Dark - For button hover states */
+        --brand-500: #1dc3b6; /* Core Brand Color - For primary buttons & active elements */
+        --brand-200: #A8E8E2; /* Light - For highlighted backgrounds (e.g., "Recommended" tier) */
+        --brand-50:  #E8F8F7; /* Lightest - For subtle section backgrounds */
 
-        /* --- Accent & Navigation Colors --- */
-        --accent-color: #e0644c;
-        --text-nav: #03403b;
-        --text-nav-active: #8dcfca;
+        /* --- Secondary Accent Color --- */
+        --accent-coral: #e9806c; /* For secondary buttons or special tags */
 
-        /* --- Neutral & Functional Palette --- */
-        --grey-900: #2d3748; /* Darkest Grey: For primary body text */
-        --grey-600: #718096; /* Medium Grey: For secondary text, descriptions */
-        --grey-200: #e2e8f0; /* Light Grey: For borders, dividers */
-        --white:     #ffffff; /* Pure White: For primary page backgrounds */
-        --success:   #48bb78; /* For success messages */
-        --error:     #f56565; /* For error messages */
+        /* --- Neutral Palette --- */
+        --grey-900: #2d3748; /* For primary headlines and body text */
+        --grey-600: #718096; /* For subtitles and descriptive text */
+        --grey-200: #E2E8F0; /* For subtle borders and dividers */
+        --white:     #FFFFFF; /* For primary card backgrounds */
+        --off-white: #F8FAFC; /* For the main page background */
         
-        /* --- Semantic Mapping --- */
-        /* Backgrounds */
-        --bg-primary: var(--white);
-        --bg-secondary: var(--brand-100);
+        /* --- Legacy Semantic Mapping (for global consistency) --- */
+        --color-primary: var(--brand-500);
+        --color-primary-dark: var(--brand-700);
+        --color-accent: var(--accent-coral);
+
+        --color-text-primary: var(--grey-900);
+        --color-text-secondary: var(--grey-600);
+        --color-text-nav-active: var(--brand-500);
+        --color-text-nav: var(--color-text-primary);
+
+        --color-bg-primary: var(--off-white);
+        --color-bg-secondary: var(--brand-50);
+        --color-bg-card: var(--white);
         
-        /* Text */
-        --text-primary: var(--grey-900);
-        --text-secondary: var(--grey-600);
-        --text-brand: var(--brand-900);
-        --text-on-brand-bg: var(--white); /* For text on dark brand backgrounds */
+        --color-border: var(--grey-200);
+        --color-white: var(--white);
+        --color-success: #48bb78;
+        --color-error: #f56565;
 
-        /* Borders & Dividers */
-        --border-primary: var(--grey-200);
+        --bg-primary: var(--color-bg-primary);
+        --bg-secondary: var(--color-bg-secondary);
+        
+        --text-primary: var(--color-text-primary);
+        --text-secondary: var(--color-text-secondary);
+        --text-brand: var(--color-primary-dark);
+        --text-on-brand-bg: var(--color-white);
 
-        /* Buttons & Interactive Elements */
-        --button-primary-bg: var(--brand-700);
-        --button-primary-text: var(--white);
-        --button-primary-hover-bg: var(--brand-900);
+        --border-primary: var(--color-border);
 
-        --link-primary: var(--brand-700);
-        --link-hover: var(--brand-900);
+        --button-primary-bg: var(--color-primary);
+        --button-primary-text: var(--color-white);
+        --button-primary-hover-bg: var(--color-primary-dark);
+
+        --link-primary: var(--color-primary);
+        --link-hover: var(--color-primary-dark);
       }
 
       body {
@@ -76,7 +87,7 @@
         font-family: 'Inter', sans-serif;
       }
       h1, h2, h3, h4, h5, h6 {
-        font-family: 'Poppins', 'sans-serif';
+        font-family: 'Poppins', sans-serif;
         color: var(--text-primary);
       }
       .parallax-bg {
@@ -85,12 +96,46 @@
         background-repeat: no-repeat;
         background-size: cover;
       }
-      /* Mobile fallback to prevent jank on mobile browsers */
+      /* Mobile fallback */
       @media (max-width: 1024px) {
         .parallax-bg {
           background-attachment: scroll;
         }
       }
+
+      /* Upgraded UI Component Styles */
+      .btn {
+        display: inline-block;
+        padding: 0.75rem 2rem;
+        border-radius: 9999px;
+        font-size: 0.875rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        transition: all 0.3s ease;
+        text-align: center;
+      }
+      .btn-primary-gradient {
+        color: var(--button-primary-text);
+        background-image: linear-gradient(to right, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+        border: none;
+      }
+      .btn-primary-gradient:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 15px -3px rgba(29, 195, 182, 0.2), 0 4px 6px -2px rgba(29, 195, 182, 0.1);
+      }
+      .btn-secondary-outline {
+        color: var(--color-primary);
+        background-color: transparent;
+        border: 2px solid var(--color-primary);
+      }
+      .btn-secondary-outline:hover {
+        background-color: var(--color-primary);
+        color: var(--color-white);
+        transform: translateY(-2px);
+        box-shadow: 0 10px 15px -3px rgba(226, 232, 240, 0.4), 0 4px 6px -2px rgba(226, 232, 240, 0.2);
+      }
+
     </style>
     <script type="application/ld+json">
     {
@@ -100,7 +145,10 @@
           "@type": "Organization",
           "name": "Tempa Web.123",
           "url": "https://[YourWebsiteURL.com]",
-          "logo": "https://raw.githubusercontent.com/devoncasa/Tempa123-Asset/main/Tempa-logo-small-fit.webp",
+          "logo": "https://raw.githubusercontent.com/devoncasa/Tempa123-Asset/main/Tempa-logo-dark-small.webp",
+          "knowsAbout": [
+            "Jewelry & Beads", "Food & Café", "Wellness & Spa", "Portfolio & Personal Branding", "Coaches & Mentors", "Artisan & Handmade", "E-commerce & Retail", "Real Estate", "Events & Weddings", "Technology & Startups", "Small Business SEO", "E-commerce for Individuals", "LINE Marketing", "Website Templates", "Commission-Free Sales"
+          ],
           "sameAs": [
             "https://[YourFacebookURL.com]",
             "https://[YourInstagramURL.com]",
@@ -129,35 +177,55 @@
           extend: {
             colors: {
               brand: {
-                100: 'var(--brand-100)',
-                200: 'var(--brand-200)',
-                500: 'var(--brand-500)',
-                700: 'var(--brand-700)',
                 900: 'var(--brand-900)',
+                700: 'var(--brand-700)',
+                500: 'var(--brand-500)',
+                200: 'var(--brand-200)',
+                50:  'var(--brand-50)',
               },
+              primary: {
+                DEFAULT: 'var(--color-primary)',
+                dark: 'var(--color-primary-dark)',
+              },
+              accent: 'var(--accent-coral)',
               grey: {
-                200: 'var(--border-primary)',
-                600: 'var(--text-secondary)',
-                900: 'var(--text-primary)',
+                900: 'var(--grey-900)',
+                600: 'var(--grey-600)',
+                200: 'var(--grey-200)',
               },
-              'base-text': 'var(--text-primary)',
-              primary: 'var(--button-primary-bg)',
-              'primary-hover': 'var(--button-primary-hover-bg)',
-              success: 'var(--success)',
-              error: 'var(--error)',
-              'bg-primary': 'var(--bg-primary)',
-              'bg-secondary': 'var(--bg-secondary)',
-              'card-bg': 'var(--white)',
+              text: {
+                primary: 'var(--text-primary)',
+                secondary: 'var(--text-secondary)',
+                nav: 'var(--text-nav)',
+                'nav-active': 'var(--text-nav-active)',
+              },
+              bg: {
+                primary: 'var(--bg-primary)',
+                secondary: 'var(--bg-secondary)',
+                card: 'var(--bg-card)',
+              },
+              border: {
+                primary: 'var(--border-primary)',
+              },
+              white: 'var(--white)',
+              'off-white': 'var(--off-white)',
+              success: 'var(--color-success)',
+              error: 'var(--color-error)',
             },
             fontFamily: {
               'poppins': ['Poppins', 'sans-serif'],
               'inter': ['Inter', 'sans-serif'],
+              'lora': ['Lora', 'serif'],
             },
             letterSpacing: {
               'wide-sm': '0.05em',
             },
-             backgroundImage: {
+            backgroundImage: {
               'hero-pattern': "url('https://picsum.photos/1920/1080?grayscale&blur=2')",
+            },
+            boxShadow: {
+              'lg': '0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+              'xl': '0 20px 25px -5px rgba(0, 0, 0, 0.07), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
             }
           }
         }

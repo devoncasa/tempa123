@@ -24,6 +24,21 @@ const BenefitCard: React.FC<{ title: string; description: string }> = ({ title, 
     </div>
 );
 
+const KeyTakeaways: React.FC<{ takeaways: string[] }> = ({ takeaways }) => (
+    <div className="bg-bg-secondary p-6 rounded-lg border-l-4 border-primary mb-12">
+        <h3 className="font-poppins font-bold text-xl text-text-primary mb-3">Key Takeaways</h3>
+        <ul className="space-y-2">
+            {takeaways.map((item, index) => (
+                <li key={index} className="flex items-start gap-3">
+                    <svg className="w-5 h-5 text-primary flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                    <span className="text-text-secondary">{item}</span>
+                </li>
+            ))}
+        </ul>
+    </div>
+);
+
+
 const AboutPage: React.FC = () => {
     const aboutPageSchema = {
         "@context": "https://schema.org",
@@ -55,6 +70,17 @@ const AboutPage: React.FC = () => {
                         </div>
                     </div>
                 </section>
+                
+                 {/* Key Takeaways Section */}
+                <section className="pb-16 md:pb-24">
+                    <div className="container mx-auto px-6 lg:px-[8vw]">
+                        <KeyTakeaways takeaways={[
+                            "We provide high-performance website templates to help small businesses avoid high commission fees from third-party platforms.",
+                            "Our mission is to empower business owners to own their digital presence, control customer relationships, and maximize profits.",
+                            "Templates are designed for performance, SEO, and ease of use, providing a sustainable alternative to renting online space."
+                        ]} />
+                    </div>
+                </section>
 
                 {/* SECTION 2 – Why We Exist */}
                 <section className="py-16 md:py-24 bg-bg-secondary">
@@ -78,9 +104,30 @@ const AboutPage: React.FC = () => {
                         </div>
                     </div>
                 </section>
+
+                {/* Founder's Journey Section */}
+                <section className="py-16 md:py-24 bg-white">
+                    <div className="container mx-auto px-6 lg:px-[8vw]">
+                        <div className="grid md:grid-cols-3 gap-12 items-center">
+                             <div className="md:col-span-1 flex justify-center">
+                                <img src="https://raw.githubusercontent.com/devoncasa/Tempa123-Asset/main/images/about/founder.webp" alt="Founder of Tempa Web.123" className="rounded-full shadow-xl w-48 h-48 md:w-64 md:h-64 object-cover" />
+                            </div>
+                            <div className="md:col-span-2">
+                                <h2 className="text-3xl md:text-4xl font-bold font-poppins text-grey-900 mb-6">Our Founder's Journey</h2>
+                                <p className="text-lg text-grey-600 leading-relaxed mb-4">
+                                    "Living in Bangkok, I was constantly inspired by the creativity of street food vendors and local artisans. But I also saw their frustration. They would work incredibly hard, only to see a huge chunk of their earnings disappear into the pockets of delivery apps. They were essentially renting their own customers."
+                                </p>
+                                <p className="text-lg text-grey-600 leading-relaxed mb-4">
+                                    "I knew there had to be a better way. I started <BrandName /> based on a simple idea: what if these entrepreneurs could own their platform? What if they had a website that was not just beautiful, but a powerful, commission-free tool to connect directly with their audience? That firsthand experience is the 'why' behind everything we build."
+                                </p>
+                                <p className="font-lora text-2xl text-grey-800 mt-6">- Devon, Founder</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
                 
                 {/* SECTION 3 – What We Offer */}
-                <section className="py-16 md:py-24 bg-white">
+                <section className="py-16 md:py-24 bg-bg-secondary">
                     <div className="container mx-auto px-6 lg:px-[8vw]">
                         <div className="text-center max-w-3xl mx-auto mb-12">
                             <h2 className="text-3xl md:text-4xl font-bold font-poppins text-grey-900">What We Offer</h2>
@@ -100,7 +147,7 @@ const AboutPage: React.FC = () => {
                 </section>
 
                 {/* SECTION 4 – Explore Before You Commit */}
-                <section className="py-16 md:py-24 bg-bg-secondary">
+                <section className="py-16 md:py-24 bg-white">
                     <div className="container mx-auto px-6 lg:px-[8vw]">
                         <div className="text-center max-w-3xl mx-auto">
                             <h2 className="text-3xl md:text-4xl font-bold font-poppins text-grey-900 mb-6">Explore Before You Commit</h2>
@@ -132,7 +179,7 @@ const AboutPage: React.FC = () => {
                 </section>
 
                 {/* SECTION 5 – Engineered for Performance */}
-                <section className="py-16 md:py-24 bg-white">
+                <section className="py-16 md:py-24 bg-bg-secondary">
                     <div className="container mx-auto px-6 lg:px-[8vw]">
                         <div className="grid md:grid-cols-2 gap-12 items-center">
                             <div className="order-2 md:order-1">
@@ -152,7 +199,7 @@ const AboutPage: React.FC = () => {
                 </section>
                 
                 {/* SECTION 6 – Who It’s For */}
-                <section className="py-16 md:py-24 bg-bg-secondary">
+                <section className="py-16 md:py-24 bg-white">
                     <div className="container mx-auto px-6 lg:px-[8vw]">
                         <div className="text-center max-w-3xl mx-auto">
                             <h2 className="text-3xl md:text-4xl font-bold font-poppins text-grey-900 mb-6">Who It’s For</h2>

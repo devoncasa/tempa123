@@ -25,7 +25,6 @@ const TemplateDetailPage: React.FC = () => {
   const [activeFontSet, setActiveFontSet] = useState(template?.fontOptions[0]);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
     const newTemplate = TEMPLATES.find(t => t.id === id);
     if (newTemplate) {
         setMainImage(newTemplate.imageUrl);

@@ -3,18 +3,16 @@ import { Link } from 'react-router-dom';
 import Seo from '../components/Seo';
 
 // Icons for the benefit cards
-const SeoIcon = () => <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-brand-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg>;
-const ConversionIcon = () => <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-brand-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg>;
-const BypassIcon = () => <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-brand-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" /></svg>;
-const PrecisionIcon = () => <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-brand-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>;
-const PlatformIcon = () => <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-brand-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" /></svg>;
-const MapIcon = () => <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-brand-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l5.447 2.724A1 1 0 0021 16.382V5.618a1 1 0 00-1.447-.894L15 7m0 10V7m0 10l-6-3" /></svg>;
-
-// NEW ICONS
-const SpeedIcon = () => <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-brand-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>;
-const FoundationIcon = () => <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-brand-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426-1.756-2.924-1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>;
-const GlobalSeoIcon = () => <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-brand-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM12 21a9 9 0 100-18 9 9 0 000 18z" /></svg>;
-const SecurityIcon = () => <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-brand-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 20.944a11.955 11.955 0 019-2.606 11.955 11.955 0 019 2.606 12.02 12.02 0 00-3.382-9.984z" /></svg>;
+const SeoIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-10 w-10 text-primary"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="m7 12 5 5 5-5"/><path d="M12 17V7"/></svg>;
+const ConversionIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-10 w-10 text-primary"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>;
+const BypassIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-10 w-10 text-primary"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.72"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.72-1.72"/></svg>;
+const PrecisionIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-10 w-10 text-primary"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>;
+const PlatformIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-10 w-10 text-primary"><path d="M21.2 8.4c.5.38.8.97.8 1.6v4c0 .63-.3 1.22-.8 1.6l-6 4.53a2.04 2.04 0 0 1-2.4 0l-6-4.53a2.04 2.04 0 0 1-.8-1.6v-4c0-.63.3-1.22.8-1.6l6-4.53a2.04 2.04 0 0 1 2.4 0l6 4.53z"/><path d="m6.5 12.5 11-6"/><path d="m17.5 6.5-11 6"/></svg>;
+const MapIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-10 w-10 text-primary"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><path d="M12 12a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/></svg>;
+const SpeedIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-10 w-10 text-primary"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>;
+const FoundationIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-10 w-10 text-primary"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 2v20"/><path d="M2 12h20"/><path d="M12 2a10 10 0 0 1 5.09 1.5M12 2a10 10 0 0 0-5.09 1.5"/><path d="M20.5 17a10 10 0 0 1-8.5 3.5M3.5 17a10 10 0 0 0 8.5 3.5"/></svg>;
+const GlobalSeoIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-10 w-10 text-primary"><circle cx="11" cy="11" r="8"/><line x1="21" x2="16.65" y1="21" y2="16.65"/><path d="M11 2a9 9 0 0 0-9 9m18 0a9 9 0 0 0-9-9"/></svg>;
+const SecurityIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-10 w-10 text-primary"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>;
 
 
 const localBenefits = [
@@ -63,7 +61,7 @@ const globalBenefits = [
     },
     {
         title: 'Advanced Technical SEO for Global Reach',
-        text: "We automatically implement advanced Schema Markup and `hreflang` tags. Benefit for you: We give Google a detailed \"map\" of your products and services, making you eligible for Rich Results (like star ratings and prices in search). For multilingual sites, we explicitly tell Google which language to show to which user, ensuring your Thai customers see the Thai version and your international customers see the English one.",
+        text: `We automatically implement advanced Schema Markup and \`hreflang\` tags. Benefit for you: We give Google a detailed "map" of your products and services, making you eligible for Rich Results (like star ratings and prices in search). For multilingual sites, we explicitly tell Google which language to show to which user, ensuring your Thai customers see the Thai version and your international customers see the English one.`,
         icon: <GlobalSeoIcon />,
     },
     {
@@ -80,16 +78,31 @@ interface BenefitCardProps {
 }
 
 const BenefitCard: React.FC<BenefitCardProps> = ({ title, text, icon }) => (
-    <div className="bg-brand-100/50 p-8 rounded-xl shadow-sm transition-transform duration-300 hover:scale-105 hover:shadow-lg border border-brand-200/50">
+    <div className="bg-bg-card p-8 rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1 border border-border-primary hover:border-primary">
         <div className="flex items-start gap-6">
             <div className="flex-shrink-0 opacity-80">{icon}</div>
             <div>
-                <h3 className="text-xl font-poppins font-bold text-grey-900">{title}</h3>
-                <p className="text-grey-600 mt-2 leading-relaxed">{text}</p>
+                <h3 className="text-xl font-poppins font-bold text-text-primary">{title}</h3>
+                <p className="text-text-secondary mt-2 leading-relaxed">{text}</p>
             </div>
         </div>
     </div>
 );
+
+const KeyTakeaways: React.FC<{ takeaways: string[] }> = ({ takeaways }) => (
+    <div className="bg-bg-card p-6 rounded-lg border-l-4 border-primary mb-12">
+        <h3 className="font-poppins font-bold text-xl text-text-primary mb-3">Key Takeaways</h3>
+        <ul className="space-y-2">
+            {takeaways.map((item, index) => (
+                <li key={index} className="flex items-start gap-3">
+                    <svg className="w-5 h-5 text-primary flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                    <span className="text-text-secondary">{item}</span>
+                </li>
+            ))}
+        </ul>
+    </div>
+);
+
 
 const WhyUsPage: React.FC = () => {
     const [activeTab, setActiveTab] = useState<'local' | 'global'>('local');
@@ -106,11 +119,11 @@ const WhyUsPage: React.FC = () => {
     };
 
     const getTabClasses = (tabName: 'local' | 'global') => {
-        const baseClasses = 'px-6 py-3 md:px-10 md:py-4 rounded-full text-lg font-semibold font-poppins transition-all duration-300 transform focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-700';
+        const baseClasses = 'relative px-6 py-3 md:px-10 md:py-4 rounded-full text-lg font-semibold font-poppins transition-all duration-300 transform focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary';
         if (activeTab === tabName) {
             return `${baseClasses} bg-primary text-white shadow-lg scale-105`;
         }
-        return `${baseClasses} bg-white text-grey-600 hover:bg-gray-100`;
+        return `${baseClasses} bg-bg-card text-text-secondary hover:bg-gray-200`;
     };
 
     return (
@@ -121,33 +134,35 @@ const WhyUsPage: React.FC = () => {
                 schema={whyUsSchema}
             />
             <div className="bg-bg-primary font-inter">
-                {/* Hero Section */}
-                <section className="relative py-16 md:py-24 bg-white">
+                <section className="relative py-16 md:py-24 bg-bg-card">
                     <div className="container mx-auto px-6 lg:px-[8vw] text-center">
-                        <h1 className="text-4xl md:text-5xl font-bold font-poppins text-grey-900 leading-tight">
+                        <h1 className="text-4xl md:text-5xl font-bold font-poppins text-text-primary leading-tight">
                             Why Smart Businesses Choose Us
                         </h1>
-                        <p className="text-lg md:text-xl mt-4 max-w-3xl mx-auto text-grey-600">
+                        <p className="text-lg md:text-xl mt-4 max-w-3xl mx-auto text-text-secondary">
                             We combine data-driven SEO, intelligent AI, and deep market expertise to give your business an undeniable edge. See how.
                         </p>
                     </div>
                 </section>
-
-                {/* Core Problem Section */}
-                <section className="py-12 bg-bg-secondary">
-                    <div className="container mx-auto px-6 lg:px-[8vw] text-center">
-                        <h2 className="text-3xl font-bold font-poppins text-grey-900">The Online World is Competitive.</h2>
-                        <p className="text-xl text-grey-600 mt-2">Your Advantage Starts Here.</p>
-                        <p className="mt-4 max-w-3xl mx-auto text-grey-600">
-                           In today's digital marketplace, success isn't just about having a website—it's about having a strategic asset. We cut through the noise, help you bypass costly platform fees, and connect you directly to the customers who matter most.
-                        </p>
-                    </div>
+                
+                <section className="container mx-auto px-6 lg:px-[8vw] pt-16">
+                    <KeyTakeaways takeaways={[
+                        "We offer specialized SEO strategies for both local Thai businesses and global sellers entering the Thai market.",
+                        "Our approach focuses on performance, conversion, and helping you bypass high commission fees from other platforms.",
+                        "We build future-proof, secure, and low-maintenance websites that serve as long-term strategic assets for your business."
+                    ]} />
                 </section>
 
-                {/* Two Paths to Success */}
+
                 <section className="py-16 md:py-24">
                     <div className="container mx-auto px-6 lg:px-[8vw]">
-                        <div className="flex justify-center items-center gap-4 mb-12" role="tablist" aria-label="Business Type">
+                        <h2 className="text-3xl font-bold font-poppins text-text-primary text-center">The Online World is Competitive.</h2>
+                        <p className="text-xl text-text-secondary mt-2 text-center">Your Advantage Starts Here.</p>
+                        <p className="mt-4 max-w-3xl mx-auto text-text-secondary text-center">
+                           In today's digital marketplace, success isn't just about having a website—it's about having a strategic asset. We cut through the noise, help you bypass costly platform fees, and connect you directly to the customers who matter most.
+                        </p>
+                        
+                        <div className="flex justify-center items-center p-2 bg-gray-200/70 rounded-full gap-2 mt-12 mb-12 max-w-lg mx-auto" role="tablist" aria-label="Business Type">
                             <button
                                 role="tab"
                                 aria-selected={activeTab === 'local'}
@@ -156,7 +171,7 @@ const WhyUsPage: React.FC = () => {
                                 onClick={() => setActiveTab('local')}
                                 className={getTabClasses('local')}
                             >
-                                For Local Champions <span className="hidden md:inline">(Thai Business Owners)</span>
+                                For Local Champions
                             </button>
                             <button
                                 role="tab"
@@ -166,7 +181,7 @@ const WhyUsPage: React.FC = () => {
                                 onClick={() => setActiveTab('global')}
                                 className={getTabClasses('global')}
                             >
-                                For Global Sellers <span className="hidden md:inline">(Entering Thailand)</span>
+                                For Global Sellers
                             </button>
                         </div>
 
@@ -188,17 +203,16 @@ const WhyUsPage: React.FC = () => {
                     </div>
                 </section>
 
-                {/* CTA Section */}
-                <section className="py-16 md:py-24 bg-brand-900 text-white">
+                <section className="py-16 md:py-24" style={{backgroundColor: '#2d3748'}}>
                     <div className="container mx-auto px-6 lg:px-[8vw]">
                         <div className="text-center max-w-3xl mx-auto">
-                            <h2 className="text-3xl md:text-4xl font-bold font-poppins mb-4">Ready to build your market edge?</h2>
-                            <p className="text-xl leading-relaxed mb-8 text-brand-200">
+                            <h2 className="text-3xl md:text-4xl font-bold font-poppins mb-4 text-white">Ready to build your market edge?</h2>
+                            <p className="text-xl leading-relaxed mb-8 text-gray-300">
                                 Let's leverage our expertise to grow your business. Explore our packages or get in touch for a custom strategy.
                             </p>
                             <Link
                                 to="/pricing"
-                                className="inline-block bg-brand-500 text-white py-4 px-10 rounded-lg text-lg font-bold font-poppins hover:bg-brand-700 transition-all duration-300 transform hover:scale-105 shadow-lg"
+                                className="btn btn-primary-gradient"
                             >
                                 Explore Our Packages
                             </Link>

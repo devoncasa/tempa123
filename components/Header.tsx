@@ -1,18 +1,17 @@
-
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import BrandName from './BrandName';
 
 interface NavItem {
   to?: string;
-  label: string;
+  label: React.ReactNode;
   dropdown?: NavItem[];
 }
 
 const BrandIdentity: React.FC = () => (
   <Link to="/" className="flex items-center gap-3" aria-label="Tempa Web.123 - Homepage">
     <img 
-      src="https://raw.githubusercontent.com/devoncasa/Tempa123-Asset/main/Tempa-logo-small-fit.webp" 
+      src="https://raw.githubusercontent.com/devoncasa/Tempa123-Asset/main/Tempa-logo-dark-small.webp" 
       alt="Tempa Web.123 Logo" 
       className="h-10 w-auto" 
     />
@@ -26,31 +25,65 @@ const Header: React.FC = () => {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const location = useLocation();
   const navRef = useRef<HTMLElement>(null);
-    
-  const navItems: NavItem[] = [
+  
+  const isThaiPage = location.pathname.startsWith('/line-ordering-kit');
+
+  const navItemsEN: NavItem[] = [
     { to: '/', label: 'Home' },
     { to: '/about', label: 'About Us' },
     { to: '/why-us', label: 'Why Us' },
     { to: '/catalog', label: 'Catalog' },
     { 
-      label: 'Pricing',
+      label: (
+        <>
+          <span className="hidden md:inline">Add-On Packages</span>
+          <span className="md:hidden">Add-Ons</span>
+          {' '}&amp; Pricing
+        </>
+      ),
       to: '/pricing',
       dropdown: [
         { to: '/pricing', label: 'Licenses' },
-        { to: '/pricing/customization-services', label: 'Customization Services' }
+        { to: '/pricing/customization-services', label: 'Customization Services' },
+        { to: '/line-ordering-kit', label: '500฿ LINE Kit' }
       ]
     },
     { to: '/blog', label: 'Blog' },
     { to: '/contact', label: 'Contact Us' },
   ];
 
-  // Close menus on route change
+  const navItemsTH: NavItem[] = [
+    { to: '/', label: 'หน้าหลัก' },
+    { to: '/about', label: 'เกี่ยวกับเรา' },
+    { to: '/why-us', label: 'ทำไมต้องเรา' },
+    { to: '/catalog', label: 'แคตตาล็อก' },
+    { 
+      label: (
+        <>
+          <span className="hidden md:inline">แพ็กเกจเสริม</span>
+          <span className="md:hidden">ส่วนเสริม</span>
+          และราคา
+        </>
+      ),
+      to: '/pricing',
+      dropdown: [
+        { to: '/pricing', label: 'ใบอนุญาต' },
+        { to: '/pricing/customization-services', label: 'บริการปรับแต่ง' },
+        { to: '/line-ordering-kit', label: '500฿ LINE Kit' }
+      ]
+    },
+    { to: '/blog', label: 'บล็อก' },
+    { to: '/contact', label: 'ติดต่อเรา' },
+  ];
+
+  const navItems = isThaiPage ? navItemsTH : navItemsEN;
+  const submitText = isThaiPage ? 'ส่งเทมเพลต' : 'Submit Template';
+    
   useEffect(() => {
       setOpenDropdown(null);
       setIsMobileMenuOpen(false);
   }, [location]);
 
-  // Handle click outside and Escape key for desktop dropdown
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
         if (navRef.current && !navRef.current.contains(event.target as Node)) {
@@ -73,24 +106,24 @@ const Header: React.FC = () => {
     };
   }, []);
 
-  const handleMouseEnter = (label: string) => {
-      setOpenDropdown(label);
+  const handleMouseEnter = (dropdownId: string) => {
+      setOpenDropdown(dropdownId);
   };
 
-  const handleDropdownToggle = (label: string) => {
-      setOpenDropdown(prev => (prev === label ? null : label));
+  const handleDropdownToggle = (dropdownId: string) => {
+      setOpenDropdown(prev => (prev === dropdownId ? null : prev));
   };
 
 
-  const isPricingActive = location.pathname.startsWith('/pricing');
+  const isPricingActive = location.pathname.startsWith('/pricing') || location.pathname.startsWith('/line-ordering-kit');
 
   return (
     <>
       <style>{`
         .main-nav-link {
-          color: var(--text-nav);
+          color: var(--color-text-nav);
           font-weight: 500;
-          letter-spacing: 0.025em; /* 'tracking-wide' equivalent */
+          letter-spacing: 0.025em;
           transition: color 0.2s ease-in-out, text-decoration-color 0.2s ease-in-out;
           text-decoration: underline;
           text-decoration-color: transparent;
@@ -99,58 +132,56 @@ const Header: React.FC = () => {
           padding-bottom: 2px;
         }
         .main-nav-link:hover {
-          text-decoration-color: var(--accent-color);
+          color: var(--color-primary);
+          text-decoration-color: var(--color-accent);
         }
         .main-nav-link:active {
-          color: var(--accent-color);
+          color: var(--color-accent);
         }
         .main-nav-link.active {
-          color: var(--text-nav-active);
+          color: var(--color-text-nav-active);
           font-weight: 600;
         }
         
         .dropdown-menu {
             transition: opacity 200ms ease-in-out, transform 200ms ease-in-out;
+            background-color: var(--color-bg-card);
+            border: 1px solid var(--color-border);
         }
 
-        /* --- Elegant & Trendy Header CTA Button --- */
+        .dropdown-menu a:hover {
+            background-color: var(--color-bg-secondary);
+        }
+
+        .dropdown-menu a.active {
+             background-color: var(--color-bg-secondary);
+             color: var(--color-primary-dark);
+        }
+
         .button-cta-header {
           display: inline-flex;
           align-items: center;
-          gap: 8px; /* Space between icon and text */
-          padding: 10px 20px;
-          border: 2px solid var(--brand-700); /* Uses your primary brand color */
-          border-radius: 50px; /* Fully rounded for a modern look */
+          gap: 8px;
+          padding: 8px 18px;
+          border: 2px solid var(--color-primary);
+          border-radius: 50px;
           background-color: transparent;
-          color: var(--brand-700);
+          color: var(--color-primary);
           font-weight: bold;
           text-decoration: none;
-          transition: all 0.3s ease; /* Smooth transition for hover effects */
+          transition: all 0.3s ease;
         }
 
-        /* The elegant fill effect on hover */
         .button-cta-header:hover,
         .button-cta-header:focus {
-          background-color: var(--brand-700);
-          color: var(--white);
-          transform: translateY(-2px); /* Subtle lift effect */
-          box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* Soft shadow for depth */
-        }
-
-        /* Style for the SVG icon inside the button */
-        .button-cta-header svg {
-          transition: fill 0.3s ease;
-          fill: var(--brand-700);
-        }
-
-        .button-cta-header:hover svg,
-        .button-cta-header:focus svg {
-          fill: var(--white);
+          background-color: var(--color-primary);
+          color: var(--color-white);
+          transform: translateY(-2px);
+          box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
       `}</style>
-      <header className="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm border-b border-grey-200">
+      <header className="bg-bg-card/80 backdrop-blur-md sticky top-0 z-50 shadow-sm border-b border-border-primary">
         <div className="container mx-auto px-6 py-4">
-          {/* --- Desktop View --- */}
           <div className="hidden md:flex justify-between items-center">
             <div className="flex-1 flex justify-start">
               <BrandIdentity />
@@ -158,30 +189,30 @@ const Header: React.FC = () => {
 
             <nav ref={navRef} className="flex-shrink-0" aria-label="Main navigation">
               <ul className="flex items-center space-x-4 lg:space-x-6">
-                {navItems.map(item => (
+                {navItems.map((item, index) => (
                   <li 
-                    key={item.label}
+                    key={item.to || index}
                     className="relative"
-                    onMouseEnter={() => item.dropdown && handleMouseEnter(item.label)}
+                    onMouseEnter={() => item.dropdown && handleMouseEnter(item.to!)}
                   >
                     {item.dropdown ? (
                        <>
                         <button
-                          onClick={() => handleDropdownToggle(item.label)}
+                          onClick={() => handleDropdownToggle(item.to!)}
                           className={`main-nav-link flex items-center gap-1 ${isPricingActive ? 'active' : ''}`}
                           aria-haspopup="true"
-                          aria-expanded={openDropdown === item.label}
+                          aria-expanded={openDropdown === item.to}
                         >
                           {item.label}
-                          <svg className={`w-4 h-4 transition-transform duration-200 ${openDropdown === item.label ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+                          <svg className={`w-4 h-4 transition-transform duration-200 ${openDropdown === item.to ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
                         </button>
-                        <div className={`dropdown-menu absolute top-full left-1/2 -translate-x-1/2 mt-2 w-56 bg-white rounded-md shadow-lg py-1 ring-1 ring-black ring-opacity-5 z-10 ${openDropdown === item.label ? 'visible opacity-100 translate-y-0' : 'invisible opacity-0 -translate-y-2'}`}>
+                        <div className={`dropdown-menu absolute top-full left-1/2 -translate-x-1/2 mt-2 w-56 rounded-md shadow-lg py-1 ring-1 ring-black ring-opacity-5 z-10 ${openDropdown === item.to ? 'visible opacity-100 translate-y-0' : 'invisible opacity-0 -translate-y-2'}`}>
                           {item.dropdown.map(subItem => (
                             <NavLink 
                               key={subItem.to}
                               to={subItem.to!}
                               onClick={() => setOpenDropdown(null)}
-                              className={({isActive}) => `block px-4 py-2 text-sm ${isActive ? 'bg-brand-100 text-brand-900' : 'text-grey-900'} hover:bg-brand-100`}
+                              className={({isActive}) => `block px-4 py-2 text-sm ${isActive ? 'active' : ''} text-text-primary`}
                             >
                               {subItem.label}
                             </NavLink>
@@ -198,16 +229,16 @@ const Header: React.FC = () => {
 
             <div className="flex-1 flex justify-end">
               <Link to="/submit-template" className="button-cta-header">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M11 15V6H13V15H11ZM11 19V17H13V19H11Z"></path></svg>
-                <span>Submit Template</span>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18" className="fill-current"><path d="M11 15V6H13V15H11ZM11 19V17H13V19H11Z"></path></svg>
+                <span>{submitText}</span>
               </Link>
             </div>
           </div>
           
-          {/* --- Mobile View --- */}
+          {/* Mobile View */}
           <div className="md:hidden flex justify-between items-center">
             <BrandIdentity />
-            <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="text-base-text focus:outline-none" aria-label="Toggle menu">
+            <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="text-text-primary focus:outline-none" aria-label="Toggle menu">
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={isMobileMenuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"}></path>
               </svg>
@@ -215,18 +246,17 @@ const Header: React.FC = () => {
           </div>
         </div>
         
-        {/* Mobile Menu Panel */}
         {isMobileMenuOpen && (
-          <div className="md:hidden bg-white shadow-lg">
+          <div className="md:hidden bg-bg-card shadow-lg">
             <nav className="flex flex-col items-center space-y-3 py-4">
-              {navItems.map(item => (
-                  <React.Fragment key={item.label}>
+              {navItems.map((item, index) => (
+                  <React.Fragment key={item.to || index}>
                     {item.dropdown ? (
                       <div className='text-center'>
                         <span className={`main-nav-link text-lg ${isPricingActive ? 'active' : ''}`}>{item.label}</span>
                         <div className="flex flex-col items-center mt-2 space-y-2">
                            {item.dropdown.map(subItem => (
-                            <NavLink key={subItem.to} to={subItem.to!} onClick={() => setIsMobileMenuOpen(false)} className="main-nav-link text-base text-grey-600">{subItem.label}</NavLink>
+                            <NavLink key={subItem.to} to={subItem.to!} onClick={() => setIsMobileMenuOpen(false)} className="main-nav-link text-base text-text-secondary">{subItem.label}</NavLink>
                            ))}
                         </div>
                       </div>
@@ -235,7 +265,7 @@ const Header: React.FC = () => {
                     )}
                   </React.Fragment>
                 ))}
-                <NavLink to="/submit-template" onClick={() => setIsMobileMenuOpen(false)} className="main-nav-link text-lg">Submit Template</NavLink>
+                <NavLink to="/submit-template" onClick={() => setIsMobileMenuOpen(false)} className="main-nav-link text-lg">{submitText}</NavLink>
             </nav>
           </div>
         )}

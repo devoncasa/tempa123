@@ -1,17 +1,19 @@
 
+
+
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Seo from '../components/Seo';
 
 const SetupIcon = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-brand-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+    <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
         <path strokeLinecap="round" strokeLinejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426-1.756-2.924-1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
         <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
     </svg>
 );
 
 const GlobeIcon = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-brand-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+    <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
         <path strokeLinecap="round" strokeLinejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2h10a2 2 0 002-2v-1a2 2 0 012-2h1.945M7.707 4.293l1.414-1.414a1 1 0 011.414 0l1.414 1.414M2.25 12h19.5" />
     </svg>
 );
@@ -27,6 +29,7 @@ interface ServicePackage {
     price_thb: number;
     price_usd_approx: number;
     keyFeatures: string[];
+    description: string;
     isCustom?: boolean;
     modal: {
         title: string;
@@ -43,6 +46,7 @@ const servicePackages: ServicePackage[] = [
         name: 'Brand Identity Setup', 
         price_thb: 2999,
         price_usd_approx: 85,
+        description: 'Our team integrates your logo, brand colors, and contact info into your chosen template.',
         keyFeatures: ['Logo & Favicon Integration', 'Brand Color Application', 'Contact Info & Social Links'],
         modal: {
             title: 'Pricing Details: Brand Identity Setup',
@@ -59,6 +63,7 @@ const servicePackages: ServicePackage[] = [
         name: 'Launchpad Package', 
         price_thb: 7499,
         price_usd_approx: 210,
+        description: 'A complete setup service including content placement and upload to your hosting provider.',
         keyFeatures: ['Template Installation & Setup', 'Content Placement (up to 5 pages)', 'Upload to Your Hosting', '1 Round of Revisions'],
         modal: {
             title: 'Pricing Details: Launchpad Package',
@@ -76,6 +81,7 @@ const servicePackages: ServicePackage[] = [
         name: 'Content Pro Package', 
         price_thb: 14999,
         price_usd_approx: 425,
+        description: 'Includes our launchpad package plus professional copywriting for up to 7 pages.',
         keyFeatures: ['Includes Launchpad Package', 'Professional Copywriting (up to 7 pages)', '2 Rounds of Revisions'],
         modal: {
             title: 'Pricing Details: Content Pro Package',
@@ -92,6 +98,7 @@ const servicePackages: ServicePackage[] = [
         name: 'E-commerce Starter', 
         price_thb: 15999,
         price_usd_approx: 450,
+        description: 'Get your online store running with e-commerce functionality and simple product entry.',
         keyFeatures: ['Includes Launchpad Package', 'E-commerce Functionality Setup', 'Simple Product Entry (up to 10)'],
         modal: {
             title: 'Pricing Details: E-commerce Starter',
@@ -108,6 +115,7 @@ const servicePackages: ServicePackage[] = [
         name: 'E-commerce Pro', 
         price_thb: 24999,
         price_usd_approx: 700,
+        description: 'A comprehensive e-commerce solution including complex product setup and premium support.',
         keyFeatures: ['Includes E-commerce Starter & Content Pro', 'Complex Product Entry (up to 25)', '12 Months Premium Support'],
         modal: {
             title: 'Pricing Details: E-commerce Pro',
@@ -124,6 +132,7 @@ const servicePackages: ServicePackage[] = [
         name: 'Bespoke Partnership', 
         price_thb: 35000,
         price_usd_approx: 990,
+        description: 'Our all-inclusive, white-glove service for a fully tailored web presence, from strategy to launch.',
         keyFeatures: ['Full Discovery & Strategy', 'Pro Copywriting (25 Pages)', 'Advanced On-Page SEO', 'Dedicated Project Manager'],
         isCustom: true,
         modal: {
@@ -177,7 +186,7 @@ const PricingDetailModal: React.FC<{ pkg: ServicePackage; onClose: () => void }>
                 onClick={e => e.stopPropagation()}
             >
                 <div className="flex justify-between items-start">
-                    <h2 id="modal-title" className="text-2xl font-bold font-poppins text-brand-900">{pkg.modal.title}</h2>
+                    <h2 id="modal-title" className="text-2xl font-bold font-poppins text-grey-900">{pkg.modal.title}</h2>
                     <button onClick={onClose} className="text-grey-600 hover:text-grey-900" aria-label="Close pricing details">
                         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                     </button>
@@ -224,7 +233,7 @@ const PricingDetailModal: React.FC<{ pkg: ServicePackage; onClose: () => void }>
                         <ul className="space-y-3 mb-8">
                             {pkg.modal.included.map(feature => (
                                 <li key={feature} className="flex items-start gap-3">
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-brand-700 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7" /></svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-brand-500 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7" /></svg>
                                     <span className="text-grey-600">{feature}</span>
                                 </li>
                             ))}
@@ -260,11 +269,13 @@ const PricingDetailModal: React.FC<{ pkg: ServicePackage; onClose: () => void }>
 
 const ServicePackageCard: React.FC<{ pkg: ServicePackage; onDetailsClick: (pkg: ServicePackage) => void }> = ({ pkg, onDetailsClick }) => {
     const isCustom = pkg.isCustom;
+    const cardClasses = `rounded-lg shadow-lg border flex flex-col ${isCustom ? 'bg-brand-50 border-brand-500 border-2' : 'bg-white border-grey-200'}`;
+    
     return (
-        <div className={`bg-white rounded-lg shadow-lg border flex flex-col ${isCustom ? 'border-brand-700 border-2' : 'border-grey-200'}`}>
-            {isCustom && <div className="bg-brand-700 text-white text-center text-sm font-bold py-1 rounded-t-md">MOST FLEXIBLE</div>}
+        <div className={cardClasses}>
+            {isCustom && <div className="bg-brand-500 text-white text-center text-sm font-bold py-1 rounded-t-md">MOST FLEXIBLE</div>}
             <div className="p-6 flex-grow">
-                <h3 className="text-2xl font-bold font-poppins text-brand-900">{pkg.name}</h3>
+                <h3 className="text-2xl font-bold font-poppins text-grey-900">{pkg.name}</h3>
                 <div className="my-4">
                     <p className="text-grey-600 text-sm">{isCustom ? 'Starts at' : 'One-Time Fee'}</p>
                     <p className="text-4xl font-bold font-poppins text-brand-700">{new Intl.NumberFormat().format(pkg.price_thb)} THB</p>
@@ -285,10 +296,10 @@ const ServicePackageCard: React.FC<{ pkg: ServicePackage; onDetailsClick: (pkg: 
                     ))}
                 </ul>
             </div>
-            <div className="p-6 bg-gray-50 rounded-b-lg">
+            <div className="p-6 bg-grey-200/30 rounded-b-lg">
                 <Link 
                     to={isCustom ? "/contact" : "#"} 
-                    className="block w-full text-center bg-primary text-white py-3 px-6 rounded-lg font-semibold tracking-wide-sm hover:bg-primary-hover transition-colors duration-300"
+                    className="block w-full text-center bg-primary text-white py-3 px-6 rounded-lg font-semibold tracking-wide-sm hover:bg-primary-dark transition-colors duration-300"
                 >
                     {isCustom ? 'Get a Custom Quote' : 'Get Started'}
                 </Link>
@@ -300,25 +311,59 @@ const ServicePackageCard: React.FC<{ pkg: ServicePackage; onDetailsClick: (pkg: 
 const CustomizationServicesPage: React.FC = () => {
     const [activeModalPackage, setActiveModalPackage] = useState<ServicePackage | null>(null);
 
+    const servicesSchema = {
+        "@context": "https://schema.org",
+        "@graph": servicePackages.map(pkg => ({
+            "@type": "Product",
+            "name": pkg.name,
+            "description": pkg.description,
+            "sku": `SERVICE-${pkg.id}`,
+            "brand": {
+                "@type": "Organization",
+                "name": "Tempa Web.123"
+            },
+            "isAccessoryOrSparePartFor": {
+                "@type": "ProductGroup",
+                "name": "Tempa Web.123 Website Templates",
+                "url": "https://[YourWebsiteURL.com]/catalog"
+            },
+            "offers": {
+                "@type": "Offer",
+                "price": pkg.price_thb,
+                "priceCurrency": "THB",
+                "priceSpecification": {
+                    "@type": "UnitPriceSpecification",
+                    "price": pkg.price_usd_approx,
+                    "priceCurrency": "USD",
+                    "referenceQuantity": {
+                        "@type": "QuantitativeValue",
+                        "value": 1
+                    }
+                }
+            }
+        }))
+    };
+
     return (
         <>
             <Seo
                 title="Professional Setup & Customization Services | Tempa Web.123"
                 description="Short on time or technical skills? Let our expert team build your website for you with our professional customization packages."
+                schema={servicesSchema}
             />
-            <div className="bg-white">
+            <div className="bg-bg-primary">
                 {/* Section 1: Hero */}
                 <section className="py-16 md:py-24">
                     <div className="container mx-auto px-6 lg:px-[8vw]">
                         <div className="grid md:grid-cols-2 gap-12 items-center">
                             <div className="text-center md:text-left">
-                                <h1 className="text-4xl md:text-5xl font-bold font-poppins text-brand-900 leading-tight">Professional Setup & Customization Services</h1>
+                                <h1 className="text-4xl md:text-5xl font-bold font-poppins text-grey-900 leading-tight">Professional Setup & Customization Services</h1>
                                 <p className="text-lg text-grey-600 mt-6 leading-relaxed">
                                     Love your new template but short on time? Let our expert team build your website for you. We'll handle the technical details so you can focus on running your business.
                                 </p>
                             </div>
                             <div className="flex justify-center items-center">
-                                <div className="bg-brand-100 p-8 rounded-full">
+                                <div className="bg-brand-50 p-8 rounded-full">
                                     <SetupIcon />
                                 </div>
                             </div>
@@ -348,11 +393,11 @@ const CustomizationServicesPage: React.FC = () => {
                 <section className="py-16 md:py-24">
                     <div className="container mx-auto px-6 lg:px-[8vw]">
                         <div className="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-lg border border-grey-200 flex flex-col md:flex-row items-center gap-8">
-                            <div className="flex-shrink-0 bg-brand-100 p-6 rounded-full">
+                            <div className="flex-shrink-0 bg-brand-50 p-6 rounded-full">
                                 <GlobeIcon />
                             </div>
                             <div className="text-center md:text-left">
-                                <h2 className="text-2xl font-bold font-poppins text-brand-900">Need to Reach a Global Audience?</h2>
+                                <h2 className="text-2xl font-bold font-poppins text-grey-900">Need to Reach a Global Audience?</h2>
                                 <p className="text-grey-600 mt-2 mb-4">
                                     Expand your business with our professional multilingual website services. We handle the technical setup and professional translation to get you in front of new markets.
                                 </p>

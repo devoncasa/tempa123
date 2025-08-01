@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
@@ -17,16 +16,19 @@ import { useAuth } from './contexts/AuthContext';
 import AdminPortal from './components/AdminPortal';
 import MultilingualServicePage from './pages/MultilingualServicePage';
 import WhyUsPage from './pages/WhyUsPage';
-import UnderDevelopmentPopup from './components/UnderDevelopmentPopup';
+import WelcomePopup from './components/WelcomePopup';
+import LineOrderingKitPage from './pages/LineOrderingKitPage';
+import ScrollToTop from './components/ScrollToTop';
 
 const App: React.FC = () => {
   const { isAuthenticated } = useAuth();
 
   return (
     <>
-      <UnderDevelopmentPopup />
+      <ScrollToTop />
+      <WelcomePopup />
       {isAuthenticated && <AdminPortal />}
-      <div className={`flex flex-col min-h-screen bg-bg-primary font-inter text-base-text ${isAuthenticated ? 'blur-sm brightness-50' : ''}`}>
+      <div className={`flex flex-col min-h-screen bg-bg-primary font-inter text-text-primary ${isAuthenticated ? 'blur-sm brightness-50' : ''}`}>
         <Header />
         <main className="flex-grow">
           <Routes>
@@ -36,6 +38,7 @@ const App: React.FC = () => {
             <Route path="/why-us" element={<WhyUsPage />} />
             <Route path="/pricing" element={<PricingPage />} />
             <Route path="/pricing/customization-services" element={<CustomizationServicesPage />} />
+            <Route path="/line-ordering-kit" element={<LineOrderingKitPage />} />
             <Route path="/services/multilingual-websites" element={<MultilingualServicePage />} />
             <Route path="/blog" element={<BlogPage />} />
             <Route path="/about" element={<AboutPage />} />

@@ -2,6 +2,20 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Seo from '../components/Seo';
 
+const KeyTakeaways: React.FC<{ takeaways: string[] }> = ({ takeaways }) => (
+    <div className="bg-bg-secondary p-6 rounded-lg border-l-4 border-primary mt-12 mb-12">
+        <h3 className="font-poppins font-bold text-xl text-text-primary mb-3">Key Takeaways</h3>
+        <ul className="space-y-2">
+            {takeaways.map((item, index) => (
+                <li key={index} className="flex items-start gap-3">
+                    <svg className="w-5 h-5 text-primary flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                    <span id={`blog-summary-${index}`} className="text-text-secondary">{item}</span>
+                </li>
+            ))}
+        </ul>
+    </div>
+);
+
 const BlogPage: React.FC = () => {
   const blogPostingSchema = {
     "@context": "https://schema.org",
@@ -13,7 +27,11 @@ const BlogPage: React.FC = () => {
     },
     "datePublished": new Date().toISOString().split('T')[0],
     "image": "https://raw.githubusercontent.com/devoncasa/Tempa123-Asset/main/images/about/performance-engine.webp",
-    "description": "Our blog is coming soon! Stay tuned for articles on design trends, creator spotlights, and tips for making the most of your template."
+    "description": "Our blog is coming soon! Stay tuned for articles on design trends, creator spotlights, and tips for making the most of your template.",
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "cssSelector": ["#blog-title", "#blog-summary"]
+    }
   };
 
   return (
@@ -25,12 +43,18 @@ const BlogPage: React.FC = () => {
       />
       <div className="container mx-auto px-6 lg:px-[8vw] py-12 md:py-20">
         <div className="max-w-3xl mx-auto text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-brand-900 font-poppins mb-4">
+          <h1 id="blog-title" className="text-4xl md:text-5xl font-bold text-brand-900 font-poppins mb-4">
             Our Blog & Resources
           </h1>
-          <p className="text-lg text-grey-600 mb-12">
+          <p id="blog-summary" className="text-lg text-grey-600 mb-12">
             Design trends, creator spotlights, and tips for making the most of your template.
           </p>
+
+          <KeyTakeaways takeaways={[
+            "Our blog will focus on actionable advice for small businesses and creators.",
+            "Topics include design trends, SEO tips, and spotlights on successful template users.",
+            "The goal is to provide resources that help you grow your business using our templates."
+          ]} />
 
           <div className="bg-white p-10 rounded-lg shadow-lg text-center border border-grey-200">
               <h2 className="text-2xl font-poppins font-bold text-grey-900">Coming Soon!</h2>
