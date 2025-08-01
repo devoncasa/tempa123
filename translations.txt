@@ -1,0 +1,587 @@
+
+[//]: # (GENERATED TRANSLATION FILE)
+[//]: # (Each key represents a unique text string in the application for easy replacement.)
+
+#=================================================
+# Global Components
+#=================================================
+
+# --- Header ---
+header.nav.en.home = Home
+header.nav.en.about = About Us
+header.nav.en.whyUs = Why Us
+header.nav.en.catalog = Catalog
+header.nav.en.pricing.label = Add-On Packages & Pricing
+header.nav.en.pricing.label.mobile = Add-Ons & Pricing
+header.nav.en.pricing.dropdown.licenses = Licenses
+header.nav.en.pricing.dropdown.customization = Customization Services
+header.nav.en.pricing.dropdown.lineKit = 500฿ LINE Kit
+header.nav.en.blog = Blog
+header.nav.en.contact = Contact Us
+header.nav.en.submitTemplate = Submit Template
+
+header.nav.th.home = หน้าหลัก
+header.nav.th.about = เกี่ยวกับเรา
+header.nav.th.whyUs = ทำไมต้องเรา
+header.nav.th.catalog = แคตตาล็อก
+header.nav.th.pricing.label = แพ็กเกจเสริมและราคา
+header.nav.th.pricing.label.mobile = ส่วนเสริมและราคา
+header.nav.th.pricing.dropdown.licenses = ใบอนุญาต
+header.nav.th.pricing.dropdown.customization = บริการปรับแต่ง
+header.nav.th.pricing.dropdown.lineKit = 500฿ LINE Kit
+header.nav.th.blog = บล็อก
+header.nav.th.contact = ติดต่อเรา
+header.nav.th.submitTemplate = ส่งเทมเพลต
+
+# --- Footer ---
+footer.tagline = High-performance website templates for businesses ready to own their online presence.
+footer.section.services = Services
+footer.link.catalog = Template Catalog
+footer.link.pricing = Add-On Packages & Pricing
+footer.link.lineKit = 500฿ LINE Kit
+footer.section.company = Company
+footer.link.about = About Us
+footer.link.whyUs = Why Us
+footer.link.blog = Blog
+footer.section.support = Support
+footer.link.contact = Contact
+footer.link.faq = FAQ
+footer.link.submit = Submit Template
+footer.section.legal = Legal
+footer.link.privacy = Privacy Policy
+footer.link.terms = Terms & Conditions
+footer.copyright = © {year} Tempa Web.123. All Rights Reserved.
+footer.address = 919/1 JTC Bldg, Silom, Bangrak, Bangkok 10500, Thailand
+
+# --- Login Modal ---
+loginModal.title = Admin Portal Access
+loginModal.placeholder = Enter password
+loginModal.button = Access Portal
+loginModal.error = Access Denied
+
+# --- Admin Portal ---
+adminPortal.sidebar.dashboard = Dashboard
+adminPortal.sidebar.templates = Templates
+adminPortal.sidebar.submissions = Submissions
+adminPortal.sidebar.sales = Sales & Members
+adminPortal.sidebar.settings = Site Settings
+adminPortal.sidebar.logout = Logout
+adminPortal.dashboard.title = Dashboard
+adminPortal.dashboard.card.revenue = Revenue (This Month)
+adminPortal.dashboard.card.newMembers = New Memberships
+adminPortal.dashboard.card.activeMembers = Active Members
+adminPortal.dashboard.card.templatesLive = Templates Live
+adminPortal.dashboard.pending.title = Pending Items
+adminPortal.dashboard.pending.text = You have <strong>{count} creator submissions</strong> awaiting review.
+adminPortal.dashboard.pending.link = View submissions
+adminPortal.dashboard.bestsellers.title = Top 5 Best-Selling Templates
+adminPortal.dashboard.bestsellers.sales = sales
+adminPortal.dashboard.activity.title = Recent Activity
+adminPortal.dashboard.activity.item1 = Template '{templateName}' sold.
+adminPortal.dashboard.activity.item2 = New Yearly Membership from {email}.
+adminPortal.dashboard.activity.item3 = ago
+adminPortal.templates.title = Template Management
+adminPortal.templates.table.name = Name
+adminPortal.templates.table.category = Category
+adminPortal.templates.table.status = Status
+adminPortal.templates.table.actions = Actions
+adminPortal.templates.status.published = Published
+adminPortal.templates.action.edit = Edit
+adminPortal.templates.action.view = View
+adminPortal.templates.action.delete = Delete
+adminPortal.submissions.title = Creator Submissions
+adminPortal.submissions.pending.title = Pending Review ({count})
+adminPortal.submissions.item.by = by
+adminPortal.submissions.button.preview = Preview
+adminPortal.submissions.button.review = Review
+adminPortal.sales.title = Sales & Memberships
+adminPortal.sales.transactions.title = Recent Transactions
+adminPortal.sales.table.template = Template
+adminPortal.sales.table.customer = Customer
+adminPortal.sales.table.amount = Amount
+adminPortal.sales.table.date = Date
+adminPortal.settings.title = Site Settings
+adminPortal.settings.pricingRules.title = Pricing Rules
+adminPortal.settings.pricingRules.label = Price increase per 100 sales
+adminPortal.settings.pricingRules.description = Percentage increase to apply after every 100 sales.
+adminPortal.settings.promotions.title = Promotions
+adminPortal.settings.promotions.placeholder = New discount code (e.g., SUMMER25)
+adminPortal.settings.promotions.button = Add
+adminPortal.settings.featured.title = Homepage Featured Templates
+adminPortal.settings.featured.description = Drag and drop to reorder. Current featured templates:
+
+# --- Template Card ---
+templateCard.viewDemo = View Demo
+templateCard.buyNow = Buy Now
+
+# --- FAQ Item ---
+# (Text comes from constants.tsx)
+
+# --- Welcome Popup ---
+welcomePopup.title = Welcome to Tempa Web.123
+welcomePopup.subtitle = www.tempa123.com
+welcomePopup.body = This website is currently under development. You may continue to the site to explore the existing features, but please be aware that some content is for demonstration purposes only.
+welcomePopup.button.leave = Leave Website
+welcomePopup.button.continue = Continue to Site
+
+# --- Pricing Explained Popup ---
+pricingExplained.title = Finding the Perfect Fit: A Guide to Our Service Pricing
+pricingExplained.philosophy.title = Our Philosophy: Why We Have Different Packages
+pricingExplained.philosophy.body = Every business is unique. A local café has different needs than a growing e-commerce store. Our pricing is designed to provide exactly what you need, without making you pay for features you don't. This guide will help you understand the value in each package so you can make the best choice for your business.
+pricingExplained.coreChoice.title = The Core Choice: DIY vs. "Done For You"
+pricingExplained.coreChoice.pathA.title = Path A: Buy a Template Only (DIY)
+pricingExplained.coreChoice.pathA.body = This is for you if you have the time and technical skill (or a developer) to build your site yourself. You get the raw materials.
+pricingExplained.coreChoice.pathB.title = Path B: Buy a Template + Service ("Done For You")
+pricingExplained.coreChoice.pathB.body = This is for you if you are a busy business owner who wants a guaranteed, professional result without touching any code. You get the finished product.
+pricingExplained.breakdown.title = A Breakdown of Our "Done For You" Packages
+pricingExplained.breakdown.body = Our packages are a 'value ladder.' Each step up includes everything from the previous tier, plus more value. Here’s who each package is designed for and why it costs what it does.
+pricingExplained.package.whoFor = Who is this for?
+pricingExplained.package.whatFor = What are you paying for?
+pricingExplained.package.brand.title = Brand Identity Setup
+pricingExplained.package.brand.price = 2,999 THB
+pricingExplained.package.brand.who = The DIYer who just needs a professional starting push.
+pricingExplained.package.brand.what = A few hours of a developer's time to handle the initial, sometimes tricky, setup of your logo, brand colors, and contact info, ensuring it looks perfect from day one.
+pricingExplained.package.launchpad.title = Launchpad Package
+pricingExplained.package.launchpad.price = 7,499 THB
+pricingExplained.package.launchpad.who = A business needing a standard, professional 'brochure' website (e.g., a consultant, a small service business).
+pricingExplained.package.launchpad.what = The developer's time to build out your core pages (up to 5). This is the foundational work of taking your raw text and images and structuring them into a complete, navigable website.
+pricingExplained.package.contentPro.title = Content Pro Package
+pricingExplained.package.contentPro.price = 14,999 THB
+pricingExplained.package.contentPro.who = A business that wants a truly professional voice and to save time on writing.
+pricingExplained.package.contentPro.what = This includes all the developer work from the Launchpad package, PLUS the cost of a professional copywriter to write engaging, SEO-friendly text for your site. You're paying for a creative skill that elevates your brand message.
+pricingExplained.package.ecommStarter.title = E-commerce Starter
+pricingExplained.package.ecommStarter.price = 15,999 THB
+pricingExplained.package.ecommStarter.who = A small shop owner ready to start selling their first few products online.
+pricingExplained.package.ecommStarter.what = This includes the developer's work to set up the core website, PLUS the technical work of configuring e-commerce functionality (cart, checkout) and the meticulous data entry for your first 10 products.
+pricingExplained.package.ecommPro.title = E-commerce Pro
+pricingExplained.package.ecommPro.price = 24,999 THB
+pricingExplained.package.ecommPro.who = A growing business with a larger, more complex product catalog.
+pricingExplained.package.ecommPro.what = A significant block of developer and data entry time. This covers the setup of a more extensive store (up to 10 pages) and the detailed work of adding up to 25 complex products with variations (e.g., size, color), which is a time-intensive process.
+pricingExplained.package.bespoke.title = Bespoke Partnership
+pricingExplained.package.bespoke.price = Starts at 35,000 THB
+pricingExplained.package.bespoke.who = Established businesses with unique needs that don't fit a standard package.
+pricingExplained.package.bespoke.what = This is not a package; it's a project. The starting price secures a dedicated block of our senior developer and strategist's time for a deep-dive consultation, project planning, custom feature development, and a dedicated project manager.
+pricingExplained.closeButton = I Understand, Close This Guide
+
+#=================================================
+# Pages
+#=================================================
+
+# --- HomePage ---
+homePage.hero.titlePart1 = Tempa Web.123
+homePage.hero.titlePart2 = — Ready-to-go dynamic & static website templates
+homePage.hero.subtitle = Complete websites with easy-to-use built-in features for instant personalization.
+homePage.hero.button.browse = Browse Templates
+homePage.hero.button.demos = View Demos
+homePage.categories.title = Explore by Category
+homePage.categories.button.all = View All Categories
+homePage.featured.title = Featured Templates
+homePage.howItWorks.title = How It Works
+homePage.howItWorks.step1.title = 1. Preview Live Demo
+homePage.howItWorks.step1.text = Explore our templates with fully interactive live demos.
+homePage.howItWorks.step2.title = 2. Choose & Buy
+homePage.howItWorks.step2.text = Select the perfect template and pricing tier for your needs.
+homePage.howItWorks.step3.title = 3. Add Your Personal Touch
+homePage.howItWorks.step3.text = In just a few clicks, you can upload your content, adjust colors, and have your website ready to launch.
+homePage.pricingCta.title = Flexible Pricing for Everyone
+homePage.pricingCta.text = From single templates to all-access memberships, we have a plan that fits your needs. Get started today with our competitive, developer-friendly pricing.
+homePage.pricingCta.button = View Pricing Plans
+homePage.faq.title = Frequently Asked Questions
+
+# --- CatalogPage ---
+catalogPage.title = Template Catalog
+catalogPage.subtitle = Find the perfect design for your next project.
+catalogPage.filter.categoryLabel = Filter templates by category
+catalogPage.filter.allCategories = All Categories
+catalogPage.filter.allTypes = All Types
+catalogPage.filter.static = Static
+catalogPage.filter.dynamic = Dynamic
+catalogPage.noResults.title = No templates found
+catalogPage.noResults.subtitle = Try adjusting your filters.
+catalogPage.faq.title = Frequently Asked Questions for {categoryName}
+
+# --- TemplateDetailPage ---
+templateDetail.options.title = Customization Options
+templateDetail.options.colors = Color Themes
+templateDetail.options.layouts = Layout Variations
+templateDetail.options.fonts = Font Pairings
+templateDetail.pricing.title = Get This Template
+templateDetail.pricing.license.single = Buy Single License
+templateDetail.pricing.license.membership.label = Access via Membership
+templateDetail.pricing.license.membership.text = Get this + 960+ more for just $15/month.
+templateDetail.pricing.addons.title = OPTIONAL ADD-ONS
+templateDetail.pricing.addons.setup = Template Setup
+templateDetail.pricing.addons.support = 12-Month Priority Support
+templateDetail.pricing.vat = All prices exclude 7% VAT.
+templateDetail.pricing.button.addToCart = Add to Cart
+templateDetail.pricing.learnMore = Learn more about membership
+templateDetail.related.title = Related Templates
+templateDetail.section.description = Description
+templateDetail.section.style = Style
+templateDetail.section.details = Key Details
+templateDetail.details.features = Features
+templateDetail.details.feature.dynamic = Dynamic Content & Parallax
+templateDetail.details.feature.static = Static Build
+templateDetail.details.feature.ecomm = E-commerce Ready
+templateDetail.details.feature.standard = Standard Pages
+templateDetail.details.feature.responsive = Fully Responsive
+templateDetail.details.menu = Site Menu Includes
+
+# --- SubmitPage ---
+submitPage.title = Submit Your Template to
+submitPage.subtitle = Join our marketplace and sell your creations to a global audience.
+submitPage.instructions.title = Submission Instructions
+submitPage.instructions.item1 = Ensure your template is fully responsive and mobile-friendly.
+submitPage.instructions.item2 = Provide a public URL for a live demo (e.g., Netlify, Vercel).
+submitPage.instructions.item3 = Package all template files into a single .zip archive.
+submitPage.instructions.item4 = Upload the .zip file to a cloud service (Google Drive, Dropbox) and create a shareable link.
+submitPage.instructions.item5 = Prepare high-quality screenshots (1200x800px) and a detailed description.
+submitPage.instructions.item6 = Fill out the submission form with all the required information.
+submitPage.instructions.contact = Our team will review your submission within 5-7 business days. For questions, please contact us at {email}.
+submitPage.form.title = Submission Form
+submitPage.form.placeholder.title = Embedded Google Form
+submitPage.form.placeholder.text = A Google Form for template submissions would be embedded here, containing fields for:
+submitPage.form.placeholder.field1 = Name & Email
+submitPage.form.placeholder.field2 = Template Name & Category
+submitPage.form.placeholder.field3 = Public Demo URL
+submitPage.form.placeholder.field4 = Template File Link
+submitPage.form.placeholder.field5 = Screenshot Links
+submitPage.form.placeholder.field6 = Description & Instructions
+
+# --- PricingPage ---
+pricingPage.title = Choose Your Path to a Professional Website
+pricingPage.subtitle = Whether you're a hands-on creator or a busy business owner, we have the perfect solution for you.
+pricingPage.path1.title = For the Hands-On Creator
+pricingPage.path1.subtitle = Get the tools. Build it your way.
+pricingPage.path1.includes.title = What's Included:
+pricingPage.path1.includes.item1 = One-Time Purchase, Lifetime Use
+pricingPage.path1.includes.item2 = High-Performance, SEO-Ready Code
+pricingPage.path1.includes.item3 = Full Access to All Template Files
+pricingPage.path1.includes.item4 = Easy Customization with Simple Instructions
+pricingPage.path1.includes.item5 = 6 Months of Updates & Standard Support
+pricingPage.path1.bestFor.title = Best For:
+pricingPage.path1.bestFor.text = Developers, designers, and tech-savvy founders who are comfortable editing HTML/CSS and want full control over their project.
+pricingPage.path1.priceRange = $29 - $79 USD
+pricingPage.path1.priceNote = (One-time template purchase)
+pricingPage.path1.button = Browse Templates
+pricingPage.path2.recommended = Recommended
+pricingPage.path2.title = For the Busy Business Owner
+pricingPage.path2.subtitle = Your vision, professionally built.
+pricingPage.path2.includes.title = What's Included:
+pricingPage.path2.includes.item1 = Full "Brand Identity Setup" Included
+pricingPage.path2.includes.item2 = Professional Content & Image Placement
+pricingPage.path2.includes.item3 = Upload to Your Hosting Provider
+pricingPage.path2.includes.item4 = 1 Round of Revisions
+pricingPage.path2.includes.item5 = Mobile & SEO Optimization Checks
+pricingPage.path2.includes.item6 = Direct Support from Our Team
+pricingPage.path2.bestFor.title = Best For:
+pricingPage.path2.bestFor.text = Business owners who need a professional website without the technical hassle, allowing them to focus on what they do best: running their business.
+pricingPage.path2.price = Starts at 2,999 THB
+pricingPage.path2.priceBonus = + Free Web Template Included
+pricingPage.path2.priceNote = (Based on our "Business Ready" service package)
+pricingPage.path2.button = Learn More About Our Services
+pricingPage.footer.vat = All prices exclude 7% VAT.
+pricingPage.footer.note = The "Done For You" path requires the purchase of a service package.
+
+# --- CustomizationServicesPage ---
+customizationPage.hero.title = Professional Setup & Customization Services
+customizationPage.hero.subtitle = Love your new template but short on time? Let our expert team build your website for you. We'll handle the technical details so you can focus on running your business.
+customizationPage.packages.title = Our Service Packages
+customizationPage.packages.subtitle = Choose a package that fits your needs. All prices are a one-time fee and do not include the cost of the template itself.
+customizationPage.packages.guideButton = 🤔 Confused about which package is right for you? Click here for a detailed guide.
+customizationPage.card.startsAt = Starts at
+customizationPage.card.oneTimeFee = One-Time Fee
+customizationPage.card.detailsButton = [See Pricing Details]
+customizationPage.card.getStartedButton = Get Started
+customizationPage.card.getQuoteButton = Get a Custom Quote
+customizationPage.footer.vat = All prices exclude 7% VAT.
+customizationPage.multilingualCta.title = Need to Reach a Global Audience?
+customizationPage.multilingualCta.text = Expand your business with our professional multilingual website services. We handle the technical setup and professional translation to get you in front of new markets.
+customizationPage.multilingualCta.link = Learn More About Multilingual Services &rarr;
+customizationPage.modal.closeButton = Close
+customizationPage.modal.closeLabel = Close pricing details
+customizationPage.modal.addons.title = Popular Add-ons
+customizationPage.package.brand.name = Brand Identity Setup
+customizationPage.package.brand.description = Our team integrates your logo, brand colors, and contact info into your chosen template.
+customizationPage.package.brand.feature1 = Logo & Favicon Integration
+customizationPage.package.brand.feature2 = Brand Color Application
+customizationPage.package.brand.feature3 = Contact Info & Social Links
+customizationPage.package.brand.modal.title = Pricing Details: Brand Identity Setup
+customizationPage.package.brand.modal.basePrice = What's Included in 2,999 THB:
+customizationPage.package.brand.modal.included1 = Logo & Favicon Integration in Header & Footer
+customizationPage.package.brand.modal.included2 = Application of Your Brand Colors (up to 2 primary colors)
+customizationPage.package.brand.modal.included3 = Setup of Your Contact Information & Social Media Links
+customizationPage.package.brand.modal.addon1.name = Simple Logo Design: If you don't have a logo, we can create a clean, text-based or simple icon logo for you.
+customizationPage.package.brand.modal.addon1.price = + 4,500 THB
+customizationPage.package.brand.modal.addon2.name = Business Card Design: A print-ready design matching your new site.
+customizationPage.package.brand.modal.addon2.price = + 3,000 THB
+customizationPage.package.launchpad.name = Launchpad Package
+customizationPage.package.launchpad.description = A complete setup service including content placement and upload to your hosting provider.
+customizationPage.package.launchpad.feature1 = Template Installation & Setup
+customizationPage.package.launchpad.feature2 = Content Placement (up to 5 pages)
+customizationPage.package.launchpad.feature3 = Upload to Your Hosting
+customizationPage.package.launchpad.feature4 = 1 Round of Revisions
+customizationPage.package.launchpad.modal.title = Pricing Details: Launchpad Package
+customizationPage.package.launchpad.modal.basePrice = What's Included in 7,499 THB:
+customizationPage.package.launchpad.modal.included1 = All features from the "Brand Identity" package.
+customizationPage.package.launchpad.modal.included2 = Content placement for up to 5 pages (you provide all text & images).
+customizationPage.package.launchpad.modal.included3 = Setup of the main navigation menu.
+customizationPage.package.launchpad.modal.included4 = Upload to your hosting provider.
+customizationPage.package.launchpad.modal.addon1.name = Additional Content Page
+customizationPage.package.launchpad.modal.addon1.price = + 950 THB per page
+customizationPage.package.launchpad.modal.addon2.name = Professional Copywriting: Let us write the text for your 5 pages.
+customizationPage.package.launchpad.modal.addon2.price = + 7,500 THB
+customizationPage.package.launchpad.modal.addon3.name = Stock Photo Sourcing: We can find and license up to 10 professional photos for your site.
+customizationPage.package.launchpad.modal.addon3.price = + 3,500 THB
+#... (and so on for all packages)
+
+# --- AboutPage ---
+aboutPage.hero.title = About Us
+aboutPage.hero.subtitle = Your Business. Your Customers. Your Profits.
+aboutPage.hero.text = We’re based in Bangkok, and every day, we witness the grit and ambition of small business owners—from local food vendors to boutique shopkeepers. What we also see is the growing pressure to stay profitable in an increasingly digital world.
+aboutPage.takeaways.title = Key Takeaways
+aboutPage.takeaways.item1 = We provide high-performance website templates to help small businesses avoid high commission fees from third-party platforms.
+aboutPage.takeaways.item2 = Our mission is to empower business owners to own their digital presence, control customer relationships, and maximize profits.
+aboutPage.takeaways.item3 = Templates are designed for performance, SEO, and ease of use, providing a sustainable alternative to renting online space.
+aboutPage.why.title = Why We Exist
+aboutPage.why.text1 = Today, moving your business online isn’t optional—it’s a necessity. But doing so often comes at a high price.
+aboutPage.why.text2 = Many business owners rely on large delivery and e-commerce platforms that take up to <strong>30% in commissions</strong>, reducing your margins and forcing you to keep spending on ads just to stay visible.
+aboutPage.why.text3 = Tempa Web.123 was created to give you a smarter, more sustainable alternative.
+aboutPage.founder.title = Our Founder's Journey
+aboutPage.founder.quote1 = "Living in Bangkok, I was constantly inspired by the creativity of street food vendors and local artisans. But I also saw their frustration. They would work incredibly hard, only to see a huge chunk of their earnings disappear into the pockets of delivery apps. They were essentially renting their own customers."
+aboutPage.founder.quote2 = "I knew there had to be a better way. I started Tempa Web.123 based on a simple idea: what if these entrepreneurs could own their platform? What if they had a website that was not just beautiful, but a powerful, commission-free tool to connect directly with their audience? That firsthand experience is the 'why' behind everything we build."
+aboutPage.founder.name = - Devon, Founder
+aboutPage.offer.title = What We Offer
+aboutPage.offer.subtitle = A Platform That Puts You in Control
+aboutPage.offer.benefit1.title = Direct Customer Access
+aboutPage.offer.benefit1.text = Link your site from LINE, Facebook, or Instagram.
+aboutPage.offer.benefit2.title = End-to-End Control
+aboutPage.offer.benefit2.text = Customers browse, order, and upload payment—all in one place.
+aboutPage.offer.benefit3.title = Eliminate Commission Fees
+aboutPage.offer.benefit3.text = Use your own delivery system. Keep full revenue.
+aboutPage.explore.title = Explore Before You Commit
+aboutPage.explore.text1 = One of the biggest advantages we offer is that you can fully explore how your website will look and function—before you build it. Browse a wide range of professionally designed templates, each with full menus, layouts, and ordering features already activated for preview.
+aboutPage.explore.text2 = Whether you’re in food, retail, services, or creative work, there’s likely a template that fits your business.
+aboutPage.explore.text3 = Can’t find your industry or product category? No problem—reach out for a friendly consultation, and we’ll gladly recommend the right solution or design it with you.
+aboutPage.explore.button.browse = Browse Our Catalog
+aboutPage.explore.button.consult = Request a Consultation
+aboutPage.performance.title = Engineered for Performance
+aboutPage.performance.text1 = Our templates are designed with clean, optimized code for fast loading and strong SEO performance. Whether viewed on phone or desktop, the ordering experience is seamless, intuitive, and reliable.
+aboutPage.performance.text2 = This is not just about having a website—it’s about owning a digital asset that performs efficiently and works for you.
+aboutPage.whoFor.title = Who It’s For
+aboutPage.whoFor.text = Tempa Web.123 is for small businesses, food vendors, creators, service providers—anyone ready to stop renting space on someone else’s platform and start building equity in their own.
+aboutPage.cta.title = Ready to Own Your Platform?
+aboutPage.cta.text = If you're ready to keep more of what you earn, take full control of your operations, and build something sustainable—<strong>we're ready to help.</strong>
+aboutPage.cta.button = Get Started Now
+
+# --- BlogPage ---
+blogPage.title = Our Blog & Resources
+blogPage.subtitle = Design trends, creator spotlights, and tips for making the most of your template.
+blogPage.takeaways.title = Key Takeaways
+blogPage.takeaways.item1 = Our blog will focus on actionable advice for small businesses and creators.
+blogPage.takeaways.item2 = Topics include design trends, SEO tips, and spotlights on successful template users.
+blogPage.takeaways.item3 = The goal is to provide resources that help you grow your business using our templates.
+blogPage.comingSoon.title = Coming Soon!
+blogPage.comingSoon.text = We're currently curating our first batch of articles. Stay tuned for insightful content that will help you succeed.
+blogPage.comingSoon.button = Explore Templates
+
+# --- ContactPage ---
+contactPage.title = Get In Touch
+contactPage.subtitle = Have a question, a partnership idea, or just want to say hi? We'd love to hear from you.
+contactPage.info.title = Contact Information
+contactPage.info.general = General Inquiries:
+contactPage.info.support = Support:
+contactPage.info.phone = Phone:
+contactPage.form.title = Send Us a Message
+contactPage.form.text = Our contact form is under construction. In the meantime, please feel free to reach out to us via email.
+contactPage.form.placeholder = Contact Form Coming Soon
+
+# --- MultilingualServicePage ---
+multilingual.hero.title = Reach a Global Audience
+multilingual.hero.subtitle = Speak your customer's language. Our multilingual service professionally translates and localizes your website, building trust and opening your business to new markets around the world.
+multilingual.process.title = Our Proven 3-Step Process
+multilingual.process.step1.title = 1. Technical Foundation
+multilingual.process.step1.text = We implement the core technology, making your site ready for multiple languages, including URL setup and a language switcher.
+multilingual.process.step2.title = 2. Professional Translation
+multilingual.process.step2.text = Our native-speaking experts translate your content, ensuring it is not just accurate, but culturally effective and localized.
+multilingual.process.step3.title = 3. Launch & Verify
+multilingual.process.step3.text = We implement the translated content, test every page and link, and launch your new multilingual website to the world.
+multilingual.pricing.title = Transparent Pricing
+multilingual.pricing.subtitle = A clear, two-part pricing structure for a powerful global presence. Start with the technical setup, then add the language packages you need.
+multilingual.pricing.setup.title = One-Time Technical Setup
+multilingual.pricing.setup.required = (Required for all projects)
+multilingual.pricing.setup.price = 4,999 THB
+multilingual.pricing.setup.includes.title = Includes:
+multilingual.pricing.setup.includes.item1 = Core plugin/module installation
+multilingual.pricing.setup.includes.item2 = URL structure configuration
+multilingual.pricing.setup.includes.item3 = Language switcher implementation
+multilingual.pricing.setup.includes.item4 = Technical testing
+multilingual.pricing.packages.title = Per-Language Content Packages
+multilingual.pricing.packages.note = (Up to 7 pages of content)
+multilingual.pricing.packages.tier1.title = Tier 1: English / Thai Package
+multilingual.pricing.packages.tier1.price = + 5,999 THB
+multilingual.pricing.packages.tier1.note = per language
+multilingual.pricing.packages.tier2.title = Tier 2: World Language Package
+multilingual.pricing.packages.tier2.note = (e.g., Japanese, Chinese, German)
+multilingual.pricing.packages.tier2.price = + 17,999 THB
+multilingual.pricing.packages.tier2.note = per language
+multilingual.pricing.vat = All prices exclude 7% VAT.
+multilingual.pricing.difference.title = Why are the prices different?
+multilingual.pricing.difference.text = Our pricing reflects the resources required for guaranteed quality. For English and Thai, our in-house team can manage and audit the content, keeping costs lower. For other world languages, we invest in professional, native-speaking human translators and localization experts to ensure your message is culturally appropriate and effective. This investment guarantees a premium result that resonates with a global audience.
+multilingual.faq.title = Multilingual Service FAQs
+multilingual.faq.q1 = Which languages do you support?
+multilingual.faq.a1 = We can support almost any world language. Our most requested are English, Thai, Chinese (Mandarin), Japanese, and German. Please contact us if you have a specific request.
+multilingual.faq.q2 = Does this service include multilingual SEO?
+multilingual.faq.a2 = This service includes the technical foundation for multilingual SEO, such as implementing hreflang tags. A full SEO strategy for each language (like keyword research) would be part of a custom project.
+multilingual.faq.q3 = How long does it take to add a new language?
+multilingual.faq.a3 = The initial technical setup takes about 3-4 business days. Each language then typically takes 7-10 business days, depending on the complexity of your site's content.
+multilingual.cta.title = Ready to Go Global?
+multilingual.cta.text = Let's discuss your project and how we can help you expand your reach.
+multilingual.cta.button = Contact Us Today
+
+# --- WhyUsPage ---
+whyUs.hero.title = Why Smart Businesses Choose Us
+whyUs.hero.subtitle = We combine data-driven SEO, intelligent AI, and deep market expertise to give your business an undeniable edge. See how.
+whyUs.takeaways.title = Key Takeaways
+whyUs.takeaways.item1 = We offer specialized SEO strategies for both local Thai businesses and global sellers entering the Thai market.
+whyUs.takeaways.item2 = Our approach focuses on performance, conversion, and helping you bypass high commission fees from other platforms.
+whyUs.takeaways.item3 = We build future-proof, secure, and low-maintenance websites that serve as long-term strategic assets for your business.
+whyUs.intro.title = The Online World is Competitive.
+whyUs.intro.subtitle = Your Advantage Starts Here.
+whyUs.intro.text = In today's digital marketplace, success isn't just about having a website—it's about having a strategic asset. We cut through the noise, help you bypass costly platform fees, and connect you directly to the customers who matter most.
+whyUs.tabs.local = For Local Champions
+whyUs.tabs.global = For Global Sellers
+whyUs.benefits.local.search.title = Dominate Local Search
+whyUs.benefits.local.search.text = We use the latest SEO and AI to put your business at the top of Google and LINE searches in Thailand, ensuring you reach customers actively looking for you.
+whyUs.benefits.local.convert.title = Convert Clicks into Customers
+whyUs.benefits.local.convert.text = Our websites are not just beautiful; they are high-performance conversion machines, optimized for speed and seamless mobile sales.
+whyUs.benefits.local.own.title = Own Your Audience
+whyUs.benefits.local.own.text = Break free from the 30% platform tax. We build you a digital asset that connects you directly with your customers, maximizing your profit on every sale.
+whyUs.benefits.local.speed.title = Built for Blazing-Fast Speed
+whyUs.benefits.local.speed.text = We obsess over performance. Our templates are optimized for Google's Core Web Vitals, using next-gen image formats (`.webp`) and lightweight code. Benefit for you: Your website loads almost instantly, even on mobile devices with slower connections. Faster sites rank higher on Google and dramatically reduce the number of customers who leave while waiting for a page to load.
+whyUs.benefits.local.foundation.title = A Future-Proof, Low-Maintenance Foundation
+whyUs.benefits.local.foundation.text = We build your site with a clean, component-based architecture, avoiding the slow, bloated plugins that plague many platforms. Benefit for you: Your website is stable, reliable, and easy to update without things randomly breaking. You avoid the constant headache and security risks of managing dozens of outdated plugins, saving you time and money in the long run.
+whyUs.benefits.global.unlock.title = Unlock the Thai Market
+whyUs.benefits.global.unlock.text = Our native Thai SEO specialists ensure your products speak the local language and align with local shopping behavior, building immediate trust and relevance.
+whyUs.benefits.global.win.title = Win on Local E-commerce
+whyUs.benefits.global.win.text = We optimize your presence not just for Google, but for the platforms where Thais actually shop, including Lazada and Shopee search.
+whyUs.benefits.global.bridge.title = Bridge the Cultural Gap
+whyUs.benefits.global.bridge.text = We go beyond translation. Our AI-driven, cross-cultural mapping ensures your messaging, products, and brand values resonate powerfully with Thai customers.
+whyUs.benefits.global.seo.title = Advanced Technical SEO for Global Reach
+whyUs.benefits.global.seo.text = We automatically implement advanced Schema Markup and `hreflang` tags. Benefit for you: We give Google a detailed "map" of your products and services, making you eligible for Rich Results (like star ratings and prices in search). For multilingual sites, we explicitly tell Google which language to show to which user, ensuring your Thai customers see the Thai version and your international customers see the English one.
+whyUs.benefits.global.security.title = A Secure & Reliable Platform
+whyUs.benefits.global.security.text = Security is not an afterthought; it's built into our core. Our templates follow modern security standards to protect against common vulnerabilities like cross-site scripting (XSS). Benefit for you: You can operate with confidence, knowing your business data and your customers' information is protected. This builds the essential trust needed to do business effectively from overseas.
+whyUs.cta.title = Ready to build your market edge?
+whyUs.cta.text = Let's leverage our expertise to grow your business. Explore our packages or get in touch for a custom strategy.
+whyUs.cta.button = Explore Our Packages
+
+# --- LineOrderingKitPage ---
+lineKit.problem.title = จ่ายค่าคอม 30% ทำไม?
+lineKit.problem.subtitle = เป็นเจ้าของร้านค้าออนไลน์ของคุณเอง
+lineKit.problem.text = สำหรับร้านอาหารและร้านค้าขนาดเล็ก การพึ่งพาแพลตฟอร์มเดลิเวอรี่ใหญ่นั้นสะดวก แต่ก็ต้องแลกมากับค่าคอมมิชชั่นที่สูงถึง 30-35% ซึ่งหมายความว่าทุกๆ 100 บาทที่คุณขายได้ คุณต้องเสียเงิน 30-35 บาทไปกับค่าธรรมเนียม
+lineKit.howItWorks.title = ระบบทำงานอย่างไร?
+lineKit.howItWorks.step1.title = Core Engine
+lineKit.howItWorks.step1.text = เว็บแอปพลิเคชันน้ำหนักเบาที่ลูกค้าใช้สั่งซื้อสินค้า
+lineKit.howItWorks.step2.title = Payment System
+lineKit.howItWorks.step2.text = ลูกค้าชำระเงินผ่าน PromptPay QR และอัปโหลดสลิปได้โดยตรง
+lineKit.howItWorks.step3.title = Communication Hub
+lineKit.howItWorks.step3.text = คุณรับออเดอร์และสลิปผ่าน LINE Notify ไม่ต้องใช้แอปอื่น
+lineKit.demo.title = ทดลองใช้งานจริง
+lineKit.demo.shopName = ร้านข้าวมันไก่เจ๊วรรณ
+lineKit.demo.shopDescription = ข้าวมันไก่สูตรต้นตำรับ เปิดมานานกว่า 30 ปี
+lineKit.demo.button.addToCart = เพิ่มลงตะกร้า
+lineKit.demo.cart.title = สรุปรายการสั่งซื้อ
+lineKit.demo.cart.total = ยอดรวม
+lineKit.demo.cart.button = สั่งซื้อและชำระเงิน
+lineKit.demo.payment.title = ยืนยันการชำระเงิน
+lineKit.demo.payment.total = ยอดชำระเงินทั้งหมด:
+lineKit.demo.payment.instruction = กรุณาชำระเงินผ่าน QR Code หรือเปิดแอปธนาคารด้านล่าง
+lineKit.demo.payment.uploadButton.default = อัปโหลดสลิป
+lineKit.demo.payment.uploadButton.uploaded = ✔️ {fileName}
+lineKit.demo.payment.confirmButton = ยืนยันการสั่งซื้อ
+lineKit.demo.success.title = ยืนยันการสั่งซื้อสำเร็จ!
+lineKit.demo.success.text = ทางร้านได้รับออเดอร์ของคุณแล้ว
+lineKit.journey.title = ลูกค้าของคุณจะสั่งซื้อง่ายๆ ใน 5 ขั้นตอน
+lineKit.journey.step1 = สแกน QR Code จากหน้าร้านหรือโซเชียลมีเดีย
+lineKit.journey.step2 = เลือกเมนูที่ต้องการลงตะกร้า
+lineKit.journey.step3 = ชำระเงินผ่าน QR หรือแอปธนาคารในมือถือ
+lineKit.journey.step4 = อัปโหลดสลิปเพื่อยืนยันการชำระเงิน
+lineKit.journey.step5 = รับการแจ้งเตือนและรอรับออเดอร์
+lineKit.whatYouGet.title = สิ่งที่คุณจะได้รับในราคา 500 บาท
+lineKit.whatYouGet.subtitle = (ค่าบริการครั้งเดียว ไม่มีรายเดือน)
+lineKit.whatYouGet.item1 = เว็บแอปพลิเคชันสำหรับรับออเดอร์ (Master Template)
+lineKit.whatYouGet.item2 = URL ที่เป็นชื่อร้านของคุณเอง (เช่น `jaewan-chicken.tempa123.com`)
+lineKit.whatYouGet.item3 = QR Code สำหรับให้ลูกค้าสแกนเพื่อสั่งซื้อ
+lineKit.whatYouGet.item4 = ระบบแจ้งเตือนออเดอร์เข้าผ่าน LINE Notify
+lineKit.whatYouGet.item5 = คู่มือการใช้งานและการตั้งค่าเบื้องต้น
+lineKit.addons.title = พร้อมเติบโต? บริการเสริมของเรา
+lineKit.addons.menus.title = ใส่เมนูและรูปภาพให้
+lineKit.addons.menus.price = 500 บาท
+lineKit.addons.menus.note = (สูงสุด 10 เมนู)
+lineKit.addons.qr.title = ออกแบบภาพ QR Code สวยๆ
+lineKit.addons.qr.price = 500 บาท
+lineKit.addons.qr.note = (สำหรับติดหน้าร้าน)
+lineKit.addons.domain.title = เชื่อมต่อ Domain ของคุณเอง
+lineKit.addons.domain.price = 1,000 บาท
+lineKit.addons.domain.note = (เช่น `www.jaewanchicken.com`)
+lineKit.cta.title = สร้างร้านค้า LINE ของคุณวันนี้!
+lineKit.cta.button = เริ่มต้นใช้งานชุด LINE Ordering Kit ของคุณเลย!
+
+# --- NotFoundPage ---
+notFound.code = 404
+notFound.title = Page Not Found
+notFound.text = Sorry, the page you are looking for does not exist.
+notFound.button = Go to Homepage
+
+#=================================================
+# Data from constants.tsx
+#=================================================
+
+# --- FAQs ---
+faq.general.q1 = How do I edit my template?
+faq.general.a1 = All templates come with detailed documentation and an intuitive built-in editor. You can easily upload your content, change colors, and adjust layouts to match your brand. Static templates can also be edited with any code editor for more advanced customization.\n\nFor a completely hands-off experience, check out our <Link>Professional Customization Services</Link> where our team builds the site for you.
+faq.general.q2 = What payment methods are supported?
+faq.general.a2 = Our "Full Ecommerce Pack" supports major gateways like Stripe and PayPal. The base templates can be integrated with services like Gumroad or standard PayPal buttons.
+faq.general.q3 = Are the templates responsive?
+faq.general.a3 = Yes, all our templates are fully responsive and designed to look great on desktops, tablets, and mobile phones.
+faq.general.q4 = Can I use my own domain name?
+faq.general.a4 = Absolutely. Once you purchase a template, you can host it on any server and connect it to your own domain name.
+faq.general.q5 = What kind of support do you offer?
+faq.general.a5 = We offer email support for all purchases. For setup and ecommerce packages, we provide dedicated assistance to get your site live.
+
+faq.wellness.q1 = Can I integrate my existing booking system like Calendly or Acuity?
+faq.wellness.a1 = Yes. All our templates are designed to easily embed third-party booking widgets. You can simply copy and paste the embed code from your booking service provider into the designated section of the template.
+faq.wellness.q2 = Are these templates suitable for businesses that need to be HIPAA compliant?
+faq.wellness.a2 = Our templates provide the visual design and front-end structure for your website. However, HIPAA compliance involves your specific hosting, data handling practices, and any third-party services you integrate (like booking or forms). The template itself does not store patient data, but you are responsible for ensuring your full technology stack is compliant. We recommend consulting with a compliance expert.
+
+faq.artisan.q1 = Can I connect my existing Etsy or Shopify store to these templates?
+faq.artisan.a1 = Absolutely. You can easily link to your existing stores. For a more integrated experience, our e-commerce-ready templates can embed 'Buy Buttons' from Shopify Lite, allowing customers to purchase directly from your website while Shopify handles the backend.
+faq.artisan.q2 = How well do these templates handle high-resolution product images?
+faq.artisan.a2 = They are built for it! Our Artisan templates use modern image formats and lazy-loading techniques. This means you can upload high-quality, detailed photos of your work, and the site will optimize them for fast loading without sacrificing visual quality, ensuring your craftsmanship is showcased beautifully.
+
+# --- Template Categories ---
+category.jewelry_beads.name = Jewelry & Beads
+category.jewelry_beads.description = Elegant, color-shifting designs perfect for showcasing fine accessories.
+category.food_cafe.name = Food & Café
+category.food_cafe.description = Warm and playful templates for cafes, restaurants, and food bloggers.
+# ... and so on for all 30 categories
+
+# --- Template Details ---
+# Example for one template:
+template.wellness-1.name = The Urban Retreat
+template.wellness-1.category = Wellness & Spa
+template.wellness-1.tagline = Chic, modern, and luxurious. For high-end day spas in a city environment.
+template.wellness-1.description = A dynamic template for high-end urban spas like [Your Company Name]. It uses clean lines, sophisticated sans-serif fonts, and professional photography of serene spa interiors to create a luxurious experience.
+template.wellness-1.styleDescription = Chic, modern, and luxurious. Designed for high-end day spas in a city environment. Uses clean lines, sophisticated sans-serif fonts, and professional photography of serene spa interiors.
+template.wellness-1.feature1 = Full-screen hero video
+template.wellness-1.feature2 = Grid layout for treatments
+template.wellness-1.feature3 = Pop-up modals for details
+template.wellness-1.feature4 = Side-by-side package comparison
+template.wellness-1.feature5 = Embedded booking widget
+template.wellness-1.menuItem1 = Home
+template.wellness-1.menuItem2 = Treatments
+template.wellness-1.menuItem3 = Spa Packages
+template.wellness-1.menuItem4 = The Experience
+template.wellness-1.menuItem5 = Book Now
+template.wellness-1.menuItem6 = Contact
+# ... and so on for all template features, menus, etc.

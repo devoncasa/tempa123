@@ -19,6 +19,7 @@ import WhyUsPage from './pages/WhyUsPage';
 import WelcomePopup from './components/WelcomePopup';
 import LineOrderingKitPage from './pages/LineOrderingKitPage';
 import ScrollToTop from './components/ScrollToTop';
+import PricingCalculatorPage from './pages/PricingCalculatorPage';
 
 const App: React.FC = () => {
   const { isAuthenticated } = useAuth();
@@ -38,6 +39,7 @@ const App: React.FC = () => {
             <Route path="/why-us" element={<WhyUsPage />} />
             <Route path="/pricing" element={<PricingPage />} />
             <Route path="/pricing/customization-services" element={<CustomizationServicesPage />} />
+            <Route path="/pricing-calculator" element={<PricingCalculatorPage />} />
             <Route path="/line-ordering-kit" element={<LineOrderingKitPage />} />
             <Route path="/services/multilingual-websites" element={<MultilingualServicePage />} />
             <Route path="/blog" element={<BlogPage />} />

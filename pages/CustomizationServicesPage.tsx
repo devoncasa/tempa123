@@ -1,9 +1,10 @@
 
-
-
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Seo from '../components/Seo';
+import PricingExplainedPopup from '../components/PricingExplainedPopup';
+import { servicePackages } from '../constants';
+import { ServicePackage } from '../types';
 
 const SetupIcon = () => (
     <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
@@ -17,150 +18,6 @@ const GlobeIcon = () => (
         <path strokeLinecap="round" strokeLinejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2h10a2 2 0 002-2v-1a2 2 0 012-2h1.945M7.707 4.293l1.414-1.414a1 1 0 011.414 0l1.414 1.414M2.25 12h19.5" />
     </svg>
 );
-
-interface Addon {
-    name: string;
-    price: string;
-}
-
-interface ServicePackage {
-    id: number;
-    name: string;
-    price_thb: number;
-    price_usd_approx: number;
-    keyFeatures: string[];
-    description: string;
-    isCustom?: boolean;
-    modal: {
-        title: string;
-        basePriceText: string;
-        included: string[];
-        addons: Addon[];
-        customText?: string;
-    };
-}
-
-const servicePackages: ServicePackage[] = [
-    { 
-        id: 1, 
-        name: 'Brand Identity Setup', 
-        price_thb: 2999,
-        price_usd_approx: 85,
-        description: 'Our team integrates your logo, brand colors, and contact info into your chosen template.',
-        keyFeatures: ['Logo & Favicon Integration', 'Brand Color Application', 'Contact Info & Social Links'],
-        modal: {
-            title: 'Pricing Details: Brand Identity Setup',
-            basePriceText: "What's Included in 2,999 THB:",
-            included: ['Logo & Favicon Integration in Header & Footer', 'Application of Your Brand Colors (up to 2 primary colors)', 'Setup of Your Contact Information & Social Media Links'],
-            addons: [
-                { name: "Simple Logo Design: If you don't have a logo, we can create a clean, text-based or simple icon logo for you.", price: '+ 4,500 THB' },
-                { name: 'Business Card Design: A print-ready design matching your new site.', price: '+ 3,000 THB' }
-            ]
-        }
-    },
-    { 
-        id: 2, 
-        name: 'Launchpad Package', 
-        price_thb: 7499,
-        price_usd_approx: 210,
-        description: 'A complete setup service including content placement and upload to your hosting provider.',
-        keyFeatures: ['Template Installation & Setup', 'Content Placement (up to 5 pages)', 'Upload to Your Hosting', '1 Round of Revisions'],
-        modal: {
-            title: 'Pricing Details: Launchpad Package',
-            basePriceText: "What's Included in 7,499 THB:",
-            included: ['All features from the "Brand Identity" package.', 'Content placement for up to 5 pages (you provide all text & images).', 'Setup of the main navigation menu.', 'Upload to your hosting provider.'],
-            addons: [
-                { name: 'Additional Content Page', price: '+ 950 THB per page' },
-                { name: 'Professional Copywriting: Let us write the text for your 5 pages.', price: '+ 7,500 THB' },
-                { name: 'Stock Photo Sourcing: We can find and license up to 10 professional photos for your site.', price: '+ 3,500 THB' }
-            ]
-        }
-    },
-    { 
-        id: 3, 
-        name: 'Content Pro Package', 
-        price_thb: 14999,
-        price_usd_approx: 425,
-        description: 'Includes our launchpad package plus professional copywriting for up to 7 pages.',
-        keyFeatures: ['Includes Launchpad Package', 'Professional Copywriting (up to 7 pages)', '2 Rounds of Revisions'],
-        modal: {
-            title: 'Pricing Details: Content Pro Package',
-            basePriceText: "What's Included in 14,999 THB:",
-            included: ['All features from the "Launchpad" package.', 'Professional copywriting for up to 7 pages.', '2 Rounds of revisions on text and content placement.'],
-            addons: [
-                { name: 'Additional Page with Copywriting', price: '+ 2,500 THB per page' },
-                { name: 'Blog Post Writing: A 500-word, SEO-friendly article.', price: '+ 3,000 THB per post' }
-            ]
-        }
-    },
-    { 
-        id: 4, 
-        name: 'E-commerce Starter', 
-        price_thb: 15999,
-        price_usd_approx: 450,
-        description: 'Get your online store running with e-commerce functionality and simple product entry.',
-        keyFeatures: ['Includes Launchpad Package', 'E-commerce Functionality Setup', 'Simple Product Entry (up to 10)'],
-        modal: {
-            title: 'Pricing Details: E-commerce Starter',
-            basePriceText: "What's Included in 15,999 THB:",
-            included: ['All features from the "Launchpad" package for up to 7 pages.', 'Setup of core e-commerce functionality (cart, checkout).', 'Entry of up to 10 Simple Products (name, 1-2 photos, price, short description).'],
-            addons: [
-                { name: 'Payment Gateway Integration: Setup of Stripe or a local Thai gateway (e.g., Omise).', price: '+ 4,000 THB' },
-                { name: 'Additional Simple Products', price: '+ 1,500 THB per batch of 10' }
-            ]
-        }
-    },
-    { 
-        id: 5, 
-        name: 'E-commerce Pro', 
-        price_thb: 24999,
-        price_usd_approx: 700,
-        description: 'A comprehensive e-commerce solution including complex product setup and premium support.',
-        keyFeatures: ['Includes E-commerce Starter & Content Pro', 'Complex Product Entry (up to 25)', '12 Months Premium Support'],
-        modal: {
-            title: 'Pricing Details: E-commerce Pro',
-            basePriceText: "What's Included in 24,999 THB:",
-            included: ['All features from "E-commerce Starter" & "Content Pro" for up to 10 pages.', 'Entry of up to 25 Complex Products (includes variations like size/color, multiple photos).', '12 Months of Premium Support.'],
-            addons: [
-                { name: 'Additional Complex Products', price: '+ 2,500 THB per batch of 10' },
-                { name: 'Basic On-Page SEO Setup: For all pages and products.', price: '+ 6,000 THB' }
-            ]
-        }
-    },
-    { 
-        id: 6, 
-        name: 'Bespoke Partnership', 
-        price_thb: 35000,
-        price_usd_approx: 990,
-        description: 'Our all-inclusive, white-glove service for a fully tailored web presence, from strategy to launch.',
-        keyFeatures: ['Full Discovery & Strategy', 'Pro Copywriting (25 Pages)', 'Advanced On-Page SEO', 'Dedicated Project Manager'],
-        isCustom: true,
-        modal: {
-            title: 'Our Bespoke Partnership',
-            basePriceText: 'What\'s Included in the "Starts at 35,000 THB" Price:',
-            included: [],
-            addons: [],
-            customText: `This is our all-inclusive, white-glove service for businesses that require a comprehensive and tailored web presence. The "Starts At" price typically covers the following:
-
-**Strategy & Content**
-✅ Full Discovery & Strategy Session: We start with a deep dive into your business goals to create a strategic plan for your site.
-✅ Professional Copywriting (Up to 25 Pages): Our team will write engaging, SEO-friendly content for every page included in the scope.
-✅ Comprehensive E-commerce Setup:
-- Full functionality setup (cart, checkout, payment gateway).
-- Entry of up to 25 Complex Products (including variations, multiple photos, and detailed specifications).
-
-**Technical Implementation & SEO**
-✅ Full Template Setup & Customization: All standard setup is included.
-✅ Advanced On-Page SEO Implementation: We will implement best practices for all pages and products, including meta tags, image alt text, and schema markup.
-✅ Key 3rd Party Integrations: Setup of essential tools like Google Analytics, Facebook Pixel, and a chat widget.
-
-**Service & Support**
-✅ Dedicated Project Manager: You will have a single point of contact to ensure a smooth process from start to finish.
-✅ Priority Support & Unlimited Revisions: We work with you until you are 100% satisfied with the result before launch.
-✅ Final Upload & Launch: We handle the entire process of deploying your completed website to your hosting provider.`
-        }
-    },
-];
 
 const PricingDetailModal: React.FC<{ pkg: ServicePackage; onClose: () => void }> = ({ pkg, onClose }) => {
     useEffect(() => {
@@ -310,36 +167,23 @@ const ServicePackageCard: React.FC<{ pkg: ServicePackage; onDetailsClick: (pkg: 
 
 const CustomizationServicesPage: React.FC = () => {
     const [activeModalPackage, setActiveModalPackage] = useState<ServicePackage | null>(null);
+    const [isExplainedPopupOpen, setIsExplainedPopupOpen] = useState(false);
 
     const servicesSchema = {
         "@context": "https://schema.org",
         "@graph": servicePackages.map(pkg => ({
-            "@type": "Product",
-            "name": pkg.name,
-            "description": pkg.description,
-            "sku": `SERVICE-${pkg.id}`,
-            "brand": {
+            "@type": "Service",
+            "serviceType": "Website Customization",
+            "provider": {
                 "@type": "Organization",
                 "name": "Tempa Web.123"
             },
-            "isAccessoryOrSparePartFor": {
-                "@type": "ProductGroup",
-                "name": "Tempa Web.123 Website Templates",
-                "url": "https://[YourWebsiteURL.com]/catalog"
-            },
+            "name": pkg.name,
+            "description": pkg.description,
             "offers": {
                 "@type": "Offer",
                 "price": pkg.price_thb,
-                "priceCurrency": "THB",
-                "priceSpecification": {
-                    "@type": "UnitPriceSpecification",
-                    "price": pkg.price_usd_approx,
-                    "priceCurrency": "USD",
-                    "referenceQuantity": {
-                        "@type": "QuantitativeValue",
-                        "value": 1
-                    }
-                }
+                "priceCurrency": "THB"
             }
         }))
     };
@@ -376,9 +220,17 @@ const CustomizationServicesPage: React.FC = () => {
                     <div className="container mx-auto px-6 lg:px-[8vw]">
                          <div className="text-center max-w-3xl mx-auto">
                             <h2 className="text-3xl md:text-4xl font-bold font-poppins text-grey-900">Our Service Packages</h2>
-                            <p className="text-lg text-grey-600 mt-4 mb-12">
+                            <p className="text-lg text-grey-600 mt-4 mb-6">
                                Choose a package that fits your needs. All prices are a one-time fee and do not include the cost of the template itself.
                             </p>
+                            <div className="mb-12">
+                                <button
+                                    onClick={() => setIsExplainedPopupOpen(true)}
+                                    className="text-brand-700 font-semibold hover:underline bg-brand-50 px-6 py-3 rounded-full border border-brand-200 transition-all hover:bg-brand-100"
+                                >
+                                    🤔 Confused about which package is right for you? Click here for a detailed guide.
+                                </button>
+                            </div>
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                             {servicePackages.map(pkg => (
@@ -413,6 +265,7 @@ const CustomizationServicesPage: React.FC = () => {
                 </section>
             </div>
             {activeModalPackage && <PricingDetailModal pkg={activeModalPackage} onClose={() => setActiveModalPackage(null)} />}
+            {isExplainedPopupOpen && <PricingExplainedPopup onClose={() => setIsExplainedPopupOpen(false)} />}
         </>
     );
 };

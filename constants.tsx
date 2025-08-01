@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import type { Template, FaqItem, PricingTier, CategoryInfo, ColorTheme, FontSet } from './types';
+import type { Template, FaqItem, PricingTier, CategoryInfo, ColorTheme, FontSet, ServicePackage, CalculatorPackage, CalculatorAddon } from './types';
 import { TemplateCategory } from './types';
 
 // SVG Icons for 30 categories
@@ -335,7 +335,7 @@ const wellnessTemplates: Template[] = [
         necessaryMenu: ['Home', 'What is Reiki?', 'Sessions', 'About', 'Book Now'],
         priceRange: [39, 89],
         imageUrl: 'https://picsum.photos/id/1069/1200/800',
-        gallery: ['https://picsum.photos/id/1070/1200/800', 'https://picsum.photos/id/1071/1200/800', 'https://picsum.photos/id/1072/1200/800'],
+        gallery: ['https://picsum.photos/id/1069/1200/800', 'https://picsum.photos/id/1070/1200/800', 'https://picsum.photos/id/1071/1200/800', 'https://picsum.photos/id/1072/1200/800'],
         colorThemes: [{ name: 'Amethyst', palette: ['#967BB6', '#E6E6FA', '#483D8B'] }],
         fontOptions: defaultFontOptions,
         layoutVariations: ['Service description', 'Testimonial slider', 'Booking form'],
@@ -1409,4 +1409,158 @@ export const PRICING_FAQ_ITEMS: FaqItem[] = [
   { question: 'What does the license include?', answer: 'Our single template license allows you to use the template for one commercial project. The membership license allows you to use any template for any number of projects as long as your subscription is active.' },
   { question: 'Can I cancel my membership anytime?', answer: 'Yes, you can cancel your monthly or yearly membership at any time from your account dashboard. You will retain access until the end of your billing period.' },
   { question: 'What’s included in priority support?', answer: 'Priority support gives you direct access to our support team with a guaranteed response time of under 12 hours. It covers help with template setup, bug fixes, and general questions about features.' },
+];
+
+export const servicePackages: ServicePackage[] = [
+    { 
+        id: 1, 
+        name: 'Brand Identity Setup', 
+        price_thb: 2999,
+        price_usd_approx: 85,
+        description: 'Our team integrates your logo, brand colors, and contact info into your chosen template.',
+        keyFeatures: ['Logo & Favicon Integration', 'Brand Color Application', 'Contact Info & Social Links'],
+        modal: {
+            title: 'Pricing Details: Brand Identity Setup',
+            basePriceText: "What's Included in 2,999 THB:",
+            included: ['Logo & Favicon Integration in Header & Footer', 'Application of Your Brand Colors (up to 2 primary colors)', 'Setup of Your Contact Information & Social Media Links'],
+            addons: [
+                { name: "Simple Logo Design: If you don't have a logo, we can create a clean, text-based or simple icon logo for you.", price: '+ 4,500 THB' },
+                { name: 'Business Card Design: A print-ready design matching your new site.', price: '+ 3,000 THB' }
+            ]
+        }
+    },
+    { 
+        id: 2, 
+        name: 'Launchpad Package', 
+        price_thb: 7499,
+        price_usd_approx: 210,
+        description: 'A complete setup service including content placement and upload to your hosting provider.',
+        keyFeatures: ['Template Installation & Setup', 'Content Placement (up to 5 pages)', 'Upload to Your Hosting', '1 Round of Revisions'],
+        modal: {
+            title: 'Pricing Details: Launchpad Package',
+            basePriceText: "What's Included in 7,499 THB:",
+            included: ['All features from the "Brand Identity" package.', 'Content placement for up to 5 pages (you provide all text & images).', 'Setup of the main navigation menu.', 'Upload to your hosting provider.'],
+            addons: [
+                { name: 'Additional Content Page', price: '+ 950 THB per page' },
+                { name: 'Professional Copywriting: Let us write the text for your 5 pages.', price: '+ 7,500 THB' },
+                { name: 'Stock Photo Sourcing: We can find and license up to 10 professional photos for your site.', price: '+ 3,500 THB' }
+            ]
+        }
+    },
+    { 
+        id: 3, 
+        name: 'Content Pro Package', 
+        price_thb: 14999,
+        price_usd_approx: 425,
+        description: 'Includes our launchpad package plus professional copywriting for up to 7 pages.',
+        keyFeatures: ['Includes Launchpad Package', 'Professional Copywriting (up to 7 pages)', '2 Rounds of Revisions'],
+        modal: {
+            title: 'Pricing Details: Content Pro Package',
+            basePriceText: "What's Included in 14,999 THB:",
+            included: ['All features from the "Launchpad" package.', 'Professional copywriting for up to 7 pages.', '2 Rounds of revisions on text and content placement.'],
+            addons: [
+                { name: 'Additional Page with Copywriting', price: '+ 2,500 THB per page' },
+                { name: 'Blog Post Writing: A 500-word, SEO-friendly article.', price: '+ 3,000 THB per post' }
+            ]
+        }
+    },
+    { 
+        id: 4, 
+        name: 'E-commerce Starter', 
+        price_thb: 15999,
+        price_usd_approx: 450,
+        description: 'Get your online store running with e-commerce functionality and simple product entry.',
+        keyFeatures: ['Includes Launchpad Package', 'E-commerce Functionality Setup', 'Simple Product Entry (up to 10)'],
+        modal: {
+            title: 'Pricing Details: E-commerce Starter',
+            basePriceText: "What's Included in 15,999 THB:",
+            included: ['All features from the "Launchpad" package for up to 7 pages.', 'Setup of core e-commerce functionality (cart, checkout).', 'Entry of up to 10 Simple Products (name, 1-2 photos, price, short description).'],
+            addons: [
+                { name: 'Payment Gateway Integration: Setup of Stripe or a local Thai gateway (e.g., Omise).', price: '+ 4,000 THB' },
+                { name: 'Additional Simple Products', price: '+ 1,500 THB per batch of 10' }
+            ]
+        }
+    },
+    { 
+        id: 5, 
+        name: 'E-commerce Pro', 
+        price_thb: 24999,
+        price_usd_approx: 700,
+        description: 'A comprehensive e-commerce solution including complex product setup and premium support.',
+        keyFeatures: ['Includes E-commerce Starter & Content Pro', 'Complex Product Entry (up to 25)', '12 Months Premium Support'],
+        modal: {
+            title: 'Pricing Details: E-commerce Pro',
+            basePriceText: "What's Included in 24,999 THB:",
+            included: ['All features from "E-commerce Starter" & "Content Pro" for up to 10 pages.', 'Entry of up to 25 Complex Products (includes variations like size/color, multiple photos).', '12 Months of Premium Support.'],
+            addons: [
+                { name: 'Additional Complex Products', price: '+ 2,500 THB per batch of 10' },
+                { name: 'Basic On-Page SEO Setup: For all pages and products.', price: '+ 6,000 THB' }
+            ]
+        }
+    },
+    { 
+        id: 6, 
+        name: 'Bespoke Partnership', 
+        price_thb: 35000,
+        price_usd_approx: 990,
+        description: 'Our all-inclusive, white-glove service for a fully tailored web presence, from strategy to launch.',
+        keyFeatures: ['Full Discovery & Strategy', 'Pro Copywriting (25 Pages)', 'Advanced On-Page SEO', 'Dedicated Project Manager'],
+        isCustom: true,
+        modal: {
+            title: 'Our Bespoke Partnership',
+            basePriceText: 'What\'s Included in the "Starts at 35,000 THB" Price:',
+            included: [],
+            addons: [],
+            customText: `This is our all-inclusive, white-glove service for businesses that require a comprehensive and tailored web presence. The "Starts At" price typically covers the following:
+
+**Strategy & Content**
+✅ Full Discovery & Strategy Session: We start with a deep dive into your business goals to create a strategic plan for your site.
+✅ Professional Copywriting (Up to 25 Pages): Our team will write engaging, SEO-friendly content for every page included in the scope.
+✅ Comprehensive E-commerce Setup:
+- Full functionality setup (cart, checkout, payment gateway).
+- Entry of up to 25 Complex Products (including variations, multiple photos, and detailed specifications).
+
+**Technical Implementation & SEO**
+✅ Full Template Setup & Customization: All standard setup is included.
+✅ Advanced On-Page SEO Implementation: We will implement best practices for all pages and products, including meta tags, image alt text, and schema markup.
+✅ Key 3rd Party Integrations: Setup of essential tools like Google Analytics, Facebook Pixel, and a chat widget.
+
+**Service & Support**
+✅ Dedicated Project Manager: You will have a single point of contact to ensure a smooth process from start to finish.
+✅ Priority Support & Unlimited Revisions: We work with you until you are 100% satisfied with the result before launch.
+✅ Final Upload & Launch: We handle the entire process of deploying your completed website to your hosting provider.`
+        }
+    },
+];
+
+// --- Pricing Calculator Data ---
+
+export const getSingleTemplatePriceThb = (template: Template): number => {
+    const base = template.priceRange[0];
+    if (base < 40) return 999;
+    if (base >= 40 && base < 70) return 1799;
+    if (base >= 70) return 2799;
+    return 1799; // fallback
+};
+
+export const CALCULATOR_ADDONS: CalculatorAddon[] = [
+    { id: 'logo', name: 'Simple Logo Design', price_thb: 4500, description: "A clean, text-based or simple icon logo.", isCountable: false },
+    { id: 'bizcard', name: 'Business Card Design', price_thb: 3000, description: "A print-ready design matching your new site.", isCountable: false },
+    { id: 'add-page', name: 'Additional Content Page', price_thb: 950, description: "We'll place your provided content on a new page.", isCountable: true, unitName: 'page' },
+    { id: 'copy-5', name: 'Professional Copywriting', price_thb: 7500, description: "Engaging, professional text for 5 pages.", isCountable: false },
+    { id: 'stock-10', name: 'Stock Photo Sourcing', price_thb: 3500, description: "We'll find and license 10 professional photos.", isCountable: false },
+    { id: 'add-page-copy', name: 'Additional Page with Copywriting', price_thb: 2500, description: "A new page, with professionally written content.", isCountable: true, unitName: 'page' },
+    { id: 'blog-post', name: 'SEO Blog Post', price_thb: 3000, description: "A 500-word, SEO-friendly article.", isCountable: true, unitName: 'post' },
+    { id: 'payment', name: 'Payment Gateway Integration', price_thb: 4000, description: "Setup of Stripe or a local Thai gateway.", isCountable: false },
+    { id: 'simple-prod-10', name: 'Additional Simple Products', price_thb: 1500, description: "Entry of 10 more simple products.", isCountable: true, unitName: 'batch' },
+    { id: 'complex-prod-10', name: 'Additional Complex Products', price_thb: 2500, description: "Entry of 10 more products with variations.", isCountable: true, unitName: 'batch' },
+    { id: 'seo', name: 'Basic On-Page SEO Setup', price_thb: 6000, description: "SEO setup for all pages and products.", isCountable: false },
+];
+
+export const CALCULATOR_PACKAGES: CalculatorPackage[] = [
+    { id: 1, name: 'Brand Identity Setup', price_thb: 2999, description: 'Logo, colors & contact info integration.', addonIds: ['logo', 'bizcard'] },
+    { id: 2, name: 'Launchpad Package', price_thb: 7499, description: 'Complete 5-page site setup.', addonIds: ['add-page', 'copy-5', 'stock-10'] },
+    { id: 3, name: 'Content Pro Package', price_thb: 14999, description: 'Launchpad + copywriting for 7 pages.', addonIds: ['add-page-copy', 'blog-post'] },
+    { id: 4, name: 'E-commerce Starter', price_thb: 15999, description: 'Store setup with 10 simple products.', addonIds: ['payment', 'simple-prod-10', 'add-page-copy'] },
+    { id: 5, name: 'E-commerce Pro', price_thb: 24999, description: 'Store setup with 25 complex products.', addonIds: ['payment', 'complex-prod-10', 'seo'] },
 ];

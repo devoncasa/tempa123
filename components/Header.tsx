@@ -45,6 +45,7 @@ const Header: React.FC = () => {
       dropdown: [
         { to: '/pricing', label: 'Licenses' },
         { to: '/pricing/customization-services', label: 'Customization Services' },
+        { to: '/pricing-calculator', label: 'Pricing Calculator' },
         { to: '/line-ordering-kit', label: '500฿ LINE Kit' }
       ]
     },
@@ -69,6 +70,7 @@ const Header: React.FC = () => {
       dropdown: [
         { to: '/pricing', label: 'ใบอนุญาต' },
         { to: '/pricing/customization-services', label: 'บริการปรับแต่ง' },
+        { to: '/pricing-calculator', label: 'คำนวณราคา' },
         { to: '/line-ordering-kit', label: '500฿ LINE Kit' }
       ]
     },
@@ -253,12 +255,14 @@ const Header: React.FC = () => {
                   <React.Fragment key={item.to || index}>
                     {item.dropdown ? (
                       <div className='text-center'>
-                        <span className={`main-nav-link text-lg ${isPricingActive ? 'active' : ''}`}>{item.label}</span>
-                        <div className="flex flex-col items-center mt-2 space-y-2">
-                           {item.dropdown.map(subItem => (
-                            <NavLink key={subItem.to} to={subItem.to!} onClick={() => setIsMobileMenuOpen(false)} className="main-nav-link text-base text-text-secondary">{subItem.label}</NavLink>
-                           ))}
-                        </div>
+                        <button onClick={() => handleDropdownToggle(item.to || 'pricing')} className={`main-nav-link text-lg ${isPricingActive ? 'active' : ''}`}>{item.label}</button>
+                        {openDropdown === (item.to || 'pricing') && (
+                          <div className="flex flex-col items-center mt-2 space-y-2">
+                            {item.dropdown.map(subItem => (
+                              <NavLink key={subItem.to} to={subItem.to!} onClick={() => setIsMobileMenuOpen(false)} className="main-nav-link text-base text-text-secondary">{subItem.label}</NavLink>
+                            ))}
+                          </div>
+                        )}
                       </div>
                     ) : (
                       <NavLink to={item.to!} onClick={() => setIsMobileMenuOpen(false)} className="main-nav-link text-lg">{item.label}</NavLink>

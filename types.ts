@@ -80,3 +80,42 @@ export interface PricingTier {
   priceRange: string;
   features: string[];
 }
+
+export interface Addon {
+    name: string;
+    price: string;
+}
+
+export interface ServicePackage {
+    id: number;
+    name: string;
+    price_thb: number;
+    price_usd_approx: number;
+    keyFeatures: string[];
+    description: string;
+    isCustom?: boolean;
+    modal: {
+        title: string;
+        basePriceText: string;
+        included: string[];
+        addons: Addon[];
+        customText?: string;
+    };
+}
+
+export interface CalculatorAddon {
+  id: string;
+  name: string;
+  price_thb: number;
+  description: string;
+  isCountable: boolean;
+  unitName?: string; // e.g., 'page', 'post', 'batch of 10'
+}
+
+export interface CalculatorPackage {
+  id: number;
+  name: string;
+  price_thb: number;
+  description: string;
+  addonIds: string[];
+}

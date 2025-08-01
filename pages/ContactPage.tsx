@@ -4,7 +4,29 @@ import Seo from '../components/Seo';
 const ContactPage: React.FC = () => {
   const contactPageSchema = {
     "@context": "https://schema.org",
-    "@type": "ContactPage"
+    "@type": "ContactPage",
+     "mainEntity": {
+        "@type": "LocalBusiness",
+        "name": "Tempa Web.123",
+        "image": "https://raw.githubusercontent.com/devoncasa/Tempa123-Asset/main/Tempa-logo-dark-small.webp",
+        "@id": "https://[YourWebsiteURL.com]",
+        "url": "https://[YourWebsiteURL.com]/contact",
+        "telephone": "+66818519922",
+        "priceRange": "$$",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "919/1 JTC Building, Silom Road",
+          "addressLocality": "Bangkok",
+          "addressRegion": "Bangkok",
+          "postalCode": "10500",
+          "addressCountry": "TH"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 13.724896,
+          "longitude": 100.520470
+        }
+      }
   };
 
   return (
