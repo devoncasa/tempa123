@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
@@ -20,16 +20,36 @@ import WelcomePopup from './components/WelcomePopup';
 import LineOrderingKitPage from './pages/LineOrderingKitPage';
 import ScrollToTop from './components/ScrollToTop';
 import PricingCalculatorPage from './pages/PricingCalculatorPage';
+import InspirationGalleryPage from './pages/InspirationGalleryPage';
+import CategoryGalleryPage from './pages/CategoryGalleryPage';
+import GalleryUpsellPage from './pages/GalleryUpsellPage';
+import MyAccountPage from './pages/MyAccountPage';
+
+const ProtectedGalleryRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const { user } = useAuth();
+  if (!user.isAuthenticated || user.packageTier === 'none') {
+    return <Navigate to="/inspiration-gallery/upgrade" replace />;
+  }
+  return <>{children}</>;
+};
+
+const ProtectedAuthRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+    const { user } = useAuth();
+    if (!user.isAuthenticated) {
+        return <Navigate to="/" replace />;
+    }
+    return <>{children}</>;
+};
 
 const App: React.FC = () => {
-  const { isAuthenticated } = useAuth();
+  const { user } = useAuth();
 
   return (
     <>
       <ScrollToTop />
       <WelcomePopup />
-      {isAuthenticated && <AdminPortal />}
-      <div className={`flex flex-col min-h-screen bg-bg-primary font-inter text-text-primary ${isAuthenticated ? 'blur-sm brightness-50' : ''}`}>
+      {user.isAdmin && <AdminPortal />}
+      <div className={`flex flex-col min-h-screen bg-bg-primary font-inter text-text-primary ${user.isAdmin ? 'blur-sm brightness-50' : ''}`}>
         <Header />
         <main className="flex-grow">
           <Routes>
@@ -42,6 +62,13 @@ const App: React.FC = () => {
             <Route path="/pricing-calculator" element={<PricingCalculatorPage />} />
             <Route path="/line-ordering-kit" element={<LineOrderingKitPage />} />
             <Route path="/services/multilingual-websites" element={<MultilingualServicePage />} />
+            
+            <Route path="/inspiration-gallery" element={<ProtectedGalleryRoute><InspirationGalleryPage /></ProtectedGalleryRoute>} />
+            <Route path="/gallery/:category" element={<ProtectedGalleryRoute><CategoryGalleryPage /></ProtectedGalleryRoute>} />
+            <Route path="/inspiration-gallery/upgrade" element={<GalleryUpsellPage />} />
+            
+            <Route path="/my-account" element={<ProtectedAuthRoute><MyAccountPage /></ProtectedAuthRoute>} />
+
             <Route path="/blog" element={<BlogPage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/submit-template" element={<SubmitPage />} />

@@ -1,108 +1,146 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Seo from '../components/Seo';
+import { PRICING_FAQ_ITEMS } from '../constants';
+import FaqItem from '../components/FaqItem';
 
-const CheckIcon: React.FC = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-brand-700 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4" />
+const CheckIcon: React.FC<{ className?: string }> = ({ className = 'text-brand-700' }) => (
+    <svg xmlns="http://www.w3.org/2000/svg" className={`h-6 w-6 ${className}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
     </svg>
 );
 
+const PricingCard: React.FC<{ tier: any }> = ({ tier }) => {
+    const isRecommended = tier.recommended;
+    const cardClasses = `border rounded-2xl p-8 flex flex-col text-center transition-all duration-300 relative ${isRecommended ? 'bg-white border-2 border-primary shadow-2xl scale-105' : 'bg-bg-card border-border-primary shadow-lg'}`;
+    const buttonClasses = `w-full mt-auto py-3 px-6 rounded-full uppercase text-sm font-semibold tracking-wide-sm transition-all duration-300 ${isRecommended ? 'btn btn-primary-gradient' : 'btn btn-secondary-outline'}`;
+    
+    return (
+        <div className={cardClasses}>
+            {isRecommended && (
+                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-accent text-white text-xs font-poppins font-semibold px-4 py-1 rounded-full shadow-md transform -rotate-3">
+                    BEST VALUE
+                </div>
+            )}
+            <h3 className="text-2xl font-bold font-poppins text-text-primary">{tier.title}</h3>
+            <p className="text-text-secondary mt-2">{tier.description}</p>
+            <div className="my-8">
+                <span className="text-5xl font-bold font-poppins text-brand-700">{tier.price}</span>
+                <span className="text-text-secondary">{tier.pricePeriod}</span>
+            </div>
+            <ul className="space-y-4 text-left mb-10 flex-grow">
+                {tier.features.map((feature: string, index: number) => (
+                    <li key={index} className="flex items-start gap-3">
+                        <CheckIcon />
+                        <span className="text-text-secondary">{feature}</span>
+                    </li>
+                ))}
+            </ul>
+            <Link to={tier.buttonLink} className={buttonClasses}>{tier.buttonText}</Link>
+        </div>
+    );
+};
+
 
 const PricingPage: React.FC = () => {
+
+    const pricingTiers = [
+        {
+            title: 'Single Template',
+            description: 'Perfect for a single project.',
+            price: 'From $29',
+            pricePeriod: '',
+            features: [
+                '1 template included',
+                'Use for a single project',
+                'Lifetime updates for the template',
+                '6 months of standard support',
+                'Full access to template files'
+            ],
+            buttonText: 'Browse Templates',
+            buttonLink: '/catalog',
+            recommended: false,
+        },
+        {
+            title: 'All-Access Membership',
+            description: 'For creators building multiple sites.',
+            price: '$15',
+            pricePeriod: '/mo',
+            features: [
+                'Access all 90+ templates',
+                'Use for unlimited projects',
+                'Continuous access to new templates',
+                'Ongoing premium support',
+                'Cancel anytime from your dashboard'
+            ],
+            buttonText: 'Become a Member',
+            buttonLink: '/my-account',
+            recommended: true,
+        },
+        {
+            title: 'Extended License',
+            description: 'For commercial end-products.',
+            price: '$299',
+            pricePeriod: '/template',
+            features: [
+                '1 template included',
+                'Use in a commercial end-product (e.g., SaaS)',
+                'Lifetime updates for the template',
+                '12 months of premium support',
+                'Full access to template files'
+            ],
+            buttonText: 'Contact for License',
+            buttonLink: '/contact',
+            recommended: false,
+        },
+    ];
+
   return (
     <>
       <Seo
-        title="Pricing: Choose Your Path | Tempa Web.123"
-        description="Whether you're a hands-on creator or a busy business owner, we have the perfect solution for you. Choose between our DIY and Done-For-You paths."
+        title="Pricing & Licenses | Tempa Web.123"
+        description="Flexible pricing for everyone. Choose from a single template license, an all-access membership, or an extended license for commercial projects."
       />
-      <div className="bg-bg-primary font-inter">
-        <section className="py-16 md:py-24">
-          <div className="container mx-auto px-6 lg:px-[8vw]">
-            <div className="text-center max-w-4xl mx-auto mb-12 md:mb-16">
-              <h1 className="text-4xl md:text-5xl font-bold font-poppins text-text-primary">
-                Choose Your Path to a Professional Website
-              </h1>
-              <h4 className="text-lg md:text-xl text-text-secondary mt-4">
-                Whether you're a hands-on creator or a busy business owner, we have the perfect solution for you.
-              </h4>
+      <div className="bg-bg-secondary py-16 md:py-24">
+        {/* Header */}
+        <section className="container mx-auto px-6 lg:px-[8vw] text-center mb-16">
+          <h1 className="text-4xl md:text-5xl font-bold font-poppins text-text-primary">
+            Flexible Pricing for Everyone
+          </h1>
+          <p className="text-lg md:text-xl text-text-secondary mt-4 max-w-3xl mx-auto">
+            From single templates to all-access memberships, we have a plan that fits your project and budget. All plans come with high-quality code and support.
+          </p>
+        </section>
+
+        {/* Pricing Table */}
+        <section className="container mx-auto px-6 lg:px-[8vw]">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 max-w-7xl mx-auto">
+                {pricingTiers.map(tier => <PricingCard key={tier.title} tier={tier} />)}
             </div>
+            <p className="text-center text-sm text-text-secondary mt-8">All prices are in USD and exclude any applicable taxes.</p>
+        </section>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-              {/* Path 1: DIY Path */}
-              <div className="bg-bg-card p-8 rounded-2xl border border-border-primary flex flex-col text-center md:text-left shadow-lg">
-                <h2 className="text-2xl md:text-3xl font-poppins font-bold text-text-primary">For the Hands-On Creator</h2>
-                <p className="text-text-secondary mt-1 text-lg">Get the tools. Build it your way.</p>
-                
-                <div className="text-left my-8 space-y-4">
-                    <p className="font-poppins font-semibold text-text-primary">What's Included:</p>
-                    <ul className="space-y-3">
-                        <li className="flex items-center gap-3"><CheckIcon /> <span>One-Time Purchase, Lifetime Use</span></li>
-                        <li className="flex items-center gap-3"><CheckIcon /> <span>High-Performance, SEO-Ready Code</span></li>
-                        <li className="flex items-center gap-3"><CheckIcon /> <span>Full Access to All Template Files</span></li>
-                        <li className="flex items-center gap-3"><CheckIcon /> <span>Easy Customization with Simple Instructions</span></li>
-                        <li className="flex items-center gap-3"><CheckIcon /> <span>6 Months of Updates & Standard Support</span></li>
-                    </ul>
-                </div>
-                
-                <div className="text-left bg-bg-secondary p-4 rounded-lg mt-4">
-                     <p className="font-poppins font-semibold text-text-primary">Best For:</p>
-                     <p className="text-text-secondary text-sm mt-1">Developers, designers, and tech-savvy founders who are comfortable editing HTML/CSS and want full control over their project.</p>
-                </div>
-
-                <div className="mt-auto pt-8">
-                  <div className="text-center mb-6">
-                      <p className="text-4xl font-bold font-poppins text-text-primary">$29 - $79 USD</p>
-                      <p className="text-text-secondary text-sm">(One-time template purchase)</p>
-                  </div>
-                  <Link to="/catalog" className="w-full btn btn-secondary-outline">
-                    Browse Templates
-                  </Link>
-                </div>
-              </div>
-              
-              {/* Path 2: Done For You Path */}
-              <div className="relative bg-bg-secondary p-8 rounded-2xl border-2 border-primary flex flex-col text-center md:text-left shadow-2xl">
-                <div className="absolute -top-4 right-6 bg-accent text-white text-sm font-poppins font-semibold px-4 py-1 rounded-full shadow-md transform rotate-3">
-                  Recommended
-                </div>
-                <h2 className="text-2xl md:text-3xl font-poppins font-bold text-text-primary">For the Busy Business Owner</h2>
-                <p className="text-text-secondary mt-1 text-lg">Your vision, professionally built.</p>
-                
-                <div className="text-left my-8 space-y-4">
-                    <p className="font-poppins font-semibold text-text-primary">What's Included:</p>
-                    <ul className="space-y-3">
-                        <li className="flex items-center gap-3"><CheckIcon /> <span>Full "Brand Identity Setup" Included</span></li>
-                        <li className="flex items-center gap-3"><CheckIcon /> <span>Professional Content & Image Placement</span></li>
-                        <li className="flex items-center gap-3"><CheckIcon /> <span>Upload to Your Hosting Provider</span></li>
-                        <li className="flex items-center gap-3"><CheckIcon /> <span>1 Round of Revisions</span></li>
-                        <li className="flex items-center gap-3"><CheckIcon /> <span>Mobile & SEO Optimization Checks</span></li>
-                        <li className="flex items-center gap-3"><CheckIcon /> <span>Direct Support from Our Team</span></li>
-                    </ul>
-                </div>
-
-                <div className="text-left bg-primary/10 p-4 rounded-lg mt-4">
-                     <p className="font-poppins font-semibold text-text-primary">Best For:</p>
-                     <p className="text-text-secondary text-sm mt-1">Business owners who need a professional website without the technical hassle, allowing them to focus on what they do best: running their business.</p>
-                </div>
-
-                <div className="mt-auto pt-8">
-                    <div className="text-center mb-6">
-                      <p className="text-4xl font-bold font-poppins text-primary-dark">Starts at 2,999 THB</p>
-                      <p className="font-bold text-lg text-accent mt-2">+ Free Web Template Included</p>
-                      <p className="text-text-secondary text-sm mt-1">(Based on our "Business Ready" service package)</p>
-                    </div>
-                    <Link to="/pricing/customization-services" className="w-full btn btn-primary-gradient">
-                        Learn More About Our Services
-                    </Link>
-                </div>
-              </div>
+        {/* Customization CTA */}
+        <section className="container mx-auto px-6 lg:px-[8vw] mt-24">
+            <div className="bg-brand-900 text-white rounded-2xl p-12 text-center max-w-5xl mx-auto shadow-xl">
+                 <h2 className="text-3xl font-bold font-poppins">Need Help with Setup or Customization?</h2>
+                 <p className="mt-4 mb-8 text-lg text-gray-300 max-w-2xl mx-auto">
+                     Short on time or technical skills? Let our expert team build your website for you. We'll handle everything from setup to content placement.
+                 </p>
+                 <Link to="/pricing/customization-services" className="btn btn-secondary-outline !text-white !border-white hover:!bg-white hover:!text-brand-900">
+                    View Customization Services
+                 </Link>
             </div>
+        </section>
 
-            <div className="text-center mt-16">
-              <p className="text-sm text-text-secondary">All prices exclude 7% VAT. The "Done For You" path requires the purchase of a service package.</p>
-            </div>
+
+        {/* FAQ Section */}
+        <section className="container mx-auto px-6 lg:px-[8vw] mt-24">
+          <h2 className="text-3xl font-bold text-center mb-12 font-poppins">Frequently Asked Questions</h2>
+          <div className="max-w-3xl mx-auto bg-bg-card p-8 rounded-2xl shadow-xl border border-border-primary">
+            {PRICING_FAQ_ITEMS.map((item) => (
+              <FaqItem key={item.question} item={item} />
+            ))}
           </div>
         </section>
       </div>

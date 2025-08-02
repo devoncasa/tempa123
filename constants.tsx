@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import type { Template, FaqItem, PricingTier, CategoryInfo, ColorTheme, FontSet, ServicePackage, CalculatorPackage, CalculatorAddon } from './types';
@@ -84,6 +85,7 @@ const wellnessTemplates: Template[] = [
         id: 'wellness-1',
         name: 'The Urban Retreat',
         category: TemplateCategory.WELLNESS,
+        style: 'Modern',
         isDynamic: true,
         tagline: 'Chic, modern, and luxurious. For high-end day spas in a city environment.',
         description: 'A dynamic template for high-end urban spas like [Your Company Name]. It uses clean lines, sophisticated sans-serif fonts, and professional photography of serene spa interiors to create a luxurious experience.',
@@ -106,6 +108,7 @@ const wellnessTemplates: Template[] = [
         id: 'wellness-2',
         name: 'Mindful Moments Yoga',
         category: TemplateCategory.WELLNESS,
+        style: 'Minimalist',
         isDynamic: false,
         tagline: 'Warm, inviting, and community-focused for a local yoga studio.',
         description: 'A static template for local yoga studios like [Your Company Name]. It uses earthy tones, readable fonts, and authentic photos of students and instructors to create a warm and inviting community feel.',
@@ -128,6 +131,7 @@ const wellnessTemplates: Template[] = [
         id: 'wellness-3',
         name: 'The Holistic Healer',
         category: TemplateCategory.WELLNESS,
+        style: 'Elegant',
         isDynamic: false,
         tagline: 'Personal, gentle, and trustworthy for solo wellness practitioners.',
         description: 'A personal and trustworthy static template designed for solo practitioners at [Your Company Name], such as massage therapists, reiki masters, or acupuncturists. The focus is on the individual\'s expertise and approach.',
@@ -149,6 +153,7 @@ const wellnessTemplates: Template[] = [
         id: 'wellness-4',
         name: 'Aqua Pura Float Center',
         category: TemplateCategory.WELLNESS,
+        style: 'Modern',
         isDynamic: true,
         tagline: 'Futuristic, minimalist, and serene for floatation therapy.',
         description: 'A futuristic and serene dynamic template for floatation therapy centers like [Your Company Name]. It uses dark themes, ambient gradients, and a feeling of space and quiet to evoke the floating experience.',
@@ -171,6 +176,7 @@ const wellnessTemplates: Template[] = [
         id: 'wellness-5',
         name: 'The Skincare Clinic',
         category: TemplateCategory.WELLNESS,
+        style: 'Corporate',
         isDynamic: true,
         tagline: 'Clinical, bright, and scientific for medi-spas and dermatologists.',
         description: 'A bright, clinical dynamic template for medi-spas and aestheticians at [Your Company Name]. Emphasizes cleanliness, results, and technology with a clean layout and scientific aesthetic.',
@@ -213,6 +219,7 @@ const wellnessTemplates: Template[] = [
         id: 'wellness-7',
         name: 'The Mountain Retreat',
         category: TemplateCategory.WELLNESS,
+        style: 'Rustic',
         isDynamic: true,
         tagline: 'Rustic, majestic, and immersive for wellness retreats in nature.',
         description: 'An immersive dynamic template for wellness retreats like [Your Company Name] located in nature. Heavily uses parallax and full-screen video to showcase stunning scenery.',
@@ -690,6 +697,7 @@ const artisanTemplates: Template[] = [
         id: 'artisan-1',
         name: 'The Potter\'s Wheel',
         category: TemplateCategory.ARTISAN,
+        style: 'Rustic',
         isDynamic: true,
         tagline: 'Earthy, tactile, and minimalist design for ceramicists and potters.',
         description: 'A dynamic template for ceramicists and potters like [Your Company Name]. It uses organic textures, clean typography, and high-quality photos that emphasize the form and glaze of the pottery. The design is perfect for showcasing your unique creations and workshop offerings.',
@@ -712,6 +720,7 @@ const artisanTemplates: Template[] = [
         id: 'artisan-2',
         name: 'The Chandler\'s Shop',
         category: TemplateCategory.ARTISAN,
+        style: 'Elegant',
         isDynamic: false,
         tagline: 'A warm, cozy, and elegant template for handmade candles.',
         description: 'A warm and elegant static template for artisans like [Your Company Name] who create handmade candles. The design focuses on creating an atmosphere of comfort and scent through visuals, using soft lighting and clean fonts.',
@@ -734,6 +743,7 @@ const artisanTemplates: Template[] = [
         id: 'artisan-3',
         name: 'The Woodworker\'s Bench',
         category: TemplateCategory.ARTISAN,
+        style: 'Rustic',
         isDynamic: true,
         tagline: 'A rustic, strong, and detailed site for custom woodworkers.',
         description: 'A dynamic template for craftspeople like [Your Company Name] making custom furniture, cutting boards, or other hand-carved wood items. The design highlights craftsmanship and the natural beauty of wood, with options for video backgrounds and parallax effects.',
@@ -755,6 +765,7 @@ const artisanTemplates: Template[] = [
         id: 'artisan-4',
         name: 'The Weaver\'s Loom',
         category: TemplateCategory.ARTISAN,
+        style: 'Minimalist',
         isDynamic: false,
         tagline: 'A soft, textural, and artistic template for textile artists.',
         description: 'A static template for textile artists at [Your Company Name], including weavers and macramé creators. The design uses ample white space to let the texture and color of the work stand out, with a focus on clean product photography.',
@@ -798,6 +809,7 @@ const artisanTemplates: Template[] = [
         id: 'artisan-6',
         name: 'The Handmade Soap Co.',
         category: TemplateCategory.ARTISAN,
+        style: 'Chic',
         isDynamic: false,
         tagline: 'Clean, fresh, and natural for handmade soaps and cosmetics.',
         description: 'A clean and fresh static template for makers like [Your Company Name] of soap, bath bombs, and natural cosmetics. The design uses bright photography and an icon-based ingredient glossary to highlight the natural quality of the products.',
@@ -840,6 +852,7 @@ const artisanTemplates: Template[] = [
         id: 'artisan-8',
         name: 'The Glass Blower\'s Studio',
         category: TemplateCategory.ARTISAN,
+        style: 'Vibrant',
         isDynamic: false,
         tagline: 'Vibrant, luminous, and artistic for glass artists.',
         description: 'A static template for glass artists like [Your Company Name] creating sculptures, vases, or drinkware. A dark theme option makes the glass colors pop, supported by a full-screen gallery and an optional video of the glassblowing process.',
@@ -924,6 +937,7 @@ const artisanTemplates: Template[] = [
         id: 'artisan-12',
         name: 'The Toy Maker',
         category: TemplateCategory.ARTISAN,
+        style: 'Playful',
         isDynamic: false,
         tagline: 'Whimsical and durable for handcrafted wooden toys.',
         description: 'A playful and trustworthy static site for artisans like [Your Company Name] who create handmade toys. The design is bright and clean, with a focus on safety, materials, and the joy of play.',
@@ -1365,6 +1379,14 @@ const artisanTemplates: Template[] = [
 
 export const TEMPLATES: Template[] = [...wellnessTemplates, ...artisanTemplates];
 
+export const getTemplatePriceUSD = (template: Template): number => {
+    const base = template.priceRange[0];
+    if (base < 40) return 29;
+    if (base >= 40 && base < 70) return 49;
+    if (base >= 70) return 79;
+    return 49; // fallback
+};
+
 export const FAQ_ITEMS: FaqItem[] = [
   { 
     question: 'How do I edit my template?', 
@@ -1564,3 +1586,43 @@ export const CALCULATOR_PACKAGES: CalculatorPackage[] = [
     { id: 4, name: 'E-commerce Starter', price_thb: 15999, description: 'Store setup with 10 simple products.', addonIds: ['payment', 'simple-prod-10', 'add-page-copy'] },
     { id: 5, name: 'E-commerce Pro', price_thb: 24999, description: 'Store setup with 25 complex products.', addonIds: ['payment', 'complex-prod-10', 'seo'] },
 ];
+
+// --- Inspiration Gallery Data ---
+
+export interface GalleryImage {
+    id: string;
+    title: string;
+    url: string;
+    tags?: ('new' | 'popular')[];
+}
+
+export const GALLERY_CATEGORY_DETAILS: Record<TemplateCategory, { quote: string; color: string; }> = {
+    [TemplateCategory.FOOD]: { quote: "Food is symbolic of love when words are inadequate.", color: "#e9806c" },
+    [TemplateCategory.WELLNESS]: { quote: "The groundwork for all happiness is good health.", color: "#1dc3b6" },
+    [TemplateCategory.ARTISAN]: { quote: "The desire to create is one of the deepest yearnings of the human soul.", color: "#A27B5C" },
+    [TemplateCategory.JEWELRY]: { quote: "Jewelry is like the perfect spice - it always complements what’s already there.", color: "#D4AF37" },
+    [TemplateCategory.PORTFOLIO]: { quote: "Creativity is intelligence having fun.", color: "#2d3748" },
+    [TemplateCategory.ECOMMERCE]: { quote: "The best customer service is if the customer doesn't need to call you.", color: "#007BFF" },
+    // Add other categories as needed
+} as Record<TemplateCategory, { quote: string; color: string; }>;
+
+export const GALLERY_IMAGES: Record<TemplateCategory, GalleryImage[]> = {
+    [TemplateCategory.FOOD]: Array.from({ length: 20 }, (_, i) => ({
+        id: `food-${i + 1}`,
+        title: `Gourmet Dish ${i + 1}`,
+        url: `https://picsum.photos/seed/${1000 + i}/800/600`,
+        tags: i < 3 ? ['new'] : (i === 4 || i === 8) ? ['popular'] : []
+    })),
+    [TemplateCategory.WELLNESS]: Array.from({ length: 20 }, (_, i) => ({
+        id: `wellness-${i + 1}`,
+        title: `Serene Scene ${i + 1}`,
+        url: `https://picsum.photos/seed/${1100 + i}/800/600`,
+        tags: i < 2 ? ['new'] : (i === 5) ? ['popular'] : []
+    })),
+    [TemplateCategory.ARTISAN]: Array.from({ length: 20 }, (_, i) => ({
+        id: `artisan-${i + 1}`,
+        title: `Handcrafted Item ${i + 1}`,
+        url: `https://picsum.photos/seed/${1200 + i}/800/600`,
+        tags: i === 1 ? ['new'] : (i > 15) ? ['popular'] : []
+    })),
+} as Record<TemplateCategory, GalleryImage[]>;

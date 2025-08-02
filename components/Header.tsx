@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import BrandName from './BrandName';
+import { useAuth } from '../contexts/AuthContext';
 
 interface NavItem {
   to?: string;
@@ -23,6 +24,7 @@ const BrandIdentity: React.FC = () => (
 const Header: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const { user, logout } = useAuth();
   const location = useLocation();
   const navRef = useRef<HTMLElement>(null);
   
@@ -33,14 +35,9 @@ const Header: React.FC = () => {
     { to: '/about', label: 'About Us' },
     { to: '/why-us', label: 'Why Us' },
     { to: '/catalog', label: 'Catalog' },
+    { to: '/inspiration-gallery', label: 'Inspiration Gallery' },
     { 
-      label: (
-        <>
-          <span className="hidden md:inline">Add-On Packages</span>
-          <span className="md:hidden">Add-Ons</span>
-          {' '}&amp; Pricing
-        </>
-      ),
+      label: 'Pricing',
       to: '/pricing',
       dropdown: [
         { to: '/pricing', label: 'Licenses' },
@@ -49,7 +46,6 @@ const Header: React.FC = () => {
         { to: '/line-ordering-kit', label: '500฿ LINE Kit' }
       ]
     },
-    { to: '/blog', label: 'Blog' },
     { to: '/contact', label: 'Contact Us' },
   ];
 
@@ -58,14 +54,9 @@ const Header: React.FC = () => {
     { to: '/about', label: 'เกี่ยวกับเรา' },
     { to: '/why-us', label: 'ทำไมต้องเรา' },
     { to: '/catalog', label: 'แคตตาล็อก' },
+    { to: '/inspiration-gallery', label: 'แกลเลอรี่' },
     { 
-      label: (
-        <>
-          <span className="hidden md:inline">แพ็กเกจเสริม</span>
-          <span className="md:hidden">ส่วนเสริม</span>
-          และราคา
-        </>
-      ),
+      label: 'ราคา',
       to: '/pricing',
       dropdown: [
         { to: '/pricing', label: 'ใบอนุญาต' },
@@ -74,7 +65,6 @@ const Header: React.FC = () => {
         { to: '/line-ordering-kit', label: '500฿ LINE Kit' }
       ]
     },
-    { to: '/blog', label: 'บล็อก' },
     { to: '/contact', label: 'ติดต่อเรา' },
   ];
 
@@ -109,15 +99,41 @@ const Header: React.FC = () => {
   }, []);
 
   const handleMouseEnter = (dropdownId: string) => {
-      setOpenDropdown(dropdownId);
+      if (window.innerWidth > 768) {
+          setOpenDropdown(dropdownId);
+      }
   };
+  
+  const handleMouseLeave = () => {
+      if (window.innerWidth > 768) {
+          setOpenDropdown(null);
+      }
+  }
 
   const handleDropdownToggle = (dropdownId: string) => {
-      setOpenDropdown(prev => (prev === dropdownId ? null : prev));
+      setOpenDropdown(prev => (prev === dropdownId ? null : dropdownId));
   };
 
 
   const isPricingActive = location.pathname.startsWith('/pricing') || location.pathname.startsWith('/line-ordering-kit');
+
+  const UserMenu: React.FC = () => {
+    const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
+    return (
+        <div className="relative" onMouseLeave={() => setIsUserMenuOpen(false)}>
+            <button onMouseEnter={() => setIsUserMenuOpen(true)} onClick={() => setIsUserMenuOpen(p => !p)} className="button-cta-header">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" /></svg>
+                <span>My Account</span>
+            </button>
+            {isUserMenuOpen && (
+                <div className="dropdown-menu absolute top-full right-0 mt-2 w-48 rounded-md shadow-lg py-1 ring-1 ring-black ring-opacity-5 z-10" onMouseLeave={() => setIsUserMenuOpen(false)}>
+                    <NavLink to="/my-account" className={({isActive}) => `block px-4 py-2 text-sm ${isActive ? 'active' : ''} text-text-primary`}>My Account</NavLink>
+                    <button onClick={logout} className="block w-full text-left px-4 py-2 text-sm text-text-primary">Logout</button>
+                </div>
+            )}
+        </div>
+    );
+  };
 
   return (
     <>
@@ -146,12 +162,11 @@ const Header: React.FC = () => {
         }
         
         .dropdown-menu {
-            transition: opacity 200ms ease-in-out, transform 200ms ease-in-out;
             background-color: var(--color-bg-card);
             border: 1px solid var(--color-border);
         }
 
-        .dropdown-menu a:hover {
+        .dropdown-menu a:hover, .dropdown-menu button:hover {
             background-color: var(--color-bg-secondary);
         }
 
@@ -196,6 +211,7 @@ const Header: React.FC = () => {
                     key={item.to || index}
                     className="relative"
                     onMouseEnter={() => item.dropdown && handleMouseEnter(item.to!)}
+                    onMouseLeave={() => item.dropdown && handleMouseLeave()}
                   >
                     {item.dropdown ? (
                        <>
@@ -208,7 +224,7 @@ const Header: React.FC = () => {
                           {item.label}
                           <svg className={`w-4 h-4 transition-transform duration-200 ${openDropdown === item.to ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
                         </button>
-                        <div className={`dropdown-menu absolute top-full left-1/2 -translate-x-1/2 mt-2 w-56 rounded-md shadow-lg py-1 ring-1 ring-black ring-opacity-5 z-10 ${openDropdown === item.to ? 'visible opacity-100 translate-y-0' : 'invisible opacity-0 -translate-y-2'}`}>
+                        <div className={`dropdown-menu absolute top-full left-1/2 -translate-x-1/2 mt-2 w-56 rounded-md shadow-lg py-1 ring-1 ring-black ring-opacity-5 z-10 transition-all duration-200 ${openDropdown === item.to ? 'visible opacity-100 translate-y-0' : 'invisible opacity-0 -translate-y-2'}`}>
                           {item.dropdown.map(subItem => (
                             <NavLink 
                               key={subItem.to}
@@ -222,7 +238,7 @@ const Header: React.FC = () => {
                         </div>
                        </>
                     ) : (
-                      <NavLink to={item.to!} className="main-nav-link">{item.label}</NavLink>
+                      <NavLink to={item.to!} className={({isActive}) => `main-nav-link ${isActive ? 'active' : ''}`}>{item.label}</NavLink>
                     )}
                   </li>
                 ))}
@@ -230,10 +246,14 @@ const Header: React.FC = () => {
             </nav>
 
             <div className="flex-1 flex justify-end">
-              <Link to="/submit-template" className="button-cta-header">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18" className="fill-current"><path d="M11 15V6H13V15H11ZM11 19V17H13V19H11Z"></path></svg>
-                <span>{submitText}</span>
-              </Link>
+                {user.isAuthenticated ? (
+                    <UserMenu />
+                ) : (
+                    <Link to="/submit-template" className="button-cta-header">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18" className="fill-current"><path d="M11 15V6H13V15H11ZM11 19V17H13V19H11Z"></path></svg>
+                        <span>{submitText}</span>
+                    </Link>
+                )}
             </div>
           </div>
           
@@ -269,7 +289,14 @@ const Header: React.FC = () => {
                     )}
                   </React.Fragment>
                 ))}
-                <NavLink to="/submit-template" onClick={() => setIsMobileMenuOpen(false)} className="main-nav-link text-lg">{submitText}</NavLink>
+                {user.isAuthenticated ? (
+                  <>
+                    <NavLink to="/my-account" onClick={() => setIsMobileMenuOpen(false)} className="main-nav-link text-lg">My Account</NavLink>
+                    <button onClick={() => { logout(); setIsMobileMenuOpen(false); }} className="main-nav-link text-lg text-accent">Logout</button>
+                  </>
+                ) : (
+                  <NavLink to="/submit-template" onClick={() => setIsMobileMenuOpen(false)} className="main-nav-link text-lg">{submitText}</NavLink>
+                )}
             </nav>
           </div>
         )}

@@ -62,6 +62,7 @@ export interface Template {
   layoutVariations: string[];
   isDynamic: boolean;
   hasShopPage: boolean;
+  style?: 'Minimalist' | 'Modern' | 'Corporate' | 'Rustic' | 'Elegant' | 'Playful' | 'Chic' | 'Vibrant';
 }
 
 export interface CategoryInfo {

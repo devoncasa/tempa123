@@ -1,19 +1,11 @@
+
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { TEMPLATES } from '../constants';
+import { TEMPLATES, getTemplatePriceUSD } from '../constants';
 import NotFoundPage from './NotFoundPage';
 import TemplateCard from '../components/TemplateCard';
 import type { Template } from '../types';
 import Seo from '../components/Seo';
-
-const getSingleTemplatePrice = (template: Template): number => {
-    const base = template.priceRange[0];
-    if (base < 40) return 29;
-    if (base >= 40 && base < 70) return 49;
-    if (base >= 70) return 79;
-    return 49; // fallback
-};
-
 
 const TemplateDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -38,7 +30,7 @@ const TemplateDetailPage: React.FC = () => {
     return <NotFoundPage />;
   }
   
-  const singlePrice = getSingleTemplatePrice(template);
+  const singlePrice = getTemplatePriceUSD(template);
   const extendedPrice = 299; // Based on pricing page
   const relatedTemplates = TEMPLATES.filter(t => t.category === template.category && t.id !== template.id).slice(0, 3);
 

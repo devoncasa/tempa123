@@ -50,7 +50,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ onClose }) => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             className="w-full p-3 border rounded-md text-center transition-all duration-300 focus:ring-2 focus:ring-primary"
-            placeholder="Enter password"
+            placeholder="Hint: k0007, user123, basic_user"
             autoFocus
           />
           {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
