@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 export enum TemplateCategory {
@@ -119,4 +118,13 @@ export interface CalculatorPackage {
   price_thb: number;
   description: string;
   addonIds: string[];
+}
+
+export interface GalleryImage {
+  id: number;
+  url: string; // full resolution
+  thumbUrl: string; // thumbnail
+  title: string;
+  category: TemplateCategory;
+  tags?: ('new' | 'popular')[];
 }

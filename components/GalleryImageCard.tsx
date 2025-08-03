@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { GalleryImage } from '../constants';
+import type { GalleryImage } from '../types';
 import { useAuth } from '../contexts/AuthContext';
 
 interface GalleryImageCardProps {
@@ -61,7 +61,7 @@ const GalleryImageCard: React.FC<GalleryImageCardProps> = ({ image }) => {
                 onMouseLeave={() => setIsHovered(false)}
             >
                 <img 
-                    src={`${image.url}/300/225`} // smaller size for thumbnail grid
+                    src={image.thumbUrl}
                     alt={image.title} 
                     className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
                     loading="lazy"

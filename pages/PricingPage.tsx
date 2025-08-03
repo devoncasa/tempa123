@@ -68,6 +68,7 @@ const PricingPage: React.FC = () => {
             pricePeriod: '/mo',
             features: [
                 'Access all 90+ templates',
+                'Access to the Inspiration Gallery',
                 'Use for unlimited projects',
                 'Continuous access to new templates',
                 'Ongoing premium support',

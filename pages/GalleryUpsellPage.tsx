@@ -17,12 +17,26 @@ const GalleryUpsellPage: React.FC = () => {
                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                </svg>
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold font-poppins text-text-primary">
-              Unlock Your Creative Potential
-            </h1>
-            <p className="text-xl text-text-secondary mt-4">
-              The Inspiration Gallery is a premium resource available with our customization packages.
-            </p>
+
+            <h1 className="text-4xl md:text-5xl font-bold font-poppins text-text-primary mb-6">Unlock Your Creative Potential</h1>
+
+            <div className="inspiration-gallery-section">
+              <div className="video-frame">
+                <video autoPlay loop muted playsInline preload="metadata" poster="https://raw.githubusercontent.com/devoncasa/Tempa123-Asset/main/images/logos/tempa123-flying-banner-logo.webp">
+                  <source src="https://raw.githubusercontent.com/devoncasa/Tempa123-Asset/main/images/logos/tempa123-photo-gallery-002.mp4" type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+              
+              <p className="gallery-intro-text">
+                The Inspiration Gallery is a premium resource available with our customization packages.
+              </p>
+              
+              <p className="gallery-cta-text">
+                See how our templates can be transformed. Choose a <Link to="/pricing/customization-services">customization package</Link> to unlock your full potential.
+              </p>
+            </div>
+
             <div className="bg-white p-8 rounded-lg shadow-xl my-12 border border-border-primary">
                 <h2 className="text-2xl font-bold font-poppins mb-4">What You're Missing</h2>
                 <ul className="text-left max-w-md mx-auto space-y-3 text-text-secondary">

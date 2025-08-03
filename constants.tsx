@@ -1,7 +1,6 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
-import type { Template, FaqItem, PricingTier, CategoryInfo, ColorTheme, FontSet, ServicePackage, CalculatorPackage, CalculatorAddon } from './types';
+import type { Template, FaqItem, PricingTier, CategoryInfo, ColorTheme, FontSet, ServicePackage, CalculatorPackage, CalculatorAddon, GalleryImage } from './types';
 import { TemplateCategory } from './types';
 
 // SVG Icons for 30 categories
@@ -342,7 +341,7 @@ const wellnessTemplates: Template[] = [
         necessaryMenu: ['Home', 'What is Reiki?', 'Sessions', 'About', 'Book Now'],
         priceRange: [39, 89],
         imageUrl: 'https://picsum.photos/id/1069/1200/800',
-        gallery: ['https://picsum.photos/id/1069/1200/800', 'https://picsum.photos/id/1070/1200/800', 'https://picsum.photos/id/1071/1200/800', 'https://picsum.photos/id/1072/1200/800'],
+        gallery: ['https://picsum.photos/id/1069/1200/800', 'https://picsum.photos/id/1070/1200/800', 'https://picsum.photos/id/1071/1200/800'],
         colorThemes: [{ name: 'Amethyst', palette: ['#967BB6', '#E6E6FA', '#483D8B'] }],
         fontOptions: defaultFontOptions,
         layoutVariations: ['Service description', 'Testimonial slider', 'Booking form'],
@@ -1589,40 +1588,51 @@ export const CALCULATOR_PACKAGES: CalculatorPackage[] = [
 
 // --- Inspiration Gallery Data ---
 
-export interface GalleryImage {
-    id: string;
-    title: string;
-    url: string;
-    tags?: ('new' | 'popular')[];
-}
+export const GALLERY_CATEGORY_DETAILS: Record<TemplateCategory, { quote: string; color: string }> = {
+    [TemplateCategory.JEWELRY]: { quote: "Designs that sparkle with elegance.", color: "#D4AF37" },
+    [TemplateCategory.FOOD]: { quote: "Visually delicious layouts for every eatery.", color: "#E34F26" },
+    [TemplateCategory.WELLNESS]: { quote: "Find your center with serene and calming visuals.", color: "#3CB371" },
+    [TemplateCategory.PORTFOLIO]: { quote: "Showcase your best work with clean, modern aesthetics.", color: "#007BFF" },
+    [TemplateCategory.COACHES]: { quote: "Inspire trust and motivation with professional imagery.", color: "#9B59B6" },
+    [TemplateCategory.ARTISAN]: { quote: "Handcrafted visuals for your handmade goods.", color: "#8B4513" },
+    [TemplateCategory.ECOMMERCE]: { quote: "Drive sales with compelling product showcases.", color: "#FF6B6B" },
+    [TemplateCategory.REAL_ESTATE]: { quote: "Capture the essence of home with stunning property photos.", color: "#2E8B57" },
+    [TemplateCategory.EVENTS]: { quote: "Set the stage for unforgettable moments.", color: "#FFD700" },
+    [TemplateCategory.TECH]: { quote: "Sleek, futuristic imagery for innovative ideas.", color: "#1E90FF" },
+    [TemplateCategory.EDUCATION]: { quote: "Engaging visuals for learning and growth.", color: "#F39C12" },
+    [TemplateCategory.NON_PROFIT]: { quote: "Imagery that tells a story and inspires action.", color: "#E74C3C" },
+    [TemplateCategory.FITNESS]: { quote: "Dynamic and energetic photos to motivate and inspire.", color: "#2ECC71" },
+    [TemplateCategory.TRAVEL]: { quote: "Breathtaking scenes from around the world.", color: "#3498DB" },
+    [TemplateCategory.AGENCY]: { quote: "Polished and professional visuals for a corporate edge.", color: "#34495E" },
+    [TemplateCategory.PHOTOGRAPHY]: { quote: "A gallery of inspiration for the visual artist.", color: "#95A5A6" },
+    [TemplateCategory.HOME_SERVICES]: { quote: "Trustworthy and clean imagery for home professionals.", color: "#1ABC9C" },
+    [TemplateCategory.AUTOMOTIVE]: { quote: "Sleek and powerful visuals for the auto industry.", color: "#F1C40F" },
+    [TemplateCategory.FASHION]: { quote: "Chic and stylish shots to define your brand.", color: "#E91E63" },
+    [TemplateCategory.BEAUTY]: { quote: "Elegant and clean visuals for beauty and cosmetics.", color: "#FD79A8" },
+    [TemplateCategory.LEGAL]: { quote: "Professional and credible imagery for legal services.", color: "#2C3E50" },
+    [TemplateCategory.FINANCE]: { quote: "Trustworthy and secure visuals for financial consulting.", color: "#16A085" },
+    [TemplateCategory.CONSTRUCTION]: { quote: "Solid, dependable imagery for the building industry.", color: "#D35400" },
+    [TemplateCategory.ENTERTAINMENT]: { quote: "Vibrant and exciting visuals for nightlife and events.", color: "#8E44AD" },
+    [TemplateCategory.MUSIC]: { quote: "Creative and expressive visuals for musicians and bands.", color: "#C0392B" },
+    [TemplateCategory.PET_CARE]: { quote: "Warm and friendly photos for pet services.", color: "#F39C12" },
+    [TemplateCategory.MARKETING]: { quote: "Data-driven and persuasive visuals for advertisers.", color: "#2980B9" },
+    [TemplateCategory.BLOG]: { quote: "Content-focused visuals for bloggers and magazines.", color: "#27AE60" },
+    [TemplateCategory.MEDICAL]: { quote: "Clean, professional imagery for healthcare providers.", color: "#00A8E8" },
+    [TemplateCategory.CHILDCARE]: { quote: "Fun and friendly visuals for childcare and education.", color: "#FFC0CB" },
+};
 
-export const GALLERY_CATEGORY_DETAILS: Record<TemplateCategory, { quote: string; color: string; }> = {
-    [TemplateCategory.FOOD]: { quote: "Food is symbolic of love when words are inadequate.", color: "#e9806c" },
-    [TemplateCategory.WELLNESS]: { quote: "The groundwork for all happiness is good health.", color: "#1dc3b6" },
-    [TemplateCategory.ARTISAN]: { quote: "The desire to create is one of the deepest yearnings of the human soul.", color: "#A27B5C" },
-    [TemplateCategory.JEWELRY]: { quote: "Jewelry is like the perfect spice - it always complements what’s already there.", color: "#D4AF37" },
-    [TemplateCategory.PORTFOLIO]: { quote: "Creativity is intelligence having fun.", color: "#2d3748" },
-    [TemplateCategory.ECOMMERCE]: { quote: "The best customer service is if the customer doesn't need to call you.", color: "#007BFF" },
-    // Add other categories as needed
-} as Record<TemplateCategory, { quote: string; color: string; }>;
+const allCategories = Object.values(TemplateCategory);
+const generatedImages: Record<TemplateCategory, GalleryImage[]> = {} as Record<TemplateCategory, GalleryImage[]>;
 
-export const GALLERY_IMAGES: Record<TemplateCategory, GalleryImage[]> = {
-    [TemplateCategory.FOOD]: Array.from({ length: 20 }, (_, i) => ({
-        id: `food-${i + 1}`,
-        title: `Gourmet Dish ${i + 1}`,
-        url: `https://picsum.photos/seed/${1000 + i}/800/600`,
-        tags: i < 3 ? ['new'] : (i === 4 || i === 8) ? ['popular'] : []
-    })),
-    [TemplateCategory.WELLNESS]: Array.from({ length: 20 }, (_, i) => ({
-        id: `wellness-${i + 1}`,
-        title: `Serene Scene ${i + 1}`,
-        url: `https://picsum.photos/seed/${1100 + i}/800/600`,
-        tags: i < 2 ? ['new'] : (i === 5) ? ['popular'] : []
-    })),
-    [TemplateCategory.ARTISAN]: Array.from({ length: 20 }, (_, i) => ({
-        id: `artisan-${i + 1}`,
-        title: `Handcrafted Item ${i + 1}`,
-        url: `https://picsum.photos/seed/${1200 + i}/800/600`,
-        tags: i === 1 ? ['new'] : (i > 15) ? ['popular'] : []
-    })),
-} as Record<TemplateCategory, GalleryImage[]>;
+allCategories.forEach((category, catIndex) => {
+    const seed = catIndex * 100 + 500; // Use a different seed base to avoid collision with other pages
+    generatedImages[category] = Array.from({ length: 8 }, (_, i) => ({
+        id: seed + i,
+        url: `https://picsum.photos/seed/${seed + i}/1200/800`,
+        thumbUrl: `https://picsum.photos/seed/${seed + i}/400/300`,
+        title: `${category} Example ${i + 1}`,
+        category: category,
+        tags: i < 2 ? ((seed + i) % 3 === 0 ? ['popular'] : ['new']) : [],
+    }));
+});
+export const GALLERY_IMAGES: Record<TemplateCategory, GalleryImage[]> = generatedImages;

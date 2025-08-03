@@ -103,6 +103,13 @@
         }
       }
 
+      .hero-bg-new {
+        background-color: var(--grey-900);
+        background-image: 
+            radial-gradient(at 20% 25%, hsla(175, 70%, 40%, 0.3) 0px, transparent 50%),
+            radial-gradient(at 80% 85%, hsla(11, 60%, 55%, 0.2) 0px, transparent 50%);
+      }
+
       /* Upgraded UI Component Styles */
       .btn {
         display: inline-block;
@@ -135,6 +142,104 @@
         transform: translateY(-2px);
         box-shadow: 0 10px 15px -3px rgba(226, 232, 240, 0.4), 0 4px 6px -2px rgba(226, 232, 240, 0.2);
       }
+
+      /* --- The Inspiration Gallery Section --- */
+
+      .inspiration-gallery-section {
+        width: 100%;
+        max-width: 900px; /* Or your preferred max width */
+        margin: 60px auto; /* Creates space above and below the section */
+        text-align: center;
+      }
+
+      .gallery-intro-text {
+        font-size: 1.1rem;
+        color: var(--grey-600);
+        margin-bottom: 30px; /* Space between text and video frame */
+      }
+
+      /* --- The Elegant & Thinner White Video Frame --- */
+      .video-frame {
+        background-color: var(--white); /* White frame background */
+        padding: 6px; /* Thinner inner spacing */
+        border-radius: 16px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        border: 1px solid var(--grey-200); /* A very fine, light grey border to distinguish from a white page */
+        line-height: 0;
+      }
+
+      .video-frame video {
+        width: 100%;
+        height: auto;
+        border-radius: 8px; /* Rounds the corners of the video player itself */
+      }
+
+      .gallery-cta-text {
+        font-size: 1rem;
+        color: var(--grey-600);
+        margin-top: 30px; /* Space between video frame and call-to-action text */
+      }
+
+      .gallery-cta-text a {
+        color: var(--brand-700);
+        font-weight: bold;
+        text-decoration: none;
+        border-bottom: 2px solid var(--brand-200);
+        transition: border-bottom-color 0.2s ease;
+      }
+
+      .gallery-cta-text a:hover {
+        border-bottom-color: var(--brand-700);
+      }
+      
+      /* --- Fine-Tuning for Inspiration Gallery --- */
+      /* This rule controls the space BELOW the headline */
+      .inspiration-gallery-section h2 {
+        margin-bottom: 25px; 
+      }
+      /* This new rule controls the space ABOVE the intro text */
+      .gallery-intro-text {
+        margin-top: 25px;
+      }
+      
+      /* --- Global Parallax Background System --- */
+      body:not(.homepage) {
+        position: relative; /* Required for the pseudo-element */
+        z-index: 1;
+        background-color: transparent !important;
+      }
+      /* This pseudo-element holds the blurred background image */
+      body:not(.homepage)::before {
+        content: '';
+        position: fixed; /* Creates the parallax effect */
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: -1; /* Sits behind all content */
+
+        /* The background image URL will be set by JavaScript */
+        background-position: center center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        
+        /* --- 5% Blur Effect --- */
+        -webkit-filter: blur(5px);
+        filter: blur(5px);
+      }
+
+      /* This pseudo-element creates the white fade overlay */
+      body:not(.homepage)::after {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: -1;
+        background-color: rgba(255, 255, 255, 0.7); /* 70% White Fade */
+      }
+
 
     </style>
     <script type="application/ld+json">

@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Seo from '../components/Seo';
@@ -203,7 +202,7 @@ const CustomizationServicesPage: React.FC = () => {
                             <div className="text-center md:text-left">
                                 <h1 className="text-4xl md:text-5xl font-bold font-poppins text-grey-900 leading-tight">Professional Setup & Customization Services</h1>
                                 <p className="text-lg text-grey-600 mt-6 leading-relaxed">
-                                    Love your new template but short on time? Let our expert team build your website for you. We'll handle the technical details so you can focus on running your business.
+                                    Love your new template but short on time? Let our expert team build your website for you. We'll handle the technical details so you can focus on running your business. All packages include access to our premium <Link to="/inspiration-gallery" className="font-semibold text-brand-700 hover:underline">Inspiration Gallery</Link>.
                                 </p>
                             </div>
                             <div className="flex justify-center items-center">

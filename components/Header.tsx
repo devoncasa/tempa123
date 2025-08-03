@@ -36,16 +36,8 @@ const Header: React.FC = () => {
     { to: '/why-us', label: 'Why Us' },
     { to: '/catalog', label: 'Catalog' },
     { to: '/inspiration-gallery', label: 'Inspiration Gallery' },
-    { 
-      label: 'Pricing',
-      to: '/pricing',
-      dropdown: [
-        { to: '/pricing', label: 'Licenses' },
-        { to: '/pricing/customization-services', label: 'Customization Services' },
-        { to: '/pricing-calculator', label: 'Pricing Calculator' },
-        { to: '/line-ordering-kit', label: '500฿ LINE Kit' }
-      ]
-    },
+    { to: '/pricing', label: 'Pricing' },
+    { to: '/blog', label: 'Blog' },
     { to: '/contact', label: 'Contact Us' },
   ];
 
@@ -54,17 +46,9 @@ const Header: React.FC = () => {
     { to: '/about', label: 'เกี่ยวกับเรา' },
     { to: '/why-us', label: 'ทำไมต้องเรา' },
     { to: '/catalog', label: 'แคตตาล็อก' },
-    { to: '/inspiration-gallery', label: 'แกลเลอรี่' },
-    { 
-      label: 'ราคา',
-      to: '/pricing',
-      dropdown: [
-        { to: '/pricing', label: 'ใบอนุญาต' },
-        { to: '/pricing/customization-services', label: 'บริการปรับแต่ง' },
-        { to: '/pricing-calculator', label: 'คำนวณราคา' },
-        { to: '/line-ordering-kit', label: '500฿ LINE Kit' }
-      ]
-    },
+    { to: '/inspiration-gallery', label: 'แกลเลอรี่แรงบันดาลใจ' },
+    { to: '/pricing', label: 'ราคา' },
+    { to: '/blog', label: 'บล็อก' },
     { to: '/contact', label: 'ติดต่อเรา' },
   ];
 
@@ -197,7 +181,7 @@ const Header: React.FC = () => {
           box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
       `}</style>
-      <header className="bg-bg-card/80 backdrop-blur-md sticky top-0 z-50 shadow-sm border-b border-border-primary">
+      <header className="bg-bg-card/[.7] backdrop-blur-md sticky top-0 z-50 shadow-sm border-b border-border-primary">
         <div className="container mx-auto px-6 py-4">
           <div className="hidden md:flex justify-between items-center">
             <div className="flex-1 flex justify-start">
