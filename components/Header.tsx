@@ -270,7 +270,7 @@ const Header: React.FC = () => {
           {/* Mobile View */}
           <div className="md:hidden flex justify-between items-center">
             <BrandIdentity />
-            <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="text-text-primary focus:outline-none" aria-label="Toggle menu">
+            <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="text-text-primary focus:outline-none" aria-label="Toggle menu" aria-expanded={isMobileMenuOpen}>
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={isMobileMenuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"}></path>
               </svg>
@@ -284,12 +284,29 @@ const Header: React.FC = () => {
               {navItems.map((item, index) => (
                   <React.Fragment key={item.to || index}>
                     {item.dropdown ? (
-                      <div className='text-center'>
-                        <button onClick={() => handleDropdownToggle(item.to || 'pricing')} className={`main-nav-link text-lg ${isPricingActive ? 'active' : ''}`}>{item.label}</button>
-                        {openDropdown === (item.to || 'pricing') && (
-                          <div className="flex flex-col items-center mt-2 space-y-2">
+                      <div className='text-center w-full'>
+                        <div className="flex items-center justify-center">
+                          <NavLink
+                              to={item.to!}
+                              onClick={() => setIsMobileMenuOpen(false)}
+                              className={`main-nav-link text-lg ${isPricingActive ? 'active' : ''}`}
+                          >
+                              {item.label}
+                          </NavLink>
+                          <button
+                              onClick={() => handleDropdownToggle('pricingMobileDropdown')}
+                              className="p-2 -ml-2 text-text-primary"
+                              aria-label="Toggle pricing submenu"
+                              aria-expanded={openDropdown === 'pricingMobileDropdown'}
+                          >
+                              <svg className={`w-5 h-5 transition-transform duration-200 ${openDropdown === 'pricingMobileDropdown' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+                          </button>
+                        </div>
+
+                        {openDropdown === 'pricingMobileDropdown' && (
+                           <div className="flex flex-col items-center mt-2 space-y-2 bg-black/5 p-4 rounded-lg mx-4">
                             {item.dropdown.map(subItem => (
-                              <NavLink key={subItem.to} to={subItem.to!} onClick={() => setIsMobileMenuOpen(false)} className="main-nav-link text-base text-text-secondary">{subItem.label}</NavLink>
+                              <NavLink key={subItem.to} to={subItem.to!} onClick={() => setIsMobileMenuOpen(false)} className="main-nav-link text-base text-text-secondary py-1">{subItem.label}</NavLink>
                             ))}
                           </div>
                         )}

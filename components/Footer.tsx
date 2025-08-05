@@ -4,6 +4,7 @@ import LoginModal from './LoginModal';
 import BrandName from './BrandName';
 import { SITE_MAP } from '../src/siteMap';
 import { ASSETS } from '../src/assets';
+import { useLegalModal } from '../contexts/LegalModalContext';
 
 const SocialIcon: React.FC<{ href: string; children: React.ReactNode; label: string }> = ({ href, children, label }) => (
     <a href={href} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors duration-300" aria-label={label}>
@@ -23,6 +24,7 @@ const Footer: React.FC = () => {
     const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
     const clickCount = useRef(0);
     const clickTimer = useRef<number | null>(null);
+    const { openModal } = useLegalModal();
 
     const handleLogoClick = () => {
         clickCount.current += 1;
@@ -88,8 +90,8 @@ const Footer: React.FC = () => {
                          <div className="col-span-2 md:col-span-2">
                             <h3 className="font-poppins font-semibold text-white tracking-wider uppercase mb-4">Legal</h3>
                             <ul className="space-y-3">
-                                <FooterLink to="#">Privacy Policy</FooterLink>
-                                <FooterLink to="#">Terms & Conditions</FooterLink>
+                                <li><button onClick={() => openModal('privacy')} className="footer-link text-sm">Privacy Policy</button></li>
+                                <li><button onClick={() => openModal('terms')} className="footer-link text-sm">Terms & Conditions</button></li>
                             </ul>
                         </div>
                     </div>

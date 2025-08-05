@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Seo from '../components/Seo';
@@ -256,9 +257,9 @@ const CustomizationServicesPage: React.FC = () => {
                                 </p>
                                 <Link 
                                     to={SITE_MAP.SERVICES_MULTILINGUAL} 
-                                    className="inline-block font-semibold text-brand-700 hover:text-brand-900 transition-colors"
+                                    className="btn btn-primary-gradient"
                                 >
-                                    Learn More About Multilingual Services &rarr;
+                                    Learn More About Multilingual Services
                                 </Link>
                             </div>
                         </div>

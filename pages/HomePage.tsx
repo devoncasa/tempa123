@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { CATEGORIES, TEMPLATES } from '../constants';
+import { CATEGORIES, TEMPLATES, CATEGORY_IMAGE_ICONS } from '../constants';
 import TemplateCard from '../components/TemplateCard';
 import BrandName from '../components/BrandName';
 import Seo from '../components/Seo';
@@ -60,12 +60,35 @@ const HomePage: React.FC = () => {
             <div className="bg-bg-card p-8 md:p-12 rounded-2xl shadow-xl border border-border-primary">
               <h2 className="text-3xl font-bold text-center mb-12 font-poppins">Explore by Category</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                {displayedCategories.map((category) => (
-                  <Link to={getCatalogCategoryPath(category.name)} key={category.name} className="bg-brand-50 p-6 rounded-xl text-center transition-all duration-300 hover:-translate-y-2 hover:shadow-xl flex flex-col items-center border border-transparent hover:border-brand-200">
-                    <div className="flex justify-center mb-4">{category.icon}</div>
-                    <h3 className="text-xl font-bold text-text-primary font-poppins mb-2">{category.name}</h3>
-                  </Link>
-                ))}
+                {displayedCategories.map((category) => {
+                  const iconUrl = CATEGORY_IMAGE_ICONS[category.name];
+                  // If a new image icon is available, use it. Otherwise, fall back to the original SVG icon.
+                  if (iconUrl) {
+                    return (
+                      <Link
+                        to={getCatalogCategoryPath(category.name)}
+                        key={category.name}
+                        className="group bg-brand-50 p-6 rounded-xl text-center transition-all duration-300 hover:-translate-y-2 hover:shadow-xl flex flex-col items-center border border-transparent hover:border-brand-200"
+                      >
+                        <div className="relative w-full h-20 mb-4">
+                          <img
+                            src={iconUrl}
+                            alt={`${category.name} icon`}
+                            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 z-[2] drop-shadow-lg transition-transform duration-200 ease-in-out group-hover:scale-105"
+                          />
+                        </div>
+                        <h3 className="text-xl font-bold text-text-primary font-poppins mb-2">{category.name}</h3>
+                      </Link>
+                    );
+                  }
+                  // Fallback to original SVG icon
+                  return (
+                     <Link to={getCatalogCategoryPath(category.name)} key={category.name} className="bg-brand-50 p-6 rounded-xl text-center transition-all duration-300 hover:-translate-y-2 hover:shadow-xl flex flex-col items-center border border-transparent hover:border-brand-200">
+                      <div className="flex justify-center mb-4">{category.icon}</div>
+                      <h3 className="text-xl font-bold text-text-primary font-poppins mb-2">{category.name}</h3>
+                    </Link>
+                  );
+                })}
               </div>
             </div>
         </section>

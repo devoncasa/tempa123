@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom/client';
 import { HashRouter } from 'react-router-dom';
 import App from './App';
 import { AuthProvider } from './contexts/AuthContext';
+import { LegalModalProvider } from './contexts/LegalModalContext';
 
 const rootElement = document.getElementById('root');
 if (!rootElement) {
@@ -15,7 +16,9 @@ root.render(
   <React.StrictMode>
     <HashRouter>
       <AuthProvider>
-        <App />
+        <LegalModalProvider>
+          <App />
+        </LegalModalProvider>
       </AuthProvider>
     </HashRouter>
   </React.StrictMode>

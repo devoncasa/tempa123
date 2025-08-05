@@ -1,13 +1,13 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Seo from '../components/Seo';
-import { PRICING_FAQ_ITEMS } from '../constants';
 import FaqItem from '../components/FaqItem';
 import { SITE_MAP } from '../src/siteMap';
 import { SEO_CONTENT } from '../src/content';
 
 const CheckIcon: React.FC<{ className?: string }> = ({ className = 'text-brand-700' }) => (
-    <svg xmlns="http://www.w3.org/2000/svg" className={`h-6 w-6 ${className}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+    <svg xmlns="http://www.w3.org/2000/svg" className={`h-6 w-6 ${className} flex-shrink-0 mt-1`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
     </svg>
 );
@@ -25,16 +25,16 @@ const PricingCard: React.FC<{ tier: any }> = ({ tier }) => {
                 </div>
             )}
             <h3 className="text-2xl font-bold font-poppins text-text-primary">{tier.title}</h3>
-            <p className="text-text-secondary mt-2">{tier.description}</p>
-            <div className="my-8">
-                <span className="text-5xl font-bold font-poppins text-accent">{tier.price}</span>
-                <span className="text-text-secondary">{tier.pricePeriod}</span>
+            <p className="text-text-secondary mt-2 h-12">{tier.description}</p>
+            <div className="my-6">
+                <div className="text-5xl font-poppins text-accent" dangerouslySetInnerHTML={{ __html: tier.price }} />
+                <p className="text-text-secondary mt-2">{tier.billingInfo}</p>
             </div>
             <ul className="space-y-4 text-left mb-10 flex-grow">
                 {tier.features.map((feature: string, index: number) => (
                     <li key={index} className="flex items-start gap-3">
                         <CheckIcon />
-                        <span className="text-text-secondary">{feature}</span>
+                        <span className="text-text-secondary" dangerouslySetInnerHTML={{ __html: feature }} />
                     </li>
                 ))}
             </ul>
@@ -49,15 +49,14 @@ const PricingPage: React.FC = () => {
     const pricingTiers = [
         {
             title: 'Single Template',
-            description: 'Perfect for a single project.',
-            price: 'From $29',
-            pricePeriod: '',
+            description: 'Perfect for a single, beautifully crafted project.',
+            price: 'From <strong>$29</strong>',
+            billingInfo: 'One-time payment',
             features: [
-                '1 template included',
-                'Use for a single project',
-                'Lifetime updates for the template',
-                '6 months of standard support',
-                'Full access to template files'
+                'Use for <strong>1 personal or commercial</strong> project',
+                '<strong>Lifetime updates</strong> for that specific template',
+                '<strong>6 months</strong> of standard email support',
+                'Full access to all template files'
             ],
             buttonText: 'Browse Templates',
             buttonLink: SITE_MAP.CATALOG,
@@ -65,36 +64,53 @@ const PricingPage: React.FC = () => {
         },
         {
             title: 'All-Access Membership',
-            description: 'For creators building multiple sites.',
-            price: '$15',
-            pricePeriod: '/mo',
+            description: 'The ultimate toolkit for creators and agencies.',
+            price: '<strong>$29</strong> /mo',
+            billingInfo: 'Or save 25% with annual billing ($259/year)',
             features: [
-                'Access all 90+ templates',
-                'Access to the Inspiration Gallery',
-                'Use for unlimited projects',
-                'Continuous access to new templates',
-                'Ongoing premium support',
+                'Access to <strong>all 10,000+ templates</strong>',
+                'Access to all <strong>new templates</strong> added monthly',
+                'Use for <strong>unlimited</strong> projects (personal or client)',
+                '<strong>Priority email support</strong> (guaranteed <24hr response)',
                 'Cancel anytime from your dashboard'
             ],
-            buttonText: 'Become a Member',
+            buttonText: 'Start Building Now',
             buttonLink: SITE_MAP.MY_ACCOUNT,
             recommended: true,
         },
         {
             title: 'Extended License',
-            description: 'For commercial end-products.',
-            price: '$299',
-            pricePeriod: '/template',
+            description: 'For products where the template is the core value.',
+            price: '<strong>$299</strong>',
+            billingInfo: 'Per template, one-time payment',
             features: [
-                '1 template included',
-                'Use in a commercial end-product (e.g., SaaS)',
-                'Lifetime updates for the template',
-                '12 months of premium support',
-                'Full access to template files'
+                'Use in a commercial <strong>end-product for sale</strong>',
+                'Perfect for SaaS, themes, or app templates',
+                '<strong>12 months</strong> of premium, hands-on support',
+                'Full legal rights for resale applications'
             ],
             buttonText: 'Contact for License',
             buttonLink: SITE_MAP.CONTACT,
             recommended: false,
+        },
+    ];
+
+    const faqItems = [
+        {
+            question: 'What counts as an "end-product for sale"?',
+            answer: 'This is for when you are selling a product where our template provides the core value. For example, if you sell a SaaS application, a WordPress theme, or a template on another marketplace. If you are building a website for a client, the All-Access Membership is the perfect choice.'
+        },
+        {
+            question: 'What is the difference between "Standard" and "Priority" support?',
+            answer: 'Standard support provides help with bug fixes and general questions via email within 48 hours. Priority support guarantees a response within 24 hours and includes guidance on basic customization.'
+        },
+        {
+            question: 'Can I cancel my membership anytime?',
+            answer: 'Absolutely. You can cancel your All-Access Membership at any time directly from your account dashboard. You will retain access until the end of your current billing period.'
+        },
+        {
+            question: 'What happens to the sites I built if I cancel my membership?',
+            answer: 'Any websites you built using our templates while your membership was active are yours to keep and use forever. You just won\'t receive any further updates for those templates or get access to new ones.'
         },
     ];
 
@@ -108,10 +124,10 @@ const PricingPage: React.FC = () => {
         {/* Header */}
         <section className="container mx-auto px-6 lg:px-[8vw] text-center mb-16">
           <h1 className="text-4xl md:text-5xl font-bold font-poppins text-text-primary">
-            Flexible Pricing for Everyone
+            Flexible Pricing for Every Creator
           </h1>
           <p className="text-lg md:text-xl text-text-secondary mt-4 max-w-3xl mx-auto">
-            From single templates to all-access memberships, we have a plan that fits your project and budget. All plans come with high-quality code and support.
+            Whether you're starting a single project or building an empire, we have a plan that fits your ambition. All plans come with high-quality, performance-optimized code.
           </p>
         </section>
 
@@ -141,7 +157,7 @@ const PricingPage: React.FC = () => {
         <section className="container mx-auto px-6 lg:px-[8vw] mt-24">
           <h2 className="text-3xl font-bold text-center mb-12 font-poppins">Frequently Asked Questions</h2>
           <div className="max-w-3xl mx-auto bg-bg-card p-8 rounded-2xl shadow-xl border border-border-primary">
-            {PRICING_FAQ_ITEMS.map((item) => (
+            {faqItems.map((item) => (
               <FaqItem key={item.question} item={item} />
             ))}
           </div>

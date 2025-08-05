@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import type { Template, FaqItem, PricingTier, CategoryInfo, ColorTheme, FontSet, ServicePackage, CalculatorPackage, CalculatorAddon, GalleryImage } from './types';
@@ -35,6 +36,18 @@ export const CategoryIcons: Record<TemplateCategory, React.ReactNode> = {
   [TemplateCategory.BLOG]: <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-10 w-10 text-primary"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" x2="8" y1="13" y2="13"/><line x1="16" x2="8" y1="17" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>,
   [TemplateCategory.MEDICAL]: <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-10 w-10 text-primary"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 8v8m-4-4h8"/></svg>,
   [TemplateCategory.CHILDCARE]: <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-10 w-10 text-primary"><path d="M12 2a5 5 0 0 0-5 5c0 1.94 1.19 3.6 2.87 4.43A5.001 5.001 0 0 0 8 17a5 5 0 0 0 5 5 5 5 0 0 0 5-5c0-1.94-1.19-3.6-2.87-4.43A5 5 0 0 0 17 7a5 5 0 0 0-5-5z"/><path d="M12 12m-3 0a3 3 0 1 0 6 0 3 3 0 1 0-6 0"/></svg>,
+};
+
+// Image Icons for Homepage Category Showcase
+export const CATEGORY_IMAGE_ICONS: Partial<Record<TemplateCategory, string>> = {
+    [TemplateCategory.ARTISAN]: 'https://raw.githubusercontent.com/devoncasa/Tempa123-Asset/main/icons-categories-main/artisan-icon.webp',
+    [TemplateCategory.COACHES]: 'https://raw.githubusercontent.com/devoncasa/Tempa123-Asset/main/icons-categories-main/coaches-metors-icon.webp',
+    [TemplateCategory.ECOMMERCE]: 'https://raw.githubusercontent.com/devoncasa/Tempa123-Asset/main/icons-categories-main/e-commerce-icon02.webp',
+    [TemplateCategory.FOOD]: 'https://raw.githubusercontent.com/devoncasa/Tempa123-Asset/main/icons-categories-main/food-cafe-icon.webp',
+    [TemplateCategory.JEWELRY]: 'https://raw.githubusercontent.com/devoncasa/Tempa123-Asset/main/icons-categories-main/jewelry-icon.webp',
+    [TemplateCategory.PORTFOLIO]: 'https://raw.githubusercontent.com/devoncasa/Tempa123-Asset/main/icons-categories-main/peronsal-branding-icon.webp',
+    [TemplateCategory.REAL_ESTATE]: 'https://raw.githubusercontent.com/devoncasa/Tempa123-Asset/main/icons-categories-main/real-estate-icon02.webp',
+    [TemplateCategory.WELLNESS]: 'https://raw.githubusercontent.com/devoncasa/Tempa123-Asset/main/icons-categories-main/wellness-spa-icon.webp',
 };
 
 
