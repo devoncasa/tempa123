@@ -1,5 +1,6 @@
 import React, { useState, FormEvent } from 'react';
 import { useAuth } from '../contexts/AuthContext';
+import { ASSETS } from '../src/assets';
 
 interface LoginModalProps {
   onClose: () => void;
@@ -41,7 +42,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ onClose }) => {
             }
         `}</style>
       <div className="bg-white p-8 rounded-lg shadow-xl text-center w-full max-w-sm" onClick={e => e.stopPropagation()}>
-        <img src="https://raw.githubusercontent.com/devoncasa/Tempa123-Asset/main/Tempa-logo-dark-small.webp" alt="Tempa Web.123 Logo" className="h-12 w-auto mx-auto mb-4" />
+        <img src={ASSETS.LOGO_DARK} alt="Tempa Web.123 Logo" className="h-12 w-auto mx-auto mb-4" />
         <h2 className="text-xl font-poppins font-bold mb-4 text-gray-800">Admin Portal Access</h2>
         <form onSubmit={handleSubmit}>
           <input

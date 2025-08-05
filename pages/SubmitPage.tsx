@@ -1,13 +1,14 @@
 import React from 'react';
 import BrandName from '../components/BrandName';
 import Seo from '../components/Seo';
+import { SEO_CONTENT } from '../src/content';
 
 const SubmitPage: React.FC = () => {
   return (
     <>
       <Seo
-        title="Submit Your Template | Tempa Web.123"
-        description="Join our marketplace and sell your website template creations to a global audience of businesses and creators."
+        title={SEO_CONTENT.SUBMIT_TEMPLATE.title}
+        description={SEO_CONTENT.SUBMIT_TEMPLATE.description}
       />
       <div className="container mx-auto px-6 lg:px-[8vw] py-12 md:py-20">
         <div className="max-w-4xl mx-auto">

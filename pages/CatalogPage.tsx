@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useMemo } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { TEMPLATES, CATEGORIES, CATEGORY_FAQ_ITEMS, getTemplatePriceUSD } from '../constants';
@@ -6,6 +5,8 @@ import TemplateCard from '../components/TemplateCard';
 import { Template, TemplateCategory, FaqItem as FaqItemType } from '../types';
 import Seo from '../components/Seo';
 import FaqItem from '../components/FaqItem';
+import { SITE_MAP, getCatalogCategoryPath } from '../src/siteMap';
+import { SEO_CONTENT } from '../src/content';
 
 const CatalogPage: React.FC = () => {
   const { category: urlCategory } = useParams<{ category?: string }>();
@@ -36,9 +37,9 @@ const CatalogPage: React.FC = () => {
   const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const newCategory = e.target.value;
     if (newCategory === 'all') {
-      navigate('/catalog');
+      navigate(SITE_MAP.CATALOG);
     } else {
-      navigate(`/catalog/${encodeURIComponent(newCategory)}`);
+      navigate(getCatalogCategoryPath(newCategory));
     }
   };
 
@@ -70,8 +71,8 @@ const CatalogPage: React.FC = () => {
     return Array.from(styles) as string[];
   }, []);
 
-  const pageTitle = selectedCategory === 'all' ? 'Our Template Catalog' : `${selectedCategory} Templates`;
-  const pageDescription = "Find the perfect foundation for your next project. Professionally designed, fully responsive, and ready to customize.";
+  const pageTitle = selectedCategory === 'all' ? SEO_CONTENT.CATALOG.title : `${selectedCategory} Templates | Tempa Web.123`;
+  const pageDescription = SEO_CONTENT.CATALOG.description;
 
   const faqSchema = categoryFaqs.length > 0 ? {
     "@context": "https://schema.org",
@@ -91,7 +92,7 @@ const CatalogPage: React.FC = () => {
   return (
     <>
       <Seo 
-        title={`${pageTitle} | Tempa Web.123`}
+        title={pageTitle}
         description={pageDescription}
         schema={faqSchema}
       />

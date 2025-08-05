@@ -4,6 +4,8 @@ import Seo from '../components/Seo';
 import PricingExplainedPopup from '../components/PricingExplainedPopup';
 import { servicePackages } from '../constants';
 import { ServicePackage } from '../types';
+import { SITE_MAP } from '../src/siteMap';
+import { SEO_CONTENT } from '../src/content';
 
 const SetupIcon = () => (
     <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
@@ -154,7 +156,7 @@ const ServicePackageCard: React.FC<{ pkg: ServicePackage; onDetailsClick: (pkg: 
             </div>
             <div className="p-6 bg-grey-200/30 rounded-b-lg">
                 <Link 
-                    to={isCustom ? "/contact" : "#"} 
+                    to={isCustom ? SITE_MAP.CONTACT : "#"} 
                     className="block w-full text-center bg-primary text-white py-3 px-6 rounded-lg font-semibold tracking-wide-sm hover:bg-primary-dark transition-colors duration-300"
                 >
                     {isCustom ? 'Get a Custom Quote' : 'Get Started'}
@@ -190,8 +192,8 @@ const CustomizationServicesPage: React.FC = () => {
     return (
         <>
             <Seo
-                title="Professional Setup & Customization Services | Tempa Web.123"
-                description="Short on time or technical skills? Let our expert team build your website for you with our professional customization packages."
+                title={SEO_CONTENT.PRICING_CUSTOMIZATION.title}
+                description={SEO_CONTENT.PRICING_CUSTOMIZATION.description}
                 schema={servicesSchema}
             />
             <div className="bg-bg-primary">
@@ -202,7 +204,7 @@ const CustomizationServicesPage: React.FC = () => {
                             <div className="text-center md:text-left">
                                 <h1 className="text-4xl md:text-5xl font-bold font-poppins text-grey-900 leading-tight">Professional Setup & Customization Services</h1>
                                 <p className="text-lg text-grey-600 mt-6 leading-relaxed">
-                                    Love your new template but short on time? Let our expert team build your website for you. We'll handle the technical details so you can focus on running your business. All packages include access to our premium <Link to="/inspiration-gallery" className="font-semibold text-brand-700 hover:underline">Inspiration Gallery</Link>.
+                                    Love your new template but short on time? Let our expert team build your website for you. We'll handle the technical details so you can focus on running your business. All packages include access to our premium <Link to={SITE_MAP.INSPIRATION_GALLERY} className="font-semibold text-brand-700 hover:underline">Inspiration Gallery</Link>.
                                 </p>
                             </div>
                             <div className="flex justify-center items-center">
@@ -253,7 +255,7 @@ const CustomizationServicesPage: React.FC = () => {
                                     Expand your business with our professional multilingual website services. We handle the technical setup and professional translation to get you in front of new markets.
                                 </p>
                                 <Link 
-                                    to="/services/multilingual-websites" 
+                                    to={SITE_MAP.SERVICES_MULTILINGUAL} 
                                     className="inline-block font-semibold text-brand-700 hover:text-brand-900 transition-colors"
                                 >
                                     Learn More About Multilingual Services &rarr;

@@ -1,8 +1,10 @@
 
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import type { Template } from '../types';
 import { getTemplatePriceUSD } from '../constants';
+import { getTemplateDetailPath } from '../src/siteMap';
 
 interface TemplateCardProps {
   template: Template;
@@ -10,6 +12,7 @@ interface TemplateCardProps {
 
 const TemplateCard: React.FC<TemplateCardProps> = ({ template }) => {
   const price = getTemplatePriceUSD(template);
+  const detailPath = getTemplateDetailPath(template.id);
 
   return (
     <>
@@ -49,10 +52,10 @@ const TemplateCard: React.FC<TemplateCardProps> = ({ template }) => {
           />
           <div className="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
             <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-3">
-              <Link to={`/template/${template.id}`} className="template-card-btn primary">
+              <Link to={detailPath} className="template-card-btn primary">
                 Live Demo
               </Link>
-              <Link to={`/template/${template.id}`} className="template-card-btn secondary">
+              <Link to={detailPath} className="template-card-btn secondary">
                 View Details
               </Link>
             </div>
@@ -64,7 +67,7 @@ const TemplateCard: React.FC<TemplateCardProps> = ({ template }) => {
               <h3 className="text-lg font-bold font-poppins text-text-primary">{template.name}</h3>
               <p className="text-sm text-text-secondary">{template.category}</p>
             </div>
-            <div className="text-lg font-bold font-poppins text-primary">
+            <div className="text-lg font-bold font-poppins text-accent">
               ${price}
             </div>
           </div>

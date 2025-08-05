@@ -1,8 +1,10 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import BrandName from '../components/BrandName';
 import Seo from '../components/Seo';
+import { SITE_MAP } from '../src/siteMap';
+import { ASSETS } from '../src/assets';
+import { SEO_CONTENT } from '../src/content';
 
 const IMAGE_BASE_URL = 'https://raw.githubusercontent.com/devoncasa/Tempa123-Asset/main/images/about/';
 
@@ -48,8 +50,8 @@ const AboutPage: React.FC = () => {
     return (
         <>
             <Seo
-                title="About Us | Tempa Web.123"
-                description="Learn about Tempa Web.123's mission to provide small businesses with a commission-free path to online success with high-performance website templates."
+                title={SEO_CONTENT.ABOUT.title}
+                description={SEO_CONTENT.ABOUT.description}
                 schema={aboutPageSchema}
             />
             <div className="bg-white text-base-text font-inter">
@@ -65,7 +67,7 @@ const AboutPage: React.FC = () => {
                                 </p>
                             </div>
                             <div>
-                                <img src={`${IMAGE_BASE_URL}about-hero.webp`} alt="Ambitious small business owner in their shop" className="rounded-lg shadow-xl w-full h-auto object-cover" />
+                                <img src={ASSETS.ABOUT_PAGE.HERO} alt="Ambitious small business owner in their shop" className="rounded-lg shadow-xl w-full h-auto object-cover" />
                             </div>
                         </div>
                     </div>
@@ -87,7 +89,7 @@ const AboutPage: React.FC = () => {
                     <div className="container mx-auto px-6 lg:px-[8vw]">
                         <div className="grid md:grid-cols-2 gap-12 items-center">
                             <div className="order-2 md:order-1">
-                                <img src={`${IMAGE_BASE_URL}why-we-exist.webp`} alt="Business owner working on a laptop in a cafe" className="rounded-lg shadow-xl w-full h-auto object-cover" />
+                                <img src={ASSETS.ABOUT_PAGE.WHY_WE_EXIST} alt="Business owner working on a laptop in a cafe" className="rounded-lg shadow-xl w-full h-auto object-cover" />
                             </div>
                             <div className="order-1 md:order-2">
                                 <h2 className="text-3xl md:text-4xl font-bold font-poppins text-grey-900 mb-6">Why We Exist</h2>
@@ -110,7 +112,7 @@ const AboutPage: React.FC = () => {
                     <div className="container mx-auto px-6 lg:px-[8vw]">
                         <div className="grid md:grid-cols-3 gap-12 items-center">
                              <div className="md:col-span-1 flex justify-center">
-                                <img src="https://raw.githubusercontent.com/devoncasa/Tempa123-Asset/main/images/about/founder.webp" alt="Founder of Tempa Web.123" className="rounded-full shadow-xl w-48 h-48 md:w-64 md:h-64 object-cover" />
+                                <img src={ASSETS.ABOUT_PAGE.FOUNDER} alt="Founder of Tempa Web.123" className="rounded-full shadow-xl w-48 h-48 md:w-64 md:h-64 object-cover" />
                             </div>
                             <div className="md:col-span-2">
                                 <h2 className="text-3xl md:text-4xl font-bold font-poppins text-grey-900 mb-6">Our Founder's Journey</h2>
@@ -140,7 +142,7 @@ const AboutPage: React.FC = () => {
                                 <BenefitCard title="Eliminate Commission Fees" description="Use your own delivery system. Keep full revenue." />
                             </div>
                             <div>
-                                <img src={`${IMAGE_BASE_URL}what-we-offer.webp`} alt="Website mockup on a phone and tablet showing direct customer access" className="rounded-lg shadow-xl w-full h-auto object-cover" />
+                                <img src={ASSETS.ABOUT_PAGE.WHAT_WE_OFFER} alt="Website mockup on a phone and tablet showing direct customer access" className="rounded-lg shadow-xl w-full h-auto object-cover" />
                             </div>
                         </div>
                     </div>
@@ -162,13 +164,13 @@ const AboutPage: React.FC = () => {
                             </p>
                              <div className="mt-8 flex flex-col sm:flex-row justify-center gap-4">
                                 <Link
-                                    to="/catalog"
+                                    to={SITE_MAP.CATALOG}
                                     className="inline-block bg-primary text-white py-3 px-8 rounded-lg text-base font-semibold font-poppins hover:bg-primary-hover transition-all duration-300 transform hover:scale-105 shadow-md"
                                 >
                                     Browse Our Catalog
                                 </Link>
                                 <Link
-                                    to="/contact"
+                                    to={SITE_MAP.CONTACT}
                                     className="inline-block bg-transparent border-2 border-brand-700 text-brand-700 py-3 px-8 rounded-lg text-base font-semibold font-poppins hover:bg-brand-100 transition-all duration-300 transform hover:scale-105"
                                 >
                                     Request a Consultation
@@ -183,7 +185,7 @@ const AboutPage: React.FC = () => {
                     <div className="container mx-auto px-6 lg:px-[8vw]">
                         <div className="grid md:grid-cols-2 gap-12 items-center">
                             <div className="order-2 md:order-1">
-                                <img src={`${IMAGE_BASE_URL}performance-engine.webp`} alt="Graph showing performance and speed increase" className="rounded-lg shadow-xl w-full h-auto object-cover" />
+                                <img src={ASSETS.ABOUT_PAGE.PERFORMANCE_ENGINE} alt="Graph showing performance and speed increase" className="rounded-lg shadow-xl w-full h-auto object-cover" />
                             </div>
                             <div className="order-1 md:order-2">
                                 <h2 className="text-3xl md:text-4xl font-bold font-poppins text-grey-900 mb-6">Engineered for Performance</h2>
@@ -219,7 +221,7 @@ const AboutPage: React.FC = () => {
                                 If you're ready to keep more of what you earn, take full control of your operations, and build something sustainable—<strong className="font-semibold">we're ready to help.</strong>
                             </p>
                             <Link 
-                                to="/catalog" 
+                                to={SITE_MAP.CATALOG} 
                                 className="inline-block bg-white text-brand-700 py-4 px-10 rounded-lg text-lg font-bold font-poppins hover:bg-brand-100 transition-all duration-300 transform hover:scale-105 shadow-lg"
                             >
                                 Get Started Now

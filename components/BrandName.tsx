@@ -7,7 +7,7 @@ interface BrandNameProps {
 const BrandName: React.FC<BrandNameProps> = ({ className }) => {
   return (
     <span className={className}>
-      <span style={{ color: '#1dc3b6' }}>Tempa Web.12</span><span style={{ color: '#e9806c' }}>3</span>
+      <span style={{ color: 'var(--color-logo)' }}>Tempa Web.12</span><span style={{ color: 'var(--color-coral)' }}>3</span>
     </span>
   );
 };

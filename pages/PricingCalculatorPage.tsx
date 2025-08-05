@@ -1,8 +1,8 @@
-
 import React, { useState, useMemo } from 'react';
 import Seo from '../components/Seo';
 import { TEMPLATES, CALCULATOR_PACKAGES, CALCULATOR_ADDONS, getSingleTemplatePriceThb } from '../constants';
 import { Template, CalculatorPackage, CalculatorAddon } from '../types';
+import { SEO_CONTENT } from '../src/content';
 
 const SearchIcon: React.FC = () => <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>;
 const PlusIcon: React.FC = () => <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3"><path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" /></svg>;
@@ -81,8 +81,8 @@ const PricingCalculatorPage: React.FC = () => {
     return (
         <>
             <Seo
-                title="Pricing Calculator | Tempa Web.123"
-                description="Get an instant estimate for your website project. Combine templates and service packages to see your total cost."
+                title={SEO_CONTENT.PRICING_CALCULATOR.title}
+                description={SEO_CONTENT.PRICING_CALCULATOR.description}
             />
             <div className="bg-bg-secondary py-16 md:py-24">
                 <div className="container mx-auto px-6 lg:px-[8vw]">
@@ -194,7 +194,7 @@ const PricingCalculatorPage: React.FC = () => {
                                 </div>
                                 <div className="flex justify-between items-center text-xl font-bold font-poppins mb-6">
                                     <span>Subtotal</span>
-                                    <span className="font-mono text-3xl">{formatCurrency(totalPrice)}</span>
+                                    <span className="font-mono text-3xl text-accent">{formatCurrency(totalPrice)}</span>
                                 </div>
                                 <p className="text-xs text-center text-gray-500 mb-6">Total does not include 7% VAT. This is an estimate, and final pricing may vary.</p>
                                 <button className="w-full btn btn-primary-gradient">

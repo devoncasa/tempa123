@@ -1,8 +1,9 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Seo from '../components/Seo';
 import FaqItem from '../components/FaqItem';
+import { SITE_MAP } from '../src/siteMap';
+import { SEO_CONTENT } from '../src/content';
 
 const FoundationIcon = () => (
     <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-12v4m-2-2h4m5 4v4m-2-2h4M12 3v18" /></svg>
@@ -33,8 +34,8 @@ const MultilingualServicePage: React.FC = () => {
     return (
         <>
             <Seo
-                title="Professional Multilingual Website Services | Tempa Web.123"
-                description="Reach a global audience. Our service professionally translates and localizes your website, building trust and opening your business to new markets."
+                title={SEO_CONTENT.SERVICES_MULTILINGUAL.title}
+                description={SEO_CONTENT.SERVICES_MULTILINGUAL.description}
             />
             <div className="bg-white">
                 {/* Hero Section */}
@@ -156,7 +157,7 @@ const MultilingualServicePage: React.FC = () => {
                                 Let's discuss your project and how we can help you expand your reach.
                             </p>
                             <Link 
-                                to="/contact" 
+                                to={SITE_MAP.CONTACT} 
                                 className="inline-block bg-white text-brand-700 py-4 px-10 rounded-lg text-lg font-bold font-poppins hover:bg-brand-100 transition-all duration-300 transform hover:scale-105 shadow-lg"
                             >
                                 Contact Us Today

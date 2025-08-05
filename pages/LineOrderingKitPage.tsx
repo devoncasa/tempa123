@@ -1,6 +1,11 @@
+
+
 import React, { useState, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import Seo from '../components/Seo';
+import { SITE_MAP } from '../src/siteMap';
+import { ASSETS } from '../src/assets';
+import { SEO_CONTENT } from '../src/content';
 
 // --- TYPE DEFINITIONS ---
 interface MenuItem {
@@ -16,20 +21,20 @@ interface CartItem extends MenuItem {
 
 // --- MOCK DATA FOR DEMO ---
 const DEMO_MENU_ITEMS: MenuItem[] = [
-    { id: 1, name: 'ข้าวมันไก่ต้ม', price: 50, image: 'https://images.unsplash.com/photo-1626084059905-4ac6e36872a8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80' },
-    { id: 2, name: 'ข้าวมันไก่ทอด', price: 50, image: 'https://images.unsplash.com/photo-1599499801123-7790b50a2f76?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80' },
-    { id: 3, name: 'ข้าวมันไก่ผสม', price: 60, image: 'https://images.unsplash.com/photo-1625944230153-a19bceb3a3c6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80' },
+    { id: 1, name: 'ข้าวมันไก่ต้ม', price: 50, image: ASSETS.LINE_ORDERING_KIT.MENU_BOILED_CHICKEN },
+    { id: 2, name: 'ข้าวมันไก่ทอด', price: 50, image: ASSETS.LINE_ORDERING_KIT.MENU_FRIED_CHICKEN },
+    { id: 3, name: 'ข้าวมันไก่ผสม', price: 60, image: ASSETS.LINE_ORDERING_KIT.MENU_MIXED_CHICKEN },
 ];
 
 const BANK_DATA = [
-    { name: 'Bangkok Bank', scheme: 'bblmarket://', logo: 'https://raw.githubusercontent.com/devoncasa/Tempa123-Asset/main/images/line-kit/bbl.webp' },
-    { name: 'Krungsri', scheme: 'krungsri-mobile://', logo: 'https://raw.githubusercontent.com/devoncasa/Tempa123-Asset/main/images/line-kit/bay.webp' },
-    { name: 'CIMB Thai', scheme: 'cimbthai-digital-banking://', logo: 'https://raw.githubusercontent.com/devoncasa/Tempa123-Asset/main/images/line-kit/cimb.webp' },
-    { name: 'KBank', scheme: 'kplus://', logo: 'https://raw.githubusercontent.com/devoncasa/Tempa123-Asset/main/images/line-kit/kbank.webp' },
-    { name: 'Kiatnakin Phatra', scheme: 'kkpmobile://', logo: 'https://raw.githubusercontent.com/devoncasa/Tempa123-Asset/main/images/line-kit/kkp.webp' },
-    { name: 'Krungthai Bank', scheme: 'krungthainext://', logo: 'https://raw.githubusercontent.com/devoncasa/Tempa123-Asset/main/images/line-kit/ktb.webp' },
-    { name: 'SCB', scheme: 'scbeasy://', logo: 'https://raw.githubusercontent.com/devoncasa/Tempa123-Asset/main/images/line-kit/scb.webp' },
-    { name: 'ttb', scheme: 'ttb-touch://', logo: 'https://raw.githubusercontent.com/devoncasa/Tempa123-Asset/main/images/line-kit/ttb.webp' },
+    { name: 'Bangkok Bank', scheme: 'bblmarket://', logo: ASSETS.LINE_ORDERING_KIT.BANK_LOGOS.BBL },
+    { name: 'Krungsri', scheme: 'krungsri-mobile://', logo: ASSETS.LINE_ORDERING_KIT.BANK_LOGOS.BAY },
+    { name: 'CIMB Thai', scheme: 'cimbthai-digital-banking://', logo: ASSETS.LINE_ORDERING_KIT.BANK_LOGOS.CIMB },
+    { name: 'KBank', scheme: 'kplus://', logo: ASSETS.LINE_ORDERING_KIT.BANK_LOGOS.KBANK },
+    { name: 'Kiatnakin Phatra', scheme: 'kkpmobile://', logo: ASSETS.LINE_ORDERING_KIT.BANK_LOGOS.KKP },
+    { name: 'Krungthai Bank', scheme: 'krungthainext://', logo: ASSETS.LINE_ORDERING_KIT.BANK_LOGOS.KTB },
+    { name: 'SCB', scheme: 'scbeasy://', logo: ASSETS.LINE_ORDERING_KIT.BANK_LOGOS.SCB },
+    { name: 'ttb', scheme: 'ttb-touch://', logo: ASSETS.LINE_ORDERING_KIT.BANK_LOGOS.TTB },
 ];
 
 // --- INTERACTIVE DEMO COMPONENT ---
@@ -74,7 +79,7 @@ const LiveDemo: React.FC = () => {
             <div className="phone-screen">
                 {/* Header */}
                 <div className="relative">
-                    <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Shop Hero" className="w-full h-32 object-cover" />
+                    <img src={ASSETS.LINE_ORDERING_KIT.SHOP_HERO} alt="Shop Hero" className="w-full h-32 object-cover" />
                     <div className="absolute inset-0 bg-black/30"></div>
                     <div className="absolute bottom-2 left-3">
                         <h3 className="text-white text-2xl font-bold">ร้านข้าวมันไก่เจ๊วรรณ</h3>
@@ -83,7 +88,7 @@ const LiveDemo: React.FC = () => {
                 </div>
 
                 {/* Menu */}
-                <div className="p-4 space-y-4">
+                <div className="p-4 space-y-4 overflow-y-auto" style={{maxHeight: 'calc(100% - 128px)'}}>
                     {DEMO_MENU_ITEMS.map(item => (
                         <div key={item.id} className="flex gap-4 bg-white p-3 rounded-lg shadow-sm">
                             <img src={item.image} alt={item.name} className="w-24 h-24 object-cover rounded-md" />
@@ -100,8 +105,8 @@ const LiveDemo: React.FC = () => {
                 </div>
 
                 {/* Floating Cart Button */}
-                {cartItemCount > 0 && !showCart && (
-                    <button onClick={() => setShowCart(true)} className="fixed bottom-20 right-8 bg-kit-action text-white w-16 h-16 rounded-full shadow-lg flex items-center justify-center text-2xl z-20">
+                {cartItemCount > 0 && !showCart && !showPayment && !orderConfirmed &&(
+                    <button onClick={() => setShowCart(true)} className="absolute bottom-6 right-4 bg-kit-action text-white w-16 h-16 rounded-full shadow-lg flex items-center justify-center text-2xl z-20">
                         🛒<span className="absolute -top-1 -right-1 bg-white text-kit-action text-xs font-bold rounded-full h-6 w-6 flex items-center justify-center border-2 border-kit-action">{cartItemCount}</span>
                     </button>
                 )}
@@ -117,8 +122,8 @@ const LiveDemo: React.FC = () => {
                 
                 {/* Cart Modal */}
                 {showCart && (
-                    <div className="absolute inset-0 bg-black/50 z-30 flex justify-end">
-                        <div className="bg-white w-full max-w-sm h-full flex flex-col p-4">
+                    <div className="absolute inset-0 bg-black/50 z-30 flex items-end">
+                        <div className="bg-white w-full h-[60%] flex flex-col p-4 rounded-t-2xl">
                              <div className="flex justify-between items-center mb-4">
                                <h4 className="text-xl font-bold">สรุปรายการสั่งซื้อ</h4>
                                <button onClick={() => setShowCart(false)} className="font-bold text-2xl">&times;</button>
@@ -160,22 +165,20 @@ const LiveDemo: React.FC = () => {
 
                             <div className="grid grid-cols-4 gap-3 my-4">
                                 {BANK_DATA.map(bank => (
-                                    <a href={bank.scheme} key={bank.name} className="block">
-                                        <img src={bank.logo} alt={bank.name} className="w-full object-contain rounded-md shadow-sm" />
+                                    <a key={bank.name} href={bank.scheme} className="p-2 bg-white rounded-lg shadow-sm flex justify-center items-center">
+                                        <img src={bank.logo} alt={bank.name} className="h-8" />
                                     </a>
                                 ))}
                             </div>
-
-                            <label htmlFor="slip-upload" className="w-full block bg-kit-action text-white py-3 my-4 rounded-lg font-bold cursor-pointer">
-                                {slipFile ? `✔️ ${slipFile.name}` : 'อัปโหลดสลิป'}
-                            </label>
-                            <input id="slip-upload" type="file" className="hidden" onChange={handleFileUpload} accept="image/*" />
-
-                            <button
-                                onClick={handleConfirmOrder}
-                                disabled={!slipFile}
-                                className="w-full bg-green-500 text-white py-3 rounded-lg font-bold disabled:bg-gray-400 disabled:cursor-not-allowed"
-                            >
+                            <p className="font-semibold my-4">หลังจากชำระเงินแล้ว กรุณาอัปโหลดสลิป</p>
+                            <div className="bg-white p-4 rounded-lg shadow-sm">
+                                <label htmlFor="slip-upload" className="w-full border-2 border-dashed rounded-lg p-6 flex flex-col items-center justify-center cursor-pointer hover:bg-gray-50">
+                                    <svg className="w-12 h-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" /></svg>
+                                    <span className="mt-2 text-sm font-medium text-gray-600">{slipFile ? slipFile.name : 'อัปโหลดสลิปที่นี่'}</span>
+                                </label>
+                                <input id="slip-upload" type="file" className="hidden" onChange={handleFileUpload} accept="image/*" />
+                            </div>
+                            <button onClick={handleConfirmOrder} disabled={!slipFile} className="w-full bg-kit-confirm text-white py-3 rounded-lg mt-4 font-bold disabled:bg-gray-400">
                                 ยืนยันการสั่งซื้อ
                             </button>
                         </div>
@@ -187,176 +190,122 @@ const LiveDemo: React.FC = () => {
 };
 
 
-// --- MAIN PAGE COMPONENT ---
 const LineOrderingKitPage: React.FC = () => {
-    const CheckmarkIcon = () => (
-        <svg className="w-6 h-6 text-green-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7" /></svg>
-    );
-
     return (
         <>
             <Seo
-                title="500 Baht LINE Ordering Kit | Tempa Web.123"
-                description="สร้างร้านค้าออนไลน์บน LINE ของคุณเองในราคา 500 บาท ไม่ต้องเสียค่าคอมมิชชั่น ทดลองใช้งานจริงได้เลย"
+                title={SEO_CONTENT.LINE_ORDERING_KIT.title}
+                description={SEO_CONTENT.LINE_ORDERING_KIT.description}
             />
             <style>{`
                 :root {
-                    --kit-bg: #FFF7E9;
-                    --kit-text: #3D3D3D;
-                    --kit-card-bg: #E8F5E9;
-                    --kit-action: #FF6B6B;
-                    --kit-action-dark: #e05252;
+                    --kit-bg: #E8F5E9; /* Light Green */
+                    --kit-text: #2E7D32; /* Dark Green */
+                    --kit-action: #4CAF50; /* Green */
+                    --kit-confirm: #FF9800; /* Orange */
+                    --kit-brand-header: #00B900; /* LINE Green */
                 }
-                .font-poppins { font-family: 'Poppins', sans-serif; }
-                .bg-kit-bg { background-color: var(--kit-bg); }
-                .text-kit-text { color: var(--kit-text); }
-                .bg-kit-card { background-color: var(--kit-card-bg); }
-                .bg-kit-action { background-color: var(--kit-action); }
-                .bg-kit-action:hover { background-color: var(--kit-action-dark); }
-                .text-kit-action { color: var(--kit-action); }
-                .border-kit-action { border-color: var(--kit-action); }
-
-                /* Phone Frame Styles */
                 .phone-frame {
                     position: relative;
-                    width: 100%;
-                    max-width: 380px;
-                    height: 750px;
+                    width: 375px;
+                    height: 812px;
                     background-color: #111;
                     border-radius: 40px;
-                    padding: 15px;
-                    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-                    margin: 0 auto;
+                    padding: 16px;
+                    box-shadow: 0 20px 50px rgba(0,0,0,0.3), 0 0 0 2px #333;
+                    margin: 2rem auto;
                 }
                 .phone-screen {
                     position: relative;
                     width: 100%;
                     height: 100%;
-                    background-color: var(--kit-card-bg);
-                    border-radius: 25px;
+                    background-color: var(--kit-bg);
+                    border-radius: 24px;
                     overflow: hidden;
-                    font-family: 'Poppins', sans-serif;
-                }
-                .phone-frame::before {
-                    content: '';
-                    position: absolute;
-                    top: 15px;
-                    left: 50%;
-                    transform: translateX(-50%);
-                    width: 150px;
-                    height: 25px;
-                    background: #111;
-                    border-radius: 0 0 15px 15px;
-                    z-index: 10;
                 }
             `}</style>
-            <div className="font-poppins text-kit-text">
-                
-                {/* Section 1: The Problem */}
-                <section className="py-16 md:py-24 bg-white">
-                    <div className="container mx-auto px-6 text-center max-w-3xl">
-                        <h1 className="text-4xl md:text-5xl font-bold">จ่ายค่าคอม 30% ทำไม?</h1>
-                        <h2 className="text-2xl md:text-3xl text-kit-action mt-2">เป็นเจ้าของร้านค้าออนไลน์ของคุณเอง</h2>
-                        <p className="mt-6 text-lg">สำหรับร้านอาหารและร้านค้าขนาดเล็ก การพึ่งพาแพลตฟอร์มเดลิเวอรี่ใหญ่นั้นสะดวก แต่ก็ต้องแลกมากับค่าคอมมิชชั่นที่สูงถึง 30-35% ซึ่งหมายความว่าทุกๆ 100 บาทที่คุณขายได้ คุณต้องเสียเงิน 30-35 บาทไปกับค่าธรรมเนียม</p>
-                    </div>
-                </section>
-
-                {/* Section 2: How It Works */}
-                <section className="py-16 md:py-24 bg-kit-bg">
-                    <div className="container mx-auto px-6 max-w-4xl">
-                        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">ระบบทำงานอย่างไร?</h2>
-                        <div className="grid md:grid-cols-3 gap-8 text-center">
-                            <div>
-                                <h3 className="text-xl font-bold mb-2">Core Engine</h3>
-                                <p>เว็บแอปพลิเคชันน้ำหนักเบาที่ลูกค้าใช้สั่งซื้อสินค้า</p>
-                            </div>
-                            <div>
-                                <h3 className="text-xl font-bold mb-2">Payment System</h3>
-                                <p>ลูกค้าชำระเงินผ่าน PromptPay QR และอัปโหลดสลิปได้โดยตรง</p>
-                            </div>
-                            <div>
-                                <h3 className="text-xl font-bold mb-2">Communication Hub</h3>
-                                <p>คุณรับออเดอร์และสลิปผ่าน LINE Notify ไม่ต้องใช้แอปอื่น</p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                
-                {/* Section 3: Live Interactive Demo */}
-                <section className="py-16 md:py-24 bg-white">
-                    <div className="container mx-auto px-6">
-                        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">ทดลองใช้งานจริง</h2>
-                        <LiveDemo />
-                    </div>
-                </section>
-
-                {/* Section 4: Customer's Journey */}
-                <section className="py-16 md:py-24 bg-kit-bg">
-                    <div className="container mx-auto px-6 max-w-4xl">
-                        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">ลูกค้าของคุณจะสั่งซื้อง่ายๆ ใน 5 ขั้นตอน</h2>
-                        <div className="space-y-4">
-                            {[
-                                "สแกน QR Code จากหน้าร้านหรือโซเชียลมีเดีย",
-                                "เลือกเมนูที่ต้องการลงตะกร้า",
-                                "ชำระเงินผ่าน QR หรือแอปธนาคารในมือถือ",
-                                "อัปโหลดสลิปเพื่อยืนยันการชำระเงิน",
-                                "รับการแจ้งเตือนและรอรับออเดอร์"
-                            ].map((step, index) => (
-                                <div key={index} className="flex items-center gap-4 bg-white p-4 rounded-lg shadow-sm">
-                                    <div className="bg-kit-action text-white rounded-full w-8 h-8 flex items-center justify-center font-bold flex-shrink-0">{index + 1}</div>
-                                    <p>{step}</p>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </section>
-
-                {/* Section 5: What You Get */}
-                <section className="py-16 md:py-24 bg-white">
-                    <div className="container mx-auto px-6 max-w-2xl">
-                        <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">สิ่งที่คุณจะได้รับในราคา 500 บาท</h2>
-                        <p className="text-center text-lg text-gray-500 mb-8">(ค่าบริการครั้งเดียว ไม่มีรายเดือน)</p>
-                        <div className="bg-kit-card p-8 rounded-lg space-y-4">
-                            <div className="flex items-start gap-3"><CheckmarkIcon /> <span>เว็บแอปพลิเคชันสำหรับรับออเดอร์ (Master Template)</span></div>
-                            <div className="flex items-start gap-3"><CheckmarkIcon /> <span>URL ที่เป็นชื่อร้านของคุณเอง (เช่น `jaewan-chicken.tempa123.com`)</span></div>
-                            <div className="flex items-start gap-3"><CheckmarkIcon /> <span>QR Code สำหรับให้ลูกค้าสแกนเพื่อสั่งซื้อ</span></div>
-                            <div className="flex items-start gap-3"><CheckmarkIcon /> <span>ระบบแจ้งเตือนออเดอร์เข้าผ่าน LINE Notify</span></div>
-                            <div className="flex items-start gap-3"><CheckmarkIcon /> <span>คู่มือการใช้งานและการตั้งค่าเบื้องต้น</span></div>
-                        </div>
-                    </div>
-                </section>
-                
-                {/* Section 6: Add-Ons */}
-                <section className="py-16 md:py-24 bg-kit-bg">
-                     <div className="container mx-auto px-6 max-w-3xl">
-                        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">พร้อมเติบโต? บริการเสริมของเรา</h2>
-                        <div className="space-y-4">
-                             <div className="bg-white p-6 rounded-lg shadow-sm text-center">
-                                <h3 className="font-bold text-xl">ใส่เมนูและรูปภาพให้</h3>
-                                <p className="text-2xl font-bold text-kit-action my-2">500 บาท</p>
-                                <p className="text-sm">(สูงสุด 10 เมนู)</p>
-                            </div>
-                             <div className="bg-white p-6 rounded-lg shadow-sm text-center">
-                                <h3 className="font-bold text-xl">ออกแบบภาพ QR Code สวยๆ</h3>
-                                <p className="text-2xl font-bold text-kit-action my-2">500 บาท</p>
-                                <p className="text-sm">(สำหรับติดหน้าร้าน)</p>
-                            </div>
-                             <div className="bg-white p-6 rounded-lg shadow-sm text-center">
-                                <h3 className="font-bold text-xl">เชื่อมต่อ Domain ของคุณเอง</h3>
-                                <p className="text-2xl font-bold text-kit-action my-2">1,000 บาท</p>
-                                <p className="text-sm">(เช่น `www.jaewanchicken.com`)</p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                {/* Final CTA */}
-                <section className="py-16 bg-kit-action">
-                    <div className="container mx-auto px-6 text-center">
-                         <h2 className="text-3xl font-bold text-white mb-6">สร้างร้านค้า LINE ของคุณวันนี้!</h2>
-                        <Link to="/contact" className="inline-block bg-white text-kit-action font-bold py-4 px-10 rounded-lg text-xl transition transform hover:scale-105">
-                            เริ่มต้นใช้งานชุด LINE Ordering Kit ของคุณเลย!
+            
+            <div className="bg-white">
+                <section className="py-16 md:py-24 text-center" style={{background: 'linear-gradient(135deg, #2E7D32 0%, #4CAF50 100%)'}}>
+                    <div className="container mx-auto px-6 lg:px-[8vw]">
+                        <h1 className="text-4xl md:text-5xl font-bold font-poppins text-white leading-tight">
+                            ระบบสั่งอาหารผ่าน LINE ในราคา 500 บาท
+                        </h1>
+                        <p className="text-xl text-green-100 mt-6 max-w-3xl mx-auto leading-relaxed">
+                            เปลี่ยน LINE OA ของคุณให้เป็นร้านค้าเต็มรูปแบบ ลูกค้าสั่งง่าย จ่ายสะดวก ไม่ต้องเสียค่า GP
+                        </p>
+                        <Link to={SITE_MAP.CONTACT} className="mt-8 inline-block bg-white text-kit-text font-bold py-3 px-8 rounded-full text-lg hover:bg-green-50 transition-transform transform hover:scale-105">
+                            ติดต่อเราเพื่อเริ่มต้น
                         </Link>
+                    </div>
+                </section>
+
+                <section className="py-16 md:py-24">
+                    <div className="container mx-auto px-6 lg:px-[8vw]">
+                        <div className="grid lg:grid-cols-2 gap-16 items-center">
+                            <div>
+                                <h2 className="text-3xl font-bold font-poppins text-gray-800 mb-6">มันทำงานอย่างไร?</h2>
+                                <p className="text-lg text-gray-600 mb-8">
+                                    ลูกค้าของคุณสามารถสั่งซื้อได้ง่ายๆ เพียง 3 ขั้นตอน:
+                                </p>
+                                <ol className="space-y-6">
+                                    <li className="flex items-start gap-4">
+                                        <div className="bg-kit-action text-white rounded-full w-10 h-10 flex-shrink-0 flex items-center justify-center font-bold text-xl">1</div>
+                                        <div>
+                                            <h3 className="font-bold text-xl text-gray-800">เลือกเมนู</h3>
+                                            <p className="text-gray-600">ลูกค้าเปิดเมนูจาก LINE OA ของคุณ กดเลือกสินค้าที่ต้องการลงตะกร้า</p>
+                                        </div>
+                                    </li>
+                                    <li className="flex items-start gap-4">
+                                        <div className="bg-kit-action text-white rounded-full w-10 h-10 flex-shrink-0 flex items-center justify-center font-bold text-xl">2</div>
+                                        <div>
+                                            <h3 className="font-bold text-xl text-gray-800">ชำระเงิน</h3>
+                                            <p className="text-gray-600">ชำระเงินผ่าน QR Code พร้อมเพย์ และสามารถเปิดแอปธนาคารได้โดยตรงจากหน้าเว็บ</p>
+                                        </div>
+                                    </li>
+                                    <li className="flex items-start gap-4">
+                                        <div className="bg-kit-action text-white rounded-full w-10 h-10 flex-shrink-0 flex items-center justify-center font-bold text-xl">3</div>
+                                        <div>
+                                            <h3 className="font-bold text-xl text-gray-800">อัปโหลดสลิป</h3>
+                                            <p className="text-gray-600">ลูกค้าอัปโหลดสลิปเพื่อยืนยันการสั่งซื้อ ออเดอร์จะถูกส่งไปที่คุณทันที</p>
+                                        </div>
+                                    </li>
+                                </ol>
+                            </div>
+                            <div>
+                                <LiveDemo />
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <section className="py-16 md:py-24 bg-gray-50">
+                    <div className="container mx-auto px-6 lg:px-[8vw]">
+                         <h2 className="text-3xl font-bold font-poppins text-center mb-12 text-gray-800">สิ่งที่คุณจะได้รับในราคา 500 บาท</h2>
+                         <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-8">
+                            <div className="bg-white p-6 rounded-lg shadow-sm border-l-4 border-kit-action">
+                                <h3 className="font-bold text-xl mb-2">หน้าเว็บสั่งอาหาร 1 หน้า</h3>
+                                <p>เว็บเพจที่พร้อมใช้งานได้ทันทีสำหรับร้านค้าของคุณ</p>
+                            </div>
+                            <div className="bg-white p-6 rounded-lg shadow-sm border-l-4 border-kit-action">
+                                <h3 className="font-bold text-xl mb-2">ระบบ QR Code Payment</h3>
+                                <p>สร้าง QR Code สำหรับรับเงินจากเบอร์พร้อมเพย์ของคุณ</p>
+                            </div>
+                             <div className="bg-white p-6 rounded-lg shadow-sm border-l-4 border-kit-action">
+                                <h3 className="font-bold text-xl mb-2">เมนูสวยงาม</h3>
+                                <p>เราจะใส่ข้อมูลเมนูของคุณให้ (สูงสุด 10 รายการ)</p>
+                            </div>
+                             <div className="bg-white p-6 rounded-lg shadow-sm border-l-4 border-kit-action">
+                                <h3 className="font-bold text-xl mb-2">ระบบแจ้งเตือนผ่าน LINE</h3>
+                                <p>เมื่อมีออเดอร์ใหม่ คุณจะได้รับการแจ้งเตือนทันที</p>
+                            </div>
+                         </div>
+                         <div className="text-center mt-12">
+                             <p className="text-gray-600">* ราคานี้เป็นค่าติดตั้งครั้งแรก ไม่รวมค่าโฮสติ้งรายปี (ประมาณ 1,500 บาท)</p>
+                             <Link to={SITE_MAP.CONTACT} className="mt-6 inline-block bg-kit-action text-white font-bold py-3 px-10 rounded-full text-lg hover:bg-green-600 transition-transform transform hover:scale-105">
+                                สนใจแพ็กเกจนี้? ติดต่อเรา
+                            </Link>
+                         </div>
                     </div>
                 </section>
             </div>

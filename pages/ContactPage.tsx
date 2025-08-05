@@ -1,5 +1,6 @@
 import React from 'react';
 import Seo from '../components/Seo';
+import { SEO_CONTENT } from '../src/content';
 
 const ContactPage: React.FC = () => {
   const contactPageSchema = {
@@ -32,8 +33,8 @@ const ContactPage: React.FC = () => {
   return (
     <>
       <Seo
-        title="Contact Us | Tempa Web.123"
-        description="Get in touch with the Tempa Web.123 team. We're here to answer your questions about our website templates and services."
+        title={SEO_CONTENT.CONTACT.title}
+        description={SEO_CONTENT.CONTACT.description}
         schema={contactPageSchema}
       />
       <div className="container mx-auto px-6 lg:px-[8vw] py-12 md:py-20">

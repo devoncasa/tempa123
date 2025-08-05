@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import BrandName from './BrandName';
 import { useAuth } from '../contexts/AuthContext';
+import { SITE_MAP } from '../src/siteMap';
+import { ASSETS } from '../src/assets';
 
 interface NavItem {
   to?: string;
@@ -10,9 +12,9 @@ interface NavItem {
 }
 
 const BrandIdentity: React.FC = () => (
-  <Link to="/" className="flex items-center gap-3" aria-label="Tempa Web.123 - Homepage">
+  <Link to={SITE_MAP.HOME} className="flex items-center gap-3" aria-label="Tempa Web.123 - Homepage">
     <img 
-      src="https://raw.githubusercontent.com/devoncasa/Tempa123-Asset/main/Tempa-logo-dark-small.webp" 
+      src={ASSETS.LOGO_DARK} 
       alt="Tempa Web.123 Logo" 
       className="h-10 w-auto" 
     />
@@ -28,28 +30,46 @@ const Header: React.FC = () => {
   const location = useLocation();
   const navRef = useRef<HTMLElement>(null);
   
-  const isThaiPage = location.pathname.startsWith('/line-ordering-kit');
+  const isThaiPage = location.pathname.startsWith(SITE_MAP.LINE_ORDERING_KIT);
 
   const navItemsEN: NavItem[] = [
-    { to: '/', label: 'Home' },
-    { to: '/about', label: 'About Us' },
-    { to: '/why-us', label: 'Why Us' },
-    { to: '/catalog', label: 'Catalog' },
-    { to: '/inspiration-gallery', label: 'Inspiration Gallery' },
-    { to: '/pricing', label: 'Pricing' },
-    { to: '/blog', label: 'Blog' },
-    { to: '/contact', label: 'Contact Us' },
+    { to: SITE_MAP.HOME, label: 'Home' },
+    { to: SITE_MAP.ABOUT, label: 'About Us' },
+    { to: SITE_MAP.WHY_US, label: 'Why Us' },
+    { to: SITE_MAP.CATALOG, label: 'Catalog' },
+    { to: SITE_MAP.INSPIRATION_GALLERY, label: 'Inspiration Gallery' },
+    {
+      to: SITE_MAP.PRICING,
+      label: 'Pricing',
+      dropdown: [
+        { to: SITE_MAP.PRICING, label: 'Licenses & Membership' },
+        { to: SITE_MAP.PRICING_CUSTOMIZATION, label: 'Customization Services' },
+        { to: SITE_MAP.PRICING_CALCULATOR, label: 'Project Calculator' },
+        { to: SITE_MAP.LINE_ORDERING_KIT, label: '500฿ LINE Kit' },
+      ],
+    },
+    { to: SITE_MAP.BLOG, label: 'Blog' },
+    { to: SITE_MAP.CONTACT, label: 'Contact Us' },
   ];
 
   const navItemsTH: NavItem[] = [
-    { to: '/', label: 'หน้าหลัก' },
-    { to: '/about', label: 'เกี่ยวกับเรา' },
-    { to: '/why-us', label: 'ทำไมต้องเรา' },
-    { to: '/catalog', label: 'แคตตาล็อก' },
-    { to: '/inspiration-gallery', label: 'แกลเลอรี่แรงบันดาลใจ' },
-    { to: '/pricing', label: 'ราคา' },
-    { to: '/blog', label: 'บล็อก' },
-    { to: '/contact', label: 'ติดต่อเรา' },
+    { to: SITE_MAP.HOME, label: 'หน้าหลัก' },
+    { to: SITE_MAP.ABOUT, label: 'เกี่ยวกับเรา' },
+    { to: SITE_MAP.WHY_US, label: 'ทำไมต้องเรา' },
+    { to: SITE_MAP.CATALOG, label: 'แคตตาล็อก' },
+    { to: SITE_MAP.INSPIRATION_GALLERY, label: 'แกลเลอรี่แรงบันดาลใจ' },
+    {
+      to: SITE_MAP.PRICING,
+      label: 'ราคา',
+      dropdown: [
+        { to: SITE_MAP.PRICING, label: 'ใบอนุญาตและสมาชิก' },
+        { to: SITE_MAP.PRICING_CUSTOMIZATION, label: 'บริการปรับแต่ง' },
+        { to: SITE_MAP.PRICING_CALCULATOR, label: 'คำนวณราคาโปรเจค' },
+        { to: SITE_MAP.LINE_ORDERING_KIT, label: '500฿ LINE Kit' },
+      ],
+    },
+    { to: SITE_MAP.BLOG, label: 'บล็อก' },
+    { to: SITE_MAP.CONTACT, label: 'ติดต่อเรา' },
   ];
 
   const navItems = isThaiPage ? navItemsTH : navItemsEN;
@@ -99,7 +119,7 @@ const Header: React.FC = () => {
   };
 
 
-  const isPricingActive = location.pathname.startsWith('/pricing') || location.pathname.startsWith('/line-ordering-kit');
+  const isPricingActive = location.pathname.startsWith('/pricing') || location.pathname.startsWith('/line-ordering-kit') || location.pathname.startsWith('/pricing-calculator');
 
   const UserMenu: React.FC = () => {
     const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
@@ -111,7 +131,7 @@ const Header: React.FC = () => {
             </button>
             {isUserMenuOpen && (
                 <div className="dropdown-menu absolute top-full right-0 mt-2 w-48 rounded-md shadow-lg py-1 ring-1 ring-black ring-opacity-5 z-10" onMouseLeave={() => setIsUserMenuOpen(false)}>
-                    <NavLink to="/my-account" className={({isActive}) => `block px-4 py-2 text-sm ${isActive ? 'active' : ''} text-text-primary`}>My Account</NavLink>
+                    <NavLink to={SITE_MAP.MY_ACCOUNT} className={({isActive}) => `block px-4 py-2 text-sm ${isActive ? 'active' : ''} text-text-primary`}>My Account</NavLink>
                     <button onClick={logout} className="block w-full text-left px-4 py-2 text-sm text-text-primary">Logout</button>
                 </div>
             )}
@@ -134,7 +154,7 @@ const Header: React.FC = () => {
           padding-bottom: 2px;
         }
         .main-nav-link:hover {
-          color: var(--color-primary);
+          color: var(--color-accent);
           text-decoration-color: var(--color-accent);
         }
         .main-nav-link:active {
@@ -156,7 +176,7 @@ const Header: React.FC = () => {
 
         .dropdown-menu a.active {
              background-color: var(--color-bg-secondary);
-             color: var(--color-primary-dark);
+             color: var(--color-accent);
         }
 
         .button-cta-header {
@@ -181,7 +201,7 @@ const Header: React.FC = () => {
           box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
       `}</style>
-      <header className="bg-bg-card/[.7] backdrop-blur-md sticky top-0 z-50 shadow-sm border-b border-border-primary">
+      <header className="bg-[rgba(255,255,255,0.7)] backdrop-blur-md sticky top-0 z-50 shadow-sm border-b border-border-primary">
         <div className="container mx-auto px-6 py-4">
           <div className="hidden md:flex justify-between items-center">
             <div className="flex-1 flex justify-start">
@@ -229,11 +249,17 @@ const Header: React.FC = () => {
               </ul>
             </nav>
 
-            <div className="flex-1 flex justify-end">
+            <div className="flex-1 flex justify-end items-center gap-4">
+                <div className="flex items-center">
+                    <button className="main-nav-link flex items-center gap-1 opacity-60 cursor-not-allowed" disabled title="Language switching coming soon">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M10 2a8 8 0 100 16 8 8 0 000-16zM2 10a8 8 0 1116 0 8 8 0 01-16 0z" /><path d="M12.39 15.33a8.03 8.03 0 01-4.78 0 6.012 6.012 0 01-1.78-4.43c0-1.25.38-2.4 1.05-3.37L5.5 8.94a6.075 6.075 0 000 2.12c.7 1.2 1.8 2.13 3.1 2.58l.84-2.83a4.01 4.01 0 012.91 0l.84 2.83zM14.5 11.06a6.075 6.075 0 000-2.12L13.13 7.56a6.012 6.012 0 011.78 4.43c0 .5-.06 1-.18 1.47l-1.07-3.87z" /></svg>
+                        <span>EN</span>
+                    </button>
+                </div>
                 {user.isAuthenticated ? (
                     <UserMenu />
                 ) : (
-                    <Link to="/submit-template" className="button-cta-header">
+                    <Link to={SITE_MAP.SUBMIT_TEMPLATE} className="button-cta-header">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18" className="fill-current"><path d="M11 15V6H13V15H11ZM11 19V17H13V19H11Z"></path></svg>
                         <span>{submitText}</span>
                     </Link>
@@ -253,7 +279,7 @@ const Header: React.FC = () => {
         </div>
         
         {isMobileMenuOpen && (
-          <div className="md:hidden bg-bg-card shadow-lg">
+          <div className="md:hidden bg-[rgba(255,255,255,0.7)] backdrop-blur-md shadow-lg">
             <nav className="flex flex-col items-center space-y-3 py-4">
               {navItems.map((item, index) => (
                   <React.Fragment key={item.to || index}>
@@ -275,11 +301,11 @@ const Header: React.FC = () => {
                 ))}
                 {user.isAuthenticated ? (
                   <>
-                    <NavLink to="/my-account" onClick={() => setIsMobileMenuOpen(false)} className="main-nav-link text-lg">My Account</NavLink>
+                    <NavLink to={SITE_MAP.MY_ACCOUNT} onClick={() => setIsMobileMenuOpen(false)} className="main-nav-link text-lg">My Account</NavLink>
                     <button onClick={() => { logout(); setIsMobileMenuOpen(false); }} className="main-nav-link text-lg text-accent">Logout</button>
                   </>
                 ) : (
-                  <NavLink to="/submit-template" onClick={() => setIsMobileMenuOpen(false)} className="main-nav-link text-lg">{submitText}</NavLink>
+                  <NavLink to={SITE_MAP.SUBMIT_TEMPLATE} onClick={() => setIsMobileMenuOpen(false)} className="main-nav-link text-lg">{submitText}</NavLink>
                 )}
             </nav>
           </div>

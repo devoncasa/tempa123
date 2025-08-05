@@ -27,35 +27,48 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Lora:wght@400;700&display=swap" rel="stylesheet">
     <style>
       :root {
-        /* --- Primary Brand Hues (Monochromatic Scale) --- */
-        --brand-900: #086F66; /* Darkest - For deep accents, text links on hover */
-        --brand-700: #0a887d; /* Dark - For button hover states */
-        --brand-500: #1dc3b6; /* Core Brand Color - For primary buttons & active elements */
-        --brand-200: #A8E8E2; /* Light - For highlighted backgrounds (e.g., "Recommended" tier) */
-        --brand-50:  #E8F8F7; /* Lightest - For subtle section backgrounds */
+        /* --- 5-Hue Fixed Color Theme --- */
+        --color-bg-lightest: #e5f9f7;    /* page background */
+        --color-ui-light: #b3ece7;       /* cards, input fields, highlights */
+        --color-base: #1dc3b6;           /* buttons, links, primary accents */
+        --color-dark: #159d93;           /* section titles, borders */
+        --color-darkest: #0e7a70;        /* bold text, headlines, navs */
+        
+        /* --- Logo Anchor Tone --- */
+        --color-logo: #198c84;           /* header/nav consistent branding */
+
+        /* --- Coral Accent --- */
+        --color-coral: #e9806c;          /* call-to-action, highlights, prices, hover states */
+
+        /* --- Primary Brand Hues (Remapped for component compatibility) --- */
+        --brand-900: var(--color-darkest);
+        --brand-700: var(--color-dark);
+        --brand-500: var(--color-base);
+        --brand-200: var(--color-ui-light);
+        --brand-50:  var(--white); /* Remapped to white for contrast on colored page BG */
 
         /* --- Secondary Accent Color --- */
-        --accent-coral: #e9806c; /* For secondary buttons or special tags */
+        --accent-coral: var(--color-coral);
 
         /* --- Neutral Palette --- */
-        --grey-900: #2d3748; /* For primary headlines and body text */
-        --grey-600: #718096; /* For subtitles and descriptive text */
-        --grey-200: #E2E8F0; /* For subtle borders and dividers */
-        --white:     #FFFFFF; /* For primary card backgrounds */
-        --off-white: #F8FAFC; /* For the main page background */
+        --grey-900: #2d3748; 
+        --grey-600: #718096; 
+        --grey-200: #E2E8F0; 
+        --white:     #FFFFFF; 
+        --off-white: #F8FAFC; /* Deprecated, use --color-bg-lightest */
         
-        /* --- Legacy Semantic Mapping (for global consistency) --- */
+        /* --- Semantic Mapping (for global consistency) --- */
         --color-primary: var(--brand-500);
         --color-primary-dark: var(--brand-700);
         --color-accent: var(--accent-coral);
 
-        --color-text-primary: var(--grey-900);
+        --color-text-primary: var(--brand-900);
         --color-text-secondary: var(--grey-600);
-        --color-text-nav-active: var(--brand-500);
+        --color-text-nav-active: var(--color-accent);
         --color-text-nav: var(--color-text-primary);
 
-        --color-bg-primary: var(--off-white);
-        --color-bg-secondary: var(--brand-50);
+        --color-bg-primary: var(--color-bg-lightest);
+        --color-bg-secondary: var(--white); /* White sections on light teal background */
         --color-bg-card: var(--white);
         
         --color-border: var(--grey-200);
@@ -78,7 +91,7 @@
         --button-primary-hover-bg: var(--color-primary-dark);
 
         --link-primary: var(--color-primary);
-        --link-hover: var(--color-primary-dark);
+        --link-hover: var(--color-accent);
       }
 
       body {
@@ -104,10 +117,24 @@
       }
 
       .hero-bg-new {
-        background-color: var(--grey-900);
+        background-image: url('https://raw.githubusercontent.com/devoncasa/Tempa123-Asset/main/tempa123-hero-banner.webp');
+        background-size: cover;
+        background-position: center;
+      }
+
+      /* This pseudo-element creates the dark overlay and decorative gradients */
+      .hero-bg-new::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(23, 33, 48, 0.7); /* Dark overlay for readability */
         background-image: 
             radial-gradient(at 20% 25%, hsla(175, 70%, 40%, 0.3) 0px, transparent 50%),
             radial-gradient(at 80% 85%, hsla(11, 60%, 55%, 0.2) 0px, transparent 50%);
+        z-index: 1; /* Places it below the content which has z-10 */
       }
 
       /* Upgraded UI Component Styles */
@@ -129,7 +156,7 @@
       }
       .btn-primary-gradient:hover {
         transform: translateY(-2px);
-        box-shadow: 0 10px 15px -3px rgba(29, 195, 182, 0.2), 0 4px 6px -2px rgba(29, 195, 182, 0.1);
+        box-shadow: 0 10px 15px -3px rgba(233, 128, 108, 0.2), 0 4px 6px -2px rgba(233, 128, 108, 0.1);
       }
       .btn-secondary-outline {
         color: var(--color-primary);
@@ -137,10 +164,11 @@
         border: 2px solid var(--color-primary);
       }
       .btn-secondary-outline:hover {
-        background-color: var(--color-primary);
+        background-color: var(--color-accent);
+        border-color: var(--color-accent);
         color: var(--color-white);
         transform: translateY(-2px);
-        box-shadow: 0 10px 15px -3px rgba(226, 232, 240, 0.4), 0 4px 6px -2px rgba(226, 232, 240, 0.2);
+        box-shadow: 0 10px 15px -3px rgba(233, 128, 108, 0.2), 0 4px 6px -2px rgba(233, 128, 108, 0.1);
       }
 
       /* --- The Inspiration Gallery Section --- */
@@ -292,7 +320,7 @@
                 DEFAULT: 'var(--color-primary)',
                 dark: 'var(--color-primary-dark)',
               },
-              accent: 'var(--accent-coral)',
+              accent: 'var(--color-accent)',
               grey: {
                 900: 'var(--grey-900)',
                 600: 'var(--grey-600)',
@@ -351,5 +379,16 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/index.tsx"></script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js').then(registration => {
+            console.log('ServiceWorker registration successful with scope: ', registration.scope);
+          }, err => {
+            console.log('ServiceWorker registration failed: ', err);
+          });
+        });
+      }
+    </script>
   </body>
 </html>

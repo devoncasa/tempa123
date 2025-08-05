@@ -2,6 +2,8 @@ import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import LoginModal from './LoginModal';
 import BrandName from './BrandName';
+import { SITE_MAP } from '../src/siteMap';
+import { ASSETS } from '../src/assets';
 
 const SocialIcon: React.FC<{ href: string; children: React.ReactNode; label: string }> = ({ href, children, label }) => (
     <a href={href} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors duration-300" aria-label={label}>
@@ -43,7 +45,7 @@ const Footer: React.FC = () => {
                     <div className="grid grid-cols-2 md:grid-cols-12 gap-8">
                         <div className="col-span-2 md:col-span-4">
                             <div onClick={handleLogoClick} className="inline-block cursor-pointer mb-4" title="Admin Access">
-                               <img src="https://raw.githubusercontent.com/devoncasa/Tempa123-Asset/main/images/logos/Tempa-logo-white-footer-small.webp" alt="Tempa Web.123 Logo" className="h-8 w-auto" />
+                               <img src={ASSETS.LOGO_WHITE_FOOTER} alt="Tempa Web.123 Logo" className="h-8 w-auto" />
                             </div>
                             <p className="text-gray-400 text-sm">High-performance website templates for businesses ready to own their online presence.</p>
                             <div className="flex space-x-5 mt-6">
@@ -62,25 +64,25 @@ const Footer: React.FC = () => {
                         <div className="col-span-2 md:col-span-2">
                             <h3 className="font-poppins font-semibold text-white tracking-wider uppercase mb-4">Services</h3>
                             <ul className="space-y-3">
-                                <FooterLink to="/catalog">Template Catalog</FooterLink>
-                                <FooterLink to="/pricing">Add-On Packages & Pricing</FooterLink>
-                                <FooterLink to="/line-ordering-kit">500฿ LINE Kit</FooterLink>
+                                <FooterLink to={SITE_MAP.CATALOG}>Template Catalog</FooterLink>
+                                <FooterLink to={SITE_MAP.PRICING}>Add-On Packages & Pricing</FooterLink>
+                                <FooterLink to={SITE_MAP.LINE_ORDERING_KIT}>500฿ LINE Kit</FooterLink>
                             </ul>
                         </div>
                         <div className="col-span-2 md:col-span-2">
                             <h3 className="font-poppins font-semibold text-white tracking-wider uppercase mb-4">Company</h3>
                             <ul className="space-y-3">
-                                <FooterLink to="/about">About Us</FooterLink>
-                                <FooterLink to="/why-us">Why Us</FooterLink>
-                                <FooterLink to="/blog">Blog</FooterLink>
+                                <FooterLink to={SITE_MAP.ABOUT}>About Us</FooterLink>
+                                <FooterLink to={SITE_MAP.WHY_US}>Why Us</FooterLink>
+                                <FooterLink to={SITE_MAP.BLOG}>Blog</FooterLink>
                             </ul>
                         </div>
                         <div className="col-span-2 md:col-span-2">
                             <h3 className="font-poppins font-semibold text-white tracking-wider uppercase mb-4">Support</h3>
                             <ul className="space-y-3">
-                                <FooterLink to="/contact">Contact</FooterLink>
-                                <FooterLink to="/pricing">FAQ</FooterLink>
-                                <FooterLink to="/submit-template">Submit Template</FooterLink>
+                                <FooterLink to={SITE_MAP.CONTACT}>Contact</FooterLink>
+                                <FooterLink to={SITE_MAP.PRICING}>FAQ</FooterLink>
+                                <FooterLink to={SITE_MAP.SUBMIT_TEMPLATE}>Submit Template</FooterLink>
                             </ul>
                         </div>
                          <div className="col-span-2 md:col-span-2">

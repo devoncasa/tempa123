@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import Seo from '../components/Seo';
 import { PRICING_FAQ_ITEMS } from '../constants';
 import FaqItem from '../components/FaqItem';
+import { SITE_MAP } from '../src/siteMap';
+import { SEO_CONTENT } from '../src/content';
 
 const CheckIcon: React.FC<{ className?: string }> = ({ className = 'text-brand-700' }) => (
     <svg xmlns="http://www.w3.org/2000/svg" className={`h-6 w-6 ${className}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -25,7 +27,7 @@ const PricingCard: React.FC<{ tier: any }> = ({ tier }) => {
             <h3 className="text-2xl font-bold font-poppins text-text-primary">{tier.title}</h3>
             <p className="text-text-secondary mt-2">{tier.description}</p>
             <div className="my-8">
-                <span className="text-5xl font-bold font-poppins text-brand-700">{tier.price}</span>
+                <span className="text-5xl font-bold font-poppins text-accent">{tier.price}</span>
                 <span className="text-text-secondary">{tier.pricePeriod}</span>
             </div>
             <ul className="space-y-4 text-left mb-10 flex-grow">
@@ -58,7 +60,7 @@ const PricingPage: React.FC = () => {
                 'Full access to template files'
             ],
             buttonText: 'Browse Templates',
-            buttonLink: '/catalog',
+            buttonLink: SITE_MAP.CATALOG,
             recommended: false,
         },
         {
@@ -75,7 +77,7 @@ const PricingPage: React.FC = () => {
                 'Cancel anytime from your dashboard'
             ],
             buttonText: 'Become a Member',
-            buttonLink: '/my-account',
+            buttonLink: SITE_MAP.MY_ACCOUNT,
             recommended: true,
         },
         {
@@ -91,7 +93,7 @@ const PricingPage: React.FC = () => {
                 'Full access to template files'
             ],
             buttonText: 'Contact for License',
-            buttonLink: '/contact',
+            buttonLink: SITE_MAP.CONTACT,
             recommended: false,
         },
     ];
@@ -99,8 +101,8 @@ const PricingPage: React.FC = () => {
   return (
     <>
       <Seo
-        title="Pricing & Licenses | Tempa Web.123"
-        description="Flexible pricing for everyone. Choose from a single template license, an all-access membership, or an extended license for commercial projects."
+        title={SEO_CONTENT.PRICING.title}
+        description={SEO_CONTENT.PRICING.description}
       />
       <div className="bg-bg-secondary py-16 md:py-24">
         {/* Header */}
@@ -128,7 +130,7 @@ const PricingPage: React.FC = () => {
                  <p className="mt-4 mb-8 text-lg text-gray-300 max-w-2xl mx-auto">
                      Short on time or technical skills? Let our expert team build your website for you. We'll handle everything from setup to content placement.
                  </p>
-                 <Link to="/pricing/customization-services" className="btn btn-secondary-outline !text-white !border-white hover:!bg-white hover:!text-brand-900">
+                 <Link to={SITE_MAP.PRICING_CUSTOMIZATION} className="btn btn-secondary-outline !text-white !border-white hover:!bg-white hover:!text-brand-900">
                     View Customization Services
                  </Link>
             </div>

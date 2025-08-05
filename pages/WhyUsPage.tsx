@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Seo from '../components/Seo';
+import { SITE_MAP } from '../src/siteMap';
+import { SEO_CONTENT } from '../src/content';
 
 // Icons for the benefit cards
 const SeoIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-10 w-10 text-primary"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="m7 12 5 5 5-5"/><path d="M12 17V7"/></svg>;
@@ -129,8 +131,8 @@ const WhyUsPage: React.FC = () => {
     return (
         <>
             <Seo
-                title="Why Us – SEO & Market Advantage | Tempa Web.123"
-                description="Discover how our data-driven SEO, multilingual strategies, and deep Thai market expertise give your business a competitive edge."
+                title={SEO_CONTENT.WHY_US.title}
+                description={SEO_CONTENT.WHY_US.description}
                 schema={whyUsSchema}
             />
             <div className="bg-bg-primary font-inter">
@@ -211,7 +213,7 @@ const WhyUsPage: React.FC = () => {
                                 Let's leverage our expertise to grow your business. Explore our packages or get in touch for a custom strategy.
                             </p>
                             <Link
-                                to="/pricing"
+                                to={SITE_MAP.PRICING}
                                 className="btn btn-primary-gradient"
                             >
                                 Explore Our Packages

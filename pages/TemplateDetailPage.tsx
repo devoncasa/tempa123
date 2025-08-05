@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { TEMPLATES, getTemplatePriceUSD } from '../constants';
@@ -6,6 +5,7 @@ import NotFoundPage from './NotFoundPage';
 import TemplateCard from '../components/TemplateCard';
 import type { Template } from '../types';
 import Seo from '../components/Seo';
+import { SITE_MAP, getCheckoutPath } from '../src/siteMap';
 
 const TemplateDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -179,47 +179,19 @@ const TemplateDetailPage: React.FC = () => {
 
             <div className="md:col-span-1">
               <div className="bg-white p-6 rounded-lg shadow-lg sticky top-28 border border-grey-200">
-                <h3 className="text-xl font-bold font-poppins text-center mb-4">Get This Template</h3>
+                <h3 className="text-xl font-bold font-poppins text-center mb-6">Get This Template</h3>
                 
-                <div className="border rounded-lg p-4 mb-4 bg-bg-secondary">
-                  <div className="flex items-center mb-2">
-                    <input id="single" type="radio" name="purchase" className="h-4 w-4 text-primary border-gray-300 focus:ring-primary" defaultChecked />
-                    <label htmlFor="single" className="ml-3 block text-sm font-medium text-grey-900 w-full">
-                      <div className="flex justify-between items-center">
-                        <span className="font-bold">Buy Single License</span>
-                        <span className="text-lg font-bold text-brand-700">${singlePrice}</span>
-                      </div>
-                    </label>
-                  </div>
+                <div className="space-y-4">
+                    <Link to={getCheckoutPath(template.id)} className="block w-full text-center bg-accent text-white py-3 px-6 rounded-lg uppercase text-sm font-semibold tracking-wide-sm hover:brightness-90 transition-all duration-300 transform hover:scale-105">
+                        Buy Single License (${singlePrice})
+                    </Link>
+                    <Link to={SITE_MAP.PRICING} className="block w-full text-center bg-transparent border-2 border-primary text-primary py-3 px-6 rounded-lg uppercase text-sm font-semibold tracking-wide-sm hover:bg-brand-100 transition-all duration-300">
+                        Access via Membership
+                    </Link>
                 </div>
-
-                <div className="border rounded-lg p-4 mb-4 border-grey-200">
-                   <div className="flex items-center mb-2">
-                    <input id="membership" type="radio" name="purchase" className="h-4 w-4 text-primary border-gray-300 focus:ring-primary" />
-                    <label htmlFor="membership" className="ml-3 block text-sm font-medium text-grey-900">
-                      <span className="font-bold">Access via Membership</span>
-                    </label>
-                  </div>
-                  <p className="text-xs text-grey-600 mb-3 pl-7">Get this + 960+ more for just $15/month.</p>
-                </div>
-
-                <div className="mt-6 space-y-3">
-                  <h4 className="text-sm font-bold text-center text-grey-600">OPTIONAL ADD-ONS</h4>
-                  <div className="flex items-center">
-                    <input id="setup" type="checkbox" className="h-4 w-4 text-primary border-gray-300 rounded" />
-                    <label htmlFor="setup" className="ml-3 text-sm text-grey-600 flex justify-between w-full"><span>Template Setup</span> <span>+$40</span></label>
-                  </div>
-                  <div className="flex items-center">
-                    <input id="support" type="checkbox" className="h-4 w-4 text-primary border-gray-300 rounded" />
-                    <label htmlFor="support" className="ml-3 text-sm text-grey-600 flex justify-between w-full"><span>12-Month Priority Support</span> <span>+$20</span></label>
-                  </div>
-                </div>
-
-                <p className="text-center text-xs text-grey-600 mt-4">All prices exclude 7% VAT.</p>
-                <button className="mt-6 w-full bg-primary text-white py-3 px-6 rounded-lg uppercase text-sm font-semibold tracking-wide-sm hover:bg-primary-hover transition-all duration-300 transform hover:scale-105">
-                  Add to Cart
-                </button>
-                 <Link to="/pricing" className="mt-2 text-center block text-brand-700 hover:underline text-sm">Learn more about membership</Link>
+                <p className="text-center text-xs text-grey-600 mt-4">
+                    See our <Link to={SITE_MAP.PRICING} className="underline hover:text-primary">Pricing Page</Link> for details on licenses and membership benefits.
+                </p>
               </div>
             </div>
           </div>
