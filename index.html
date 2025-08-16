@@ -34,6 +34,10 @@
         --color-dark: #159d93;           /* section titles, borders */
         --color-darkest: #0e7a70;        /* bold text, headlines, navs */
         
+        /* --- NEW SECTION BACKGROUNDS --- */
+        --color-bg-section-dark: #dcfce7;
+        --color-bg-section-light: #f0fdf4;
+
         /* --- Logo Anchor Tone --- */
         --color-logo: #198c84;           /* header/nav consistent branding */
 
@@ -114,27 +118,6 @@
         .parallax-bg {
           background-attachment: scroll;
         }
-      }
-
-      .hero-bg-new {
-        background-image: url('https://raw.githubusercontent.com/devoncasa/Tempa123-Asset/main/tempa123-hero-banner.webp');
-        background-size: cover;
-        background-position: center;
-      }
-
-      /* This pseudo-element creates the dark overlay and decorative gradients */
-      .hero-bg-new::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-color: rgba(23, 33, 48, 0.7); /* Dark overlay for readability */
-        background-image: 
-            radial-gradient(at 20% 25%, hsla(175, 70%, 40%, 0.3) 0px, transparent 50%),
-            radial-gradient(at 80% 85%, hsla(11, 60%, 55%, 0.2) 0px, transparent 50%);
-        z-index: 1; /* Places it below the content which has z-10 */
       }
 
       /* Upgraded UI Component Styles */
@@ -228,44 +211,6 @@
       /* This new rule controls the space ABOVE the intro text */
       .gallery-intro-text {
         margin-top: 25px;
-      }
-      
-      /* --- Global Parallax Background System --- */
-      body:not(.homepage) {
-        position: relative; /* Required for the pseudo-element */
-        z-index: 1;
-        background-color: transparent !important;
-      }
-      /* This pseudo-element holds the blurred background image */
-      body:not(.homepage)::before {
-        content: '';
-        position: fixed; /* Creates the parallax effect */
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        z-index: -1; /* Sits behind all content */
-
-        /* The background image URL will be set by JavaScript */
-        background-position: center center;
-        background-size: cover;
-        background-repeat: no-repeat;
-        
-        /* --- 5% Blur Effect --- */
-        -webkit-filter: blur(5px);
-        filter: blur(5px);
-      }
-
-      /* This pseudo-element creates the white fade overlay */
-      body:not(.homepage)::after {
-        content: '';
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        z-index: -1;
-        background-color: rgba(255, 255, 255, 0.7); /* 70% White Fade */
       }
       
       /* --- GLOBAL RULE: Legal Component Styling --- */
@@ -467,6 +412,8 @@
                 primary: 'var(--bg-primary)',
                 secondary: 'var(--bg-secondary)',
                 card: 'var(--bg-card)',
+                'section-dark': 'var(--color-bg-section-dark)',
+                'section-light': 'var(--color-bg-section-light)',
               },
               border: {
                 primary: 'var(--border-primary)',

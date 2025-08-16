@@ -22,9 +22,36 @@ const HomePage: React.FC = () => {
         title={SEO_CONTENT.HOME.title}
         description={SEO_CONTENT.HOME.description}
       />
-      <div className="space-y-24 md:space-y-32 pb-24">
-        {/* Section 2: Hero Section */}
-        <section className="relative text-center text-white hero-bg-new py-20 md:py-40">
+      <div>
+        {/* Section 1: Hero Section */}
+        <section className="relative text-center text-white py-20 md:py-40 overflow-hidden">
+          {/* Background Video and Overlay */}
+          <div className="absolute top-0 left-0 w-full h-full z-0">
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              poster="https://raw.githubusercontent.com/devoncasa/Tempa123-Asset/main/tempa123-hero-banner.webp"
+              className="w-full h-full object-cover"
+              style={{ filter: 'blur(5px)' }}
+            >
+              <source
+                src="https://cdn.jsdelivr.net/gh/devoncasa/Tempa123-Asset@main/tempa123-hero-section-banner-video-3.webm"
+                type="video/webm"
+              />
+            </video>
+            {/* Overlay */}
+            <div
+              className="absolute inset-0"
+              style={{
+                backgroundColor: 'rgba(23, 33, 48, 0.7)',
+                backgroundImage: 'radial-gradient(at 20% 25%, hsla(175, 70%, 40%, 0.3) 0px, transparent 50%), radial-gradient(at 80% 85%, hsla(11, 60%, 55%, 0.2) 0px, transparent 50%)'
+              }}
+            ></div>
+          </div>
+          
+          {/* Content */}
           <div className="relative z-10 container mx-auto px-6 lg:px-[8vw]">
             <h1 className="text-4xl md:text-5xl font-bold font-poppins leading-tight text-white">
               Tempa Web.12<span style={{ color: 'var(--color-coral)' }}>3</span> – Ready-to-go dynamic & static website templates
@@ -43,8 +70,8 @@ const HomePage: React.FC = () => {
           </div>
         </section>
         
-        {/* Section 3: Featured Templates */}
-        <section className="bg-bg-secondary py-20">
+        {/* Section 2: Featured Templates */}
+        <section className="bg-bg-section-dark py-20 md:py-24">
           <div className="container mx-auto px-6 lg:px-[8vw]">
             <h2 className="text-3xl font-bold text-center mb-12 font-poppins">Featured Templates</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -55,73 +82,78 @@ const HomePage: React.FC = () => {
           </div>
         </section>
 
-        {/* Section 4: Category Showcase */}
-        <section className="container mx-auto px-6 lg:px-[8vw]">
-            <div className="bg-bg-card p-8 md:p-12 rounded-2xl shadow-xl border border-border-primary">
-              <h2 className="text-3xl font-bold text-center mb-12 font-poppins">Explore by Category</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                {displayedCategories.map((category) => {
-                  const iconUrl = CATEGORY_IMAGE_ICONS[category.name];
-                  // If a new image icon is available, use it. Otherwise, fall back to the original SVG icon.
-                  if (iconUrl) {
+        {/* Section 3: Category Showcase */}
+        <section className="bg-bg-section-light py-20 md:py-24">
+            <div className="container mx-auto px-6 lg:px-[8vw]">
+              <div className="bg-bg-card p-8 md:p-12 rounded-2xl shadow-xl border border-border-primary">
+                <h2 className="text-3xl font-bold text-center mb-12 font-poppins">Explore by Category</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                  {displayedCategories.map((category) => {
+                    const iconUrl = CATEGORY_IMAGE_ICONS[category.name];
+                    // If a new image icon is available, use it. Otherwise, fall back to the original SVG icon.
+                    if (iconUrl) {
+                      return (
+                        <Link
+                          to={getCatalogCategoryPath(category.name)}
+                          key={category.name}
+                          className="group bg-brand-50 p-6 rounded-xl text-center transition-all duration-300 hover:-translate-y-2 hover:shadow-xl flex flex-col items-center border border-transparent hover:border-brand-200"
+                        >
+                          <div className="relative w-full h-20 mb-4">
+                            <img
+                              src={iconUrl}
+                              alt={`${category.name} icon`}
+                              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 z-[2] drop-shadow-lg transition-transform duration-200 ease-in-out group-hover:scale-105"
+                            />
+                          </div>
+                          <h3 className="text-xl font-bold text-text-primary font-poppins mb-2">{category.name}</h3>
+                        </Link>
+                      );
+                    }
+                    // Fallback to original SVG icon
                     return (
-                      <Link
-                        to={getCatalogCategoryPath(category.name)}
-                        key={category.name}
-                        className="group bg-brand-50 p-6 rounded-xl text-center transition-all duration-300 hover:-translate-y-2 hover:shadow-xl flex flex-col items-center border border-transparent hover:border-brand-200"
-                      >
-                        <div className="relative w-full h-20 mb-4">
-                          <img
-                            src={iconUrl}
-                            alt={`${category.name} icon`}
-                            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 z-[2] drop-shadow-lg transition-transform duration-200 ease-in-out group-hover:scale-105"
-                          />
-                        </div>
+                       <Link to={getCatalogCategoryPath(category.name)} key={category.name} className="bg-brand-50 p-6 rounded-xl text-center transition-all duration-300 hover:-translate-y-2 hover:shadow-xl flex flex-col items-center border border-transparent hover:border-brand-200">
+                        <div className="flex justify-center mb-4">{category.icon}</div>
                         <h3 className="text-xl font-bold text-text-primary font-poppins mb-2">{category.name}</h3>
                       </Link>
                     );
-                  }
-                  // Fallback to original SVG icon
-                  return (
-                     <Link to={getCatalogCategoryPath(category.name)} key={category.name} className="bg-brand-50 p-6 rounded-xl text-center transition-all duration-300 hover:-translate-y-2 hover:shadow-xl flex flex-col items-center border border-transparent hover:border-brand-200">
-                      <div className="flex justify-center mb-4">{category.icon}</div>
-                      <h3 className="text-xl font-bold text-text-primary font-poppins mb-2">{category.name}</h3>
-                    </Link>
-                  );
-                })}
+                  })}
+                </div>
               </div>
             </div>
         </section>
 
-        {/* Section 5: "Why Us" Teaser */}
-        <section className="container mx-auto px-6 lg:px-[8vw]">
-            <h2 className="text-3xl font-bold text-center mb-4 font-poppins">Your Advantage Starts Here</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
-                <div className="text-center">
-                    <div className="flex justify-center mb-4"><SeoIcon /></div>
-                    <h3 className="text-xl font-bold font-poppins mb-2">Dominate Local Search</h3>
-                    <p className="text-text-secondary">We use the latest SEO and AI to put your business at the top of Google searches, ensuring you reach customers actively looking for you.</p>
-                </div>
-                <div className="text-center">
-                    <div className="flex justify-center mb-4"><ConversionIcon /></div>
-                    <h3 className="text-xl font-bold font-poppins mb-2">Convert Clicks Into Customers</h3>
-                    <p className="text-text-secondary">Our websites are not just beautiful; they are high-performance conversion machines, optimized for speed and seamless mobile sales.</p>
-                </div>
-                <div className="text-center">
-                    <div className="flex justify-center mb-4"><BypassIcon /></div>
-                    <h3 className="text-xl font-bold font-poppins mb-2">Own Your Audience</h3>
-                    <p className="text-text-secondary">Break free from the 30% platform tax. We build you a digital asset that connects you directly with your customers, maximizing your profit on every sale.</p>
-                </div>
-            </div>
-            <div className="text-center mt-12">
-                <Link to={SITE_MAP.WHY_US} className="font-semibold text-primary hover:text-primary-dark transition-colors">
-                    Learn more about our strategy &rarr;
-                </Link>
+        {/* Section 4: "Why Us" Teaser */}
+        <section className="bg-bg-section-dark py-20 md:py-24">
+            <div className="container mx-auto px-6 lg:px-[8vw]">
+              <h2 className="text-3xl font-bold text-center mb-4 font-poppins">Your Advantage Starts Here</h2>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+                  <div className="text-center">
+                      <div className="flex justify-center mb-4"><SeoIcon /></div>
+                      <h3 className="text-xl font-bold font-poppins mb-2">Dominate Local Search</h3>
+                      <p className="text-text-secondary">We use the latest SEO and AI to put your business at the top of Google searches, ensuring you reach customers actively looking for you.</p>
+                  </div>
+                  <div className="text-center">
+                      <div className="flex justify-center mb-4"><ConversionIcon /></div>
+                      <h3 className="text-xl font-bold font-poppins mb-2">Convert Clicks Into Customers</h3>
+                      <p className="text-text-secondary">Our websites are not just beautiful; they are high-performance conversion machines, optimized for speed and seamless mobile sales.</p>
+                  </div>
+                  <div className="text-center">
+                      <div className="flex justify-center mb-4"><BypassIcon /></div>
+                      <h3 className="text-xl font-bold font-poppins mb-2">Own Your Audience</h3>
+                      <p className="text-text-secondary">Break free from the 30% platform tax. We build you a digital asset that connects you directly with your customers, maximizing your profit on every sale.</p>
+                  </div>
+              </div>
+              <div className="text-center mt-12">
+                  <Link to={SITE_MAP.WHY_US} className="font-semibold text-primary hover:text-primary-dark transition-colors">
+                      Learn more about our strategy &rarr;
+                  </Link>
+              </div>
             </div>
         </section>
 
-        {/* Section 6: Inspiration Gallery Teaser */}
-        <section className="container mx-auto px-6 lg:px-[8vw]">
+        {/* Section 5: Inspiration Gallery Teaser */}
+        <section className="bg-bg-section-light py-20 md:py-24">
+          <div className="container mx-auto px-6 lg:px-[8vw]">
             <div className="inspiration-gallery-section">
                 <h2 className="text-3xl font-bold mb-8 font-poppins">Unlock Your Creative Potential</h2>
                 <div className="video-frame">
@@ -134,9 +166,10 @@ const HomePage: React.FC = () => {
                     See how our templates can be transformed. Choose a <Link to={SITE_MAP.PRICING_CUSTOMIZATION}>customization package</Link> to unlock your full potential.
                 </p>
             </div>
+          </div>
         </section>
 
-        {/* Section 7: Final Call to Action (CTA) */}
+        {/* Section 6: Final Call to Action (CTA) */}
         <section className="py-20" style={{backgroundColor: 'var(--brand-900)'}}>
             <div className="container mx-auto px-6 lg:px-[8vw] text-center">
                 <h2 className="text-3xl font-bold font-poppins mb-6 text-white">Ready to build your market edge?</h2>

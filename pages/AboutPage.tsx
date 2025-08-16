@@ -27,7 +27,7 @@ const BenefitCard: React.FC<{ title: string; description: string }> = ({ title, 
 );
 
 const KeyTakeaways: React.FC<{ takeaways: string[] }> = ({ takeaways }) => (
-    <div className="bg-bg-secondary p-6 rounded-lg border-l-4 border-primary mb-12">
+    <div className="bg-bg-card p-6 rounded-lg border-l-4 border-primary">
         <h3 className="font-poppins font-bold text-xl text-text-primary mb-3">Key Takeaways</h3>
         <ul className="space-y-2">
             {takeaways.map((item, index) => (
@@ -54,9 +54,9 @@ const AboutPage: React.FC = () => {
                 description={SEO_CONTENT.ABOUT.description}
                 schema={aboutPageSchema}
             />
-            <div className="bg-white text-base-text font-inter">
+            <div className="text-base-text font-inter">
                 {/* SECTION 1 – Hero Header */}
-                <section className="py-16 md:py-24 bg-white">
+                <section className="py-16 md:py-24 bg-bg-section-dark">
                     <div className="container mx-auto px-6 lg:px-[8vw]">
                         <div className="grid md:grid-cols-2 gap-12 items-center">
                             <div>
@@ -74,7 +74,7 @@ const AboutPage: React.FC = () => {
                 </section>
                 
                  {/* Key Takeaways Section */}
-                <section className="pb-16 md:pb-24">
+                <section className="py-16 md:py-24 bg-bg-section-light">
                     <div className="container mx-auto px-6 lg:px-[8vw]">
                         <KeyTakeaways takeaways={[
                             "We provide high-performance website templates to help small businesses avoid high commission fees from third-party platforms.",
@@ -85,7 +85,7 @@ const AboutPage: React.FC = () => {
                 </section>
 
                 {/* SECTION 2 – Why We Exist */}
-                <section className="py-16 md:py-24 bg-bg-secondary">
+                <section className="py-16 md:py-24 bg-bg-section-dark">
                     <div className="container mx-auto px-6 lg:px-[8vw]">
                         <div className="grid md:grid-cols-2 gap-12 items-center">
                             <div className="order-2 md:order-1">
@@ -108,7 +108,7 @@ const AboutPage: React.FC = () => {
                 </section>
 
                 {/* Founder's Journey Section */}
-                <section className="py-16 md:py-24 bg-white">
+                <section className="py-16 md:py-24 bg-bg-section-light">
                     <div className="container mx-auto px-6 lg:px-[8vw]">
                         <div className="grid md:grid-cols-3 gap-12 items-center">
                              <div className="md:col-span-1 flex justify-center">
@@ -129,7 +129,7 @@ const AboutPage: React.FC = () => {
                 </section>
                 
                 {/* SECTION 3 – What We Offer */}
-                <section className="py-16 md:py-24 bg-bg-secondary">
+                <section className="py-16 md:py-24 bg-bg-section-dark">
                     <div className="container mx-auto px-6 lg:px-[8vw]">
                         <div className="text-center max-w-3xl mx-auto mb-12">
                             <h2 className="text-3xl md:text-4xl font-bold font-poppins text-grey-900">What We Offer</h2>
@@ -149,7 +149,7 @@ const AboutPage: React.FC = () => {
                 </section>
 
                 {/* SECTION 4 – Explore Before You Commit */}
-                <section className="py-16 md:py-24 bg-white">
+                <section className="py-16 md:py-24 bg-bg-section-light">
                     <div className="container mx-auto px-6 lg:px-[8vw]">
                         <div className="text-center max-w-3xl mx-auto">
                             <h2 className="text-3xl md:text-4xl font-bold font-poppins text-grey-900 mb-6">Explore Before You Commit</h2>
@@ -181,7 +181,7 @@ const AboutPage: React.FC = () => {
                 </section>
 
                 {/* SECTION 5 – Engineered for Performance */}
-                <section className="py-16 md:py-24 bg-bg-secondary">
+                <section className="py-16 md:py-24 bg-bg-section-dark">
                     <div className="container mx-auto px-6 lg:px-[8vw]">
                         <div className="grid md:grid-cols-2 gap-12 items-center">
                             <div className="order-2 md:order-1">
@@ -201,7 +201,7 @@ const AboutPage: React.FC = () => {
                 </section>
                 
                 {/* SECTION 6 – Who It’s For */}
-                <section className="py-16 md:py-24 bg-white">
+                <section className="py-16 md:py-24 bg-bg-section-light">
                     <div className="container mx-auto px-6 lg:px-[8vw]">
                         <div className="text-center max-w-3xl mx-auto">
                             <h2 className="text-3xl md:text-4xl font-bold font-poppins text-grey-900 mb-6">Who It’s For</h2>

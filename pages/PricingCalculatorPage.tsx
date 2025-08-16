@@ -84,7 +84,7 @@ const PricingCalculatorPage: React.FC = () => {
                 title={SEO_CONTENT.PRICING_CALCULATOR.title}
                 description={SEO_CONTENT.PRICING_CALCULATOR.description}
             />
-            <div className="bg-bg-secondary py-16 md:py-24">
+            <section className="bg-bg-section-dark py-16 md:py-24">
                 <div className="container mx-auto px-6 lg:px-[8vw]">
                     <div className="text-center max-w-3xl mx-auto mb-12">
                         <h1 className="text-4xl md:text-5xl font-bold font-poppins text-text-primary">Project Cost Calculator</h1>
@@ -204,7 +204,7 @@ const PricingCalculatorPage: React.FC = () => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </section>
         </>
     );
 };

@@ -92,7 +92,7 @@ const BenefitCard: React.FC<BenefitCardProps> = ({ title, text, icon }) => (
 );
 
 const KeyTakeaways: React.FC<{ takeaways: string[] }> = ({ takeaways }) => (
-    <div className="bg-bg-card p-6 rounded-lg border-l-4 border-primary mb-12">
+    <div className="bg-bg-card p-6 rounded-lg border-l-4 border-primary">
         <h3 className="font-poppins font-bold text-xl text-text-primary mb-3">Key Takeaways</h3>
         <ul className="space-y-2">
             {takeaways.map((item, index) => (
@@ -135,8 +135,8 @@ const WhyUsPage: React.FC = () => {
                 description={SEO_CONTENT.WHY_US.description}
                 schema={whyUsSchema}
             />
-            <div className="bg-bg-primary font-inter">
-                <section className="relative py-16 md:py-24 bg-bg-card">
+            <div className="font-inter">
+                <section className="relative py-16 md:py-24 bg-bg-section-dark">
                     <div className="container mx-auto px-6 lg:px-[8vw] text-center">
                         <h1 className="text-4xl md:text-5xl font-bold font-poppins text-text-primary leading-tight">
                             Why Smart Businesses Choose Us
@@ -147,16 +147,18 @@ const WhyUsPage: React.FC = () => {
                     </div>
                 </section>
                 
-                <section className="container mx-auto px-6 lg:px-[8vw] pt-16">
-                    <KeyTakeaways takeaways={[
-                        "We offer specialized SEO strategies for both local Thai businesses and global sellers entering the Thai market.",
-                        "Our approach focuses on performance, conversion, and helping you bypass high commission fees from other platforms.",
-                        "We build future-proof, secure, and low-maintenance websites that serve as long-term strategic assets for your business."
-                    ]} />
+                <section className="bg-bg-section-light pt-16">
+                    <div className="container mx-auto px-6 lg:px-[8vw]">
+                        <KeyTakeaways takeaways={[
+                            "We offer specialized SEO strategies for both local Thai businesses and global sellers entering the Thai market.",
+                            "Our approach focuses on performance, conversion, and helping you bypass high commission fees from other platforms.",
+                            "We build future-proof, secure, and low-maintenance websites that serve as long-term strategic assets for your business."
+                        ]} />
+                    </div>
                 </section>
 
 
-                <section className="py-16 md:py-24">
+                <section className="bg-bg-section-light py-16 md:py-24">
                     <div className="container mx-auto px-6 lg:px-[8vw]">
                         <h2 className="text-3xl font-bold font-poppins text-text-primary text-center">The Online World is Competitive.</h2>
                         <p className="text-xl text-text-secondary mt-2 text-center">Your Advantage Starts Here.</p>

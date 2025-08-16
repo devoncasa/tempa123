@@ -85,7 +85,7 @@ const VideoGalleryPage: React.FC = () => {
                     border: 0;
                 }
             `}</style>
-            <div className="bg-bg-secondary py-16 md:py-24">
+            <section className="bg-bg-section-dark py-16 md:py-24">
                 <div className="container mx-auto px-6 lg:px-[8vw]">
                     <div className="max-w-3xl mx-auto text-center">
                         <h1 className="text-4xl md:text-5xl font-bold font-poppins text-text-primary">Video Showcase</h1>
@@ -144,7 +144,7 @@ const VideoGalleryPage: React.FC = () => {
                         ))}
                     </div>
                 </div>
-            </div>
+            </section>
         </>
     );
 };

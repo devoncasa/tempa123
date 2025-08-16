@@ -37,9 +37,9 @@ const MultilingualServicePage: React.FC = () => {
                 title={SEO_CONTENT.SERVICES_MULTILINGUAL.title}
                 description={SEO_CONTENT.SERVICES_MULTILINGUAL.description}
             />
-            <div className="bg-white">
+            <div>
                 {/* Hero Section */}
-                <section className="py-16 md:py-24 bg-bg-secondary">
+                <section className="py-16 md:py-24 bg-bg-section-dark">
                     <div className="container mx-auto px-6 lg:px-[8vw] text-center">
                         <h1 className="text-4xl md:text-5xl font-bold font-poppins text-brand-900 leading-tight">
                             Reach a Global Audience
@@ -51,7 +51,7 @@ const MultilingualServicePage: React.FC = () => {
                 </section>
 
                 {/* Process Section */}
-                <section className="py-16 md:py-24">
+                <section className="py-16 md:py-24 bg-bg-section-light">
                     <div className="container mx-auto px-6 lg:px-[8vw]">
                         <h2 className="text-3xl font-bold font-poppins text-center mb-16">Our Proven 3-Step Process</h2>
                         <div className="grid md:grid-cols-3 gap-12 text-center">
@@ -81,7 +81,7 @@ const MultilingualServicePage: React.FC = () => {
                 </section>
 
                 {/* Pricing Section */}
-                <section className="py-16 md:py-24 bg-bg-secondary">
+                <section className="py-16 md:py-24 bg-bg-section-dark">
                     <div className="container mx-auto px-6 lg:px-[8vw]">
                         <h2 className="text-3xl font-bold font-poppins text-center mb-4">Transparent Pricing</h2>
                         <p className="text-lg text-grey-600 text-center max-w-3xl mx-auto mb-12">
@@ -137,7 +137,7 @@ const MultilingualServicePage: React.FC = () => {
                 </section>
 
                 {/* FAQ Section */}
-                <section className="py-16 md:py-24">
+                <section className="py-16 md:py-24 bg-bg-section-light">
                     <div className="container mx-auto px-6 lg:px-[8vw]">
                         <h3 className="text-3xl font-bold text-center mb-12 font-poppins">Multilingual Service FAQs</h3>
                         <div className="max-w-3xl mx-auto bg-white p-8 rounded-lg shadow-lg border border-grey-200">

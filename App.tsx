@@ -1,6 +1,8 @@
 
 
-import React, { useEffect } from 'react';
+
+
+import React from 'react';
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -30,9 +32,6 @@ import VideoGalleryPage from './pages/VideoGalleryPage';
 import CheckoutPage from './src/pages/CheckoutPage';
 
 import { SITE_MAP } from './src/siteMap';
-import { ASSETS } from './src/assets';
-
-const backgroundImages = ASSETS.BACKGROUND_IMAGES;
 
 const ProtectedGalleryRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { user } = useAuth();
@@ -52,44 +51,13 @@ const ProtectedAuthRoute: React.FC<{ children: React.ReactNode }> = ({ children 
 
 const App: React.FC = () => {
   const { user } = useAuth();
-  const location = useLocation();
-  const isHomePage = location.pathname === '/';
-
-  useEffect(() => {
-    const body = document.body;
-    let styleElement = document.getElementById('parallax-bg-style');
-    if (!styleElement) {
-        styleElement = document.createElement('style');
-        styleElement.id = 'parallax-bg-style';
-        document.head.appendChild(styleElement);
-    }
-
-    if (isHomePage) {
-        body.classList.add('homepage');
-        styleElement.innerHTML = ''; 
-    } else {
-        body.classList.remove('homepage');
-        const randomIndex = Math.floor(Math.random() * backgroundImages.length);
-        const randomImageUrl = backgroundImages[randomIndex];
-        styleElement.innerHTML = `
-            body:not(.homepage)::before {
-                background-image: url('${randomImageUrl}');
-            }
-        `;
-    }
-    
-    return () => {
-        body.classList.remove('homepage');
-    };
-  }, [isHomePage, location.pathname]);
-
 
   return (
     <>
       <ScrollToTop />
       <WelcomePopup />
       {user.isAdmin && <AdminPortal />}
-      <div className={`flex flex-col min-h-screen ${isHomePage ? 'bg-bg-primary' : 'bg-transparent'} font-inter text-text-primary ${user.isAdmin ? 'blur-sm brightness-50' : ''}`}>
+      <div className={`flex flex-col min-h-screen bg-bg-primary font-inter text-text-primary ${user.isAdmin ? 'blur-sm brightness-50' : ''}`}>
         <Header />
         <main className="flex-grow">
           <Routes>

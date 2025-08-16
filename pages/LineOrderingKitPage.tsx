@@ -225,7 +225,7 @@ const LineOrderingKitPage: React.FC = () => {
                 }
             `}</style>
             
-            <div className="bg-white">
+            <div>
                 <section className="py-16 md:py-24 text-center" style={{background: 'linear-gradient(135deg, #2E7D32 0%, #4CAF50 100%)'}}>
                     <div className="container mx-auto px-6 lg:px-[8vw]">
                         <h1 className="text-4xl md:text-5xl font-bold font-poppins text-white leading-tight">
@@ -240,7 +240,7 @@ const LineOrderingKitPage: React.FC = () => {
                     </div>
                 </section>
 
-                <section className="py-16 md:py-24">
+                <section className="py-16 md:py-24 bg-bg-section-dark">
                     <div className="container mx-auto px-6 lg:px-[8vw]">
                         <div className="grid lg:grid-cols-2 gap-16 items-center">
                             <div>
@@ -279,7 +279,7 @@ const LineOrderingKitPage: React.FC = () => {
                     </div>
                 </section>
                 
-                <section className="py-16 md:py-24 bg-gray-50">
+                <section className="py-16 md:py-24 bg-bg-section-light">
                     <div className="container mx-auto px-6 lg:px-[8vw]">
                          <h2 className="text-3xl font-bold font-poppins text-center mb-12 text-gray-800">สิ่งที่คุณจะได้รับในราคา 500 บาท</h2>
                          <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-8">

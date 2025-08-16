@@ -50,6 +50,25 @@ const Footer: React.FC = () => {
                                <img src={ASSETS.LOGO_WHITE_FOOTER} alt="Tempa Web.123 Logo" className="h-8 w-auto" />
                             </div>
                             <p className="text-gray-400 text-sm">High-performance website templates for businesses ready to own their online presence.</p>
+                            
+                            <div className="mt-6 text-sm">
+                                <p className="font-semibold text-white mb-2 uppercase tracking-wider">Contact Us</p>
+                                <div className="space-y-2 text-gray-400">
+                                    <p>
+                                        <a href="mailto:info@tempa123.com" className="hover:text-white transition-colors duration-300 flex items-center gap-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" /><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" /></svg>
+                                            <span>info@tempa123.com</span>
+                                        </a>
+                                    </p>
+                                    <p>
+                                        <a href="tel:+66818519922" className="hover:text-white transition-colors duration-300 flex items-center gap-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" /></svg>
+                                            <span>+66 (0)81 851 9922</span>
+                                        </a>
+                                    </p>
+                                </div>
+                            </div>
+
                             <div className="flex space-x-5 mt-6">
                                 <SocialIcon href="#" label="Twitter">
                                     <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M22.46,6C21.69,6.35 20.86,6.58 20,6.69C20.88,6.16 21.56,5.32 21.88,4.31C21.05,4.81 20.13,5.16 19.16,5.36C18.37,4.5 17.26,4 16,4C13.65,4 11.73,5.92 11.73,8.29C11.73,8.63 11.77,8.96 11.84,9.27C8.28,9.09 5.11,7.38 2.98,4.79C2.63,5.42 2.42,6.16 2.42,6.94C2.42,8.43 3.17,9.75 4.33,10.5C3.62,10.48 2.96,10.3 2.38,10C2.38,10 2.38,10 2.38,10.03C2.38,12.11 3.86,13.85 5.82,14.24C5.46,14.34 5.08,14.39 4.69,14.39C4.42,14.39 4.15,14.36 3.89,14.31C4.43,16.02 6.13,17.26 8.12,17.29C6.67,18.45 4.81,19.12 2.83,19.12C2.47,19.12 2.12,19.1 1.77,19.04C3.78,20.36 6.17,21.16 8.76,21.16C16,21.16 20.24,15.39 20.24,10.1C20.24,9.88 20.24,9.66 20.23,9.45C21,8.85 21.82,8.13 22.46,7.29L22.46,6Z" /></svg>
@@ -82,7 +101,6 @@ const Footer: React.FC = () => {
                         <div className="col-span-2 md:col-span-2">
                             <h3 className="font-poppins font-semibold text-white tracking-wider uppercase mb-4">Support</h3>
                             <ul className="space-y-3">
-                                <FooterLink to={SITE_MAP.CONTACT}>Contact</FooterLink>
                                 <FooterLink to={SITE_MAP.PRICING}>FAQ</FooterLink>
                                 <FooterLink to={SITE_MAP.SUBMIT_TEMPLATE}>Submit Template</FooterLink>
                             </ul>

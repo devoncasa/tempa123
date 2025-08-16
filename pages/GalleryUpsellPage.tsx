@@ -9,7 +9,7 @@ const GalleryUpsellPage: React.FC = () => {
         title="Access the Inspiration Gallery | Tempa Web.123"
         description="Upgrade your plan to get access to thousands of professional, high-quality images to make your website stunning."
       />
-      <div className="py-16 md:py-24 bg-bg-secondary">
+      <section className="py-16 md:py-24 bg-bg-section-dark">
         <div className="container mx-auto px-6 lg:px-[8vw]">
           <div className="max-w-4xl mx-auto text-center">
             <div className="inline-block bg-brand-200 text-brand-700 p-4 rounded-full mb-6">
@@ -62,7 +62,7 @@ const GalleryUpsellPage: React.FC = () => {
             </Link>
           </div>
         </div>
-      </div>
+      </section>
     </>
   );
 };

@@ -118,25 +118,27 @@ const InspirationGalleryPage: React.FC = () => {
                     margin-bottom: 1.5rem; /* 24px */
                 }
             `}</style>
-            <div className="bg-bg-primary">
+            <div>
                 {/* Section 1: Hero Video Showcase */}
-                <section className="container mx-auto px-6 lg:px-[8vw] pt-12 md:pt-16">
-                    <div className="inspiration-gallery-section !my-0">
-                        <h2 className="text-3xl md:text-4xl font-bold font-poppins">Unlock Your Creative Potential</h2>
-                        <div className="video-frame">
-                            <video autoPlay muted playsInline preload="metadata" poster="https://raw.githubusercontent.com/devoncasa/Tempa123-Asset/main/images/logos/tempa123-flying-banner-logo.webp">
-                                <source src="https://raw.githubusercontent.com/devoncasa/Tempa123-Asset/main/images/logos/tempa123-photo-gallery-002.mp4" type="video/mp4" />
-                                Your browser does not support the video tag.
-                            </video>
+                <section className="bg-bg-section-dark pt-12 md:pt-16">
+                    <div className="container mx-auto px-6 lg:px-[8vw]">
+                        <div className="inspiration-gallery-section !my-0">
+                            <h2 className="text-3xl md:text-4xl font-bold font-poppins">Unlock Your Creative Potential</h2>
+                            <div className="video-frame">
+                                <video autoPlay muted playsInline preload="metadata" poster="https://raw.githubusercontent.com/devoncasa/Tempa123-Asset/main/images/logos/tempa123-flying-banner-logo.webp">
+                                    <source src="https://raw.githubusercontent.com/devoncasa/Tempa123-Asset/main/images/logos/tempa123-photo-gallery-002.mp4" type="video/mp4" />
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
+                            <p className="gallery-intro-text max-w-2xl mx-auto">
+                                The Inspiration Gallery is a premium, curated library of high-resolution stock photography, available exclusively to our subscribers and customization clients.
+                            </p>
                         </div>
-                        <p className="gallery-intro-text max-w-2xl mx-auto">
-                            The Inspiration Gallery is a premium, curated library of high-resolution stock photography, available exclusively to our subscribers and customization clients.
-                        </p>
                     </div>
                 </section>
 
                 {/* Section 2: Photo Stock Gallery */}
-                <section className="py-16 md:py-24 bg-bg-secondary">
+                <section className="py-16 md:py-24 bg-bg-section-light">
                     <div className="container mx-auto px-6 lg:px-[8vw]">
                         <h2 className="text-3xl font-bold font-poppins text-center mb-4">Explore the Collection</h2>
                         <div className="flex justify-center flex-wrap gap-3 mb-12">

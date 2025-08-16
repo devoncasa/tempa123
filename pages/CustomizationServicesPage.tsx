@@ -1,4 +1,5 @@
 
+
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Seo from '../components/Seo';
@@ -10,7 +11,7 @@ import { SEO_CONTENT } from '../src/content';
 
 const SetupIcon = () => (
     <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426-1.756-2.924-1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426-1.756-2.924-1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0 3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
         <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
     </svg>
 );
@@ -197,9 +198,9 @@ const CustomizationServicesPage: React.FC = () => {
                 description={SEO_CONTENT.PRICING_CUSTOMIZATION.description}
                 schema={servicesSchema}
             />
-            <div className="bg-bg-primary">
+            <div>
                 {/* Section 1: Hero */}
-                <section className="py-16 md:py-24">
+                <section className="bg-bg-section-dark py-16 md:py-24">
                     <div className="container mx-auto px-6 lg:px-[8vw]">
                         <div className="grid md:grid-cols-2 gap-12 items-center">
                             <div className="text-center md:text-left">
@@ -218,7 +219,7 @@ const CustomizationServicesPage: React.FC = () => {
                 </section>
 
                 {/* Section 2: Service Packages Grid */}
-                <section className="py-16 md:py-24 bg-bg-secondary">
+                <section className="bg-bg-section-light py-16 md:py-24">
                     <div className="container mx-auto px-6 lg:px-[8vw]">
                          <div className="text-center max-w-3xl mx-auto">
                             <h2 className="text-3xl md:text-4xl font-bold font-poppins text-grey-900">Our Service Packages</h2>
@@ -244,7 +245,7 @@ const CustomizationServicesPage: React.FC = () => {
                 </section>
 
                 {/* Section 3: Multilingual Services CTA */}
-                <section className="py-16 md:py-24">
+                <section className="bg-bg-section-dark py-16 md:py-24">
                     <div className="container mx-auto px-6 lg:px-[8vw]">
                         <div className="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-lg border border-grey-200 flex flex-col md:flex-row items-center gap-8">
                             <div className="flex-shrink-0 bg-brand-50 p-6 rounded-full">

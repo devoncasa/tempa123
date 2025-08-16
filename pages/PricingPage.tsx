@@ -1,4 +1,5 @@
 
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Seo from '../components/Seo';
@@ -120,46 +121,54 @@ const PricingPage: React.FC = () => {
         title={SEO_CONTENT.PRICING.title}
         description={SEO_CONTENT.PRICING.description}
       />
-      <div className="bg-bg-secondary py-16 md:py-24">
+      <div>
         {/* Header */}
-        <section className="container mx-auto px-6 lg:px-[8vw] text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-bold font-poppins text-text-primary">
-            Flexible Pricing for Every Creator
-          </h1>
-          <p className="text-lg md:text-xl text-text-secondary mt-4 max-w-3xl mx-auto">
-            Whether you're starting a single project or building an empire, we have a plan that fits your ambition. All plans come with high-quality, performance-optimized code.
-          </p>
+        <section className="bg-bg-section-dark py-16 md:py-24">
+          <div className="container mx-auto px-6 lg:px-[8vw] text-center">
+            <h1 className="text-4xl md:text-5xl font-bold font-poppins text-text-primary">
+              Flexible Pricing for Every Creator
+            </h1>
+            <p className="text-lg md:text-xl text-text-secondary mt-4 max-w-3xl mx-auto">
+              Whether you're starting a single project or building an empire, we have a plan that fits your ambition. All plans come with high-quality, performance-optimized code.
+            </p>
+          </div>
         </section>
 
         {/* Pricing Table */}
-        <section className="container mx-auto px-6 lg:px-[8vw]">
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 max-w-7xl mx-auto">
-                {pricingTiers.map(tier => <PricingCard key={tier.title} tier={tier} />)}
+        <section className="bg-bg-section-light py-16 md:py-24">
+            <div className="container mx-auto px-6 lg:px-[8vw]">
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 max-w-7xl mx-auto">
+                    {pricingTiers.map(tier => <PricingCard key={tier.title} tier={tier} />)}
+                </div>
+                <p className="text-center text-sm text-text-secondary mt-8">All prices are in USD and exclude any applicable taxes.</p>
             </div>
-            <p className="text-center text-sm text-text-secondary mt-8">All prices are in USD and exclude any applicable taxes.</p>
         </section>
 
         {/* Customization CTA */}
-        <section className="container mx-auto px-6 lg:px-[8vw] mt-24">
-            <div className="bg-brand-900 text-white rounded-2xl p-12 text-center max-w-5xl mx-auto shadow-xl">
-                 <h2 className="text-3xl font-bold font-poppins">Need Help with Setup or Customization?</h2>
-                 <p className="mt-4 mb-8 text-lg text-gray-300 max-w-2xl mx-auto">
-                     Short on time or technical skills? Let our expert team build your website for you. We'll handle everything from setup to content placement.
-                 </p>
-                 <Link to={SITE_MAP.PRICING_CUSTOMIZATION} className="btn btn-secondary-outline !text-white !border-white hover:!bg-white hover:!text-brand-900">
-                    View Customization Services
-                 </Link>
+        <section className="bg-bg-section-dark py-16 md:py-24">
+            <div className="container mx-auto px-6 lg:px-[8vw]">
+              <div className="bg-brand-900 text-white rounded-2xl p-12 text-center max-w-5xl mx-auto shadow-xl">
+                   <h2 className="text-3xl font-bold font-poppins">Need Help with Setup or Customization?</h2>
+                   <p className="mt-4 mb-8 text-lg text-gray-300 max-w-2xl mx-auto">
+                       Short on time or technical skills? Let our expert team build your website for you. We'll handle everything from setup to content placement.
+                   </p>
+                   <Link to={SITE_MAP.PRICING_CUSTOMIZATION} className="btn btn-secondary-outline !text-white !border-white hover:!bg-white hover:!text-brand-900">
+                      View Customization Services
+                   </Link>
+              </div>
             </div>
         </section>
 
 
         {/* FAQ Section */}
-        <section className="container mx-auto px-6 lg:px-[8vw] mt-24">
-          <h2 className="text-3xl font-bold text-center mb-12 font-poppins">Frequently Asked Questions</h2>
-          <div className="max-w-3xl mx-auto bg-bg-card p-8 rounded-2xl shadow-xl border border-border-primary">
-            {faqItems.map((item) => (
-              <FaqItem key={item.question} item={item} />
-            ))}
+        <section className="bg-bg-section-light py-16 md:py-24">
+          <div className="container mx-auto px-6 lg:px-[8vw]">
+            <h2 className="text-3xl font-bold text-center mb-12 font-poppins">Frequently Asked Questions</h2>
+            <div className="max-w-3xl mx-auto bg-bg-card p-8 rounded-2xl shadow-xl border border-border-primary">
+              {faqItems.map((item) => (
+                <FaqItem key={item.question} item={item} />
+              ))}
+            </div>
           </div>
         </section>
       </div>
