@@ -55,21 +55,21 @@ const MultilingualServicePage: React.FC = () => {
                     <div className="container mx-auto px-6 lg:px-[8vw]">
                         <h2 className="text-3xl font-bold font-poppins text-center mb-16">Our Proven 3-Step Process</h2>
                         <div className="grid md:grid-cols-3 gap-12 text-center">
-                            <div className="flex flex-col items-center">
+                            <div className="flex flex-col items-center p-6 bg-white rounded-lg border-2 border-brand-900 shadow-lg">
                                 <div className="bg-brand-100 text-brand-700 rounded-full p-6 mb-6">
                                     <FoundationIcon />
                                 </div>
                                 <h3 className="text-xl font-bold font-poppins mb-2">1. Technical Foundation</h3>
                                 <p className="text-grey-600">We implement the core technology, making your site ready for multiple languages, including URL setup and a language switcher.</p>
                             </div>
-                            <div className="flex flex-col items-center">
+                            <div className="flex flex-col items-center p-6 bg-white rounded-lg border-2 border-brand-900 shadow-lg">
                                 <div className="bg-brand-100 text-brand-700 rounded-full p-6 mb-6">
                                     <TranslationIcon />
                                 </div>
                                 <h3 className="text-xl font-bold font-poppins mb-2">2. Professional Translation</h3>
                                 <p className="text-grey-600">Our native-speaking experts translate your content, ensuring it is not just accurate, but culturally effective and localized.</p>
                             </div>
-                            <div className="flex flex-col items-center">
+                            <div className="flex flex-col items-center p-6 bg-white rounded-lg border-2 border-brand-900 shadow-lg">
                                 <div className="bg-brand-100 text-brand-700 rounded-full p-6 mb-6">
                                     <LaunchIcon />
                                 </div>
@@ -90,7 +90,7 @@ const MultilingualServicePage: React.FC = () => {
 
                         <div className="grid lg:grid-cols-5 gap-8 items-start">
                             {/* Card 1: Setup */}
-                            <div className="lg:col-span-2 bg-white p-8 rounded-lg shadow-lg border border-grey-200">
+                            <div className="lg:col-span-2 bg-white p-8 rounded-lg shadow-lg border-2 border-brand-900">
                                 <h3 className="text-2xl font-bold font-poppins text-brand-900">One-Time Technical Setup</h3>
                                 <p className="font-semibold text-grey-600 mt-1 mb-4">(Required for all projects)</p>
                                 <p className="text-4xl font-bold font-poppins text-brand-700">4,999 THB</p>
@@ -105,7 +105,7 @@ const MultilingualServicePage: React.FC = () => {
                             </div>
                             
                             {/* Card 2: Packages */}
-                            <div className="lg:col-span-3 bg-white p-8 rounded-lg shadow-lg border border-grey-200">
+                            <div className="lg:col-span-3 bg-white p-8 rounded-lg shadow-lg border-2 border-brand-900">
                                 <h3 className="text-2xl font-bold font-poppins text-brand-900">Per-Language Content Packages</h3>
                                 <p className="font-semibold text-grey-600 mt-1 mb-6">(Up to 7 pages of content)</p>
                                 
@@ -127,7 +127,7 @@ const MultilingualServicePage: React.FC = () => {
 
                         <p className="text-center text-xs text-grey-600 mt-6">All prices exclude 7% VAT.</p>
 
-                        <div className="mt-12 bg-white p-6 rounded-lg shadow-md max-w-5xl mx-auto border border-grey-200">
+                        <div className="mt-12 bg-white p-6 rounded-lg shadow-md max-w-5xl mx-auto border-2 border-brand-900">
                             <h4 className="font-bold font-poppins text-center text-lg mb-2">Why are the prices different?</h4>
                             <p className="text-grey-600 text-center leading-relaxed">
                                 Our pricing reflects the resources required for guaranteed quality. For English and Thai, our in-house team can manage and audit the content, keeping costs lower. For other world languages, we invest in professional, native-speaking human translators and localization experts to ensure your message is culturally appropriate and effective. This investment guarantees a premium result that resonates with a global audience.
@@ -140,7 +140,7 @@ const MultilingualServicePage: React.FC = () => {
                 <section className="py-16 md:py-24 bg-bg-section-light">
                     <div className="container mx-auto px-6 lg:px-[8vw]">
                         <h3 className="text-3xl font-bold text-center mb-12 font-poppins">Multilingual Service FAQs</h3>
-                        <div className="max-w-3xl mx-auto bg-white p-8 rounded-lg shadow-lg border border-grey-200">
+                        <div className="max-w-3xl mx-auto bg-white p-8 rounded-lg shadow-lg border-2 border-brand-900">
                             {MULTILINGUAL_FAQ_ITEMS.map((item) => (
                                 <FaqItem key={item.question} item={item} />
                             ))}

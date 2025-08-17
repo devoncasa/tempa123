@@ -11,7 +11,7 @@ import { SEO_CONTENT } from '../src/content';
 
 const SetupIcon = () => (
     <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426-1.756-2.924-1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0 3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426-1.756-2.924-1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0 3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826 3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
         <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
     </svg>
 );
@@ -129,7 +129,7 @@ const PricingDetailModal: React.FC<{ pkg: ServicePackage; onClose: () => void }>
 
 const ServicePackageCard: React.FC<{ pkg: ServicePackage; onDetailsClick: (pkg: ServicePackage) => void }> = ({ pkg, onDetailsClick }) => {
     const isCustom = pkg.isCustom;
-    const cardClasses = `rounded-lg shadow-lg border flex flex-col ${isCustom ? 'bg-brand-50 border-brand-500 border-2' : 'bg-white border-grey-200'}`;
+    const cardClasses = `rounded-lg shadow-lg border-2 flex flex-col ${isCustom ? 'bg-brand-50 border-primary' : 'bg-white border-brand-900'}`;
     
     return (
         <div className={cardClasses}>
@@ -210,7 +210,7 @@ const CustomizationServicesPage: React.FC = () => {
                                 </p>
                             </div>
                             <div className="flex justify-center items-center">
-                                <div className="bg-brand-50 p-8 rounded-full">
+                                <div className="bg-brand-50 p-8 rounded-full border-2 border-brand-900">
                                     <SetupIcon />
                                 </div>
                             </div>
@@ -247,8 +247,8 @@ const CustomizationServicesPage: React.FC = () => {
                 {/* Section 3: Multilingual Services CTA */}
                 <section className="bg-bg-section-dark py-16 md:py-24">
                     <div className="container mx-auto px-6 lg:px-[8vw]">
-                        <div className="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-lg border border-grey-200 flex flex-col md:flex-row items-center gap-8">
-                            <div className="flex-shrink-0 bg-brand-50 p-6 rounded-full">
+                        <div className="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-lg border-2 border-brand-900 flex flex-col md:flex-row items-center gap-8">
+                            <div className="flex-shrink-0 bg-brand-50 p-6 rounded-full border-2 border-brand-900">
                                 <GlobeIcon />
                             </div>
                             <div className="text-center md:text-left">

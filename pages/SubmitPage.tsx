@@ -21,7 +21,7 @@ const SubmitPage: React.FC = () => {
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-              <div className="bg-white p-8 rounded-lg shadow-lg border border-grey-200">
+              <div className="bg-white p-8 rounded-lg shadow-lg border-2 border-brand-900">
                 <h2 className="text-2xl font-bold font-poppins mb-4">Submission Instructions</h2>
                 <ol className="list-decimal list-inside space-y-3 text-grey-600">
                   <li>Ensure your template is fully responsive and mobile-friendly.</li>
@@ -36,7 +36,7 @@ const SubmitPage: React.FC = () => {
                 </p>
               </div>
 
-              <div className="bg-white p-8 rounded-lg shadow-lg border border-grey-200">
+              <div className="bg-white p-8 rounded-lg shadow-lg border-2 border-brand-900">
                 <h2 className="text-2xl font-bold font-poppins mb-4">Submission Form</h2>
                 <div className="bg-gray-100 border-2 border-dashed border-grey-200 rounded-lg p-8 text-center">
                   <p className="text-grey-900 font-semibold">Embedded Google Form</p>

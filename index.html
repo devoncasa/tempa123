@@ -27,39 +27,34 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Lora:wght@400;700&display=swap" rel="stylesheet">
     <style>
       :root {
-        /* --- 5-Hue Fixed Color Theme --- */
-        --color-bg-lightest: #e5f9f7;    /* page background */
-        --color-ui-light: #b3ece7;       /* cards, input fields, highlights */
-        --color-base: #1dc3b6;           /* buttons, links, primary accents */
-        --color-dark: #159d93;           /* section titles, borders */
-        --color-darkest: #0e7a70;        /* bold text, headlines, navs */
+        /* --- NEW Pastel Green Palette --- */
+        --color-darkest: #0e7a70;
+        --color-dark: #159d93;
+        --color-base: #1dc3b6;
+        --color-ui-light: #b3ece7;
+        --color-bg-lightest: #e5f9f7;
         
-        /* --- NEW SECTION BACKGROUNDS --- */
-        --color-bg-section-dark: #dcfce7;
-        --color-bg-section-light: #f0fdf4;
+        /* --- NEW Pastel Orange Accent --- */
+        --color-accent-orange: #e9806c;
 
         /* --- Logo Anchor Tone --- */
-        --color-logo: #198c84;           /* header/nav consistent branding */
+        --color-logo: var(--color-darkest);
 
-        /* --- Coral Accent --- */
-        --color-coral: #e9806c;          /* call-to-action, highlights, prices, hover states */
-
-        /* --- Primary Brand Hues (Remapped for component compatibility) --- */
+        /* --- Remapped Brand Colors --- */
         --brand-900: var(--color-darkest);
         --brand-700: var(--color-dark);
         --brand-500: var(--color-base);
         --brand-200: var(--color-ui-light);
-        --brand-50:  var(--white); /* Remapped to white for contrast on colored page BG */
+        --brand-50:  var(--white); 
 
         /* --- Secondary Accent Color --- */
-        --accent-coral: var(--color-coral);
+        --accent-coral: var(--color-accent-orange);
 
         /* --- Neutral Palette --- */
         --grey-900: #2d3748; 
         --grey-600: #718096; 
         --grey-200: #E2E8F0; 
         --white:     #FFFFFF; 
-        --off-white: #F8FAFC; /* Deprecated, use --color-bg-lightest */
         
         /* --- Semantic Mapping (for global consistency) --- */
         --color-primary: var(--brand-500);
@@ -72,14 +67,19 @@
         --color-text-nav: var(--color-text-primary);
 
         --color-bg-primary: var(--color-bg-lightest);
-        --color-bg-secondary: var(--white); /* White sections on light teal background */
+        --color-bg-secondary: var(--white);
         --color-bg-card: var(--white);
         
         --color-border: var(--grey-200);
         --color-white: var(--white);
         --color-success: #48bb78;
         --color-error: #f56565;
+        
+        /* --- DEPRECATED - Kept for compatibility, but prefer new names --- */
+        --color-bg-section-dark: var(--color-ui-light);
+        --color-bg-section-light: var(--color-bg-lightest);
 
+        /* --- Global Component Mapping --- */
         --bg-primary: var(--color-bg-primary);
         --bg-secondary: var(--color-bg-secondary);
         
@@ -100,6 +100,7 @@
 
       body {
         background-color: var(--bg-primary);
+        background-image: linear-gradient(170deg, #e5f9f7 0%, #ffffff 100%);
         color: var(--text-primary);
         font-family: 'Inter', sans-serif;
       }
@@ -175,7 +176,7 @@
         padding: 6px; /* Thinner inner spacing */
         border-radius: 16px;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        border: 1px solid var(--grey-200); /* A very fine, light grey border to distinguish from a white page */
+        border: 2px solid var(--color-darkest);
         line-height: 0;
       }
 
@@ -412,14 +413,13 @@
                 primary: 'var(--bg-primary)',
                 secondary: 'var(--bg-secondary)',
                 card: 'var(--bg-card)',
-                'section-dark': 'var(--color-bg-section-dark)',
-                'section-light': 'var(--color-bg-section-light)',
+                'section-dark': 'rgba(179, 236, 231, 0.7)',
+                'section-light': 'rgba(229, 249, 247, 0.7)',
               },
               border: {
                 primary: 'var(--border-primary)',
               },
               white: 'var(--white)',
-              'off-white': 'var(--off-white)',
               success: 'var(--color-success)',
               error: 'var(--color-error)',
             },

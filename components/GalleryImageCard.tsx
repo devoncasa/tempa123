@@ -56,7 +56,7 @@ const GalleryImageCard: React.FC<GalleryImageCardProps> = ({ image }) => {
                 }
             `}</style>
             <div 
-                className="relative aspect-[4/3] bg-bg-card rounded-xl shadow-lg overflow-hidden transition-transform duration-300 group watermark-container border border-border-primary"
+                className="relative aspect-[4/3] bg-bg-card rounded-xl shadow-lg overflow-hidden transition-transform duration-300 group watermark-container border-2 border-brand-900"
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
             >

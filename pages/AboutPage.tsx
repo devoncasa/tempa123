@@ -27,7 +27,7 @@ const BenefitCard: React.FC<{ title: string; description: string }> = ({ title, 
 );
 
 const KeyTakeaways: React.FC<{ takeaways: string[] }> = ({ takeaways }) => (
-    <div className="bg-bg-card p-6 rounded-lg border-l-4 border-primary">
+    <div className="bg-bg-card p-6 rounded-lg border-2 border-brand-900">
         <h3 className="font-poppins font-bold text-xl text-text-primary mb-3">Key Takeaways</h3>
         <ul className="space-y-2">
             {takeaways.map((item, index) => (
@@ -67,7 +67,7 @@ const AboutPage: React.FC = () => {
                                 </p>
                             </div>
                             <div>
-                                <img src={ASSETS.ABOUT_PAGE.HERO} alt="Ambitious small business owner in their shop" className="rounded-lg shadow-xl w-full h-auto object-cover" />
+                                <img src={ASSETS.ABOUT_PAGE.HERO} alt="Ambitious small business owner in their shop" className="rounded-lg shadow-xl w-full h-auto object-cover border-2 border-brand-900" />
                             </div>
                         </div>
                     </div>
@@ -89,7 +89,7 @@ const AboutPage: React.FC = () => {
                     <div className="container mx-auto px-6 lg:px-[8vw]">
                         <div className="grid md:grid-cols-2 gap-12 items-center">
                             <div className="order-2 md:order-1">
-                                <img src={ASSETS.ABOUT_PAGE.WHY_WE_EXIST} alt="Business owner working on a laptop in a cafe" className="rounded-lg shadow-xl w-full h-auto object-cover" />
+                                <img src={ASSETS.ABOUT_PAGE.WHY_WE_EXIST} alt="Business owner working on a laptop in a cafe" className="rounded-lg shadow-xl w-full h-auto object-cover border-2 border-brand-900" />
                             </div>
                             <div className="order-1 md:order-2">
                                 <h2 className="text-3xl md:text-4xl font-bold font-poppins text-grey-900 mb-6">Why We Exist</h2>
@@ -112,7 +112,7 @@ const AboutPage: React.FC = () => {
                     <div className="container mx-auto px-6 lg:px-[8vw]">
                         <div className="grid md:grid-cols-3 gap-12 items-center">
                              <div className="md:col-span-1 flex justify-center">
-                                <img src={ASSETS.ABOUT_PAGE.FOUNDER} alt="Founder of Tempa Web.123" className="rounded-full shadow-xl w-48 h-48 md:w-64 md:h-64 object-cover" />
+                                <img src={ASSETS.ABOUT_PAGE.FOUNDER} alt="Founder of Tempa Web.123" className="rounded-full shadow-xl w-48 h-48 md:w-64 md:h-64 object-cover border-2 border-brand-900" />
                             </div>
                             <div className="md:col-span-2">
                                 <h2 className="text-3xl md:text-4xl font-bold font-poppins text-grey-900 mb-6">Our Founder's Journey</h2>
@@ -142,7 +142,7 @@ const AboutPage: React.FC = () => {
                                 <BenefitCard title="Eliminate Commission Fees" description="Use your own delivery system. Keep full revenue." />
                             </div>
                             <div>
-                                <img src={ASSETS.ABOUT_PAGE.WHAT_WE_OFFER} alt="Website mockup on a phone and tablet showing direct customer access" className="rounded-lg shadow-xl w-full h-auto object-cover" />
+                                <img src={ASSETS.ABOUT_PAGE.WHAT_WE_OFFER} alt="Website mockup on a phone and tablet showing direct customer access" className="rounded-lg shadow-xl w-full h-auto object-cover border-2 border-brand-900" />
                             </div>
                         </div>
                     </div>
@@ -185,7 +185,7 @@ const AboutPage: React.FC = () => {
                     <div className="container mx-auto px-6 lg:px-[8vw]">
                         <div className="grid md:grid-cols-2 gap-12 items-center">
                             <div className="order-2 md:order-1">
-                                <img src={ASSETS.ABOUT_PAGE.PERFORMANCE_ENGINE} alt="Graph showing performance and speed increase" className="rounded-lg shadow-xl w-full h-auto object-cover" />
+                                <img src={ASSETS.ABOUT_PAGE.PERFORMANCE_ENGINE} alt="Graph showing performance and speed increase" className="rounded-lg shadow-xl w-full h-auto object-cover border-2 border-brand-900" />
                             </div>
                             <div className="order-1 md:order-2">
                                 <h2 className="text-3xl md:text-4xl font-bold font-poppins text-grey-900 mb-6">Engineered for Performance</h2>

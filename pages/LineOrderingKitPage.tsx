@@ -75,7 +75,7 @@ const LiveDemo: React.FC = () => {
     };
 
     return (
-        <div className="phone-frame">
+        <div className="phone-frame border-2 border-brand-900">
             <div className="phone-screen">
                 {/* Header */}
                 <div className="relative">
@@ -226,7 +226,7 @@ const LineOrderingKitPage: React.FC = () => {
             `}</style>
             
             <div>
-                <section className="py-16 md:py-24 text-center" style={{background: 'linear-gradient(135deg, #2E7D32 0%, #4CAF50 100%)'}}>
+                <section className="py-16 md:py-24 text-center" style={{background: 'linear-gradient(135deg, #159d93 0%, #1dc3b6 100%)'}}>
                     <div className="container mx-auto px-6 lg:px-[8vw]">
                         <h1 className="text-4xl md:text-5xl font-bold font-poppins text-white leading-tight">
                             ระบบสั่งอาหารผ่าน LINE ในราคา 500 บาท
@@ -283,19 +283,19 @@ const LineOrderingKitPage: React.FC = () => {
                     <div className="container mx-auto px-6 lg:px-[8vw]">
                          <h2 className="text-3xl font-bold font-poppins text-center mb-12 text-gray-800">สิ่งที่คุณจะได้รับในราคา 500 บาท</h2>
                          <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-8">
-                            <div className="bg-white p-6 rounded-lg shadow-sm border-l-4 border-kit-action">
+                            <div className="bg-white p-6 rounded-lg shadow-sm border-2 border-brand-900">
                                 <h3 className="font-bold text-xl mb-2">หน้าเว็บสั่งอาหาร 1 หน้า</h3>
                                 <p>เว็บเพจที่พร้อมใช้งานได้ทันทีสำหรับร้านค้าของคุณ</p>
                             </div>
-                            <div className="bg-white p-6 rounded-lg shadow-sm border-l-4 border-kit-action">
+                            <div className="bg-white p-6 rounded-lg shadow-sm border-2 border-brand-900">
                                 <h3 className="font-bold text-xl mb-2">ระบบ QR Code Payment</h3>
                                 <p>สร้าง QR Code สำหรับรับเงินจากเบอร์พร้อมเพย์ของคุณ</p>
                             </div>
-                             <div className="bg-white p-6 rounded-lg shadow-sm border-l-4 border-kit-action">
+                             <div className="bg-white p-6 rounded-lg shadow-sm border-2 border-brand-900">
                                 <h3 className="font-bold text-xl mb-2">เมนูสวยงาม</h3>
                                 <p>เราจะใส่ข้อมูลเมนูของคุณให้ (สูงสุด 10 รายการ)</p>
                             </div>
-                             <div className="bg-white p-6 rounded-lg shadow-sm border-l-4 border-kit-action">
+                             <div className="bg-white p-6 rounded-lg shadow-sm border-2 border-brand-900">
                                 <h3 className="font-bold text-xl mb-2">ระบบแจ้งเตือนผ่าน LINE</h3>
                                 <p>เมื่อมีออเดอร์ใหม่ คุณจะได้รับการแจ้งเตือนทันที</p>
                             </div>

@@ -28,10 +28,10 @@ const CategoryGalleryPage: React.FC = () => {
                 {/* Category Header */}
                 <section className="py-12 bg-bg-section-dark border-b-4" style={{ borderColor: categoryDetails.color }}>
                     <div className="container mx-auto px-6 lg:px-[8vw] text-center">
-                        <div className="inline-block" style={{ color: categoryDetails.color }}>
+                        <div className="inline-block p-4 bg-white rounded-full border-2 border-brand-900" style={{ color: categoryDetails.color }}>
                             {categoryInfo?.icon}
                         </div>
-                        <h1 className="text-4xl font-bold font-poppins text-text-primary mt-2">{categoryName}</h1>
+                        <h1 className="text-4xl font-bold font-poppins text-text-primary mt-4">{categoryName}</h1>
                         <p className="text-lg text-text-secondary mt-4 italic font-lora">"{categoryDetails.quote}"</p>
                     </div>
                 </section>

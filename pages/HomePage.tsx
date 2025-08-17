@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { CATEGORIES, TEMPLATES, CATEGORY_IMAGE_ICONS } from '../constants';
 import TemplateCard from '../components/TemplateCard';
@@ -15,6 +15,13 @@ const BypassIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="24" heig
 const HomePage: React.FC = () => {
   const featuredTemplates = TEMPLATES.slice(0, 4);
   const displayedCategories = CATEGORIES.slice(0, 8);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.playbackRate = 0.5; // Slow down video playback by 50%
+    }
+  }, []);
 
   return (
     <>
@@ -22,18 +29,28 @@ const HomePage: React.FC = () => {
         title={SEO_CONTENT.HOME.title}
         description={SEO_CONTENT.HOME.description}
       />
+      <style>{`
+        @keyframes subtle-fade {
+          0%, 100% { opacity: 0.9; }
+          50% { opacity: 1; }
+        }
+        .hero-video-smoother {
+          animation: subtle-fade 8s infinite ease-in-out;
+        }
+      `}</style>
       <div>
         {/* Section 1: Hero Section */}
         <section className="relative text-center text-white py-20 md:py-40 overflow-hidden">
           {/* Background Video and Overlay */}
           <div className="absolute top-0 left-0 w-full h-full z-0">
             <video
+              ref={videoRef}
               autoPlay
               loop
               muted
               playsInline
               poster="https://raw.githubusercontent.com/devoncasa/Tempa123-Asset/main/tempa123-hero-banner.webp"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover hero-video-smoother"
               style={{ filter: 'blur(5px)' }}
             >
               <source
@@ -45,8 +62,8 @@ const HomePage: React.FC = () => {
             <div
               className="absolute inset-0"
               style={{
-                backgroundColor: 'rgba(23, 33, 48, 0.7)',
-                backgroundImage: 'radial-gradient(at 20% 25%, hsla(175, 70%, 40%, 0.3) 0px, transparent 50%), radial-gradient(at 80% 85%, hsla(11, 60%, 55%, 0.2) 0px, transparent 50%)'
+                backgroundColor: 'rgba(14, 122, 112, 0.5)',
+                backgroundImage: 'radial-gradient(at 20% 25%, hsla(175, 70%, 30%, 0.4) 0px, transparent 50%), radial-gradient(at 80% 85%, hsla(11, 74%, 67%, 0.2) 0px, transparent 50%)'
               }}
             ></div>
           </div>
@@ -54,9 +71,9 @@ const HomePage: React.FC = () => {
           {/* Content */}
           <div className="relative z-10 container mx-auto px-6 lg:px-[8vw]">
             <h1 className="text-4xl md:text-5xl font-bold font-poppins leading-tight text-white">
-              Tempa Web.12<span style={{ color: 'var(--color-coral)' }}>3</span> – Ready-to-go dynamic & static website templates
+              Tempa Web.12<span style={{ color: 'var(--color-accent-orange)' }}>3</span> – Ready-to-go dynamic & static website templates
             </h1>
-            <p className="text-lg md:text-xl font-inter mt-4 max-w-3xl mx-auto text-gray-300">
+            <p className="text-lg md:text-xl font-inter mt-4 max-w-3xl mx-auto text-gray-200">
               Complete websites with easy-to-use built-in features for instant personalization.
             </p>
             <div className="mt-8 flex justify-center space-x-4">
@@ -85,7 +102,7 @@ const HomePage: React.FC = () => {
         {/* Section 3: Category Showcase */}
         <section className="bg-bg-section-light py-20 md:py-24">
             <div className="container mx-auto px-6 lg:px-[8vw]">
-              <div className="bg-bg-card p-8 md:p-12 rounded-2xl shadow-xl border border-border-primary">
+              <div className="bg-bg-card p-8 md:p-12 rounded-2xl shadow-xl border-2 border-brand-900">
                 <h2 className="text-3xl font-bold text-center mb-12 font-poppins">Explore by Category</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                   {displayedCategories.map((category) => {
@@ -96,7 +113,7 @@ const HomePage: React.FC = () => {
                         <Link
                           to={getCatalogCategoryPath(category.name)}
                           key={category.name}
-                          className="group bg-brand-50 p-6 rounded-xl text-center transition-all duration-300 hover:-translate-y-2 hover:shadow-xl flex flex-col items-center border border-transparent hover:border-brand-200"
+                          className="group bg-brand-50 p-6 rounded-xl text-center transition-all duration-300 hover:-translate-y-2 hover:shadow-xl flex flex-col items-center border-2 border-brand-900"
                         >
                           <div className="relative w-full h-20 mb-4">
                             <img
@@ -111,7 +128,7 @@ const HomePage: React.FC = () => {
                     }
                     // Fallback to original SVG icon
                     return (
-                       <Link to={getCatalogCategoryPath(category.name)} key={category.name} className="bg-brand-50 p-6 rounded-xl text-center transition-all duration-300 hover:-translate-y-2 hover:shadow-xl flex flex-col items-center border border-transparent hover:border-brand-200">
+                       <Link to={getCatalogCategoryPath(category.name)} key={category.name} className="bg-brand-50 p-6 rounded-xl text-center transition-all duration-300 hover:-translate-y-2 hover:shadow-xl flex flex-col items-center border-2 border-brand-900">
                         <div className="flex justify-center mb-4">{category.icon}</div>
                         <h3 className="text-xl font-bold text-text-primary font-poppins mb-2">{category.name}</h3>
                       </Link>

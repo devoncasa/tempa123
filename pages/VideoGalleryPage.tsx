@@ -94,7 +94,7 @@ const VideoGalleryPage: React.FC = () => {
                         </p>
                     </div>
 
-                    <div className="max-w-2xl mx-auto mt-12 mb-16 bg-white p-8 rounded-xl shadow-lg border border-grey-200">
+                    <div className="max-w-2xl mx-auto mt-12 mb-16 bg-white p-8 rounded-xl shadow-lg border-2 border-brand-900">
                         <h2 className="text-2xl font-bold font-poppins mb-6 text-center">Add a New Video</h2>
                         <form onSubmit={handleSubmit} className="space-y-6">
                             <div>
@@ -130,7 +130,7 @@ const VideoGalleryPage: React.FC = () => {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {memoizedVideos.map((video) => (
-                            <div key={video.id} className="bg-white p-4 rounded-xl shadow-lg border border-grey-200">
+                            <div key={video.id} className="bg-white p-4 rounded-xl shadow-lg border-2 border-brand-900">
                                 <h3 className="text-lg font-bold font-poppins text-text-primary mb-3 truncate">{video.title}</h3>
                                 <div className="video-responsive">
                                     <iframe

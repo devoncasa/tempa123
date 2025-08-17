@@ -97,7 +97,7 @@ const PricingCalculatorPage: React.FC = () => {
                         {/* Left Side: Controls */}
                         <div className="lg:col-span-7 space-y-8">
                             {/* Step 1: Template */}
-                            <div className="bg-white p-8 rounded-xl shadow-md border border-gray-200">
+                            <div className="bg-white p-8 rounded-xl shadow-md border-2 border-brand-900">
                                 <h2 className="text-2xl font-bold font-poppins mb-1">Step 1: Choose Your Template</h2>
                                 <p className="text-text-secondary mb-4">Select a design to start with. Price is for a single-use license.</p>
                                 <div className="space-y-4">
@@ -135,7 +135,7 @@ const PricingCalculatorPage: React.FC = () => {
                             </div>
 
                             {/* Step 2: Service Package */}
-                            <div className="bg-white p-8 rounded-xl shadow-md border border-gray-200">
+                            <div className="bg-white p-8 rounded-xl shadow-md border-2 border-brand-900">
                                 <h2 className="text-2xl font-bold font-poppins mb-1">Step 2: Choose a Service Package</h2>
                                 <p className="text-text-secondary mb-4">Let us handle the heavy lifting. All packages include a free template.</p>
                                 <div className="grid md:grid-cols-2 gap-4">
@@ -151,7 +151,7 @@ const PricingCalculatorPage: React.FC = () => {
 
                             {/* Step 3: Add-ons */}
                             {selectedPackage && availableAddons.length > 0 && (
-                                <div className="bg-white p-8 rounded-xl shadow-md border border-gray-200">
+                                <div className="bg-white p-8 rounded-xl shadow-md border-2 border-brand-900">
                                     <h2 className="text-2xl font-bold font-poppins mb-1">Step 3: Select Add-ons</h2>
                                     <p className="text-text-secondary mb-4">Enhance your package with optional extras.</p>
                                     <div className="space-y-4">
@@ -185,7 +185,7 @@ const PricingCalculatorPage: React.FC = () => {
 
                         {/* Right Side: Summary */}
                         <div className="lg:col-span-5">
-                            <div className="sticky top-28 bg-white p-8 rounded-xl shadow-lg border-2 border-primary">
+                            <div className="sticky top-28 bg-white p-8 rounded-xl shadow-lg border-2 border-brand-900">
                                 <h2 className="text-2xl font-bold font-poppins text-center mb-6">Your Project Estimate</h2>
                                 <div className="space-y-3 text-sm text-text-secondary border-b pb-4 mb-4">
                                     <div className="flex justify-between"><span>Template License</span> <span className="font-mono">{formatCurrency(templatePrice)}</span></div>

@@ -22,7 +22,7 @@ const MyAccountPage: React.FC = () => {
                       <h1 className="text-4xl font-bold font-poppins text-text-primary mb-2">My Account</h1>
                       <p className="text-lg text-text-secondary">Welcome back, <span className="font-semibold text-brand-700">{user.username}</span>!</p>
 
-                      <div className="mt-12 bg-white p-8 rounded-lg shadow-lg border border-border-primary">
+                      <div className="mt-12 bg-white p-8 rounded-lg shadow-lg border-2 border-brand-900">
                           <h2 className="text-2xl font-poppins font-bold mb-6">Subscription Details</h2>
                           
                           <div className="space-y-4">

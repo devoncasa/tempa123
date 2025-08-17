@@ -279,51 +279,45 @@ const Header: React.FC = () => {
         </div>
         
         {isMobileMenuOpen && (
-          <div className="md:hidden bg-[rgba(255,255,255,0.7)] backdrop-blur-md shadow-lg">
-            <nav className="flex flex-col items-center space-y-3 py-4">
+          <div className="md:hidden bg-[rgba(255,255,255,0.9)] backdrop-blur-md shadow-lg border-t border-border-primary">
+            <nav className="flex flex-col w-full py-4">
               {navItems.map((item, index) => (
-                  <React.Fragment key={item.to || index}>
-                    {item.dropdown ? (
-                      <div className='text-center w-full'>
-                        <div className="flex items-center justify-center">
-                          <NavLink
-                              to={item.to!}
-                              onClick={() => setIsMobileMenuOpen(false)}
-                              className={`main-nav-link text-lg ${isPricingActive ? 'active' : ''}`}
-                          >
-                              {item.label}
-                          </NavLink>
-                          <button
-                              onClick={() => handleDropdownToggle('pricingMobileDropdown')}
-                              className="p-2 -ml-2 text-text-primary"
-                              aria-label="Toggle pricing submenu"
-                              aria-expanded={openDropdown === 'pricingMobileDropdown'}
-                          >
-                              <svg className={`w-5 h-5 transition-transform duration-200 ${openDropdown === 'pricingMobileDropdown' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
-                          </button>
-                        </div>
+                <React.Fragment key={item.to || index}>
+                  <NavLink 
+                    to={item.to!}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className={({isActive}) => `main-nav-link text-lg w-full text-left px-8 py-3 ${(item.dropdown ? isPricingActive : isActive) ? 'active' : ''}`}
+                  >
+                    {item.label}
+                  </NavLink>
+                  
+                  {item.dropdown && (
+                    <div className="flex flex-col w-full pl-8 border-l-2 border-brand-200 ml-8">
+                      {item.dropdown.map(subItem => (
+                        <NavLink 
+                          key={subItem.to} 
+                          to={subItem.to!} 
+                          onClick={() => setIsMobileMenuOpen(false)}
+                          className="main-nav-link text-base text-text-secondary w-full text-left py-2 px-4"
+                        >
+                          {subItem.label}
+                        </NavLink>
+                      ))}
+                    </div>
+                  )}
+                </React.Fragment>
+              ))}
+              
+              <div className="border-t border-border-primary my-4 mx-8"></div>
 
-                        {openDropdown === 'pricingMobileDropdown' && (
-                           <div className="flex flex-col items-center mt-2 space-y-2 bg-black/5 p-4 rounded-lg mx-4">
-                            {item.dropdown.map(subItem => (
-                              <NavLink key={subItem.to} to={subItem.to!} onClick={() => setIsMobileMenuOpen(false)} className="main-nav-link text-base text-text-secondary py-1">{subItem.label}</NavLink>
-                            ))}
-                          </div>
-                        )}
-                      </div>
-                    ) : (
-                      <NavLink to={item.to!} onClick={() => setIsMobileMenuOpen(false)} className="main-nav-link text-lg">{item.label}</NavLink>
-                    )}
-                  </React.Fragment>
-                ))}
-                {user.isAuthenticated ? (
-                  <>
-                    <NavLink to={SITE_MAP.MY_ACCOUNT} onClick={() => setIsMobileMenuOpen(false)} className="main-nav-link text-lg">My Account</NavLink>
-                    <button onClick={() => { logout(); setIsMobileMenuOpen(false); }} className="main-nav-link text-lg text-accent">Logout</button>
-                  </>
-                ) : (
-                  <NavLink to={SITE_MAP.SUBMIT_TEMPLATE} onClick={() => setIsMobileMenuOpen(false)} className="main-nav-link text-lg">{submitText}</NavLink>
-                )}
+              {user.isAuthenticated ? (
+                <>
+                  <NavLink to={SITE_MAP.MY_ACCOUNT} onClick={() => setIsMobileMenuOpen(false)} className="main-nav-link text-lg w-full text-left px-8 py-3">My Account</NavLink>
+                  <button onClick={() => { logout(); setIsMobileMenuOpen(false); }} className="main-nav-link text-lg text-accent w-full text-left px-8 py-3">Logout</button>
+                </>
+              ) : (
+                <NavLink to={SITE_MAP.SUBMIT_TEMPLATE} onClick={() => setIsMobileMenuOpen(false)} className="main-nav-link text-lg w-full text-left px-8 py-3">{submitText}</NavLink>
+              )}
             </nav>
           </div>
         )}

@@ -80,7 +80,7 @@ interface BenefitCardProps {
 }
 
 const BenefitCard: React.FC<BenefitCardProps> = ({ title, text, icon }) => (
-    <div className="bg-bg-card p-8 rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1 border border-border-primary hover:border-primary">
+    <div className="bg-bg-card p-8 rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1 border-2 border-brand-900 hover:border-primary">
         <div className="flex items-start gap-6">
             <div className="flex-shrink-0 opacity-80">{icon}</div>
             <div>
@@ -92,7 +92,7 @@ const BenefitCard: React.FC<BenefitCardProps> = ({ title, text, icon }) => (
 );
 
 const KeyTakeaways: React.FC<{ takeaways: string[] }> = ({ takeaways }) => (
-    <div className="bg-bg-card p-6 rounded-lg border-l-4 border-primary">
+    <div className="bg-bg-card p-6 rounded-lg border-2 border-brand-900">
         <h3 className="font-poppins font-bold text-xl text-text-primary mb-3">Key Takeaways</h3>
         <ul className="space-y-2">
             {takeaways.map((item, index) => (
@@ -207,16 +207,16 @@ const WhyUsPage: React.FC = () => {
                     </div>
                 </section>
 
-                <section className="py-16 md:py-24" style={{backgroundColor: '#2d3748'}}>
+                <section className="py-16 md:py-24" style={{backgroundColor: '#0e7a70'}}>
                     <div className="container mx-auto px-6 lg:px-[8vw]">
                         <div className="text-center max-w-3xl mx-auto">
                             <h2 className="text-3xl md:text-4xl font-bold font-poppins mb-4 text-white">Ready to build your market edge?</h2>
-                            <p className="text-xl leading-relaxed mb-8 text-gray-300">
+                            <p className="text-xl leading-relaxed mb-8 text-gray-200">
                                 Let's leverage our expertise to grow your business. Explore our packages or get in touch for a custom strategy.
                             </p>
                             <Link
                                 to={SITE_MAP.PRICING}
-                                className="btn btn-primary-gradient"
+                                className="btn btn-secondary-outline !text-white !border-white hover:!bg-white hover:!text-brand-900"
                             >
                                 Explore Our Packages
                             </Link>

@@ -102,7 +102,7 @@ const CatalogPage: React.FC = () => {
             <h1 className="text-4xl font-bold text-center font-poppins mb-4">Our Template Catalog</h1>
             <p className="text-center text-lg text-text-secondary mb-12">Find the perfect foundation for your next project. Professionally designed, fully responsive, and ready to customize.</p>
 
-            <div className="flex flex-col md:flex-row justify-center items-center gap-4 mb-12 p-4 bg-bg-card/80 rounded-xl shadow-md border border-border-primary sticky top-[85px] z-40 backdrop-blur-sm">
+            <div className="flex flex-col md:flex-row justify-center items-center gap-4 mb-12 p-4 bg-bg-card/80 rounded-xl shadow-md border-2 border-brand-900 sticky top-[85px] z-40 backdrop-blur-sm">
               <select
                 value={selectedCategory}
                 onChange={handleCategoryChange}
@@ -156,7 +156,7 @@ const CatalogPage: React.FC = () => {
           <section className="bg-bg-section-light py-16 md:py-24">
             <div className="container mx-auto px-6 lg:px-[8vw]">
                 <h2 className="text-3xl font-bold text-center mb-12 font-poppins">Frequently Asked Questions for {selectedCategory}</h2>
-                <div className="max-w-3xl mx-auto bg-bg-card p-8 rounded-2xl shadow-xl border border-border-primary">
+                <div className="max-w-3xl mx-auto bg-bg-card p-8 rounded-2xl shadow-xl border-2 border-brand-900">
                   {categoryFaqs.map((item) => (
                     <FaqItem key={item.question} item={item} />
                   ))}

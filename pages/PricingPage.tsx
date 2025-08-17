@@ -15,7 +15,7 @@ const CheckIcon: React.FC<{ className?: string }> = ({ className = 'text-brand-7
 
 const PricingCard: React.FC<{ tier: any }> = ({ tier }) => {
     const isRecommended = tier.recommended;
-    const cardClasses = `border rounded-2xl p-8 flex flex-col text-center transition-all duration-300 relative ${isRecommended ? 'bg-white border-2 border-primary shadow-2xl scale-105' : 'bg-bg-card border-border-primary shadow-lg'}`;
+    const cardClasses = `border-2 rounded-2xl p-8 flex flex-col text-center transition-all duration-300 relative ${isRecommended ? 'bg-white border-primary shadow-2xl scale-105' : 'bg-bg-card border-brand-900 shadow-lg'}`;
     const buttonClasses = `w-full mt-auto py-3 px-6 rounded-full uppercase text-sm font-semibold tracking-wide-sm transition-all duration-300 ${isRecommended ? 'btn btn-primary-gradient' : 'btn btn-secondary-outline'}`;
     
     return (
@@ -147,7 +147,7 @@ const PricingPage: React.FC = () => {
         {/* Customization CTA */}
         <section className="bg-bg-section-dark py-16 md:py-24">
             <div className="container mx-auto px-6 lg:px-[8vw]">
-              <div className="bg-brand-900 text-white rounded-2xl p-12 text-center max-w-5xl mx-auto shadow-xl">
+              <div className="bg-brand-900 text-white rounded-2xl p-12 text-center max-w-5xl mx-auto shadow-xl border-2 border-brand-900">
                    <h2 className="text-3xl font-bold font-poppins">Need Help with Setup or Customization?</h2>
                    <p className="mt-4 mb-8 text-lg text-gray-300 max-w-2xl mx-auto">
                        Short on time or technical skills? Let our expert team build your website for you. We'll handle everything from setup to content placement.
@@ -164,7 +164,7 @@ const PricingPage: React.FC = () => {
         <section className="bg-bg-section-light py-16 md:py-24">
           <div className="container mx-auto px-6 lg:px-[8vw]">
             <h2 className="text-3xl font-bold text-center mb-12 font-poppins">Frequently Asked Questions</h2>
-            <div className="max-w-3xl mx-auto bg-bg-card p-8 rounded-2xl shadow-xl border border-border-primary">
+            <div className="max-w-3xl mx-auto bg-bg-card p-8 rounded-2xl shadow-xl border-2 border-brand-900">
               {faqItems.map((item) => (
                 <FaqItem key={item.question} item={item} />
               ))}

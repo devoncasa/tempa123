@@ -83,8 +83,8 @@ const TemplateDetailPage: React.FC = () => {
 
             {/* Gallery */}
             <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
-              <div className="lg:col-span-4">
-                <img src={mainImage} alt={template.name} className="w-full h-auto object-cover rounded-lg shadow-2xl aspect-[3/2]" />
+              <div className="lg:col-span-4 border-2 border-brand-900 rounded-lg p-1">
+                <img src={mainImage} alt={template.name} className="w-full h-auto object-cover rounded-md shadow-2xl aspect-[3/2]" />
               </div>
               <div className="lg:col-span-1 flex lg:flex-col gap-4 overflow-x-auto lg:overflow-x-visible pb-2 lg:pb-0">
                 {template.gallery.map((img, index) => (
@@ -92,7 +92,7 @@ const TemplateDetailPage: React.FC = () => {
                     key={index}
                     src={img}
                     alt={`Thumbnail ${index + 1}`}
-                    className={`w-28 h-20 lg:w-full lg:h-auto object-cover rounded-md cursor-pointer aspect-[3/2] transition-all duration-300 ${mainImage === img ? 'ring-4 ring-primary' : 'hover:ring-2 ring-primary/50'}`}
+                    className={`w-28 h-20 lg:w-full lg:h-auto object-cover rounded-md cursor-pointer aspect-[3/2] transition-all duration-300 border-2 ${mainImage === img ? 'border-primary' : 'border-transparent hover:border-primary/50'}`}
                     onClick={() => setMainImage(img)}
                   />
                 ))}
@@ -112,12 +112,12 @@ const TemplateDetailPage: React.FC = () => {
                 </div>
                  <div>
                   <h3 className="text-2xl font-bold font-poppins mb-4">Style</h3>
-                  <p className="text-grey-600 italic bg-brand-100/50 p-4 rounded-md border-l-4 border-brand-500">{template.styleDescription}</p>
+                  <p className="text-grey-600 italic bg-brand-100/50 p-4 rounded-md border-l-4 border-accent">{template.styleDescription}</p>
                 </div>
 
                 <div>
                   <h3 className="text-2xl font-bold font-poppins mb-4">Key Details</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6 bg-white p-6 rounded-lg shadow-md border border-grey-200">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6 bg-white p-6 rounded-lg shadow-md border-2 border-brand-900">
                     <div>
                         <h4 className="font-semibold text-lg mb-2 text-brand-700">Features</h4>
                         <ul className="list-disc list-inside space-y-1">
@@ -136,7 +136,7 @@ const TemplateDetailPage: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="bg-white p-6 rounded-lg shadow-md space-y-6 border border-grey-200">
+                <div className="bg-white p-6 rounded-lg shadow-md space-y-6 border-2 border-brand-900">
                   <h3 className="text-2xl font-bold font-poppins border-b pb-2 border-grey-200">Customization Options</h3>
                   
                   {/* Color Themes */}
@@ -183,7 +183,7 @@ const TemplateDetailPage: React.FC = () => {
               </div>
 
               <div className="md:col-span-1">
-                <div className="bg-white p-6 rounded-lg shadow-lg sticky top-28 border border-grey-200">
+                <div className="bg-white p-6 rounded-lg shadow-lg sticky top-28 border-2 border-brand-900">
                   <h3 className="text-xl font-bold font-poppins text-center mb-6">Get This Template</h3>
                   
                   <div className="space-y-4">

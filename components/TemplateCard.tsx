@@ -43,7 +43,7 @@ const TemplateCard: React.FC<TemplateCardProps> = ({ template }) => {
           color: var(--text-primary);
         }
       `}</style>
-      <div className="bg-bg-card rounded-xl shadow-md overflow-hidden transition-all duration-300 group border border-border-primary flex flex-col hover:shadow-xl hover:-translate-y-1">
+      <div className="bg-bg-card rounded-xl shadow-md overflow-hidden transition-all duration-300 group flex flex-col hover:shadow-xl hover:-translate-y-1 border-2 border-brand-900">
         <div className="relative image-container overflow-hidden">
           <img 
             src={template.imageUrl} 

@@ -12,7 +12,7 @@ const GalleryUpsellPage: React.FC = () => {
       <section className="py-16 md:py-24 bg-bg-section-dark">
         <div className="container mx-auto px-6 lg:px-[8vw]">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-block bg-brand-200 text-brand-700 p-4 rounded-full mb-6">
+            <div className="inline-block bg-brand-200 text-brand-700 p-4 rounded-full mb-6 border-2 border-brand-900">
                <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                </svg>
@@ -37,7 +37,7 @@ const GalleryUpsellPage: React.FC = () => {
               </p>
             </div>
 
-            <div className="bg-white p-8 rounded-lg shadow-xl my-12 border border-border-primary">
+            <div className="bg-white p-8 rounded-lg shadow-xl my-12 border-2 border-brand-900">
                 <h2 className="text-2xl font-bold font-poppins mb-4">What You're Missing</h2>
                 <ul className="text-left max-w-md mx-auto space-y-3 text-text-secondary">
                     <li className="flex items-start gap-3">

@@ -155,7 +155,7 @@ const InspirationGalleryPage: React.FC = () => {
                         
                         <div className="masonry-grid">
                             {filteredImages.map((image, index) => (
-                                <div key={image.id} className="masonry-item relative rounded-lg overflow-hidden shadow-md group cursor-pointer" onClick={() => openLightbox(index)}>
+                                <div key={image.id} className="masonry-item relative rounded-lg overflow-hidden shadow-md group cursor-pointer border-2 border-brand-900" onClick={() => openLightbox(index)}>
                                     <img src={image.url} alt={image.title} className="w-full h-auto block" loading="lazy" />
                                     <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
                                         <div className="flex items-center gap-3 text-white">

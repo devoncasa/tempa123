@@ -20,14 +20,14 @@ const CheckoutPage: React.FC = () => {
       />
       <section className="bg-bg-section-dark py-16 md:py-24">
         <div className="container mx-auto px-6">
-          <div className="max-w-md mx-auto bg-white p-8 rounded-lg shadow-lg border border-border-primary">
+          <div className="max-w-md mx-auto bg-white p-8 rounded-lg shadow-lg border-2 border-brand-900">
             <h1 className="text-3xl font-bold text-brand-700 font-poppins text-center">Checkout</h1>
             
             {template ? (
               <div className="mt-6 border-t pt-4">
                 <div className="flex justify-between items-center">
                   <div className="flex items-center gap-4">
-                    <img src={template.imageUrl} alt={template.name} className="w-16 h-16 object-cover rounded-md" />
+                    <img src={template.imageUrl} alt={template.name} className="w-16 h-16 object-cover rounded-md border-2 border-brand-900" />
                     <div>
                       <p className="font-semibold">{template.name}</p>
                       <p className="text-sm text-text-secondary">Single License</p>
