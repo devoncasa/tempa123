@@ -1,206 +1,65 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { CATEGORIES, TEMPLATES, CATEGORY_IMAGE_ICONS } from '../constants';
-import TemplateCard from '../components/TemplateCard';
-import BrandName from '../components/BrandName';
 import Seo from '../components/Seo';
-import { SITE_MAP, getCatalogCategoryPath } from '../src/siteMap';
-import { SEO_CONTENT } from '../src/content';
-import { ASSETS } from '../src/assets';
+import { TEMPLATES } from '../constants';
+import { SITE_MAP, getCatalogCategoryPath, getTemplateDetailPath } from '../src/siteMap';
+import { TemplateCategory } from '../types';
+import './EditorialHome.css';
 
-const SeoIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-10 w-10 text-primary"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="m7 12 5 5 5-5"/><path d="M12 17V7"/></svg>;
-const ConversionIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-10 w-10 text-primary"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>;
-const BypassIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-10 w-10 text-primary"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.72"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.72-1.72"/></svg>;
+const collections = [
+  { genre: 'clay', label: 'งานคราฟต์', category: TemplateCategory.ARTISAN, id: 'artisan-1', poster: ['Form', '& clay'], caption: 'รูปทรงและพื้นผิว', note: 'ให้ชิ้นงานเป็นจุดเด่น วางรายละเอียดวัสดุและเรื่องราวของคนทำไว้ใกล้กัน' },
+  { genre: 'pool', label: 'สุขภาพและสปา', category: TemplateCategory.WELLNESS, id: 'wellness-4', poster: ['Still', 'water'], caption: 'จังหวะที่ผ่อนคลาย', note: 'ให้ลูกค้าเห็นบรรยากาศ เปรียบเทียบบริการ และหาช่องทางนัดหมายได้ง่าย' },
+  { genre: 'fruit', label: 'อาหารและคาเฟ่', category: TemplateCategory.FOOD, id: 'wellness-17', poster: ['Fresh', 'press'], caption: 'สีสันของวัตถุดิบ', note: 'ให้เมนูอ่านง่าย เล่าเรื่องวัตถุดิบ และวางช่องทางสั่งซื้อไว้ใกล้รายการอาหาร' },
+].filter(item => TEMPLATES.some(template => template.category === item.category && template.id === item.id));
 
-const HomePage: React.FC = () => {
-  const featuredTemplates = TEMPLATES.slice(0, 4);
-  const displayedCategories = CATEGORIES.slice(0, 8);
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.playbackRate = 0.5; // Slow down video playback by 50%
-    }
-  }, []);
+export default function HomePage() {
+  const [selected, setSelected] = useState(0);
+  const scene = collections[selected];
 
   return (
-    <>
-      <Seo
-        title={SEO_CONTENT.HOME.title}
-        description={SEO_CONTENT.HOME.description}
-      />
-      <style>{`
-        @keyframes subtle-fade {
-          0%, 100% { opacity: 0.9; }
-          50% { opacity: 1; }
-        }
-        .hero-video-smoother {
-          animation: subtle-fade 8s infinite ease-in-out;
-        }
-      `}</style>
-      <div>
-        {/* Section 1: Hero Section */}
-        <section className="relative text-center text-white py-20 md:py-40 overflow-hidden">
-          {/* Background Video and Overlay */}
-          <div className="absolute top-0 left-0 w-full h-full z-0">
-            <video
-              ref={videoRef}
-              autoPlay
-              loop
-              muted
-              playsInline
-              poster="https://raw.githubusercontent.com/devoncasa/Tempa123-Asset/main/tempa123-hero-banner.webp"
-              className="w-full h-full object-cover hero-video-smoother"
-              style={{ filter: 'blur(5px)' }}
-            >
-              <source
-                src="https://cdn.jsdelivr.net/gh/devoncasa/Tempa123-Asset@main/tempa123-hero-section-banner-video-3.webm"
-                type="video/webm"
-              />
-            </video>
-            {/* Overlay */}
-            <div
-              className="absolute inset-0"
-              style={{
-                backgroundColor: 'rgba(14, 122, 112, 0.5)',
-                backgroundImage: 'radial-gradient(at 20% 25%, hsla(175, 70%, 30%, 0.4) 0px, transparent 50%), radial-gradient(at 80% 85%, hsla(11, 74%, 67%, 0.2) 0px, transparent 50%)'
-              }}
-            ></div>
+    <div className="editorial-home" lang="th">
+      <Seo title="แบบเว็บไซต์สำหรับธุรกิจและบริการปรับแต่ง | Tempa123" description="เลือกแบบเว็บไซต์ตามประเภทธุรกิจ ดูบริการปรับแต่ง และคุยกับ Tempa123 เรื่องเนื้อหา ฟังก์ชัน และงบประมาณที่เหมาะกับงานของคุณ" />
+      <section className="eh-hero">
+        <div className="eh-intro">
+          <p className="eh-overline">แบบเว็บไซต์และบริการปรับแต่ง</p>
+          <h1>เว็บไซต์ที่ใช่<br /><em>เริ่มจากแบบ</em><br />ที่คุณชอบ</h1>
+          <p className="eh-lead">เลือกแบบที่เข้ากับธุรกิจของคุณ แล้วคุยกันว่าจะปรับหน้าตา เนื้อหา และฟังก์ชันอย่างไรให้ลูกค้าใช้งานได้สะดวก</p>
+          <div className="eh-actions">
+            <Link className="eh-button" to="/design-finder">ช่วยเลือกแบบให้ฉัน</Link>
+            <Link className="eh-link" to={SITE_MAP.CATALOG}>เลือกดูทุกแบบ</Link>
+            <Link className="eh-link" to={SITE_MAP.PRICING_CUSTOMIZATION}>ดูบริการปรับแต่ง</Link>
           </div>
-          
-          {/* Content */}
-          <div className="relative z-10 container mx-auto px-6 lg:px-[8vw]">
-            <h1 className="text-4xl md:text-5xl font-bold font-poppins leading-tight text-white">
-              Tempa Web.12<span style={{ color: 'var(--color-accent-orange)' }}>3</span> – Ready-to-go dynamic & static website templates
-            </h1>
-            <p className="text-lg md:text-xl font-inter mt-4 max-w-3xl mx-auto text-gray-200">
-              Complete websites with easy-to-use built-in features for instant personalization.
-            </p>
-            <div className="mt-8 flex justify-center space-x-4">
-              <Link to={SITE_MAP.CATALOG} className="btn btn-primary-gradient">
-                Browse Templates
-              </Link>
-              <Link to={SITE_MAP.CATALOG} className="btn btn-secondary-outline !text-white !border-white hover:!bg-white hover:!text-text-primary">
-                View Demos
-              </Link>
-            </div>
+        </div>
+        {scene && <div className="eh-studio">
+          <div role="group" className="eh-tabs" aria-label="เลือกแนวทางตามประเภทธุรกิจ">
+            {collections.map((item, i) => <button type="button" key={item.genre} aria-pressed={i === selected} aria-controls="eh-work" onClick={() => setSelected(i)}>{item.label}</button>)}
           </div>
-        </section>
-        
-        {/* Section 2: Featured Templates */}
-        <section className="bg-bg-section-dark py-20 md:py-24">
-          <div className="container mx-auto px-6 lg:px-[8vw]">
-            <h2 className="text-3xl font-bold text-center mb-12 font-poppins">Featured Templates</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-              {featuredTemplates.map((template) => (
-                <TemplateCard key={template.id} template={template} />
-              ))}
+          <div id="eh-work" aria-live="polite" aria-atomic="true">
+            <div className={'eh-poster eh-' + scene.genre} aria-hidden="true">
+              <div className="eh-poster-title" lang="en">{scene.poster[0]}<br /><i>{scene.poster[1]}</i></div>
+              <div className="eh-art"><i /><i /><i /></div><span className="eh-poster-foot">{scene.caption}</span>
             </div>
+            <div className="eh-caption"><p>ภาพแนวคิดสำหรับธุรกิจ{scene.label}</p><Link to={getCatalogCategoryPath(scene.category)}>ดูแบบในหมวดนี้</Link></div>
           </div>
-        </section>
-
-        {/* Section 3: Category Showcase */}
-        <section className="bg-bg-section-light py-20 md:py-24">
-            <div className="container mx-auto px-6 lg:px-[8vw]">
-              <div className="bg-bg-card p-8 md:p-12 rounded-2xl shadow-xl border-2 border-brand-900">
-                <h2 className="text-3xl font-bold text-center mb-12 font-poppins">Explore by Category</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                  {displayedCategories.map((category) => {
-                    const iconUrl = CATEGORY_IMAGE_ICONS[category.name];
-                    // If a new image icon is available, use it. Otherwise, fall back to the original SVG icon.
-                    if (iconUrl) {
-                      return (
-                        <Link
-                          to={getCatalogCategoryPath(category.name)}
-                          key={category.name}
-                          className="group bg-brand-50 p-6 rounded-xl text-center transition-all duration-300 hover:-translate-y-2 hover:shadow-xl flex flex-col items-center border-2 border-brand-900"
-                        >
-                          <div className="relative w-full h-20 mb-4">
-                            <img
-                              src={iconUrl}
-                              alt={`${category.name} icon`}
-                              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 z-[2] drop-shadow-lg transition-transform duration-200 ease-in-out group-hover:scale-105"
-                            />
-                          </div>
-                          <h3 className="text-xl font-bold text-text-primary font-poppins mb-2">{category.name}</h3>
-                        </Link>
-                      );
-                    }
-                    // Fallback to original SVG icon
-                    return (
-                       <Link to={getCatalogCategoryPath(category.name)} key={category.name} className="bg-brand-50 p-6 rounded-xl text-center transition-all duration-300 hover:-translate-y-2 hover:shadow-xl flex flex-col items-center border-2 border-brand-900">
-                        <div className="flex justify-center mb-4">{category.icon}</div>
-                        <h3 className="text-xl font-bold text-text-primary font-poppins mb-2">{category.name}</h3>
-                      </Link>
-                    );
-                  })}
-                </div>
-              </div>
-            </div>
-        </section>
-
-        {/* Section 4: "Why Us" Teaser */}
-        <section className="bg-bg-section-dark py-20 md:py-24">
-            <div className="container mx-auto px-6 lg:px-[8vw]">
-              <h2 className="text-3xl font-bold text-center mb-4 font-poppins">Your Advantage Starts Here</h2>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
-                  <div className="text-center">
-                      <div className="flex justify-center mb-4"><SeoIcon /></div>
-                      <h3 className="text-xl font-bold font-poppins mb-2">Dominate Local Search</h3>
-                      <p className="text-text-secondary">We use the latest SEO and AI to put your business at the top of Google searches, ensuring you reach customers actively looking for you.</p>
-                  </div>
-                  <div className="text-center">
-                      <div className="flex justify-center mb-4"><ConversionIcon /></div>
-                      <h3 className="text-xl font-bold font-poppins mb-2">Convert Clicks Into Customers</h3>
-                      <p className="text-text-secondary">Our websites are not just beautiful; they are high-performance conversion machines, optimized for speed and seamless mobile sales.</p>
-                  </div>
-                  <div className="text-center">
-                      <div className="flex justify-center mb-4"><BypassIcon /></div>
-                      <h3 className="text-xl font-bold font-poppins mb-2">Own Your Audience</h3>
-                      <p className="text-text-secondary">Break free from the 30% platform tax. We build you a digital asset that connects you directly with your customers, maximizing your profit on every sale.</p>
-                  </div>
-              </div>
-              <div className="text-center mt-12">
-                  <Link to={SITE_MAP.WHY_US} className="font-semibold text-primary hover:text-primary-dark transition-colors">
-                      Learn more about our strategy &rarr;
-                  </Link>
-              </div>
-            </div>
-        </section>
-
-        {/* Section 5: Inspiration Gallery Teaser */}
-        <section className="bg-bg-section-light py-20 md:py-24">
-          <div className="container mx-auto px-6 lg:px-[8vw]">
-            <div className="inspiration-gallery-section">
-                <h2 className="text-3xl font-bold mb-8 font-poppins">Unlock Your Creative Potential</h2>
-                <div className="video-frame">
-                    <video autoPlay loop muted playsInline preload="metadata">
-                        <source src={ASSETS.HERO_VIDEO} type="video/mp4" />
-                        Your browser does not support the video tag.
-                    </video>
-                </div>
-                <p className="gallery-cta-text">
-                    See how our templates can be transformed. Choose a <Link to={SITE_MAP.PRICING_CUSTOMIZATION}>customization package</Link> to unlock your full potential.
-                </p>
-            </div>
-          </div>
-        </section>
-
-        {/* Section 6: Final Call to Action (CTA) */}
-        <section className="py-20" style={{backgroundColor: 'var(--brand-900)'}}>
-            <div className="container mx-auto px-6 lg:px-[8vw] text-center">
-                <h2 className="text-3xl font-bold font-poppins mb-6 text-white">Ready to build your market edge?</h2>
-                <Link 
-                    to={SITE_MAP.PRICING} 
-                    className="btn btn-secondary-outline !text-white !border-white hover:!bg-white hover:!text-brand-900 !px-8 !py-3 !text-base"
-                >
-                    Explore Our Packages
-                </Link>
-            </div>
-        </section>
-      </div>
-    </>
+        </div>}
+      </section>
+      <section className="eh-index" aria-labelledby="eh-index-title">
+        <div className="eh-section-heading"><h2 id="eh-index-title">แบบไหนเข้ากับธุรกิจคุณ?</h2><Link className="eh-link" to={SITE_MAP.CATALOG}>ดูแบบทั้งหมด</Link></div>
+        <div className="eh-entries">{collections.map(item => {
+          const template = TEMPLATES.find(record => record.id === item.id)!;
+          return <Link key={item.id} className={'eh-entry eh-entry-' + item.genre} to={getTemplateDetailPath(item.id)}>
+            <p className="eh-entry-category">{item.label}</p>
+            <h3 lang="en">{template.name}</h3><p>{item.note}</p><span className="eh-entry-more">ดูรายละเอียดแบบ</span>
+          </Link>;
+        })}</div>
+      </section>
+      <section className="eh-brief">
+        <figure className="eh-process">
+          <img src="/media/design-workshop-480.webp" srcSet="/media/design-workshop-480.webp 480w, /media/design-workshop-960.webp 960w" sizes="(max-width: 780px) 90vw, (max-width: 1650px) 38vw, 620px" width={960} height={640} loading="lazy" decoding="async" alt="ภาพประกอบการเทียบองค์ประกอบหน้าเว็บ สี และพื้นผิวบนโต๊ะออกแบบ" />
+          <figcaption>ภาพประกอบแนวทางการปรับแบบเว็บไซต์</figcaption>
+        </figure>
+        <div><h2>มีไอเดียในใจแล้ว?</h2><p>เล่าว่าคุณทำธุรกิจอะไร และอยากให้ลูกค้าทำอะไรบนเว็บไซต์ เราจะช่วยดูว่าแบบไหนเหมาะและต้องปรับตรงไหนบ้าง</p><div className="eh-actions"><Link className="eh-button" to={SITE_MAP.CONTACT}>คุยเรื่องเว็บไซต์ของคุณ</Link><Link className="eh-link" to={SITE_MAP.PRICING_CALCULATOR}>ลองประเมินงบ</Link></div></div>
+      </section>
+    </div>
   );
-};
-
-export default HomePage;
+}

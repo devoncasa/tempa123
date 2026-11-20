@@ -1,222 +1,54 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { TEMPLATES, getTemplatePriceUSD } from '../constants';
-import NotFoundPage from './NotFoundPage';
-import TemplateCard from '../components/TemplateCard';
+import { TEMPLATES } from '../constants';
 import type { Template } from '../types';
+import NotFoundPage from './NotFoundPage';
+import TemplateCard, { TemplatePalette, designLabel } from '../components/TemplateCard';
 import Seo from '../components/Seo';
-import { SITE_MAP, getCheckoutPath } from '../src/siteMap';
+import { SITE_MAP, getCatalogCategoryPath } from '../src/siteMap';
 
-const TemplateDetailPage: React.FC = () => {
-  const { id } = useParams<{ id: string }>();
-  const template = TEMPLATES.find(t => t.id === id);
-  
-  const [mainImage, setMainImage] = useState(template?.imageUrl);
-  const [activeColorTheme, setActiveColorTheme] = useState(template?.colorThemes[0]);
-  const [activeLayoutStyle, setActiveLayoutStyle] = useState(template?.layoutVariations[0]);
-  const [activeFontSet, setActiveFontSet] = useState(template?.fontOptions[0]);
-
-  useEffect(() => {
-    const newTemplate = TEMPLATES.find(t => t.id === id);
-    if (newTemplate) {
-        setMainImage(newTemplate.imageUrl);
-        setActiveColorTheme(newTemplate.colorThemes[0]);
-        setActiveLayoutStyle(newTemplate.layoutVariations[0]);
-        setActiveFontSet(newTemplate.fontOptions[0]);
-    }
-  }, [id]);
-
-  if (!template) {
-    return <NotFoundPage />;
-  }
-  
-  const singlePrice = getTemplatePriceUSD(template);
-  const extendedPrice = 299; // Based on pricing page
-  const relatedTemplates = TEMPLATES.filter(t => t.category === template.category && t.id !== template.id).slice(0, 3);
-
-  const productSchema = {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    "name": template.name,
-    "image": template.imageUrl,
-    "description": template.description,
-    "sku": `TW123-${template.id}`,
-    "brand": {
-      "@type": "Organization",
-      "name": "Tempa Web.123"
-    },
-    "offers": [
-      {
-        "@type": "Offer",
-        "name": "Regular License",
-        "price": singlePrice,
-        "priceCurrency": "USD",
-        "description": "For use in a single end-product which end users are not charged for.",
-        "availability": "https://schema.org/InStock"
-      },
-      {
-        "@type": "Offer",
-        "name": "Extended License",
-        "price": extendedPrice,
-        "priceCurrency": "USD",
-        "description": "For use in a single end-product which end users can be charged for (e.g. SaaS application).",
-        "availability": "https://schema.org/InStock"
-      }
-    ]
-  };
-
+function DesignBrief({template}: {template: Template}) {
+  const [paletteIndex, setPaletteIndex] = useState(0);
+  const theme = template.colorThemes[paletteIndex];
+  const related = TEMPLATES.filter(t => t.category === template.category && t.id !== template.id).slice(0, 3);
+  const enquiry = SITE_MAP.CONTACT + '?' + new URLSearchParams({ template: template.id });
   return (
-    <>
-      <Seo
-        title={`${template.name} | Tempa Web.123`}
-        description={template.tagline}
-        schema={productSchema}
-      />
-      <div>
-        <section className="bg-bg-section-dark py-12 md:py-20">
-          <div className="container mx-auto px-6 lg:px-[8vw]">
-            {/* Header */}
-            <div className="text-center mb-12">
-              <h1 className="text-4xl md:text-5xl font-bold text-brand-900 font-poppins">{template.name}</h1>
-              <p className="text-xl text-grey-600 mt-2">{template.tagline}</p>
-            </div>
-
-            {/* Gallery */}
-            <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
-              <div className="lg:col-span-4 border-2 border-brand-900 rounded-lg p-1">
-                <img src={mainImage} alt={template.name} className="w-full h-auto object-cover rounded-md shadow-2xl aspect-[3/2]" />
-              </div>
-              <div className="lg:col-span-1 flex lg:flex-col gap-4 overflow-x-auto lg:overflow-x-visible pb-2 lg:pb-0">
-                {template.gallery.map((img, index) => (
-                  <img
-                    key={index}
-                    src={img}
-                    alt={`Thumbnail ${index + 1}`}
-                    className={`w-28 h-20 lg:w-full lg:h-auto object-cover rounded-md cursor-pointer aspect-[3/2] transition-all duration-300 border-2 ${mainImage === img ? 'border-primary' : 'border-transparent hover:border-primary/50'}`}
-                    onClick={() => setMainImage(img)}
-                  />
-                ))}
-              </div>
-            </div>
+    <section className="py-12 md:py-20" style={{ background: '#f8f6ee', color: '#173d36' }}>
+      <Seo title={template.name + ' — แนวทางออกแบบเว็บไซต์ | Tempa123'} description={`ดูแนวทางออกแบบ ${template.name} สำหรับ${designLabel(template.category)} พร้อมชุดสี หน้าที่แนะนำ และรายละเอียดที่ควรสอบถามก่อนขอราคา`} />
+      <div className="container mx-auto px-6 lg:px-[8vw]">
+        <Link to={getCatalogCategoryPath(template.category)} className="underline">กลับไปดูหมวด{designLabel(template.category)}</Link>
+        <div className="grid lg:grid-cols-2 gap-10 my-8 items-start">
+          <div>
+            <h1 className="text-4xl md:text-5xl font-bold">{template.name}</h1>
+            <p className="mt-4 text-xl" lang="en">{template.tagline}</p>
+            <p className="my-6">ก่อนตัดสินใจ คุณสามารถสอบถามทีมเรื่องไฟล์ที่จะได้รับ สิทธิ์ในการใช้งาน และส่วนที่อยากปรับแต่ง เพื่อให้ทีมประเมินราคาได้ตรงกับงาน</p>
+            <Link to={enquiry} style={{ backgroundColor: '#173d36', color: 'white' }} className="inline-block rounded px-6 py-3 font-semibold">สอบถามเกี่ยวกับแบบนี้</Link>
           </div>
-        </section>
-
-        <section className="bg-bg-section-light py-12 md:py-20">
-          <div className="container mx-auto px-6 lg:px-[8vw]">
-            {/* Details & Pricing */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-              <div className="md:col-span-2 space-y-8">
-                 <div>
-                  <h2 className="text-3xl font-bold font-poppins mb-4">Description</h2>
-                  <p className="text-grey-600 leading-relaxed">{template.description}</p>
-                </div>
-                 <div>
-                  <h3 className="text-2xl font-bold font-poppins mb-4">Style</h3>
-                  <p className="text-grey-600 italic bg-brand-100/50 p-4 rounded-md border-l-4 border-accent">{template.styleDescription}</p>
-                </div>
-
-                <div>
-                  <h3 className="text-2xl font-bold font-poppins mb-4">Key Details</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6 bg-white p-6 rounded-lg shadow-md border-2 border-brand-900">
-                    <div>
-                        <h4 className="font-semibold text-lg mb-2 text-brand-700">Features</h4>
-                        <ul className="list-disc list-inside space-y-1">
-                            {template.features.map(feature => <li key={feature} className="text-grey-600">{feature}</li>)}
-                            <li className="text-grey-600">{template.isDynamic ? 'Dynamic Content & Parallax' : 'Static Build'}</li>
-                            <li className="text-grey-600">{template.hasShopPage ? 'E-commerce Ready' : 'Standard Pages'}</li>
-                            <li className="text-grey-600">Fully Responsive</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4 className="font-semibold text-lg mb-2 text-brand-700">Site Menu Includes</h4>
-                        <ul className="list-disc list-inside space-y-1">
-                            {template.necessaryMenu.map(item => <li key={item} className="text-grey-600">{item}</li>)}
-                        </ul>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="bg-white p-6 rounded-lg shadow-md space-y-6 border-2 border-brand-900">
-                  <h3 className="text-2xl font-bold font-poppins border-b pb-2 border-grey-200">Customization Options</h3>
-                  
-                  {/* Color Themes */}
-                  <div>
-                    <h4 className="text-xl font-semibold font-poppins mb-3">Color Themes</h4>
-                    <div className="flex flex-wrap gap-4">
-                      {template.colorThemes.map(theme => (
-                        <button key={theme.name} onClick={() => setActiveColorTheme(theme)} className={`px-3 py-2 rounded-lg transition-all duration-200 ${activeColorTheme?.name === theme.name ? 'ring-2 ring-primary shadow-lg' : 'ring-1 ring-grey-200 hover:ring-primary/70'}`}>
-                          <div className="flex items-center gap-2">
-                            <div className="flex">
-                              {theme.palette.slice(0, 4).map(color => <div key={color} style={{backgroundColor: color}} className="w-5 h-5 rounded-full border-2 border-white -ml-1"></div>)}
-                            </div>
-                            <span className="text-sm font-medium">{theme.name}</span>
-                          </div>
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Layout Variations */}
-                   <div>
-                    <h4 className="text-xl font-semibold font-poppins mb-3">Layout Variations</h4>
-                    <div className="flex flex-wrap gap-3">
-                        {template.layoutVariations.map(style => (
-                            <button key={style} onClick={() => setActiveLayoutStyle(style)} className={`px-4 py-2 text-sm font-semibold rounded-full transition-colors ${activeLayoutStyle === style ? 'bg-primary text-white' : 'bg-gray-200 text-grey-900 hover:bg-gray-300'}`}>
-                                {style}
-                            </button>
-                        ))}
-                    </div>
-                  </div>
-
-                   {/* Font Options */}
-                   <div>
-                    <h4 className="text-xl font-semibold font-poppins mb-3">Font Pairings</h4>
-                     <div className="flex flex-wrap gap-3">
-                        {template.fontOptions.map(option => (
-                            <button key={option.name} onClick={() => setActiveFontSet(option)} className={`px-4 py-2 text-sm rounded-full transition-colors ${activeFontSet?.name === option.name ? 'bg-primary text-white' : 'bg-gray-200 text-grey-900 hover:bg-gray-300'}`}>
-                                <span className="font-semibold">{option.fonts[0]}</span> + <span className="italic">{option.fonts[1]}</span>
-                            </button>
-                        ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="md:col-span-1">
-                <div className="bg-white p-6 rounded-lg shadow-lg sticky top-28 border-2 border-brand-900">
-                  <h3 className="text-xl font-bold font-poppins text-center mb-6">Get This Template</h3>
-                  
-                  <div className="space-y-4">
-                      <Link to={getCheckoutPath(template.id)} className="block w-full text-center bg-accent text-white py-3 px-6 rounded-lg uppercase text-sm font-semibold tracking-wide-sm hover:brightness-90 transition-all duration-300 transform hover:scale-105">
-                          Buy Single License (${singlePrice})
-                      </Link>
-                      <Link to={SITE_MAP.PRICING} className="block w-full text-center bg-transparent border-2 border-primary text-primary py-3 px-6 rounded-lg uppercase text-sm font-semibold tracking-wide-sm hover:bg-brand-100 transition-all duration-300">
-                          Access via Membership
-                      </Link>
-                  </div>
-                  <p className="text-center text-xs text-grey-600 mt-4">
-                      See our <Link to={SITE_MAP.PRICING} className="underline hover:text-primary">Pricing Page</Link> for details on licenses and membership benefits.
-                  </p>
-                </div>
-              </div>
+          {theme && <fieldset className="bg-white rounded-lg p-6" style={{ border: '1px solid #bfc9bc' }}>
+            <legend className="font-semibold px-2">ลองเลือกชุดสี</legend>
+            <TemplatePalette colors={theme.palette} />
+            <p className="my-3" aria-live="polite">{theme.name} · {theme.palette.join(' / ')}</p>
+            <div className="flex flex-wrap gap-4">
+              {template.colorThemes.map((option, index) => <label className="p-2" key={option.name}>
+                <input type="radio" name="palette" checked={index === paletteIndex} onChange={() => setPaletteIndex(index)} /> {option.name}
+              </label>)}
             </div>
-          </div>
-        </section>
-
-        {/* Related Templates */}
-        {relatedTemplates.length > 0 && (
-          <section className="bg-bg-section-dark py-16 md:py-24">
-            <div className="container mx-auto px-6 lg:px-[8vw]">
-              <h2 className="text-3xl font-bold text-center mb-12 font-poppins">Related Templates</h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                {relatedTemplates.map(t => <TemplateCard key={t.id} template={t} />)}
-              </div>
-            </div>
-          </section>
-        )}
+          </fieldset>}
+        </div>
+        <div className="grid md:grid-cols-2 gap-8 border-t pt-8">
+          <div><h2 className="font-bold text-2xl mb-3">หน้าที่แนะนำ</h2><ul className="list-disc pl-5" lang="en">{template.necessaryMenu.map(item => <li key={item}>{item}</li>)}</ul></div>
+          <div><h2 className="font-bold text-2xl mb-3">ฟังก์ชันที่คุยกับทีมได้</h2><ul className="list-disc pl-5" lang="en">{template.features.map(item => <li key={item}>{item}</li>)}</ul></div>
+          <div><h2 className="font-bold text-2xl mb-3">แนวทางจัดหน้า</h2><ul className="list-disc pl-5" lang="en">{template.layoutVariations.map(item => <li key={item}>{item}</li>)}</ul></div>
+          <div><h2 className="font-bold text-2xl mb-3">แบบอักษรที่แนะนำ</h2><ul className="list-disc pl-5" lang="en">{template.fontOptions.map(item => <li key={item.name}>{item.fonts.join(' + ')}</li>)}</ul></div>
+        </div>
+        {related.length > 0 && <div className="pt-10"><h2 className="font-bold text-2xl mb-4">แบบอื่นในหมวดเดียวกัน</h2><div className="grid md:grid-cols-3 gap-4">{related.map(item => <TemplateCard key={item.id} template={item} />)}</div></div>}
       </div>
-    </>
+    </section>
   );
-};
+}
 
-export default TemplateDetailPage;
+export default function TemplateDetailPage() {
+  const { id } = useParams();
+  const template = TEMPLATES.find(item => item.id === id);
+  return template ? <DesignBrief key={template.id} template={template} /> : <NotFoundPage />;
+}

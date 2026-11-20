@@ -2,77 +2,21 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Seo from '../components/Seo';
 import { SITE_MAP } from '../src/siteMap';
-import { SEO_CONTENT } from '../src/content';
+import { QuoteWorkshop } from './CustomizationServicesPage';
 
-const KeyTakeaways: React.FC<{ takeaways: string[] }> = ({ takeaways }) => (
-    <div className="bg-bg-card p-6 rounded-lg border-2 border-brand-900 mt-12 mb-12">
-        <h3 className="font-poppins font-bold text-xl text-text-primary mb-3">Key Takeaways</h3>
-        <ul className="space-y-2">
-            {takeaways.map((item, index) => (
-                <li key={index} className="flex items-start gap-3">
-                    <svg className="w-5 h-5 text-primary flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                    <span id={`blog-summary-${index}`} className="text-text-secondary">{item}</span>
-                </li>
-            ))}
-        </ul>
+export default function BlogPage() {
+  return <QuoteWorkshop>
+    <Seo title="คู่มือเตรียมทำเว็บไซต์สำหรับเจ้าของธุรกิจ | Tempa123" description="เตรียมบรีฟเว็บไซต์ให้ทีมประเมินงานได้ง่ายขึ้น เลือกโครงหน้าแรก รวบรวมรูปและเนื้อหา และตรวจรายการค่าใช้จ่ายก่อนเริ่มทำเว็บ" />
+    <h1>คู่มือเตรียมทำเว็บไซต์</h1>
+    <p className="quote-lead">ก่อนเลือกสีหรือแบบหน้าแรก ลองเขียนให้จบประโยคเดียวว่า “ลูกค้ามาที่เว็บนี้เพื่อ…” คำตอบจะช่วยตัดสินว่าควรวางเมนู ราคา ผลงาน หรือช่องทางติดต่อไว้ตรงไหน</p>
+    <div className="quote-columns">
+      <article>
+        <details open><summary>หน้าแรกควรตอบคำถามอะไร?</summary><p>บอกว่าคุณขายอะไร เหมาะกับใคร และลูกค้าจะไปต่อได้อย่างไร เช่น ร้านเบเกอรี่อาจให้ดูรสชาติและขนาดเค้กก่อนกดสอบถามวันรับ ส่วนช่างรับเหมาควรให้ดูงานประเภทเดียวกับที่ลูกค้าต้องการก่อนขอประเมินราคา</p></details>
+        <details><summary>ต้องเตรียมรูปและเนื้อหาแค่ไหน?</summary><p>เริ่มจากชื่อธุรกิจ รายการสินค้าหรือบริการ ช่องทางติดต่อ และภาพจริงที่คุณมีสิทธิ์ใช้ เขียนกำกับแต่ละรูปว่าเป็นอะไรและลูกค้าควรรู้อะไร ถ้าราคาขึ้นอยู่กับขนาดหรือจำนวน บอกเงื่อนไขแทนการใส่ราคาที่อาจทำให้เข้าใจผิด</p></details>
+        <details><summary>จะเปรียบเทียบใบเสนอราคาสองฉบับอย่างไร?</summary><p>เทียบงานที่ได้รับในแต่ละหน้า รอบแก้ไข ค่าจดโดเมน ค่าโฮสติ้ง และค่าดูแลหลังส่งมอบ แยกค่าเริ่มต้นออกจากค่าใช้จ่ายรายปี แล้วเช็กว่าคุณจะเป็นผู้ถือบัญชีและได้รับสิทธิ์อะไรบ้าง</p></details>
+        <details><summary>จะตรวจเว็บก่อนเปิดใช้งานอย่างไร?</summary><p>ลองใช้มือถือค้นหาสินค้าหนึ่งชิ้นหรือบริการหนึ่งรายการ กดปุ่มติดต่อ กรอกข้อมูลทดสอบ และตรวจว่าทั้งลูกค้าและทีมงานได้รับสิ่งที่ควรได้รับ ลองกรอกไม่ครบอีกครั้งเพื่อดูว่าข้อความช่วยให้แก้ไขได้หรือไม่</p></details>
+      </article>
+      <aside className="quote-summary"><h2>มีแบบในใจแล้ว?</h2><p>ส่งชื่อแบบ พร้อมบอกหนึ่งอย่างที่ชอบและหนึ่งอย่างที่อยากเปลี่ยน ทีมจะเห็นทิศทางชัดขึ้นตั้งแต่ครั้งแรกที่คุยกัน</p><Link className="quote-cta" to={SITE_MAP.CONTACT}>ส่งรายละเอียดโปรเจกต์</Link></aside>
     </div>
-);
-
-const BlogPage: React.FC = () => {
-  const blogPostingSchema = {
-    "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    "headline": "Blog & Resources | Tempa Web.123",
-    "author": {
-      "@type": "Organization",
-      "name": "Tempa Web.123"
-    },
-    "datePublished": new Date().toISOString().split('T')[0],
-    "image": "https://raw.githubusercontent.com/devoncasa/Tempa123-Asset/main/images/about/performance-engine.webp",
-    "description": "Our blog is coming soon! Stay tuned for articles on design trends, creator spotlights, and tips for making the most of your template.",
-    "speakable": {
-      "@type": "SpeakableSpecification",
-      "cssSelector": ["#blog-title", "#blog-summary"]
-    }
-  };
-
-  return (
-    <>
-      <Seo
-        title={SEO_CONTENT.BLOG.title}
-        description={SEO_CONTENT.BLOG.description}
-        schema={blogPostingSchema}
-      />
-      <section className="bg-bg-section-dark py-12 md:py-20">
-        <div className="container mx-auto px-6 lg:px-[8vw]">
-          <div className="max-w-3xl mx-auto text-center">
-            <h1 id="blog-title" className="text-4xl md:text-5xl font-bold text-brand-900 font-poppins mb-4">
-              Our Blog & Resources
-            </h1>
-            <p id="blog-summary" className="text-lg text-grey-600 mb-12">
-              Design trends, creator spotlights, and tips for making the most of your template.
-            </p>
-
-            <KeyTakeaways takeaways={[
-              "Our blog will focus on actionable advice for small businesses and creators.",
-              "Topics include design trends, SEO tips, and spotlights on successful template users.",
-              "The goal is to provide resources that help you grow your business using our templates."
-            ]} />
-
-            <div className="bg-white p-10 rounded-lg shadow-lg text-center border-2 border-brand-900">
-                <h2 className="text-2xl font-poppins font-bold text-grey-900">Coming Soon!</h2>
-                <p className="text-grey-600 mt-4 mb-8">
-                    We're currently curating our first batch of articles. Stay tuned for insightful content that will help you succeed.
-                </p>
-                <Link to={SITE_MAP.CATALOG} className="bg-primary text-white py-3 px-8 rounded-lg uppercase text-sm font-semibold tracking-wide-sm hover:bg-primary-hover transition-all duration-300">
-                    Explore Templates
-                </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-    </>
-  );
-};
-
-export default BlogPage;
+  </QuoteWorkshop>;
+}
