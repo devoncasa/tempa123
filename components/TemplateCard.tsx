@@ -59,7 +59,7 @@ export const TemplatePalette = ({ colors }: { colors: string[] }) => (
 const TemplateCard: React.FC<TemplateCardProps> = ({ template }) => {
   const theme = template.colorThemes[0];
   return (
-    <article className="bg-white p-6 rounded-lg flex flex-col gap-3" style={{ border: '1px solid #bfc9bc', color: '#173d36' }}>
+    <article className="min-w-0 [overflow-wrap:anywhere] bg-white p-6 rounded-lg flex flex-col gap-3" style={{ border: '1px solid #bfc9bc', color: '#173d36' }}>
       {theme && <TemplatePalette colors={theme.palette} />}
       <p className="text-sm">{designLabel(template.category)} · {template.style && designLabel(template.style) || 'แนวทางออกแบบ'}</p>
       <h3 className="text-2xl font-bold leading-tight">
