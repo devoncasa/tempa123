@@ -1,17 +1,28 @@
-import React, { useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import React from 'react';
+import { useParams, useSearchParams, Link } from 'react-router-dom';
 import { TEMPLATES } from '../constants';
 import type { Template } from '../types';
 import NotFoundPage from './NotFoundPage';
 import TemplateCard, { TemplatePalette, designLabel } from '../components/TemplateCard';
 import Seo from '../components/Seo';
+import { readFinderAnswers } from './DesignFinderPage';
 import { SITE_MAP, getCatalogCategoryPath } from '../src/siteMap';
 
 function DesignBrief({template}: {template: Template}) {
-  const [paletteIndex, setPaletteIndex] = useState(0);
-  const theme = template.colorThemes[paletteIndex];
+  const [params, setParams] = useSearchParams();
+  const answers = readFinderAnswers(params);
+  const chosen = template.colorThemes.find(item => item.name === params.get('palette'));
+  const theme = chosen || template.colorThemes[0];
+  function choosePalette(name: string) {
+    const next = new URLSearchParams(answers.query);
+    next.set('palette', name);
+    setParams(next, { replace: true, preventScrollReset: true });
+  }
   const related = TEMPLATES.filter(t => t.category === template.category && t.id !== template.id).slice(0, 3);
-  const enquiry = SITE_MAP.CONTACT + '?' + new URLSearchParams({ template: template.id });
+  const enquiryParams = new URLSearchParams({ template: template.id });
+  const brief = [answers.brief, chosen && 'ชุดสีที่สนใจ: ' + chosen.name].filter(Boolean).join('\n');
+  if (brief) enquiryParams.set('brief', brief);
+  const enquiry = SITE_MAP.CONTACT + '?' + enquiryParams.toString();
   return (
     <section className="py-12 md:py-20" style={{ background: '#f8f6ee', color: '#173d36' }}>
       <Seo title={template.name + ' — แนวทางออกแบบเว็บไซต์ | Tempa123'} description={`ดูแนวทางออกแบบ ${template.name} สำหรับ${designLabel(template.category)} พร้อมชุดสี หน้าที่แนะนำ และรายละเอียดที่ควรสอบถามก่อนขอราคา`} />
@@ -29,8 +40,8 @@ function DesignBrief({template}: {template: Template}) {
             <TemplatePalette colors={theme.palette} />
             <p className="my-3" aria-live="polite">{theme.name} · {theme.palette.join(' / ')}</p>
             <div className="flex flex-wrap gap-4">
-              {template.colorThemes.map((option, index) => <label className="p-2" key={option.name}>
-                <input type="radio" name="palette" checked={index === paletteIndex} onChange={() => setPaletteIndex(index)} /> {option.name}
+              {template.colorThemes.map((option) => <label className="p-2" key={option.name}>
+                <input type="radio" name="palette" checked={option === chosen} onChange={() => choosePalette(option.name)} /> {option.name}
               </label>)}
             </div>
           </fieldset>}

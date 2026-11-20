@@ -22,14 +22,24 @@ const support = [
 const title = 'ช่วยเลือกแบบเว็บไซต์ให้เหมาะกับธุรกิจ';
 const description = 'เลือกประเภทธุรกิจ เป้าหมาย และบริการที่ต้องการ เพื่อดูแบบเว็บไซต์ที่เกี่ยวข้องและส่งบรีฟให้ทีม Tempa123';
 
-export default function DesignFinderPage() {
-  const [params, setParams] = useSearchParams();
+export function readFinderAnswers(params: URLSearchParams) {
   const business = params.get('business') || '';
+  const category = categories.find(item => item === business);
   const goal = goals.find(item => item.id === params.get('goal'));
   const help = support.find(item => item.id === params.get('help'));
-  const category = categories.find(item => item === business);
   const businessLabel = category ? designLabel(category) : 'ธุรกิจประเภทอื่น';
   const ready = Boolean((category || business === 'other') && goal && help);
+  const query = new URLSearchParams();
+  if (category || business === 'other') query.set('business', business);
+  if (goal) query.set('goal', goal.id);
+  if (help) query.set('help', help.id);
+  const brief = ready ? [`ประเภทธุรกิจ: ${businessLabel}`, `อยากให้ลูกค้า${goal!.label}`, `บริการที่สนใจ: ${help!.label}`].join('\n') : '';
+  return {business, category, goal, help, businessLabel, ready, query, brief};
+}
+
+export default function DesignFinderPage() {
+  const [params, setParams] = useSearchParams();
+  const {business, category, goal, help, businessLabel, ready, query: answers, brief} = readFinderAnswers(params);
 
   function choose(key: string, value: string) {
     const next = new URLSearchParams(params);
@@ -39,7 +49,7 @@ export default function DesignFinderPage() {
   }
   function contactPath(template?: string) {
     const query = new URLSearchParams();
-    query.set('brief', 'ประเภทธุรกิจ: ' + businessLabel + '\nอยากให้ลูกค้า' + goal?.label + '\nบริการที่สนใจ: ' + help?.label);
+    query.set('brief', brief);
     if (template) query.set('template', template);
     return SITE_MAP.CONTACT + '?' + query.toString();
   }
@@ -73,10 +83,10 @@ export default function DesignFinderPage() {
           <h2 id="finder-heading">แบบที่น่าลองดู</h2>
           <p role="status">{!ready ? 'เลือกคำตอบให้ครบทั้งสามข้อ แล้วแบบที่เกี่ยวข้องจะแสดงตรงนี้' : matches.length ? 'คัดมา ' + matches.length + ' แบบในหมวด' + businessLabel + ' โดยแสดงแบบที่มีชื่อเมนูเกี่ยวข้องกับเป้าหมายของคุณก่อน' : 'ยังไม่มีหมวดที่ตรงกับธุรกิจของคุณโดยเฉพาะ คุณส่งรายละเอียดให้ทีมช่วยดูได้'}</p>
           {matches.length > 0 && <ul>{matches.map(({ template, menu }) => <li key={template.id}>
-            <h3><Link to={getTemplateDetailPath(template.id)}>{template.name}</Link></h3>
+            <h3><Link to={getTemplateDetailPath(template.id) + '?' + answers.toString()}>{template.name}</Link></h3>
             <p>{template.style ? designLabel(template.style) + ' · ' : ''}{designLabel(template.category)}</p>
             {menu && <p>เมนูที่ระบุในแนวทางออกแบบ <span lang="en">{menu}</span></p>}
-            <div className="finder-links"><Link to={getTemplateDetailPath(template.id)}>ดูรายละเอียดแบบ</Link><Link to={contactPath(template.id)}>ส่งบรีฟพร้อมแบบนี้</Link></div>
+            <div className="finder-links"><Link to={getTemplateDetailPath(template.id) + '?' + answers.toString()}>ดูรายละเอียดแบบ</Link><Link to={contactPath(template.id)}>ส่งบรีฟพร้อมแบบนี้</Link></div>
           </li>)}</ul>}
           {ready && <div className="finder-next"><p>{help?.label} — ทีมจะใช้คำตอบเหล่านี้ประกอบการคุยเรื่องขอบเขตงานและฟังก์ชันที่ต้องตั้งค่าเพิ่ม</p><Link to={contactPath()}>ส่งบรีฟให้ทีมช่วยดู</Link></div>}
           <Link className="finder-catalog" to={SITE_MAP.CATALOG}>ดูแบบเว็บไซต์ทั้งหมด</Link>
