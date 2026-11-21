@@ -1,172 +1,62 @@
-import React, { useState, useEffect, useMemo } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { TEMPLATES, CATEGORIES, CATEGORY_FAQ_ITEMS, getTemplatePriceUSD } from '../constants';
-import TemplateCard from '../components/TemplateCard';
-import { Template, TemplateCategory, FaqItem as FaqItemType } from '../types';
+import React from 'react';
+import { Link, useNavigate, useParams, useSearchParams } from 'react-router-dom';
+import { TEMPLATES } from '../constants';
+import TemplateCard, { designLabel } from '../components/TemplateCard';
 import Seo from '../components/Seo';
-import FaqItem from '../components/FaqItem';
 import { SITE_MAP, getCatalogCategoryPath } from '../src/siteMap';
-import { SEO_CONTENT } from '../src/content';
 
-const CatalogPage: React.FC = () => {
-  const { category: urlCategory } = useParams<{ category?: string }>();
+const categories = Array.from(new Set(TEMPLATES.map(item => item.category))).sort();
+const styles = Array.from(new Set(TEMPLATES.flatMap(item => item.style ? [item.style] : []))).sort();
+const selectClass = 'w-full border border-gray-500 rounded p-3 bg-white';
+
+export default function CatalogPage() {
+  const { category } = useParams();
   const navigate = useNavigate();
-  const [selectedCategory, setSelectedCategory] = useState<TemplateCategory | 'all'>('all');
-  const [styleFilter, setStyleFilter] = useState<'all' | string>('all');
-  const [sortBy, setSortBy] = useState<'popular' | 'newest' | 'price_asc' | 'price_desc'>('popular');
-  const [categoryFaqs, setCategoryFaqs] = useState<FaqItemType[]>([]);
+  const [params, setParams] = useSearchParams();
+  const style = params.get('style') || '';
+  const descending = params.get('sort') === 'za';
+  const filtered = TEMPLATES.filter(item =>
+    (!category || item.category === category) && (!style || item.style === style)
+  ).sort((a, b) => (descending ? -1 : 1) * a.name.localeCompare(b.name));
 
-  useEffect(() => {
-    let currentCategory: TemplateCategory | 'all' = 'all';
-    if (urlCategory) {
-      const decodedCategory = decodeURIComponent(urlCategory);
-      const foundCategory = Object.values(TemplateCategory).find(c => c === decodedCategory);
-      if (foundCategory) {
-        currentCategory = foundCategory;
-      }
-    }
-    setSelectedCategory(currentCategory);
-    
-    if (currentCategory !== 'all' && CATEGORY_FAQ_ITEMS[currentCategory]) {
-      setCategoryFaqs(CATEGORY_FAQ_ITEMS[currentCategory]);
-    } else {
-      setCategoryFaqs([]);
-    }
-  }, [urlCategory]);
-
-  const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const newCategory = e.target.value;
-    if (newCategory === 'all') {
-      navigate(SITE_MAP.CATALOG);
-    } else {
-      navigate(getCatalogCategoryPath(newCategory));
-    }
-  };
-
-  const filteredAndSortedTemplates = useMemo(() => {
-    let templates = TEMPLATES
-      .filter(template => selectedCategory === 'all' || template.category === selectedCategory)
-      .filter(template => styleFilter === 'all' || template.style === styleFilter);
-
-    switch (sortBy) {
-      case 'newest':
-        templates.sort((a, b) => parseInt(b.id.split('-')[1]) - parseInt(a.id.split('-')[1]));
-        break;
-      case 'price_asc':
-        templates.sort((a, b) => getTemplatePriceUSD(a) - getTemplatePriceUSD(b));
-        break;
-      case 'price_desc':
-        templates.sort((a, b) => getTemplatePriceUSD(b) - getTemplatePriceUSD(a));
-        break;
-      case 'popular':
-      default:
-        templates.sort((a, b) => a.name.localeCompare(b.name));
-        break;
-    }
-    return templates;
-  }, [selectedCategory, styleFilter, sortBy]);
-
-  const allStyles = useMemo(() => {
-    const styles = new Set(TEMPLATES.map(t => t.style).filter(Boolean));
-    return Array.from(styles) as string[];
-  }, []);
-
-  const pageTitle = selectedCategory === 'all' ? SEO_CONTENT.CATALOG.title : `${selectedCategory} Templates | Tempa Web.123`;
-  const pageDescription = SEO_CONTENT.CATALOG.description;
-
-  const faqSchema = categoryFaqs.length > 0 ? {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": categoryFaqs.map(item => ({
-      "@type": "Question",
-      "name": item.question,
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": typeof item.answer === 'string' ? item.answer : 'Details available on the page.'
-      }
-    }))
-  } : undefined;
-
-  const selectClasses = "w-full md:w-auto p-3 border border-border-primary rounded-lg shadow-sm text-base bg-bg-card focus:ring-primary focus:border-primary transition-colors";
+  function setOption(key: string, value: string) {
+    const next = new URLSearchParams(params);
+    if (value) next.set(key, value);
+    else next.delete(key);
+    setParams(next);
+  }
 
   return (
-    <>
-      <Seo 
-        title={pageTitle}
-        description={pageDescription}
-        schema={faqSchema}
-      />
-      <div>
-        <section className="bg-bg-section-dark py-12 md:py-20">
-          <div className="container mx-auto px-6 lg:px-[8vw]">
-            <h1 className="text-4xl font-bold text-center font-poppins mb-4">Our Template Catalog</h1>
-            <p className="text-center text-lg text-text-secondary mb-12">Find the perfect foundation for your next project. Professionally designed, fully responsive, and ready to customize.</p>
-
-            <div className="flex flex-col md:flex-row justify-center items-center gap-4 mb-12 p-4 bg-bg-card/80 rounded-xl shadow-md border-2 border-brand-900 sticky top-[85px] z-40 backdrop-blur-sm">
-              <select
-                value={selectedCategory}
-                onChange={handleCategoryChange}
-                className={selectClasses}
-                aria-label="Filter templates by category"
-              >
-                <option value="all">All Categories</option>
-                {CATEGORIES.map(cat => (
-                  <option key={cat.name} value={cat.name}>{cat.name}</option>
-                ))}
-              </select>
-              <select
-                value={styleFilter}
-                onChange={(e) => setStyleFilter(e.target.value)}
-                className={selectClasses}
-                aria-label="Filter templates by style"
-              >
-                <option value="all">All Styles</option>
-                {allStyles.map(style => (
-                  <option key={style} value={style}>{style}</option>
-                ))}
-              </select>
-               <select
-                value={sortBy}
-                onChange={(e) => setSortBy(e.target.value as any)}
-                className={selectClasses}
-                aria-label="Sort templates"
-              >
-                <option value="popular">Sort: Most Popular</option>
-                <option value="newest">Sort: Newest</option>
-                <option value="price_asc">Sort: Price (Low to High)</option>
-                <option value="price_desc">Sort: Price (High to Low)</option>
-              </select>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {filteredAndSortedTemplates.map(template => (
-                <TemplateCard key={template.id} template={template} />
-              ))}
-            </div>
-            {filteredAndSortedTemplates.length === 0 && (
-              <div className="col-span-full text-center py-20">
-                <h2 className="text-2xl font-semibold text-text-primary">No templates found</h2>
-                <p className="text-text-secondary mt-2">Try adjusting your filters.</p>
-              </div>
-            )}
-          </div>
-        </section>
-        
-        {categoryFaqs.length > 0 && (
-          <section className="bg-bg-section-light py-16 md:py-24">
-            <div className="container mx-auto px-6 lg:px-[8vw]">
-                <h2 className="text-3xl font-bold text-center mb-12 font-poppins">Frequently Asked Questions for {selectedCategory}</h2>
-                <div className="max-w-3xl mx-auto bg-bg-card p-8 rounded-2xl shadow-xl border-2 border-brand-900">
-                  {categoryFaqs.map((item) => (
-                    <FaqItem key={item.question} item={item} />
-                  ))}
-                </div>
-            </div>
-          </section>
-        )}
+    <section className="py-12 md:py-20" style={{ background: '#f8f6ee', color: '#173d36' }}>
+      <Seo title={`แบบเว็บไซต์${category ? 'สำหรับ' + designLabel(category) : 'ตามประเภทธุรกิจ'} | Tempa123`} description={category ? `ดูแบบเว็บไซต์สำหรับ${designLabel(category)} พร้อมเลือกสไตล์และเปรียบเทียบชุดสีก่อนสอบถามงานปรับแต่ง` : 'เลือกดูแบบเว็บไซต์ตามประเภทธุรกิจและสไตล์ พร้อมดูชุดสีและแนวทางจัดหน้าก่อนสอบถามบริการปรับแต่ง'} />
+      <div className="container mx-auto px-6 lg:px-[8vw]">
+        <h1 className="text-4xl md:text-5xl font-bold">เลือกแบบเว็บไซต์ให้เหมาะกับธุรกิจ</h1>
+        <p className="my-4 max-w-2xl">เลือกประเภทธุรกิจหรือสไตล์ที่ชอบ แล้วเปิดดูแนวทางจัดหน้าและชุดสีของแต่ละแบบ หากสนใจแบบไหน ส่งให้ทีมช่วยประเมินงานปรับแต่งได้เลย</p>
+        <div className="grid md:grid-cols-3 gap-4 my-8">
+          <label>ประเภทธุรกิจ<select className={selectClass} value={category || ''} onChange={event => navigate({ pathname: event.target.value ? getCatalogCategoryPath(event.target.value) : SITE_MAP.CATALOG, search: params.toString() })}>
+            <option value="">ทุกประเภทธุรกิจ</option>
+            {category && !categories.some(c => c === category) && <option value={category}>{designLabel(category)}</option>}
+            {categories.map(c => <option key={c} value={c}>{designLabel(c)}</option>)}
+          </select></label>
+          <label>สไตล์<select className={selectClass} value={style} onChange={event => setOption('style', event.target.value)}>
+            <option value="">ทุกสไตล์</option>
+            {style && !styles.some(s => s === style) && <option value={style}>{style}</option>}
+            {styles.map(s => <option key={s} value={s}>{designLabel(s)}</option>)}
+          </select></label>
+          <label>เรียงตามชื่อ<select className={selectClass} value={descending ? 'za' : ''} onChange={event => setOption('sort', event.target.value)}>
+            <option value="">A ถึง Z</option><option value="za">Z ถึง A</option>
+          </select></label>
+        </div>
+        <p role="status" className="mb-4">พบ {filtered.length} แบบ{category ? ` ในหมวด ${designLabel(category)}` : ''}</p>
+        {filtered.length ? <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filtered.map(item => <TemplateCard key={item.id} template={item} />)}
+        </div> : <div className="bg-white p-6 rounded-lg">
+          <h2 className="text-xl font-bold">ยังไม่มีแบบเว็บไซต์ที่ตรงกับตัวเลือกนี้</h2>
+          <p className="my-3">ลองดูแบบเว็บไซต์ทั้งหมด หรือบอกทีมว่าคุณอยากได้เว็บไซต์แบบไหน</p>
+          <Link className="underline mr-6" to={SITE_MAP.CATALOG}>ล้างตัวกรอง</Link>
+          <Link className="underline" to={SITE_MAP.CONTACT}>สอบถามทีมงาน</Link>
+        </div>}
       </div>
-    </>
+    </section>
   );
-};
-
-export default CatalogPage;
+}

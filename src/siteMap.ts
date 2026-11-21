@@ -7,6 +7,7 @@ export const SITE_MAP = {
   ABOUT: '/about',
   WHY_US: '/why-us',
   CATALOG: '/catalog',
+  DESIGN_FINDER: '/design-finder',
   CATALOG_CATEGORY: '/catalog/:category',
   INSPIRATION_GALLERY: '/inspiration-gallery',
   INSPIRATION_GALLERY_CATEGORY: '/inspiration-gallery/category/:category',

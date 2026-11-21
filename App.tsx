@@ -1,96 +1,48 @@
-
-
-
-
 import React from 'react';
-import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import {Link,Route,Routes,useParams} from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import ScrollToTop from './components/ScrollToTop';
+import { designLabel } from './components/TemplateCard';
+import Seo from './components/Seo';
 import HomePage from './pages/HomePage';
 import CatalogPage from './pages/CatalogPage';
+import DesignFinderPage from './pages/DesignFinderPage';
 import TemplateDetailPage from './pages/TemplateDetailPage';
-import SubmitPage from './pages/SubmitPage';
+import CheckoutPage from './src/pages/CheckoutPage';
 import PricingPage from './pages/PricingPage';
 import CustomizationServicesPage from './pages/CustomizationServicesPage';
-import BlogPage from './pages/BlogPage';
-import AboutPage from './pages/AboutPage';
-import ContactPage from './pages/ContactPage';
-import NotFoundPage from './pages/NotFoundPage';
-import { useAuth } from './contexts/AuthContext';
-import AdminPortal from './components/AdminPortal';
-import MultilingualServicePage from './pages/MultilingualServicePage';
-import WhyUsPage from './pages/WhyUsPage';
-import WelcomePopup from './components/WelcomePopup';
-import LineOrderingKitPage from './pages/LineOrderingKitPage';
-import ScrollToTop from './components/ScrollToTop';
 import PricingCalculatorPage from './pages/PricingCalculatorPage';
-import InspirationGalleryPage from './pages/InspirationGalleryPage';
-import GalleryUpsellPage from './pages/GalleryUpsellPage';
-import MyAccountPage from './pages/MyAccountPage';
-import CategoryGalleryPage from './pages/CategoryGalleryPage';
-import VideoGalleryPage from './pages/VideoGalleryPage';
-import CheckoutPage from './src/pages/CheckoutPage';
+import ContactPage from './pages/ContactPage';
+import AboutPage from './pages/AboutPage';
+import WhyUsPage from './pages/WhyUsPage';
+import BlogPage from './pages/BlogPage';
+import LineOrderingKitPage from './pages/LineOrderingKitPage';
+import { SITE_MAP as S } from './src/siteMap';
 
-import { SITE_MAP } from './src/siteMap';
-
-const ProtectedGalleryRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const { user } = useAuth();
-  if (!user.isAuthenticated || user.packageTier === 'none') {
-    return <Navigate to={SITE_MAP.INSPIRATION_GALLERY_UPSELL} replace />;
+const pages = [[S.HOME,HomePage],[S.DESIGN_FINDER,DesignFinderPage],[S.CATALOG,CatalogPage],[S.CATALOG_CATEGORY,CatalogPage],[S.TEMPLATE_DETAIL,TemplateDetailPage],[S.CHECKOUT,CheckoutPage],[S.CONTACT,ContactPage],[S.PRICING,PricingPage],[S.PRICING_CUSTOMIZATION,CustomizationServicesPage],[S.PRICING_CALCULATOR,PricingCalculatorPage],[S.BLOG,BlogPage],[S.ABOUT,AboutPage],[S.WHY_US,WhyUsPage],[S.LINE_ORDERING_KIT,LineOrderingKitPage]] as const;
+const servicePages = [
+  [S.SERVICES_MULTILINGUAL,'ทำเว็บไซต์หลายภาษา','บอกเราว่าลูกค้าใช้ภาษาอะไร และหน้าไหนต้องแปลบ้าง เราจะช่วยวางโครงสร้างเมนูและขอบเขตการแปลให้เหมาะกับตลาดของคุณ','สอบถามงานหลายภาษา','/contact?package=เว็บไซต์หลายภาษา'],
+  [S.INSPIRATION_GALLERY,'หาไอเดียให้เว็บไซต์','เลือกดูรูปแบบตามประเภทธุรกิจ แล้วนำแบบที่ชอบมาคุยกับทีม','เลือกแบบเว็บไซต์','/catalog'],
+  [S.INSPIRATION_GALLERY_CATEGORY,'แบบเว็บไซต์ตามประเภทธุรกิจ','ดูตัวเลือกในแคตตาล็อกและเลือกแนวทางที่ต้องการ','ดูแคตตาล็อก','/catalog'],
+  [S.INSPIRATION_GALLERY_UPSELL,'เลือกบริการสำหรับเว็บไซต์','เปรียบเทียบขอบเขตงานหรือสอบถามเรื่องสิทธิ์การใช้ไฟล์ก่อนตัดสินใจ','ดูบริการ','/pricing'],
+  [S.MY_ACCOUNT,'สอบถามเรื่องบัญชีและไฟล์งาน','หากเคยรับบริการ แจ้งเลขอ้างอิงของงานผ่านแบบติดต่อเพื่อให้ทีมตรวจสอบ','ติดต่อทีมงาน','/contact'],
+  [S.SUBMIT_TEMPLATE,'เสนอผลงานออกแบบ','ส่งรายละเอียดแนวทางและลิงก์ผลงานของคุณให้ทีมพิจารณา','เสนอผลงาน','/contact?package=เสนอผลงานออกแบบ'],
+  [S.VIDEO_GALLERY,'ดูแนวทางออกแบบเว็บไซต์','เริ่มจากแบบที่เหมาะกับธุรกิจของคุณ แล้วสอบถามเพื่อดูตัวอย่างหรือคุยเรื่องการปรับแต่ง','ดูแบบเว็บไซต์','/catalog'],
+] as const;
+function Info({title,description,label,to}:{title:string;description:string;label:string;to:string}){
+  const { category } = useParams();
+  if (category) {
+    const businessType = designLabel(category);
+    title = 'ไอเดียเว็บไซต์สำหรับ' + businessType;
+    description = 'ดูแนวทางจัดหน้าและเลือกชุดสีสำหรับ' + businessType + ' หรือนำรายละเอียดธุรกิจมาคุยกับทีมเพื่อเลือกแบบที่เหมาะกับงาน';
+    label = 'ดูแบบในหมวดนี้';
+    to = '/catalog/' + encodeURIComponent(category);
   }
-  return <>{children}</>;
-};
-
-const ProtectedAuthRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-    const { user } = useAuth();
-    if (!user.isAuthenticated) {
-        return <Navigate to={SITE_MAP.HOME} replace />;
-    }
-    return <>{children}</>;
-};
-
-const App: React.FC = () => {
-  const { user } = useAuth();
-
-  return (
-    <>
-      <ScrollToTop />
-      <WelcomePopup />
-      {user.isAdmin && <AdminPortal />}
-      <div className={`flex flex-col min-h-screen bg-bg-primary font-inter text-text-primary ${user.isAdmin ? 'blur-sm brightness-50' : ''}`}>
-        <Header />
-        <main className="flex-grow">
-          <Routes>
-            <Route path={SITE_MAP.HOME} element={<HomePage />} />
-            <Route path={SITE_MAP.CATALOG} element={<CatalogPage />} />
-            <Route path={SITE_MAP.CATALOG_CATEGORY} element={<CatalogPage />} />
-            <Route path={SITE_MAP.WHY_US} element={<WhyUsPage />} />
-            <Route path={SITE_MAP.PRICING} element={<PricingPage />} />
-            <Route path={SITE_MAP.PRICING_CUSTOMIZATION} element={<CustomizationServicesPage />} />
-            <Route path={SITE_MAP.PRICING_CALCULATOR} element={<PricingCalculatorPage />} />
-            <Route path={SITE_MAP.LINE_ORDERING_KIT} element={<LineOrderingKitPage />} />
-            <Route path={SITE_MAP.SERVICES_MULTILINGUAL} element={<MultilingualServicePage />} />
-            
-            <Route path={SITE_MAP.INSPIRATION_GALLERY} element={<ProtectedGalleryRoute><InspirationGalleryPage /></ProtectedGalleryRoute>} />
-            <Route path={SITE_MAP.INSPIRATION_GALLERY_CATEGORY} element={<ProtectedGalleryRoute><CategoryGalleryPage /></ProtectedGalleryRoute>} />
-            <Route path={SITE_MAP.INSPIRATION_GALLERY_UPSELL} element={<GalleryUpsellPage />} />
-            
-            <Route path={SITE_MAP.MY_ACCOUNT} element={<ProtectedAuthRoute><MyAccountPage /></ProtectedAuthRoute>} />
-
-            <Route path={SITE_MAP.BLOG} element={<BlogPage />} />
-            <Route path={SITE_MAP.VIDEO_GALLERY} element={<VideoGalleryPage />} />
-            <Route path={SITE_MAP.ABOUT} element={<AboutPage />} />
-            <Route path={SITE_MAP.SUBMIT_TEMPLATE} element={<SubmitPage />} />
-            <Route path={SITE_MAP.CONTACT} element={<ContactPage />} />
-            <Route path={SITE_MAP.TEMPLATE_DETAIL} element={<TemplateDetailPage />} />
-            <Route path={SITE_MAP.CHECKOUT} element={<CheckoutPage />} />
-            <Route path="*" element={<NotFoundPage />} />
-          </Routes>
-        </main>
-        <Footer />
-      </div>
-    </>
-  );
-};
-
-export default App;
+  return <article className="studio-info"><Seo title={title+' | Tempa123'} description={description}/><h1>{title}</h1><p>{description}</p><Link className="studio-brief" to={to}>{label}</Link></article>
+}
+export default function App(){return <><ScrollToTop/><Header/><main id="main-content" tabIndex={-1}><Routes>
+  {pages.map(([path,Page])=><Route key={path} path={path} element={<Page/>}/>)}
+  {servicePages.map(([path,title,description,label,to])=><Route key={path} path={path} element={<Info {...{title,description,label,to}}/>}/>)}
+  <Route path="*" element={<Info title="ไม่พบหน้านี้" description="กลับไปเลือกแบบเว็บไซต์หรือเริ่มจากหน้าแรก" label="เลือกแบบเว็บไซต์" to="/catalog"/>}/>
+</Routes></main><Footer/></>}

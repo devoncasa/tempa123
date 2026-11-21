@@ -1,0 +1,2 @@
+# Netlify serves generated paths and static assets before this fallback.
+/*  /404.html  404
